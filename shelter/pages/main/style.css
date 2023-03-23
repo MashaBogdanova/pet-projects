@@ -26,7 +26,7 @@ header .title {
     font-weight: 400;
     line-height: 35px;
     letter-spacing: 0.06em;
-    color: #F1CDB3;
+    color: #f1cdb3;
 }
 
 header .subtitle {
@@ -39,7 +39,7 @@ header .subtitle {
     font-size: 13px;
     line-height: 15px;
     letter-spacing: 0.1em;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 header nav {
@@ -56,7 +56,7 @@ header ul{
     padding: 0;
 
     list-style-type: none;
-    color: #CDCDCD;
+    color: #cdcdcd;
 }
 
 ul li {
@@ -81,7 +81,7 @@ ul li {
     justify-content: space-between;
 }
 
-.content {
+.start-screen-content .content {
     width: 502px;
 
     display: flex;
@@ -89,7 +89,7 @@ ul li {
     justify-content: center;
 }
 
-.content h2 {
+.start-screen-content h2 {
     width: 310px;
     height: 114px;
     margin: 0;
@@ -98,10 +98,10 @@ ul li {
     font-weight: 400;
     font-size: 44px;
     line-height: 57px;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
-.content p {
+.start-screen-content p {
     width: 460px;
     height: 72px;
     margin: 42px 0;
@@ -110,20 +110,20 @@ ul li {
     font-weight: 400;
     font-size: 15px;
     line-height: 24px;
-    color: #CDCDCD;
+    color: #cdcdcd;
 
 }
 
-.content button {
+.button-primary {
+    width: 207px;
+    height: 52px;
+    padding: 15px 45px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px 45px;
 
-    width: 207px;
-    height: 52px;
-
-    background: #F1CDB3;
+    background-color: #f1cdb3;
     border: none;
     border-radius: 100px;
 
@@ -139,4 +139,151 @@ ul li {
 .start-screen-content img {
     width: 698px;
     height: 728px;
+}
+
+.about {
+    padding: 80px 40px 100px;
+}
+
+.about-content {
+    padding: 0 175px;
+
+    display: flex;
+    gap: 120px;
+}
+
+.about-content img {
+    width: 300px;
+    height: 408px;
+}
+
+.about-content h2 {
+    padding-right: 60px;
+    margin: 0;
+
+    font-family: 'Georgia', sans-serif;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 45px;
+    letter-spacing: 0.06em;
+    color: #545454;
+}
+
+.about-content p {
+    padding-top: 25px;
+
+    font-family: 'Arial', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    color: #4c4c4c;
+}
+
+.pets {
+    padding: 80px 40px 100px;
+    background-color: #f6f6f6;
+}
+
+.pets-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pets-content h3 {
+    width: 400px;
+    height: 90px;
+
+    font-family: 'Georgia', sans-serif;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 45px;
+    letter-spacing: 0.06em;
+    text-align: center;
+    color: #545454;
+}
+
+.pets-content .slider {
+    margin: 60px 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 53px;
+}
+
+.pets-content .cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 90px;
+}
+
+.pets-content .card {
+    width: 270px;
+    height: 435px;
+    padding-bottom: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+
+    background-color: #fafafa;
+    border-radius: 9px;
+}
+
+.pets-content img {
+width: 270px;
+height: 270px;
+}
+
+.pets-content p {
+    width: 74px;
+    height: 23px;
+
+    text-align: center;
+
+    font-family: 'Georgia', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: 0.06em;
+    color: #545454;
+}
+
+.pets-content .cards button {
+    width: 187px;
+    height: 52px;
+    padding: 15px 45px;
+    border: 2px solid #F1CDB3;
+    border-radius: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: transparent;
+
+    font-family: 'Georgia', sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 22px;
+    letter-spacing: 0.06em;
+    color: #292929;
+    white-space: nowrap;
+}
+
+.pets-content .button-primary {
+    width: 261px;
+    height: 52px;
+}
+
+.pets-content .arrow {
+    display: flex;
+    align-self: center;
+
+    width: 52px;
+    height: 52px;
+}
+
+.pets-content .arrow-right {
+    transform: rotate(180deg);
 }
