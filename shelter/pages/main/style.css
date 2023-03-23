@@ -2,7 +2,43 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Georgia', sans-serif;
 }
+
+h3 {
+    width: 400px;
+    height: 90px;
+    margin: 0;
+
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 45px;
+    letter-spacing: 0.06em;
+    text-align: center;
+    color: #545454;
+}
+
+.button-primary {
+    width: 207px;
+    height: 52px;
+    padding: 15px 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #f1cdb3;
+    border: none;
+    border-radius: 100px;
+
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 22px;
+    letter-spacing: 0.06em;
+    color: #292929;
+    white-space: nowrap;
+}
+
 
 header {
     position: absolute;
@@ -21,7 +57,6 @@ header .title {
     margin: 0;
     text-align: center;
 
-    font-family: Georgia, sans-serif;
     font-size: 32px;
     font-weight: 400;
     line-height: 35px;
@@ -48,7 +83,7 @@ header nav {
     padding: 16px 0 17px;
 }
 
-header ul{
+header ul {
     display: flex;
     justify-content: space-between;
 
@@ -94,7 +129,6 @@ ul li {
     height: 114px;
     margin: 0;
 
-    font-family: Georgia, sans-serif;
     font-weight: 400;
     font-size: 44px;
     line-height: 57px;
@@ -114,35 +148,16 @@ ul li {
 
 }
 
-.button-primary {
-    width: 207px;
-    height: 52px;
-    padding: 15px 45px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background-color: #f1cdb3;
-    border: none;
-    border-radius: 100px;
-
-    font-family: 'Georgia', sans-serif;
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 22px;
-    letter-spacing: 0.06em;
-    color: #292929;
-    white-space: nowrap;
-}
-
 .start-screen-content img {
     width: 698px;
     height: 728px;
 }
 
 .about {
+    height: 588px;
     padding: 80px 40px 100px;
+
+    background-color: #ffffff;
 }
 
 .about-content {
@@ -157,16 +172,9 @@ ul li {
     height: 408px;
 }
 
-.about-content h2 {
+.about-content h3 {
     padding-right: 60px;
-    margin: 0;
-
-    font-family: 'Georgia', sans-serif;
-    font-weight: 400;
-    font-size: 35px;
-    line-height: 45px;
-    letter-spacing: 0.06em;
-    color: #545454;
+    text-align: left;
 }
 
 .about-content p {
@@ -180,7 +188,9 @@ ul li {
 }
 
 .pets {
+    height: 877px;
     padding: 80px 40px 100px;
+
     background-color: #f6f6f6;
 }
 
@@ -188,19 +198,6 @@ ul li {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.pets-content h3 {
-    width: 400px;
-    height: 90px;
-
-    font-family: 'Georgia', sans-serif;
-    font-weight: 400;
-    font-size: 35px;
-    line-height: 45px;
-    letter-spacing: 0.06em;
-    text-align: center;
-    color: #545454;
 }
 
 .pets-content .slider {
@@ -231,8 +228,8 @@ ul li {
 }
 
 .pets-content img {
-width: 270px;
-height: 270px;
+    width: 270px;
+    height: 270px;
 }
 
 .pets-content p {
@@ -241,7 +238,6 @@ height: 270px;
 
     text-align: center;
 
-    font-family: 'Georgia', sans-serif;
     font-weight: 400;
     font-size: 20px;
     line-height: 23px;
@@ -262,7 +258,6 @@ height: 270px;
 
     background-color: transparent;
 
-    font-family: 'Georgia', sans-serif;
     font-weight: 400;
     font-size: 17px;
     line-height: 22px;
@@ -286,4 +281,120 @@ height: 270px;
 
 .pets-content .arrow-right {
     transform: rotate(180deg);
+}
+
+.help {
+    height: 611px;
+    padding: 80px 40px 100px;
+
+    background-color: #ffffff;
+}
+
+.help-content {
+    padding: 0 87px;
+    display: grid;
+    justify-items: center;
+    gap: 60px;
+}
+
+.help-content h3 {
+    width: 400px;
+    height: 90px;
+}
+
+.list {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 55px 120px;
+    flex-wrap: wrap;
+}
+
+.help-item {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.donation {
+    height: 462px;
+    padding: 80px 182px 100px 183px;
+    background: #F6F6F6;
+}
+
+.donation-content {
+    display: flex;
+    gap: 30px;
+}
+
+.donation img {
+    width: 505px;
+    height: 261px;
+}
+
+.donation h5 {
+    width: 307px;
+    height: 17px;
+    margin: 20px 0;
+
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 17px;
+    letter-spacing: 0.06em;
+    color: #545454;
+    white-space: nowrap;
+}
+
+.credit-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    padding: 10px 15px;
+    margin-bottom: 20px;
+
+    width: 349px;
+    height: 43px;
+
+    background: #F1CDB3;
+    border-radius: 9px;
+}
+
+.credit-card img {
+    width: 30px;
+    height: 23px;
+}
+
+.donation h3 {
+    width: 300px;
+    height: 90px;
+
+    text-align: left;
+}
+
+.credit-card h4 {
+    display: flex;
+    align-items: center;
+
+    width: 274px;
+    height: 23px;
+
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    color: #545454;
+
+}
+
+.donation p {
+    width: 380px;
+    height: 72px;
+
+    font-style: italic;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #B2B2B2;
 }
