@@ -8,7 +8,6 @@ body, * {
 h3 {
     width: 400px;
     height: 90px;
-    margin: 0;
 
     font-weight: 400;
     font-size: 35px;
@@ -42,6 +41,12 @@ p {
     letter-spacing: 0.06em;
     color: #292929;
     white-space: nowrap;
+}
+
+button:hover {
+    background: #fddcc4;
+    border: none;
+    cursor: pointer;
 }
 
 
@@ -99,8 +104,19 @@ header ul {
     color: #cdcdcd;
 }
 
-ul li {
+header li {
     margin-left: 35px;
+}
+
+header a:hover {
+    color: #ffffff;
+    cursor: pointer;
+}
+
+header a:active {
+    padding-bottom: 8px;
+    color: #ffffff;
+    border-bottom: 3px solid #f1cdb3;
 }
 
 .start-screen {
@@ -205,6 +221,7 @@ ul li {
     margin: 60px 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 53px;
 }
 
@@ -228,6 +245,15 @@ ul li {
     border-radius: 9px;
 }
 
+.card:hover {
+    cursor: pointer;
+}
+
+.card:hover > button {
+    background-color: #fddcc4;
+    border: none;
+}
+
 .pets-content img {
     width: 270px;
     height: 270px;
@@ -242,7 +268,7 @@ ul li {
     color: #545454;
 }
 
-.pets-content .cards button {
+.learn-more-button {
     width: 187px;
     height: 52px;
     padding: 15px 45px;
@@ -263,21 +289,41 @@ ul li {
     white-space: nowrap;
 }
 
-.pets-content .button-primary {
-    width: 261px;
-    height: 52px;
-}
-
-.pets-content .arrow {
+.arrow-button {
     display: flex;
-    align-self: center;
+    align-items: center;
+    justify-content: center;
+    padding: 23px 19px;
 
     width: 52px;
     height: 52px;
+
+    border: 2px solid #F1CDB3;
+    border-radius: 100px;
+
+    background-color: transparent;
 }
 
-.pets-content .arrow-right {
+.right-arrow-button {
     transform: rotate(180deg);
+}
+
+.arrow-button:disabled {
+    border-color: #cdcdcd;
+}
+
+.arrow-button:disabled > svg path {
+    fill: #cdcdcd;
+}
+
+.arrow-button svg {
+    width: 14px;
+    height: 6px;
+}
+
+.pets-content .button-primary {
+    width: 261px;
+    height: 52px;
 }
 
 .help {
