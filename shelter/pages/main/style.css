@@ -1,4 +1,4 @@
-body {
+body, * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,10 +12,15 @@ h3 {
 
     font-weight: 400;
     font-size: 35px;
-    line-height: 45px;
+    line-height: 130%;
     letter-spacing: 0.06em;
     text-align: center;
     color: #545454;
+}
+
+p {
+    font-family: 'Arial', sans-serif;
+    font-weight: 400;
 }
 
 .button-primary {
@@ -101,7 +106,6 @@ ul li {
 .start-screen {
     /*добавь width, чтобы оставался фон при мастабировании*/
     height: 908px;
-
     padding: 180px 40px 0;
 
     background: url("../../assets/images/start-screen-gradient-background.png") no-repeat;
@@ -109,19 +113,19 @@ ul li {
 }
 
 .start-screen-content {
-    width: 1200px;
-    height: 728px;
-
     display: flex;
     justify-content: space-between;
+
+    width: 1200px;
+    height: 728px;
 }
 
 .start-screen-content .content {
-    width: 502px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    width: 502px;
 }
 
 .start-screen-content h2 {
@@ -140,8 +144,6 @@ ul li {
     height: 72px;
     margin: 42px 0;
 
-    font-family: 'Arial', sans-serif;
-    font-weight: 400;
     font-size: 15px;
     line-height: 24px;
     color: #cdcdcd;
@@ -161,10 +163,11 @@ ul li {
 }
 
 .about-content {
-    padding: 0 175px;
-
     display: flex;
     gap: 120px;
+    align-items: center;
+
+    padding: 0 175px;
 }
 
 .about-content img {
@@ -180,8 +183,6 @@ ul li {
 .about-content p {
     padding-top: 25px;
 
-    font-family: 'Arial', sans-serif;
-    font-weight: 400;
     font-size: 15px;
     line-height: 24px;
     color: #4c4c4c;
@@ -214,14 +215,14 @@ ul li {
 }
 
 .pets-content .card {
-    width: 270px;
-    height: 435px;
-    padding-bottom: 30px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
+
+    width: 270px;
+    height: 435px;
+    padding-bottom: 30px;
 
     background-color: #fafafa;
     border-radius: 9px;
@@ -233,12 +234,8 @@ ul li {
 }
 
 .pets-content p {
-    width: 74px;
-    height: 23px;
-
     text-align: center;
 
-    font-weight: 400;
     font-size: 20px;
     line-height: 23px;
     letter-spacing: 0.06em;
@@ -291,10 +288,11 @@ ul li {
 }
 
 .help-content {
-    padding: 0 87px;
     display: grid;
-    justify-items: center;
     gap: 60px;
+    justify-items: center;
+
+    padding: 0 87px;
 }
 
 .help-content h3 {
@@ -302,17 +300,35 @@ ul li {
     height: 90px;
 }
 
-.list {
+.list-first-row {
     display: flex;
+    gap: 119px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 55px;
+}
+
+.list-second-row {
+    display: flex;
+    gap: 119px;
     justify-content: space-evenly;
-    gap: 55px 120px;
     flex-wrap: wrap;
 }
 
 .help-item {
     display: grid;
+    gap: 30px;
     align-items: center;
     justify-items: center;
+}
+
+.help-item h4 {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: 0.06em;
+    color: #545454;
+    margin: 0;
 }
 
 .donation {
@@ -324,6 +340,7 @@ ul li {
 .donation-content {
     display: flex;
     gap: 30px;
+    align-items: center;
 }
 
 .donation img {
@@ -331,10 +348,25 @@ ul li {
     height: 261px;
 }
 
+.donation .content {
+    display: grid;
+    gap: 20px;
+
+    width: 380px;
+    height: 282px;
+}
+
+.donation h3 {
+    width: 300px;
+    height: 90px;
+
+    text-align: left;
+}
+
 .donation h5 {
     width: 307px;
     height: 17px;
-    margin: 20px 0;
+    margin: 0;
 
     font-weight: 400;
     font-size: 15px;
@@ -350,11 +382,9 @@ ul li {
     justify-content: center;
     gap: 15px;
 
-    padding: 10px 15px;
-    margin-bottom: 20px;
-
     width: 349px;
     height: 43px;
+    padding: 10px 15px;
 
     background: #F1CDB3;
     border-radius: 9px;
@@ -365,36 +395,73 @@ ul li {
     height: 23px;
 }
 
-.donation h3 {
-    width: 300px;
-    height: 90px;
-
-    text-align: left;
-}
-
 .credit-card h4 {
-    display: flex;
-    align-items: center;
-
-    width: 274px;
-    height: 23px;
-
     font-weight: 400;
     font-size: 20px;
     line-height: 23px;
     letter-spacing: 0.06em;
     white-space: nowrap;
     color: #545454;
-
 }
 
 .donation p {
     width: 380px;
     height: 72px;
+    margin: 0;
 
     font-style: italic;
-    font-weight: 400;
     font-size: 12px;
     line-height: 18px;
     color: #B2B2B2;
+}
+
+footer {
+    display: flex;
+    gap: 160px;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 350px;
+    padding: 40px 40px 0;
+
+    background: url("../../assets/images/start-screen-gradient-background.png") no-repeat;
+    background-size: 100%;
+}
+
+footer .contact-card {
+    display: grid;
+    gap: 40px;
+
+    width: 278px;
+    height: 234px;
+    margin: 16px 0 60px;
+}
+
+footer .second-contact-card {
+    gap: 33px;
+    width: 302px;
+}
+
+footer h3 {
+    text-align: left;
+    color: #ffffff;
+}
+
+footer .contact {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+footer h4 {
+    margin: 0;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: 0.06em;
+    color: #f1cdb3;
+}
+
+footer .footer-puppy {
+    width: 300px;
+    height: 310px;
 }
