@@ -1,0 +1,46 @@
+footer {
+    display: flex;
+    gap: 160px;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 350px;
+    padding: 40px 40px 0;
+
+    background: url("../../assets/images/start-screen-gradient-background.png") no-repeat;
+    background-size: 100%;
+}
+
+footer .contact-card {
+    display: grid;
+    gap: 40px;
+
+    width: 278px;
+    height: 234px;
+    margin: 16px 0 60px;
+}
+
+footer .second-contact-card {
+    gap: 33px;
+    width: 302px;
+}
+
+footer h3 {
+    text-align: left;
+    color: #ffffff;
+}
+
+footer .contact {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+footer h4 {
+    color: #f1cdb3;
+}
+
+footer .footer-puppy {
+    width: 300px;
+    height: 310px;
+}

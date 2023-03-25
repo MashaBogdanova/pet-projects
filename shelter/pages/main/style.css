@@ -2,109 +2,18 @@ body, * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
-    font-family: 'Georgia', sans-serif;
-    font-weight: 400;
-}
-
-h3 {
-    width: 400px;
-    height: 90px;
-
-    font-size: 35px;
-    line-height: 130%;
-    letter-spacing: 0.06em;
-    text-align: center;
-    color: #545454;
-}
-
-p {
-    font-family: 'Arial', sans-serif;
-}
-
-.button-primary {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 207px;
-    height: 52px;
-    padding: 15px 45px;
-
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 22px;
-    letter-spacing: 0.06em;
-    color: #292929;
-    white-space: nowrap;
-
-    background-color: #f1cdb3;
-    border: none;
-    border-radius: 100px;
-}
-
-button:hover {
-    background: #fddcc4;
-    border: none;
-    cursor: pointer;
-}
-
-
-header {
-    position: absolute;
-    top: 30px;
-    left: 40px;
-    right: 40px;
-
-    display: flex;
-    justify-content: space-between;
-
-    width: 1200px;
-    height: 60px;
-}
-
-header .title {
-    line-height: 35px;
-    letter-spacing: 0.06em;
-    text-align: center;
-    color: #f1cdb3;
 }
 
 header .subtitle {
-    margin: 10px 0 0;
-
-    font-size: 13px;
-    line-height: 15px;
-    letter-spacing: 0.1em;
-    text-align: center;
     color: #ffffff;
-}
-
-header nav {
-    display: flex;
-    align-items: center;
-
-    padding: 16px 0 17px;
-}
-
-header ul {
-    display: flex;
-    gap: 35px;
-    justify-content: space-between;
-
-    list-style-type: none;
-    color: #cdcdcd;
 }
 
 header a:hover {
-    color: #ffffff;
-    cursor: pointer;
+    color: #fafafa;
 }
 
 header a:active {
-    padding-bottom: 8px;
-    color: #ffffff;
-    border-bottom: 3px solid #f1cdb3;
+    color: #fafafa;
 }
 
 
@@ -133,11 +42,6 @@ header a:active {
 }
 
 .not-only-content h2 {
-    width: 310px;
-    height: 114px;
-
-    font-size: 44px;
-    line-height: 57px;
     color: #ffffff;
 }
 
@@ -146,8 +50,6 @@ header a:active {
     height: 72px;
     margin: 42px 0;
 
-    font-size: 15px;
-    line-height: 24px;
     color: #cdcdcd;
 }
 
@@ -183,9 +85,6 @@ header a:active {
 
 .about-content p {
     padding-top: 25px;
-
-    font-size: 15px;
-    line-height: 24px;
     color: #4c4c4c;
 }
 
@@ -249,59 +148,20 @@ header a:active {
 .our-friends-content p {
     font-size: 20px;
     line-height: 23px;
-    letter-spacing: 0.06em;
     text-align: center;
     color: #545454;
-}
-
-.learn-more-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 187px;
-    height: 52px;
-    padding: 15px 45px;
-
-    font-size: 17px;
-    line-height: 22px;
-    letter-spacing: 0.06em;
-    color: #292929;
-    white-space: nowrap;
-
-    background-color: transparent;
-    border: 2px solid #F1CDB3;
-    border-radius: 100px;
-}
-
-.arrow-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 52px;
-    height: 52px;
-    padding: 23px 19px;
-
-    background-color: transparent;
-    border: 2px solid #F1CDB3;
-    border-radius: 100px;
 }
 
 .right-arrow-button {
     transform: rotate(180deg);
 }
 
-.arrow-button svg {
+.circle-button svg {
     width: 14px;
     height: 6px;
 }
 
-.arrow-button:disabled {
-    border-color: #cdcdcd;
-}
-
-.arrow-button:disabled > svg path {
+.circle-button:disabled > svg path {
     fill: #cdcdcd;
 }
 
@@ -348,9 +208,6 @@ header a:active {
 }
 
 .help-item h4 {
-    font-size: 20px;
-    line-height: 23px;
-    letter-spacing: 0.06em;
     color: #545454;
 }
 
@@ -392,9 +249,6 @@ header a:active {
     width: 307px;
     height: 17px;
 
-    font-size: 15px;
-    line-height: 17px;
-    letter-spacing: 0.06em;
     white-space: nowrap;
     color: #545454;
 }
@@ -419,9 +273,6 @@ header a:active {
 }
 
 .credit-card h4 {
-    font-size: 20px;
-    line-height: 23px;
-    letter-spacing: 0.06em;
     white-space: nowrap;
     color: #545454;
 }
@@ -434,97 +285,80 @@ header a:active {
 }
 
 
-footer {
-    display: flex;
-    gap: 160px;
-    align-items: center;
-    justify-content: space-between;
-
-    height: 350px;
-    padding: 40px 40px 0;
-
-    background: url("../../assets/images/start-screen-gradient-background.png") no-repeat;
-    background-size: 100%;
-}
-
-footer .contact-card {
-    display: grid;
-    gap: 40px;
-
-    width: 278px;
-    height: 234px;
-    margin: 16px 0 60px;
-}
-
-footer .second-contact-card {
-    gap: 33px;
-    width: 302px;
-}
-
-footer h3 {
-    text-align: left;
-    color: #ffffff;
-}
-
-footer .contact {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-footer h4 {
-    font-size: 20px;
-    line-height: 23px;
-    letter-spacing: 0.06em;
-    color: #f1cdb3;
-}
-
-footer .footer-puppy {
-    width: 300px;
-    height: 310px;
-}
-
-
 .modal {
     position: fixed;
     top: 0;
     left: 0;
 
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: hidden;
 
     background: rgba(41, 41, 41, 0.6);
 }
 
-.current-pet-content {
+.modal-window {
     position: absolute;
     left: 190px;
     top: 136px;
 
-    display: flex;
-
     width: 952px;
     height: 552px;
+}
+
+.close-button {
+    position: absolute;
+    left: 890px;
+    top: 0;
+
+    width: 52px;
+    height: 52px;
+
+    border: 2px solid #F1CDB3;
+    border-radius: 100px;
+}
+
+.current-pet-content {
+    position: absolute;
+    left: 0;
+    top: 52px;
+
+    display: flex;
+    width: 900px;
+    height: 500px;
 
     background-color: #fafafa;
+    border-radius: 9px;
+    box-shadow: 0 2px 35px 14px rgba(13, 13, 13, 0.04);
 }
 
-.modal img {
+.modal .puppy-photo {
     width: 500px;
     height: 500px;
-    object-fit: cover;
-}
 
-.modal span {
-    font-weight: bold;
+    background: url("../../assets/images/pets-jennifer.png") no-repeat;
+    background-size: 100%;
 }
 
 .pet-info {
     display: grid;
     gap: 40px;
     margin: 50px 20px 88px 29px;
+    color: #000000;
 }
 
 .modal h3 {
     text-align: left;
+}
+
+.modal li {
+    color: #f1cdb3;
+}
+
+.modal span {
+    color: #000000;
+}
+
+.modal .bold {
+    font-weight: 700;
 }
