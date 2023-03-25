@@ -24,7 +24,6 @@ header a:active {
     color: #545454;
 }
 
-
 .pets {
     display: grid;
     gap: 45px;
@@ -41,9 +40,10 @@ header a:active {
     display: flex;
     flex-wrap: wrap;
     gap: 30px 40px;
-    height: 930px;
-}
 
+    height: 930px;
+    padding: 15px 0;
+}
 
 .navigation{
     display: flex;
@@ -80,4 +80,8 @@ header a:active {
 .navigation button:disabled {
     border-color: #cdcdcd;
     color: #cdcdcd;
+}
+
+.nowrap {
+    white-space: nowrap;
 }

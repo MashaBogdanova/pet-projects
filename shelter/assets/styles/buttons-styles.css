@@ -10,6 +10,7 @@
     font-size: 17px;
     font-weight: 400;
     line-height: 22px;
+    letter-spacing: 0.06em;
     color: #292929;
     white-space: nowrap;
 
@@ -30,6 +31,7 @@
     font-size: 17px;
     font-weight: 400;
     line-height: 22px;
+    letter-spacing: 0.06em;
     color: #292929;
     white-space: nowrap;
 
@@ -45,11 +47,12 @@
 
     width: 52px;
     height: 52px;
-    padding: 23px 19px;
+    padding: 12px 17px;
 
     background-color: transparent;
     border: 2px solid #F1CDB3;
     border-radius: 100px;
+
 }
 
 .circle-button:disabled {

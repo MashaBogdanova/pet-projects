@@ -21,6 +21,7 @@ header .subtitle {
 header nav {
     display: flex;
     align-items: center;
+    width: 443px;
 
     padding: 16px 0 17px;
 }
@@ -38,7 +39,7 @@ header a:hover {
     cursor: pointer;
 }
 
-header a:active {
-    padding-bottom: 8px;
+.active > p, header a:active > p {
+    padding-bottom: 1px;
     border-bottom: 3px solid #f1cdb3;
 }

@@ -21,7 +21,8 @@ header a:active {
     height: 908px;
     padding: 180px 40px 0;
 
-    background: url("../../assets/images/start-screen-gradient-background.png") no-repeat;
+    background-image: url("../../assets/images/start-screen-gradient-background.png"), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%);
+    background-repeat: no-repeat;
     background-size: 100%;
 }
 
@@ -39,9 +40,16 @@ header a:active {
     justify-content: center;
 
     width: 502px;
+    margin-top: 163px;
+    margin-bottom: 243px;
 }
 
 .not-only-content h2 {
+    width: 310px;
+    height: 114px;
+
+    letter-spacing: normal;
+
     color: #ffffff;
 }
 
@@ -118,17 +126,7 @@ header a:active {
 }
 
 .our-friends-content .card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
 
-    width: 270px;
-    height: 435px;
-    padding-bottom: 30px;
-
-    background-color: #fafafa;
-    border-radius: 9px;
 }
 
 .card:hover {
@@ -281,84 +279,6 @@ header a:active {
     font-style: italic;
     font-size: 12px;
     line-height: 18px;
+    letter-spacing: normal;
     color: #b2b2b2;
-}
-
-
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    width: 100vw;
-    height: 100vh;
-    overflow-y: hidden;
-
-    background: rgba(41, 41, 41, 0.6);
-}
-
-.modal-window {
-    position: absolute;
-    left: 190px;
-    top: 136px;
-
-    width: 952px;
-    height: 552px;
-}
-
-.close-button {
-    position: absolute;
-    left: 890px;
-    top: 0;
-
-    width: 52px;
-    height: 52px;
-
-    border: 2px solid #F1CDB3;
-    border-radius: 100px;
-}
-
-.current-pet-content {
-    position: absolute;
-    left: 0;
-    top: 52px;
-
-    display: flex;
-    width: 900px;
-    height: 500px;
-
-    background-color: #fafafa;
-    border-radius: 9px;
-    box-shadow: 0 2px 35px 14px rgba(13, 13, 13, 0.04);
-}
-
-.modal .puppy-photo {
-    width: 500px;
-    height: 500px;
-
-    background: url("../../assets/images/pets-jennifer.png") no-repeat;
-    background-size: 100%;
-}
-
-.pet-info {
-    display: grid;
-    gap: 40px;
-    margin: 50px 20px 88px 29px;
-    color: #000000;
-}
-
-.modal h3 {
-    text-align: left;
-}
-
-.modal li {
-    color: #f1cdb3;
-}
-
-.modal span {
-    color: #000000;
-}
-
-.modal .bold {
-    font-weight: 700;
 }
