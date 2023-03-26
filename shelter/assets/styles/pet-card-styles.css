@@ -11,3 +11,12 @@
     background-color: #fafafa;
     border-radius: 9px;
 }
+
+.pet-card:hover {
+    cursor: pointer;
+}
+
+.pet-card:hover > button {
+    background-color: #fddcc4;
+    border: none;
+}

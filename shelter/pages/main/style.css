@@ -8,12 +8,20 @@ header .subtitle {
     color: #ffffff;
 }
 
-header a:hover {
+nav a {
+    color: #cdcdcd;
+}
+
+header a:hover > p {
     color: #fafafa;
 }
 
-header a:active {
+header a:active, .active {
     color: #fafafa;
+}
+
+a:visited > p {
+    color: #cdcdcd;
 }
 
 
@@ -127,15 +135,6 @@ header a:active {
 
 .our-friends-content .card {
 
-}
-
-.card:hover {
-    cursor: pointer;
-}
-
-.card:hover > button {
-    background-color: #fddcc4;
-    border: none;
 }
 
 .our-friends-content img {

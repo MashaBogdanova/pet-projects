@@ -30,16 +30,19 @@ header ul {
     display: flex;
     gap: 35px;
     justify-content: space-between;
-
-    list-style-type: none;
     color: #cdcdcd;
+    list-style-type: none;
 }
 
-header a:hover {
+a {
+    text-decoration: none;
+}
+
+a:hover {
     cursor: pointer;
 }
 
-.active > p, header a:active > p {
+.active > p, nav a:active > p {
     padding-bottom: 1px;
     border-bottom: 3px solid #f1cdb3;
 }

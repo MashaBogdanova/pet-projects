@@ -4,6 +4,7 @@ body, * {
     box-sizing: border-box;
 }
 
+
 header h1 {
     color: #545454;
 }
@@ -12,7 +13,7 @@ header .subtitle {
     color: #292929;
 }
 
-header ul {
+nav a {
     color: #545454;
 }
 
@@ -20,11 +21,15 @@ header a:hover {
     color: #292929;
 }
 
-header a:active {
+header a:active, .active {
     color: #545454;
 }
 
-.pets {
+.active:hover {
+    color: #545454;;
+}
+
+.our-friends {
     display: grid;
     gap: 45px;
     align-items: center;
