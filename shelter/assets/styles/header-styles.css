@@ -3,11 +3,12 @@ header {
     top: 30px;
     left: 40px;
     right: 40px;
+}
 
+.header-content {
     display: flex;
     justify-content: space-between;
 
-    width: 1200px;
     height: 60px;
 }
 

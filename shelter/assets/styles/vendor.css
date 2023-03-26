@@ -1,6 +1,8 @@
 @import "../fonts/fonts.css";
 @import "font-styles.css";
 
+@import "content-wrapper.css";
+
 @import "./buttons-styles.css";
 @import "./pet-card-styles.css";
 

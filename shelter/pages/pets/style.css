@@ -30,15 +30,17 @@ header a:active, .active {
 }
 
 .our-friends {
-    display: grid;
-    gap: 45px;
-    align-items: center;
-
     height: 1342px;
     margin-top: 120px;
     padding: 80px 40px 100px;
 
     background-color: #f6f6f6;
+}
+
+.our-friends-content {
+    display: grid;
+    gap: 45px;
+    align-items: center;
 }
 
 .pets-content {

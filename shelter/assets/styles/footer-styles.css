@@ -1,15 +1,17 @@
 footer {
-    display: flex;
-    gap: 160px;
-    align-items: center;
-    justify-content: space-between;
-
     height: 350px;
     padding: 40px 40px 0;
 
     background-image: url("../../assets/images/start-screen-gradient-background.png"), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%);
     background-repeat: no-repeat;
     background-size: 100%;
+}
+
+.footer-content {
+    display: flex;
+    gap: 160px;
+    align-items: center;
+    justify-content: space-between;
 }
 
 footer .contact-card {
