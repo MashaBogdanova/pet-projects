@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body, * {
     margin: 0;
     padding: 0;
@@ -14,6 +18,8 @@ nav a {
 
 header a:hover > p {
     color: #fafafa;
+
+    transition: color 500ms linear;
 }
 
 header a:active, .active {

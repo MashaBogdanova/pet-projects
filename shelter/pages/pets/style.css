@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body, * {
     margin: 0;
     padding: 0;
@@ -19,6 +23,7 @@ nav a {
 
 header a:hover {
     color: #292929;
+    transition: color 500ms linear;
 }
 
 header a:active, .active {
@@ -26,7 +31,8 @@ header a:active, .active {
 }
 
 .active:hover {
-    color: #545454;;
+    color: #545454;
+    transition: color 500ms linear;
 }
 
 .our-friends {
@@ -56,37 +62,6 @@ header a:active, .active {
     display: flex;
     gap: 20px;
     justify-content: center;
-}
-
-.navigation button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 52px;
-    height: 52px;
-
-    font-family: 'Georgia', sans-serif;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 23px;
-    text-align: center;
-    letter-spacing: 0.06em;
-    color: #292929;
-
-    background-color: transparent;
-    border: 2px solid #f1cdb3;
-    border-radius: 100px;
-}
-
-#page-number-button {
-    background-color: #F1CDB3;
-    border: none;
-}
-
-.navigation button:disabled {
-    border-color: #cdcdcd;
-    color: #cdcdcd;
 }
 
 .nowrap {

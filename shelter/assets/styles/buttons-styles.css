@@ -1,8 +1,18 @@
-.button-primary {
+button {
     display: flex;
     align-items: center;
     justify-content: center;
 
+    font-family: 'Georgia', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+    letter-spacing: 0.06em;
+    color: #292929;
+}
+
+.button-primary {
     width: 207px;
     height: 52px;
     padding: 15px 45px;
@@ -20,10 +30,6 @@
 }
 
 .button-secondary {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     width: 187px;
     height: 52px;
     padding: 15px 45px;
@@ -40,27 +46,35 @@
     border-radius: 100px;
 }
 
-.circle-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#page-number-button {
+    background-color: #F1CDB3;
+    border: none;
+}
 
+.circle-button {
     width: 52px;
     height: 52px;
     padding: 12px 17px;
 
     background-color: transparent;
-    border: 2px solid #F1CDB3;
+    border: 2px solid #f1cdb3;
     border-radius: 100px;
+}
 
+
+button:not([disabled]):hover {
+    background-color: #fddcc4;
+    border: none;
+    cursor: pointer;
+
+    transition: background-color 500ms linear;
+}
+
+button:not(:hover) {
+    transition: background-color 500ms linear;
 }
 
 .circle-button:disabled {
     border-color: #cdcdcd;
-}
-
-button:hover {
-    background: #fddcc4;
-    border: none;
-    cursor: pointer;
+    color: #cdcdcd;
 }

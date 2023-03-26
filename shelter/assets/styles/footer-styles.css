@@ -54,3 +54,10 @@ footer .footer-puppy {
     width: 300px;
     height: 310px;
 }
+
+a:hover > h4 {
+    cursor: pointer;
+    color: #fddcc4;
+
+    transition: color 500ms linear;
+}
