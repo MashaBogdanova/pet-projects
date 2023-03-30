@@ -55,9 +55,13 @@ footer .footer-puppy {
     height: 310px;
 }
 
-a:hover > h4 {
+.contact a:hover > h4 {
     cursor: pointer;
-    color: #fddcc4;
+    color: #ffffff;
 
-    transition: color 500ms linear;
+    transition: color 200ms linear;
+}
+
+.contact a:not(:hover) > h4 {
+    transition: color 200ms linear;
 }

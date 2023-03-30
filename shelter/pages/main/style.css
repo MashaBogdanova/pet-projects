@@ -281,10 +281,12 @@ a:visited > p {
     color: #545454;
 }
 
-.in-addition p {
-    font-style: italic;
-    font-size: 12px;
-    line-height: 18px;
-    letter-spacing: normal;
-    color: #b2b2b2;
+.credit-card h4:hover {
+    cursor: pointer;
+    color: #ffffff;
+
+    transition: 200ms linear;
+}
+.credit-card h4:not(:hover) {
+    transition: color 200ms linear;
 }

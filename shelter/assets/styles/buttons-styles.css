@@ -1,4 +1,4 @@
-button {
+button, .button-primary {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,16 +62,16 @@ button {
 }
 
 
-button:not([disabled]):hover {
+button:not([disabled]):hover, .button-primary:not([disabled]):hover {
     background-color: #fddcc4;
     border: none;
     cursor: pointer;
 
-    transition: background-color 500ms linear;
+    transition: background-color 200ms linear;
 }
 
-button:not(:hover) {
-    transition: background-color 500ms linear;
+button:not(:hover), .button-primary:not(:hover)  {
+    transition: background-color 200ms linear;
 }
 
 .circle-button:disabled {
