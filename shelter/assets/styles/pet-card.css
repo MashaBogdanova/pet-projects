@@ -8,6 +8,8 @@
     height: 435px;
     padding-bottom: 30px;
 
+    color: #545454;
+
     background-color: #fafafa;
     border-radius: 9px;
 }
@@ -16,16 +18,16 @@
     cursor: pointer;
     box-shadow: 3px 3px 10px -5px rgba(0, 0, 0, 0.09);
 
-    transition: 500ms linear;
+    transition: 200ms linear;
 }
 
 .pet-card:hover > button {
     background-color: #fddcc4;
     border: none;
 
-    transition: background-color 500ms linear;
+    transition: background-color 200ms linear;
 }
 
 .pet-card:not(:hover) > button {
-    transition: background-color 500ms linear;
+    transition: background-color 200ms linear;
 }

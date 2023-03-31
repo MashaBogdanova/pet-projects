@@ -8,32 +8,32 @@ body, * {
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+}
 
-header h1 {
+
+.logo__title {
     color: #545454;
 }
 
-header .subtitle {
+.logo__subtitle {
     color: #292929;
 }
 
-nav a {
+.navigation__link {
     color: #545454;
 }
 
-header a:hover {
+.navigation__link:not(.navigation__link_active):hover {
     color: #292929;
-    transition: color 500ms linear;
+    transition: color 200ms linear;
 }
 
-header a:active, .active {
+.navigation__link:active, .navigation__link_active {
     color: #545454;
 }
 
-.active:hover {
-    color: #545454;
-    transition: color 500ms linear;
-}
 
 .our-friends {
     height: 1342px;
@@ -43,13 +43,13 @@ header a:active, .active {
     background-color: #f6f6f6;
 }
 
-.our-friends-content {
+.our-friends__content {
     display: grid;
     gap: 45px;
     align-items: center;
 }
 
-.pets-content {
+.our-friends__pets {
     display: flex;
     flex-wrap: wrap;
     gap: 30px 40px;
@@ -58,7 +58,7 @@ header a:active, .active {
     padding: 15px 0;
 }
 
-.navigation{
+.our-friends__navigation {
     display: flex;
     gap: 20px;
     justify-content: center;

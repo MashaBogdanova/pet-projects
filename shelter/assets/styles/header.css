@@ -1,33 +1,35 @@
-header {
+.header {
     position: absolute;
     top: 30px;
     left: 40px;
     right: 40px;
 }
 
-.header-content {
+.header__content {
     display: flex;
     justify-content: space-between;
-
     height: 60px;
 }
 
-header .subtitle {
+.header__content a {
+    text-decoration: none;
+}
+
+.logo__subtitle {
     font-size: 13px;
     line-height: 15px;
     letter-spacing: 0.1em;
     text-align: center;
 }
 
-header nav {
+.header__navigation {
     display: flex;
     align-items: center;
     width: 443px;
-
     padding: 16px 0 17px;
 }
 
-header ul {
+.navigation {
     display: flex;
     gap: 35px;
     justify-content: space-between;
@@ -35,15 +37,11 @@ header ul {
     list-style-type: none;
 }
 
-a {
-    text-decoration: none;
-}
-
-a:hover {
+.navigation__link:hover {
     cursor: pointer;
 }
 
-.active > p, nav a:active > p {
+.navigation__link_active > p, .navigation__link:active > p {
     padding-bottom: 1px;
     border-bottom: 3px solid #f1cdb3;
 }

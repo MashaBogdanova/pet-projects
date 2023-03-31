@@ -8,26 +8,30 @@ body, * {
     box-sizing: border-box;
 }
 
-header .subtitle {
+a {
+    text-decoration: none;
+}
+
+
+.logo__title {
+    color: #f1cdb3;
+}
+
+.logo__subtitle {
     color: #ffffff;
 }
 
-nav a {
+.navigation__link {
     color: #cdcdcd;
 }
 
-header a:hover > p {
+.navigation__link:not(.navigation__link_active):hover {
     color: #fafafa;
-
-    transition: color 500ms linear;
+    transition: color 200ms linear;
 }
 
-header a:active, .active {
+.navigation__link:active, .navigation__link_active {
     color: #fafafa;
-}
-
-a:visited > p {
-    color: #cdcdcd;
 }
 
 
@@ -40,14 +44,14 @@ a:visited > p {
     background-size: 100%;
 }
 
-.not-only-content {
+.not-only__content {
     display: flex;
     justify-content: space-between;
 
     height: 728px;
 }
 
-.not-only-content .content {
+.not-only__text-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -57,7 +61,7 @@ a:visited > p {
     margin-bottom: 243px;
 }
 
-.not-only-content h2 {
+.not-only__text-content h2 {
     width: 310px;
     height: 114px;
 
@@ -66,7 +70,7 @@ a:visited > p {
     color: #ffffff;
 }
 
-.not-only-content p {
+.not-only__text-content p {
     width: 460px;
     height: 72px;
     margin: 42px 0;
@@ -74,7 +78,7 @@ a:visited > p {
     color: #cdcdcd;
 }
 
-.not-only-content img {
+.not-only__puppy {
     width: 698px;
     height: 728px;
 }
@@ -87,7 +91,7 @@ a:visited > p {
     background-color: #ffffff;
 }
 
-.about-content {
+.about__content {
     display: flex;
     gap: 120px;
     align-items: center;
@@ -95,35 +99,35 @@ a:visited > p {
     padding: 0 175px;
 }
 
-.about-content img {
-    width: 300px;
-    height: 408px;
-}
-
-.about-content h3 {
+.about__content h3 {
     text-align: left;
 }
 
-.about-content p {
+.about__content p {
     padding-top: 25px;
     color: #4c4c4c;
 }
 
+.about__puppy {
+    width: 300px;
+    height: 408px;
+}
 
-#our-friends {
+
+.our-friends {
     height: 877px;
     padding: 80px 40px 100px;
 
     background-color: #f6f6f6;
 }
 
-.our-friends-content {
+.our-friends__content {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.our-friends-content .slider {
+.our-friends__slider {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -132,55 +136,30 @@ a:visited > p {
     margin: 60px 0;
 }
 
-.our-friends-content .cards {
+.our-friends__cards {
     display: flex;
     justify-content: space-between;
     gap: 90px;
 }
 
-.our-friends-content .card {
-
-}
-
-.our-friends-content img {
+.our-friends__puppy {
     width: 270px;
     height: 270px;
 }
 
-.our-friends-content p {
-    font-size: 20px;
-    line-height: 23px;
-    text-align: center;
-    color: #545454;
-}
-
-.right-arrow-button {
-    transform: rotate(180deg);
-}
-
-.circle-button svg {
-    width: 14px;
-    height: 6px;
-}
-
-.circle-button:disabled > svg path {
-    fill: #cdcdcd;
-}
-
-.our-friends-content .button-primary {
+.our-friends .button_primary {
     width: 261px;
-    height: 52px;
 }
 
 
-#help {
+.help {
     height: 611px;
     padding: 80px 40px 100px;
 
     background-color: #ffffff;
 }
 
-.help-content {
+.help__content {
     display: grid;
     gap: 60px;
     justify-items: center;
@@ -188,7 +167,7 @@ a:visited > p {
     padding: 0 87px;
 }
 
-.list-first-row {
+.help__first-row {
     display: flex;
     gap: 119px;
     justify-content: space-between;
@@ -196,7 +175,7 @@ a:visited > p {
     margin-bottom: 55px;
 }
 
-.list-second-row {
+.help__second-row {
     display: flex;
     gap: 119px;
     justify-content: center;
@@ -207,9 +186,7 @@ a:visited > p {
     gap: 30px;
     align-items: center;
     justify-items: center;
-}
 
-.help-item h4 {
     color: #545454;
 }
 
@@ -221,7 +198,7 @@ a:visited > p {
     background: #F6F6F6;
 }
 
-.in-addition-content {
+.in-addition__content {
     display: flex;
     gap: 30px;
     align-items: center;
@@ -229,12 +206,12 @@ a:visited > p {
     padding: 0 143px;
 }
 
-.in-addition img {
+.in-addition__puppy {
     width: 505px;
     height: 261px;
 }
 
-.in-addition .text-content {
+.in-addition__text-content {
     display: grid;
     gap: 20px;
 
@@ -242,14 +219,14 @@ a:visited > p {
     height: 282px;
 }
 
-.in-addition h3 {
+.in-addition__text-content h3 {
     width: 300px;
     height: 90px;
 
     text-align: left;
 }
 
-.in-addition h5 {
+.in-addition__text-content h5 {
     width: 307px;
     height: 17px;
 
@@ -271,7 +248,7 @@ a:visited > p {
     border-radius: 9px;
 }
 
-.credit-card img {
+.credit-card__icon {
     width: 30px;
     height: 23px;
 }
@@ -287,6 +264,7 @@ a:visited > p {
 
     transition: 200ms linear;
 }
+
 .credit-card h4:not(:hover) {
     transition: color 200ms linear;
 }

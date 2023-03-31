@@ -9,27 +9,25 @@
 </head>
 <body>
 
-<header>
-    <div class="content-wrapper header-content">
-        <div class="logo">
-            <a href="#">
-                <h1>Cozy House</h1>
-                <p class="subtitle">Shelter for pets in Boston</p>
-            </a>
-        </div>
-        <nav>
-            <ul>
+<header class="header">
+    <div class="wrapper header__content">
+        <a class="logo" href="#">
+            <h1 class="logo__title">Cozy House</h1>
+            <p class="logo__subtitle">Shelter for pets in Boston</p>
+        </a>
+        <nav class="header__navigation">
+            <ul class="navigation">
                 <li>
-                    <a class="active"><p>About the shelter</p></a>
+                    <a class="navigation__link navigation__link_active"><p>About the shelter</p></a>
                 </li>
                 <li>
-                    <a href="../pets/index.html"><p>Our pets</p></a>
+                    <a class="navigation__link" href="../pets/index.html"><p>Our pets</p></a>
                 </li>
                 <li>
-                    <a href="#help"><p>Help the shelter</p></a>
+                    <a class="navigation__link" href="#help"><p>Help the shelter</p></a>
                 </li>
                 <li>
-                    <a href="#contacts"><p>Contacts</p></a>
+                    <a class="navigation__link" href="#contacts"><p>Contacts</p></a>
                 </li>
             </ul>
         </nav>
@@ -37,24 +35,23 @@
 </header>
 
 <main>
-
     <section class="not-only">
-        <div class="content-wrapper not-only-content">
-            <div class="content">
+        <div class="wrapper not-only__content">
+            <div class="not-only__text-content">
                 <h2>Not only people<br>need a house</h2>
                 <p>We offer to give a chance to a little and nice puppy with an extremely wide and open
                     heart.
                     He or she will love you more than anybody else in the world, you will see!</p>
-                <a class="button-primary" href="#our-friends">Make a friend</a>
+                <a class="button button_primary" href="#our-friends">Make a friend</a>
             </div>
-            <img alt="sweet puppy looking up" src="../../assets/images/start-screen-puppy.png">
+            <img class="not-only__puppy" alt="sweet puppy looking up" src="../../assets/images/start-screen-puppy.png">
         </div>
     </section>
 
     <section class="about">
-        <div class="content-wrapper about-content">
-            <img alt="a cat and a dog together" src="../../assets/images/about-pets.png">
-            <div class="content">
+        <div class="wrapper about__content">
+            <img class="about__puppy" alt="a cat and a dog together" src="../../assets/images/about-pets.png">
+            <div>
                 <h3>About the shelter<br>“Cozy House”</h3>
                 <p>Currently we have 121 dogs and 342 cats on our hands and statistics show that only 20%
                     of them will find a family. The others will continue to live with us and will be waiting
@@ -68,49 +65,49 @@
         </div>
     </section>
 
-    <section id="our-friends">
-        <div class="content-wrapper our-friends-content">
+    <section class="our-friends" id="our-friends">
+        <div class="wrapper our-friends__content">
             <h3>Our friends who<br>are looking for a house</h3>
-            <div class="slider">
-                <button class="circle-button">
+            <div class="our-friends__slider">
+                <button class="button button_circle">
                     <svg width="14" height="6" viewBox="0 0 14 6" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path d="M14 2V4H3V6L0 3L3 0V2H14Z" fill="#292929"/>
                     </svg>
                 </button>
-                <div class="cards">
+                <div class="our-friends__cards">
                     <article class="pet-card">
-                        <img alt="gray cat" src="../../assets/images/pets-katrine.png">
+                        <img class="our-friends__puppy" alt="gray cat" src="../../assets/images/pets-katrine.png">
                         <h4>Katrine</h4>
-                        <button class="button-secondary">Learn more</button>
+                        <button class="button button_secondary">Learn more</button>
                     </article>
                     <article class="pet-card">
                         <img alt="white labrador puppy" src="../../assets/images/pets-jennifer.png">
                         <h4>Jennifer</h4>
-                        <button class="button-secondary">Learn more</button>
+                        <button class="button button_secondary">Learn more</button>
                     </article>
                     <article class="pet-card">
                         <img alt="golden retriever" src="../../assets/images/pets-woody.png">
                         <h4>Woody</h4>
-                        <button class="button-secondary">Learn more</button>
+                        <button class="button button_secondary">Learn more</button>
                     </article>
                 </div>
-                <button class="circle-button right-arrow-button">
+                <button class="button button_circle button_circle_reversed">
                     <svg width="14" height="6" viewBox="0 0 14 6" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path d="M14 2V4H3V6L0 3L3 0V2H14Z" fill="#292929"/>
                     </svg>
                 </button>
             </div>
-            <a class="button-primary" href="../pets/index.html">Get to know the rest</a>
+            <a class="button button_primary" href="../pets/index.html">Get to know the rest</a>
         </div>
     </section>
 
-    <section id="help">
-        <div class="content-wrapper help-content">
+    <section class="help" id="help">
+        <div class="wrapper help__content">
             <h3>How you can help<br>our shelter</h3>
-            <div class="list">
-                <div class="list-first-row">
+            <div>
+                <div class="help__first-row">
                     <div class="help-item">
                         <img alt="pet food" src="../../assets/icons/icon-pet-food.svg">
                         <h4>Pet food</h4>
@@ -132,7 +129,7 @@
                         <h4>Shampoos</h4>
                     </div>
                 </div>
-                <div class="list-second-row">
+                <div class="help__second-row">
                     <div class="help-item">
                         <img alt="vitamins" src="../../assets/icons/icon-vitamins.svg">
                         <h4>Vitamins</h4>
@@ -155,16 +152,17 @@
     </section>
 
     <section class="in-addition">
-        <div class="content-wrapper in-addition-content">
-            <img alt="sweet puppy" src="../../assets/images/donation-dog.png">
-            <div class="text-content">
+        <div class="wrapper in-addition__content">
+            <img class="in-addition__puppy" alt="sweet puppy" src="../../assets/images/donation-dog.png">
+            <div class="in-addition__text-content">
                 <h3>You can also<br>make a donation</h3>
                 <h5>Name of the bank / Type of bank account</h5>
                 <div class="credit-card">
-                    <img alt="credit card" src="../../assets/icons/credit-card.svg">
+                    <img class="credit-card__icon" alt="credit card" src="../../assets/icons/credit-card.svg">
                     <a href="#"><h4>8380 2880 8028 8791 7435</h4></a>
                 </div>
-                <p class="italic-paragraph">Legal information and lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <p class="italic-paragraph">Legal information and lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit.
                     Maecenas a ipsum at libero sagittis dignissim sed ac diam. Praesent ultrices
                     maximus tortor et vulputate. Interdum et malesuada fames ac ante ipsum primis
                     in faucibus.</p>
@@ -174,33 +172,33 @@
 
 </main>
 
-<footer id="contacts">
-    <div class="content-wrapper footer-content">
-        <div class="contact-card">
+<footer class="footer" id="contacts">
+    <div class="wrapper footer__content">
+        <div class="footer__contact-card">
             <h3>For questions<br><span class="nowrap">and suggestions</span></h3>
-            <div class="contact">
+            <div class="footer__contact">
                 <img alt="email" src="../../assets/icons/icon-email.svg">
                 <a href="mailto:email@shelter.com">
                     <h4>email@shelter.com</h4>
                 </a>
             </div>
-            <div class="contact">
+            <div class="footer__contact">
                 <img alt="phone" src="../../assets/icons/icon-phone.svg">
                 <a href="tel:+13-674-567-75-54">
                     <h4>+13 674 567 75 54</h4>
                 </a>
             </div>
         </div>
-        <div class="contact-card second-contact-card">
+        <div class="footer__contact-card footer__contact-card_right">
             <h3>We are waiting<br>for your visit</h3>
-            <div class="contact">
+            <div class="footer__contact">
                 <img alt="marker" src="../../assets/icons/icon-marker.svg">
                 <a target="_blank"
                    href="https://www.google.com/search?q=Fundacja+Kud%C5%82aty+Kumpel&tbm=lcl&sxsrf=APwXEdcwg-ZGVGnV315L31YinI8YaxM27Q%3A1679769645328&ei=LUAfZLrKE8f2qwH3upHIBw&ved=0ahUKEwj6lI7I3ff9AhVH-yoKHXddBHkQ4dUDCAk&uact=5&oq=Fundacja+Kud%C5%82aty+Kumpel&gs_lcp=Cg1nd3Mtd2l6LWxvY2FsEAMyBwgAEIAEEBMyBwgAEIAEEBMyCAgAEBYQHhATOgcIIxDqAhAnUM8CWM8CYLsGaAFwAHgAgAFOiAFOkgEBMZgBAKABAaABArABCsABAQ&sclient=gws-wiz-local">
                     <h4>1 Central Street, Boston<br>(entrance from the store)</h4>
                 </a>
             </div>
-            <div class="contact">
+            <div class="footer__contact">
                 <img alt="marker" src="../../assets/icons/icon-marker.svg">
                 <a target="_blank"
                    href="https://www.google.com/search?q=ochota+na+kota&tbm=lcl&sxsrf=APwXEdeAZiqaitvVLCUQfG1WDnSRNN5Zyw%3A1679769452843&ei=bD8fZKCXM92GwPAPsM6i4AY&oq=ochota+&gs_lcp=Cg1nd3Mtd2l6LWxvY2FsEAMYADIICAAQgAQQywEyBQgAEIAEMgUIABCABDIICAAQgAQQywEyCAgAEIAEEMsBMggIABCABBDLATIICAAQgAQQywEyCAgAEIAEEMsBMggIABCABBDLATIICAAQgAQQywE6BwgjEOoCECc6BAgjECc6BwgAEIoFEENQwwxYpBlg6iBoAXAAeACAAV2IAdoEkgEBN5gBAKABAbABCsABAQ&sclient=gws-wiz-local">
@@ -208,7 +206,7 @@
                 </a>
             </div>
         </div>
-        <img class="footer-puppy" alt="puppy licking screen" src="../../assets/images/footer-puppy.png">
+        <img class="footer__puppy" alt="puppy licking screen" src="../../assets/images/footer-puppy.png">
     </div>
 </footer>
 

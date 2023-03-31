@@ -1,10 +1,9 @@
-@import "../fonts/fonts.css";
-@import "font-styles.css";
+@import "fonts.css";
 
-@import "content-wrapper.css";
+@import "wrapper.css";
 
-@import "./buttons-styles.css";
-@import "./pet-card-styles.css";
+@import "buttons.css";
+@import "pet-card.css";
 
-@import "./header-styles.css";
-@import "./footer-styles.css";
+@import "header.css";
+@import "footer.css";

@@ -1,4 +1,4 @@
-footer {
+.footer {
     height: 350px;
     padding: 40px 40px 0;
 
@@ -7,14 +7,14 @@ footer {
     background-size: 100%;
 }
 
-.footer-content {
+.footer__content {
     display: flex;
     gap: 160px;
     align-items: center;
     justify-content: space-between;
 }
 
-footer .contact-card {
+.footer__contact-card {
     display: grid;
     gap: 40px;
 
@@ -23,12 +23,12 @@ footer .contact-card {
     margin: 16px 0 60px;
 }
 
-footer .second-contact-card {
+.footer__contact-card_right {
     gap: 33px;
     width: 302px;
 }
 
-footer h3 {
+.footer__contact-card h3 {
     width: 278px;
     height: 90px;
 
@@ -36,32 +36,32 @@ footer h3 {
     color: #ffffff;
 }
 
-footer .nowrap {
-    white-space: nowrap;
-}
-
-footer .contact {
+.footer__contact {
     display: flex;
     gap: 20px;
     align-items: center;
 }
 
-footer h4 {
+.footer__contact h4 {
     color: #f1cdb3;
 }
 
-footer .footer-puppy {
+.footer__puppy {
     width: 300px;
     height: 310px;
 }
 
-.contact a:hover > h4 {
+.footer__contact a:hover > h4 {
     cursor: pointer;
     color: #ffffff;
 
     transition: color 200ms linear;
 }
 
-.contact a:not(:hover) > h4 {
+.footer__contact a:not(:hover) > h4 {
     transition: color 200ms linear;
+}
+
+.nowrap {
+    white-space: nowrap;
 }
