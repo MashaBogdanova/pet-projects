@@ -1,9 +1,9 @@
 @import "fonts.css";
 
-@import "wrapper.css";
+@import "../../sass/layout/_wrapper.scss";
 
-@import "buttons.css";
+@import "../../sass/base/_buttons.scss";
 @import "pet-card.css";
 
-@import "header.css";
-@import "footer.css";
+@import "shelter/sass/layout/_header.scss";
+@import "shelter/sass/layout/_footer.scss";

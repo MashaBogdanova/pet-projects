@@ -1,0 +1,29 @@
+@import "../../abstract/constants";
+
+.about {
+  padding: 80px 40px 100px;
+
+  background-color: $color-light-xl;
+}
+
+.about__wrapper {
+  display: flex;
+  gap: 120px;
+  align-items: center;
+
+  padding: 0 175px;
+}
+
+.about__wrapper h3 {
+  text-align: left;
+}
+
+.about__wrapper p {
+  padding-top: 25px;
+  color: $color-dark-xl;
+}
+
+.about__puppy {
+  width: 300px;
+  height: 408px;
+}

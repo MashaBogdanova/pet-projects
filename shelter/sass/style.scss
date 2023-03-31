@@ -1,0 +1,19 @@
+@import "abstract/constants";
+
+// Base
+@import "base/base";
+@import "base/buttons";
+
+// Layouts
+@import "layout/wrapper";
+@import "layout/header";
+@import "layout/footer";
+
+// Pages
+@import "pages/main/main";
+@import "pages/pets/pets";
+
+// Components
+@import "components/main/not-only";
+@import "components/main/about";
+@import "components/main/our-friends";

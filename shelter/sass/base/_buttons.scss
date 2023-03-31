@@ -1,3 +1,6 @@
+@import "../abstract/constants";
+@import "../abstract/placeholders";
+
 .button {
     display: flex;
     align-items: center;
@@ -12,16 +15,18 @@
     text-align: center;
     letter-spacing: 0.06em;
     white-space: nowrap;
-    color: #292929;
+    color: $color-dark-3xl;
 
     border-radius: 100px;
+
+    transition: background-color 200ms linear;
 }
 
 .button_primary {
     width: 207px;
     padding: 15px 45px;
 
-    background-color: #f1cdb3;
+    background-color: $color-primary;
     border: none;
 }
 
@@ -30,7 +35,7 @@
     padding: 15px 45px;
 
     background-color: transparent;
-    border: 2px solid #f1cdb3;
+    border: 2px solid $color-primary;
 }
 
 .button_circle {
@@ -40,7 +45,7 @@
     font-size: 1.25rem;
 
     background-color: transparent;
-    border: 2px solid #f1cdb3;
+    border: 2px solid $color-primary;
 }
 
 .button_circle svg {
@@ -53,27 +58,21 @@
 }
 
 #page-number-button {
-    background-color: #f1cdb3;
+    background-color: $color-primary;
     border: none;
 }
 
 .button_circle:disabled {
-    border-color: #cdcdcd;
-    color: #cdcdcd;
+    border-color: $color-dark-s;
+    color: $color-dark-s;
 }
 
 .button_circle:disabled > svg path {
-    fill: #cdcdcd;
+    fill: $color-dark-s;
 }
 
 .button:not([disabled]):hover, .button_primary:not([disabled]):hover {
-    background-color: #fddcc4;
+    background-color: $color-primary-light;
     border: none;
     cursor: pointer;
-
-    transition: background-color 200ms linear;
-}
-
-.button:not(:hover), .button_primary:not(:hover)  {
-    transition: background-color 200ms linear;
 }
