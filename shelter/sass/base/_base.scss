@@ -1,7 +1,10 @@
 @import "../abstract/constants";
+@import "../abstract/mixins";
+@import "../abstract/placeholders";
 
 html {
   scroll-behavior: smooth;
+  font-size: 10px;
 }
 
 body, * {
@@ -9,53 +12,43 @@ body, * {
   padding: 0;
   box-sizing: border-box;
 
-  font-family: 'Georgia regular', Verdana, sans-serif;
-  letter-spacing: 0.06em;
-}
-
-h1 {
-  font-size: 2rem;
-  line-height: 110%;
-}
-
-h2 {
-  font-size: 2.75rem;
-  line-height: 130%;
-  color: $color-light-xl;
-}
-
-h3 {
-  font-size: 2.19rem;
-  line-height: 130%;
-  text-align: center;
-  color: $color-dark-l;
-}
-
-h4 {
-  font-size: 1.25rem;
-  line-height: 115%;
-}
-
-h5 {
-  font-size: 0.94rem;
-  line-height: 110%;
-}
-
-p {
-  font-family: 'Arial regular', Verdana, sans-serif;
-  font-size: 0.94rem;
-  line-height: 160%;
-}
-
-.italic-paragraph {
-  font-style: italic;
-  font-size: 0.75rem;
-  line-height: 150%;
-  letter-spacing: normal;
-  color: $color-dark-m;
+  @extend %title-font;
+  font-size: 1.6rem;
 }
 
 a {
   text-decoration: none;
   cursor: pointer;
+}
+
+h1 {
+  @include font(3.2rem, 110%);
+}
+
+h2 {
+  @include font(4.4rem, 130%);
+  color: $color-light-xl;
+}
+
+h3, {
+  @include font(3.5rem, 130%);
+  color: $color-dark-l;
+}
+
+h4 {
+  @include font(2rem, 115%);
+}
+
+h5 {
+  @include font(1.5rem, 110%);
+}
+
+p {
+  @extend %paragraph-font;
+  @include font(1.5rem, 160%, $spacing: normal);
+}
+
+.italic-paragraph {
+  @include font(1.2rem, 150%, italic, normal);
+  color: $color-dark-m;
 }

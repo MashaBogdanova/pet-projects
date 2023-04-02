@@ -5,12 +5,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
     height: 52px;
 
     font-family: 'Georgia', sans-serif;
     font-weight: 400;
-    font-size: 1.07rem;
+    font-size: 1.7rem;
     line-height: 130%;
     text-align: center;
     letter-spacing: 0.06em;
@@ -18,43 +17,52 @@
     color: $color-dark-3xl;
 
     border-radius: 100px;
+    @extend %transition;
 
-    transition: background-color 200ms linear;
-}
+    &_primary {
+        width: 207px;
+        padding: 15px 45px;
 
-.button_primary {
-    width: 207px;
-    padding: 15px 45px;
+        background-color: $color-primary;
+        border: none;
+    }
 
-    background-color: $color-primary;
-    border: none;
-}
+    &_secondary {
+        width: 187px;
+        padding: 15px 45px;
 
-.button_secondary {
-    width: 187px;
-    padding: 15px 45px;
+        background-color: transparent;
+        border: 2px solid $color-primary;
+    }
 
-    background-color: transparent;
-    border: 2px solid $color-primary;
-}
+    &_circle {
+        width: 52px;
+        padding: 12px 17px;
 
-.button_circle {
-    width: 52px;
-    padding: 12px 17px;
+        font-size: 2rem;
 
-    font-size: 1.25rem;
+        background-color: transparent;
+        border: 2px solid $color-primary;
 
-    background-color: transparent;
-    border: 2px solid $color-primary;
-}
+        &_reversed {
+            transform: rotate(180deg);
+        }
 
-.button_circle svg {
-    width: 14px;
-    height: 6px;
-}
+        &:disabled {
+            border-color: $color-dark-s;
+            color: $color-dark-s;
+        }
 
-.button_circle_reversed {
-    transform: rotate(180deg);
+        &:disabled > svg path {
+            fill: $color-dark-s;
+        }
+    }
+
+    &:not([disabled]):hover {
+        background-color: $color-primary-light;
+        border: none;
+        cursor: pointer;
+    }
 }
 
 #page-number-button {
@@ -62,17 +70,7 @@
     border: none;
 }
 
-.button_circle:disabled {
-    border-color: $color-dark-s;
-    color: $color-dark-s;
-}
-
-.button_circle:disabled > svg path {
-    fill: $color-dark-s;
-}
-
-.button:not([disabled]):hover, .button_primary:not([disabled]):hover {
-    background-color: $color-primary-light;
-    border: none;
-    cursor: pointer;
+.button_circle svg {
+    width: 14px;
+    height: 6px;
 }

@@ -1,53 +1,111 @@
 @import "../abstract/constants";
 @import "../abstract/placeholders";
+@import "../abstract/mixins";
 
 .header {
-    position: absolute;
-    top: 30px;
-    left: 40px;
-    right: 40px;
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  right: 40px;
+  @include media-tablet {
+    left: 30px;
+    right: 30px;
+  }
 }
 
 .header__wrapper {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 184px;
+
+  &:hover {
+    transform: scale(1.025);
+    @extend %transition;
+  }
+
+  &:not(:hover) {
+    @extend %transition;
+  }
+}
+
+.logo__title {
+  margin-bottom: 1rem;
+  white-space: nowrap;
+
+  &_main {
+    color: $color-primary;
+  }
+
+  &_pets {
+    color: $color-dark-l;
+  }
 }
 
 .logo__subtitle {
-    font-size: 13px;
-    line-height: 15px;
-    letter-spacing: 0.1em;
-    text-align: center;
+  display: flex;
+  justify-content: end;
+  font-size: 1.3rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.1em;
+
+  &_main {
+    color: $color-light-xl;
+  }
+
+  &_pets {
+    color: $color-dark-3xl;
+  }
 }
 
 .header__navigation {
-    display: flex;
-    align-items: center;
-    width: 443px;
-    padding: 16px 0 17px;
+  display: flex;
+  align-items: center;
+  width: 443px;
+  padding: 16px 0 17px;
 }
 
 .nav {
-    display: flex;
-    gap: 35px;
-    justify-content: space-between;
-    list-style-type: none;
+  display: flex;
+  gap: 35px;
+  justify-content: space-between;
+  list-style-type: none;
 }
 
-.nav__link p {
+.nav__link {
+  &_main {
+    color: $color-dark-s;
+    @extend %transition;
+
+    &:not(&_active):hover {
+      color: $color-light-s;
+    }
+
+    &:active > p, &_active > p {
+      color: $color-light-s;
+      padding-bottom: 1px;
+      border-bottom: 3px solid $color-primary;
+    }
+  }
+
+  &_pets {
+    color: $color-dark-l;
+
+    &_pets:not(&_active):hover {
+      color: $color-dark-3xl;
+      @extend %transition;
+    }
+
+    &:active > p, &_active > p {
+      color: $color-dark-l;
+      padding-bottom: 1px;
+      border-bottom: 3px solid $color-primary;
+    }
+  }
+
+  p {
     white-space: nowrap;
-}
-
-.nav__link_active > p, .nav__link:active > p {
-    padding-bottom: 1px;
-    border-bottom: 3px solid #f1cdb3;
-}
-
-.logo:hover {
-    transform: scale(1.025);
-    @extend %transition;
-}
-
-.logo:not(:hover) {
-    @extend %transition;
+  }
 }

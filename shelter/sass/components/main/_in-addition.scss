@@ -1,0 +1,76 @@
+@import "../../abstract/constants";
+@import "../../abstract/placeholders";
+@import "../../abstract/mixins";
+
+.in-addition {
+  padding: 80px 40px 100px;
+  background: $color-light-l;
+  @include media-tablet {
+    padding: 80px 0 100px;
+  }
+}
+
+.in-addition__wrapper {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  padding: 0 143px;
+  @include media-tablet {
+    flex-direction: column-reverse;
+    gap: 60px;
+  }
+}
+
+.in-addition__puppy {
+  max-width: 505px;
+  height: auto;
+}
+
+.in-addition__content {
+  display: grid;
+  gap: 20px;
+  width: 379px;
+  height: 282px;
+
+  h3 {
+    width: 300px;
+    height: 90px;
+    text-align: left;
+  }
+
+  h5 {
+    width: 307px;
+    height: 17px;
+    white-space: nowrap;
+    color: $color-dark-l;
+  }
+}
+
+.credit-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  width: 349px;
+  height: 43px;
+  padding: 10px 15px;
+
+  background-color: $color-primary;
+  border-radius: 9px;
+
+  h4 {
+    white-space: nowrap;
+    color: $color-dark-l;
+    cursor: pointer;
+    @extend %transition;
+    &:hover {
+      color: $color-light-s;
+    }
+  }
+}
+
+.credit-card__icon {
+  width: 30px;
+  height: 23px;
+}

@@ -1,9 +1,0 @@
-@import "fonts.css";
-
-@import "../../sass/layout/_wrapper.scss";
-
-@import "../../sass/base/_buttons.scss";
-@import "pet-card.css";
-
-@import "shelter/sass/layout/_header.scss";
-@import "shelter/sass/layout/_footer.scss";
