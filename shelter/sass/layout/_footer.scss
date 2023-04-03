@@ -10,14 +10,17 @@
 
 .footer__wrapper {
   display: flex;
-  gap: 160px;
   justify-content: space-between;
   padding: 42px 0 0;
   @include media-small-desktop {
     flex-wrap: wrap;
     justify-content: center;
-    gap: 66px 60px;
+    gap: 64px 60px;
     padding: 30px 0 0;
+  }
+  @include media-mobile {
+    gap: 40px;
+    padding: 30px 10px 0;
   }
 }
 
@@ -31,13 +34,17 @@
   }
 
   &_right {
-    gap: 33px;
+    gap: 32px;
+    @include media-mobile {
+      gap: 40px;
+    }
   }
 
   h3 {
     text-align: left;
     color: $color-light-xl;
     @include media-mobile {
+      padding: 0 11px;
      text-align: center;
     }
   }
@@ -65,6 +72,9 @@
   @include media-tablet {
     flex-grow: 1;
   }
+  @include media-mobile {
+    max-width: 260px;
+  }
 }
 
 .nowrap {
@@ -72,5 +82,18 @@
   @include font(3.5rem, 130%);
   @include media-mobile {
     @include font(2.5rem, 130%);
+  }
+}
+
+.footer__visible-capture {
+  @include media-mobile {
+    display: none;
+  }
+}
+
+.footer__hidden-capture {
+  display: none;
+  @include media-mobile {
+    display: block;
   }
 }
