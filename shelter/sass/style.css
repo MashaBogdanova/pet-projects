@@ -1157,16 +1157,6 @@ p {
   }
 }
 
-.in-addition__puppy {
-  max-width: 505px;
-  height: auto;
-}
-@media (max-width: 720px) {
-  .in-addition__puppy {
-    max-width: 260px;
-  }
-}
-
 .in-addition__content {
   display: grid;
   gap: 20px;
@@ -1175,7 +1165,6 @@ p {
 @media (max-width: 720px) {
   .in-addition__content {
     justify-items: center;
-    gap: 23px;
   }
 }
 .in-addition__content h3 {
@@ -1193,6 +1182,8 @@ p {
 @media (max-width: 720px) {
   .in-addition__content h5 {
     text-align: center;
+    line-height: 160%;
+    letter-spacing: normal;
   }
 }
 
@@ -1233,6 +1224,23 @@ p {
 .credit-card__icon {
   width: 30px;
   height: 23px;
+}
+
+@media (max-width: 720px) {
+  .italic-paragraph {
+    padding: 0 10px;
+    text-align: justify;
+  }
+}
+
+.in-addition__puppy {
+  max-width: 505px;
+  height: auto;
+}
+@media (max-width: 720px) {
+  .in-addition__puppy {
+    max-width: 260px;
+  }
 }
 
 .our-pets {

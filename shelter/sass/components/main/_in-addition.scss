@@ -22,14 +22,6 @@
   }
 }
 
-.in-addition__puppy {
-  max-width: 505px;
-  height: auto;
-  @include media-mobile {
-    max-width: 260px;
-  }
-}
-
 .in-addition__content {
   display: grid;
   gap: 20px;
@@ -37,7 +29,7 @@
 
   @include media-mobile {
     justify-items: center;
-    gap: 23px;
+    //gap: 23px;
   }
 
   h3 {
@@ -52,6 +44,8 @@
     color: $color-dark-l;
     @include media-mobile {
       text-align: center;
+      line-height: 160%;
+      letter-spacing: normal;
     }
   }
 }
@@ -92,4 +86,19 @@
 .credit-card__icon {
   width: 30px;
   height: 23px;
+}
+
+.italic-paragraph {
+  @include media-mobile {
+    padding: 0 10px;
+    text-align: justify;
+  }
+}
+
+.in-addition__puppy {
+  max-width: 505px;
+  height: auto;
+  @include media-mobile {
+    max-width: 260px;
+  }
 }
