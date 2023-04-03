@@ -3,46 +3,56 @@
 @import "../../abstract/mixins";
 
 .in-addition {
-  padding: 80px 40px 100px;
   background: $color-light-l;
-  @include media-tablet {
-    padding: 80px 0 100px;
-  }
 }
 
 .in-addition__wrapper {
   display: flex;
   gap: 30px;
   align-items: center;
-  padding: 0 143px;
+  padding: 80px 0 100px;
+  max-width: 915px;
   @include media-tablet {
     flex-direction: column-reverse;
     gap: 60px;
+  }
+  @include media-mobile {
+    padding: 42px 10px;
+    gap: 42px;
   }
 }
 
 .in-addition__puppy {
   max-width: 505px;
   height: auto;
+  @include media-mobile {
+    max-width: 260px;
+  }
 }
 
 .in-addition__content {
   display: grid;
   gap: 20px;
-  width: 379px;
-  height: 282px;
+  max-width: 380px;
+
+  @include media-mobile {
+    justify-items: center;
+    gap: 23px;
+  }
 
   h3 {
-    width: 300px;
-    height: 90px;
     text-align: left;
+    @include media-mobile {
+      text-align: center;
+    }
   }
 
   h5 {
-    width: 307px;
-    height: 17px;
     white-space: nowrap;
     color: $color-dark-l;
+    @include media-mobile {
+      text-align: center;
+    }
   }
 }
 
@@ -52,20 +62,29 @@
   justify-content: center;
   gap: 15px;
 
-  width: 349px;
+  max-width: 349px;
   height: 43px;
   padding: 10px 15px;
 
   background-color: $color-primary;
   border-radius: 9px;
 
+  @include media-mobile {
+    max-width: 281px;
+  }
+
   h4 {
     white-space: nowrap;
     color: $color-dark-l;
     cursor: pointer;
     @extend %transition;
+
     &:hover {
       color: $color-light-s;
+    }
+
+    @include media-mobile {
+      @include font(1.5rem, 110%);
     }
   }
 }

@@ -662,28 +662,23 @@ p {
 }
 
 .footer {
-  padding: 42px 40px 0;
   background-image: url("../assets/images/start-screen-gradient-background.png"), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%);
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  overflow: hidden;
-}
-@media screen and (max-width: 959px) {
-  .footer {
-    padding: 30px 0 0;
-  }
 }
 
 .footer__wrapper {
   display: flex;
   gap: 160px;
   justify-content: space-between;
+  padding: 42px 0 0;
 }
-@media screen and (max-width: 959px) {
+@media (max-width: 1200px) {
   .footer__wrapper {
     flex-wrap: wrap;
     justify-content: center;
     gap: 66px 60px;
+    padding: 30px 0 0;
   }
 }
 
@@ -702,10 +697,13 @@ p {
   gap: 33px;
 }
 .footer__contact-card h3 {
-  width: 278px;
-  height: 90px;
   text-align: left;
   color: #ffffff;
+}
+@media (max-width: 720px) {
+  .footer__contact-card h3 {
+    text-align: center;
+  }
 }
 
 .footer__contact {
@@ -738,6 +736,15 @@ p {
   font-weight: 400;
   line-height: 130%;
   letter-spacing: 0.06em;
+}
+@media (max-width: 720px) {
+  .nowrap {
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+  }
 }
 
 .not-only {
@@ -995,7 +1002,7 @@ p {
   justify-content: center;
   align-items: center;
   gap: 57px;
-  padding: 80px 0 100px;
+  padding: 81px 0 100px;
   text-align: center;
 }
 @media (max-width: 720px) {
@@ -1096,20 +1103,15 @@ p {
 }
 
 .in-addition {
-  padding: 80px 40px 100px;
   background: #f6f6f6;
-}
-@media screen and (max-width: 959px) {
-  .in-addition {
-    padding: 80px 0 100px;
-  }
 }
 
 .in-addition__wrapper {
   display: flex;
   gap: 30px;
   align-items: center;
-  padding: 0 143px;
+  padding: 80px 0 100px;
+  max-width: 915px;
 }
 @media screen and (max-width: 959px) {
   .in-addition__wrapper {
@@ -1117,28 +1119,50 @@ p {
     gap: 60px;
   }
 }
+@media (max-width: 720px) {
+  .in-addition__wrapper {
+    padding: 42px 10px;
+    gap: 42px;
+  }
+}
 
 .in-addition__puppy {
   max-width: 505px;
   height: auto;
 }
+@media (max-width: 720px) {
+  .in-addition__puppy {
+    max-width: 260px;
+  }
+}
 
 .in-addition__content {
   display: grid;
   gap: 20px;
-  width: 379px;
-  height: 282px;
+  max-width: 380px;
+}
+@media (max-width: 720px) {
+  .in-addition__content {
+    justify-items: center;
+    gap: 23px;
+  }
 }
 .in-addition__content h3 {
-  width: 300px;
-  height: 90px;
   text-align: left;
 }
+@media (max-width: 720px) {
+  .in-addition__content h3 {
+    text-align: center;
+  }
+}
 .in-addition__content h5 {
-  width: 307px;
-  height: 17px;
   white-space: nowrap;
   color: #545454;
+}
+@media (max-width: 720px) {
+  .in-addition__content h5 {
+    text-align: center;
+  }
 }
 
 .credit-card {
@@ -1146,11 +1170,16 @@ p {
   align-items: center;
   justify-content: center;
   gap: 15px;
-  width: 349px;
+  max-width: 349px;
   height: 43px;
   padding: 10px 15px;
   background-color: #f1cdb3;
   border-radius: 9px;
+}
+@media (max-width: 720px) {
+  .credit-card {
+    max-width: 281px;
+  }
 }
 .credit-card h4 {
   white-space: nowrap;
@@ -1160,6 +1189,15 @@ p {
 .credit-card h4:hover {
   color: #fafafa;
 }
+@media (max-width: 720px) {
+  .credit-card h4 {
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 110%;
+    letter-spacing: 0.06em;
+  }
+}
 
 .credit-card__icon {
   width: 30px;
@@ -1168,7 +1206,6 @@ p {
 
 .our-pets {
   margin-top: 120px;
-  padding: 80px 40px 100px;
   background-color: #f6f6f6;
 }
 
@@ -1177,20 +1214,56 @@ p {
   flex-direction: column;
   gap: 45px;
   align-items: center;
+  padding: 80px 0 100px;
   text-align: center;
+}
+@media screen and (max-width: 959px) {
+  .our-pets__wrapper {
+    padding: 80px 30px 76px;
+    gap: 0;
+  }
+}
+@media (max-width: 720px) {
+  .our-pets__wrapper {
+    padding: 42px 10px;
+    gap: 42px;
+  }
 }
 
 .our-pets__pets {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 30px 40px;
   padding: 15px 0;
+}
+@media screen and (max-width: 959px) {
+  .our-pets__pets {
+    padding: 30px 0 39px 0;
+  }
+  .our-pets__pets .pet-card:nth-last-child(-n+2) {
+    display: none;
+  }
+}
+@media (max-width: 720px) {
+  .our-pets__pets {
+    gap: 30px;
+    padding: 0;
+  }
+  .our-pets__pets .pet-card:nth-last-child(-n+5) {
+    display: none;
+  }
 }
 
 .our-pets__navigation {
   display: flex;
   gap: 20px;
   justify-content: center;
+}
+@media (max-width: 720px) {
+  .our-pets__navigation {
+    gap: 10px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
