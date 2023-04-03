@@ -22,37 +22,30 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  text-align: center;
   gap: 54px 119px;
   padding: 0 87px;
+  text-align: center;
   @include media-tablet {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
     gap: 55px 65px;
-    max-width: 630px;
     padding: 0;
+    >.help-item {
+      flex-basis: 23%;
+    }
+  }
+  @include media-mobile {
+    >.help-item {
+      flex-basis: 45%;
+    }
   }
 }
-
-//.help__first-row {
-//  display: flex;
-//  gap: 119px;
-//  justify-content: space-between;
-//  margin-bottom: 55px;
-//}
-//
-//.help__second-row {
-//  display: flex;
-//  gap: 119px;
-//  justify-content: center;
-//}
 
 .help-item {
   display: grid;
   gap: 30px;
   align-items: center;
   justify-items: center;
-
-  color: $color-dark-l;
+  h4{
+    color: $color-dark-l;
+    white-space: nowrap;
+  }
 }

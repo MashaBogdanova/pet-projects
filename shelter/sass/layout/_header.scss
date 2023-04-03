@@ -5,21 +5,25 @@
 .header {
   position: absolute;
   top: 30px;
-  left: 40px;
-  right: 40px;
+  left: 39px;
+  right: 42px;
   @include media-tablet {
-    left: 30px;
-    right: 30px;
+    left: 29px;
+    right: 33px;
+  }
+  @include media-mobile {
+    left: 20px;
+    right: 20px;
   }
 }
 
 .header__wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-  width: 184px;
 
   &:hover {
     transform: scale(1.025);
@@ -50,6 +54,7 @@
   font-size: 1.3rem;
   line-height: 1.5rem;
   letter-spacing: 0.1em;
+  white-space: nowrap;
 
   &_main {
     color: $color-light-xl;
@@ -63,8 +68,11 @@
 .header__navigation {
   display: flex;
   align-items: center;
-  width: 443px;
+  max-width: 443px;
   padding: 16px 0 17px;
+  @include media-mobile {
+    display: none;
+  }
 }
 
 .nav {

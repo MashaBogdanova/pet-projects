@@ -28,11 +28,17 @@ h1 {
 h2 {
   @include font(4.4rem, 130%);
   color: $color-light-xl;
+  @include media-mobile {
+    @include font(2.5rem, 130%);
+  }
 }
 
 h3, {
   @include font(3.5rem, 130%);
   color: $color-dark-l;
+  @include media-mobile {
+    @include font(2.5rem, 130%);
+  }
 }
 
 h4 {
