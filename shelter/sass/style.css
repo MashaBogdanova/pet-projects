@@ -750,7 +750,7 @@ p {
   display: flex;
   justify-content: space-between;
   gap: 42px;
-  padding: 180px 41px 0;
+  padding: 180px 0 0;
 }
 @media screen and (max-width: 959px) {
   .not-only__wrapper {
@@ -762,6 +762,7 @@ p {
 }
 @media (max-width: 720px) {
   .not-only__wrapper {
+    gap: 105px;
     padding: 150px 10px 0;
   }
 }
@@ -792,7 +793,7 @@ p {
     text-align: center;
   }
 }
-@media (max-width: 1150px) {
+@media (max-width: 1200px) {
   .not-only__content {
     padding: 0;
   }
@@ -818,7 +819,7 @@ p {
   max-width: 698px;
   height: auto;
 }
-@media (max-width: 1150px) {
+@media (max-width: 1200px) {
   .not-only__puppy {
     max-width: 568px;
   }
@@ -844,6 +845,24 @@ p {
   align-items: center;
   padding: 79px 175px 100px;
 }
+@media (max-width: 1200px) {
+  .about__wrapper {
+    padding: 79px 100px 100px;
+  }
+}
+@media screen and (max-width: 959px) {
+  .about__wrapper {
+    flex-direction: column-reverse;
+    gap: 80px;
+    padding: 79px 139px 97px;
+  }
+}
+@media (max-width: 720px) {
+  .about__wrapper {
+    padding: 42px 10px 39px;
+    gap: 39px;
+  }
+}
 .about__wrapper h3 {
   text-align: left;
 }
@@ -862,24 +881,6 @@ p {
     text-align: justify;
   }
 }
-@media (max-width: 1150px) {
-  .about__wrapper {
-    padding: 79px 100px 100px;
-  }
-}
-@media screen and (max-width: 959px) {
-  .about__wrapper {
-    flex-direction: column-reverse;
-    gap: 80px;
-    padding: 79px 139px 100px;
-  }
-}
-@media (max-width: 720px) {
-  .about__wrapper {
-    padding: 42px 10px;
-    gap: 39px;
-  }
-}
 
 .about__puppy {
   max-width: 300px;
@@ -892,23 +893,28 @@ p {
 }
 
 .our-friends {
-  padding: 80px 40px 100px;
   background-color: #f6f6f6;
-}
-.our-friends .button_primary {
-  width: 261px;
-}
-@media screen and (max-width: 959px) {
-  .our-friends {
-    padding: 79px 0 100px;
-  }
 }
 
 .our-friends__wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 77px 40px 100px;
   text-align: center;
+}
+@media screen and (max-width: 959px) {
+  .our-friends__wrapper {
+    padding: 79px 0 100px;
+  }
+}
+@media (max-width: 720px) {
+  .our-friends__wrapper {
+    padding: 41px 0;
+  }
+}
+.our-friends__wrapper .button_primary {
+  width: 261px;
 }
 
 .our-friends__slider {
@@ -923,6 +929,11 @@ p {
     gap: 12px;
   }
 }
+@media (max-width: 720px) {
+  .our-friends__slider {
+    padding: 0;
+  }
+}
 
 .our-friends__cards {
   display: flex;
@@ -934,9 +945,20 @@ p {
     gap: 40px;
   }
 }
+@media (max-width: 720px) {
+  .our-friends__cards {
+    padding-top: 42px;
+  }
+}
 
-@media screen and (max-width: 959px) {
+@media (max-width: 1200px) {
   .pet-card:last-child {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .pet-card:nth-last-child(-n+2) {
     display: none;
   }
 }
@@ -946,14 +968,25 @@ p {
   height: auto;
 }
 
-.help {
-  padding: 80px 40px 100px;
-  background-color: #ffffff;
-}
-@media screen and (max-width: 959px) {
-  .help {
-    padding: 80px 0 100px;
+@media (max-width: 720px) {
+  .button_visible {
+    display: none;
   }
+}
+
+.our-friends__hidden-buttons {
+  display: none;
+}
+@media (max-width: 720px) {
+  .our-friends__hidden-buttons {
+    display: flex;
+    gap: 80px;
+    padding: 20px 0 42px;
+  }
+}
+
+.help {
+  background-color: #ffffff;
 }
 
 .help__wrapper {
@@ -962,7 +995,14 @@ p {
   justify-content: center;
   align-items: center;
   gap: 57px;
+  padding: 80px 0 100px;
   text-align: center;
+}
+@media (max-width: 720px) {
+  .help__wrapper {
+    padding: 42px 15px;
+    gap: 42px;
+  }
 }
 
 .cards-wrapper {
@@ -973,9 +1013,9 @@ p {
   padding: 0 87px;
   text-align: center;
 }
-@media screen and (max-width: 959px) {
+@media (max-width: 1200px) {
   .cards-wrapper {
-    gap: 55px 65px;
+    gap: 55px 67px;
     padding: 0;
   }
   .cards-wrapper > .help-item {
@@ -983,20 +1023,42 @@ p {
   }
 }
 @media (max-width: 720px) {
+  .cards-wrapper {
+    justify-content: space-between;
+    gap: 30px;
+  }
   .cards-wrapper > .help-item {
-    flex-basis: 45%;
+    flex-basis: 44%;
   }
 }
 
 .help-item {
   display: grid;
-  gap: 30px;
   align-items: center;
   justify-items: center;
+  gap: 30px;
+}
+@media (max-width: 720px) {
+  .help-item {
+    gap: 20px;
+  }
+  .help-item img {
+    width: 50px;
+    height: 50px;
+  }
 }
 .help-item h4 {
   color: #545454;
   white-space: nowrap;
+}
+@media (max-width: 720px) {
+  .help-item h4 {
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 110%;
+    letter-spacing: 0.06em;
+  }
 }
 
 @font-face {

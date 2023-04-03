@@ -2,23 +2,25 @@
 @import "../../abstract/mixins";
 
 .our-friends {
-  padding: 80px 40px 100px;
   background-color: $color-light-l;
-
-  .button_primary {
-    width: 261px;
-  }
-
-  @include media-tablet {
-    padding: 79px 0 100px;
-  }
 }
 
 .our-friends__wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 77px 40px 100px;
   text-align: center;
+  @include media-tablet {
+    padding: 79px 0 100px;
+  }
+  @include media-mobile {
+    padding: 41px 0;
+  }
+
+  .button_primary {
+    width: 261px;
+  }
 }
 
 .our-friends__slider {
@@ -30,6 +32,9 @@
   @include media-tablet {
     gap: 12px;
   }
+  @include media-mobile {
+    padding: 0;
+  }
 }
 
 .our-friends__cards {
@@ -39,10 +44,19 @@
   @include media-tablet {
     gap: 40px;
   }
+  @include media-mobile {
+    padding-top: 42px;
+  }
 }
 
 .pet-card:last-child {
-  @include media-tablet {
+  @include media-small-desktop {
+    display: none;
+  }
+}
+
+.pet-card:nth-last-child(-n + 2) {
+  @include media-mobile {
     display: none;
   }
 }
@@ -50,4 +64,19 @@
 .our-friends__puppy {
   max-width: 270px;
   height: auto;
+}
+
+.button_visible {
+  @include media-mobile {
+    display: none;
+  }
+}
+
+.our-friends__hidden-buttons {
+  display: none;
+  @include media-mobile {
+    display: flex;
+    gap: 80px;
+    padding: 20px 0 42px;
+  }
 }

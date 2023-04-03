@@ -11,7 +11,7 @@
   display: flex;
   justify-content: space-between;
   gap: 42px;
-  padding: 180px 41px 0;
+  padding: 180px 0 0;
 
   @include media-tablet {
     flex-direction: column;
@@ -21,6 +21,7 @@
   }
 
   @include media-mobile {
+    gap: 105px;
     padding: 150px 10px 0;
   }
 }

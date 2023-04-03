@@ -10,6 +10,18 @@
   gap: 120px;
   align-items: center;
   padding: 79px 175px 100px;
+  @include media-small-desktop {
+    padding: 79px 100px 100px;
+  }
+  @include media-tablet {
+    flex-direction: column-reverse;
+    gap: 80px;
+    padding: 79px 139px 97px;
+  }
+  @include media-mobile {
+    padding: 42px 10px 39px;
+    gap: 39px;
+  }
 
   h3 {
     text-align: left;
@@ -25,20 +37,6 @@
     padding: 24px 15px 0;
       text-align: justify;
     }
-  }
-
-  @include media-small-desktop {
-    padding: 79px 100px 100px;
-  }
-
-  @include media-tablet {
-    flex-direction: column-reverse;
-    gap: 80px;
-    padding: 79px 139px 100px;
-  }
-  @include media-mobile {
-    padding: 42px 10px;
-    gap: 39px;
   }
 }
 

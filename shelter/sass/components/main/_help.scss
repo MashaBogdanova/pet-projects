@@ -2,11 +2,7 @@
 @import "../../abstract/mixins";
 
 .help {
-  padding: 80px 40px 100px;
   background-color: $color-light-xl;
-  @include media-tablet {
-    padding: 80px 0 100px;
-  }
 }
 
 .help__wrapper {
@@ -15,7 +11,12 @@
   justify-content: center;
   align-items: center;
   gap: 57px;
+  padding: 80px 0 100px;
   text-align: center;
+  @include media-mobile {
+    padding: 42px 15px;
+    gap: 42px;
+  }
 }
 
 .cards-wrapper {
@@ -25,27 +26,40 @@
   gap: 54px 119px;
   padding: 0 87px;
   text-align: center;
-  @include media-tablet {
-    gap: 55px 65px;
+  @include media-small-desktop {
+    gap: 55px 67px;
     padding: 0;
-    >.help-item {
+    > .help-item {
       flex-basis: 23%;
     }
   }
   @include media-mobile {
-    >.help-item {
-      flex-basis: 45%;
+    justify-content: space-between;
+    gap: 30px;
+    > .help-item {
+      flex-basis: 44%;
     }
   }
 }
 
 .help-item {
   display: grid;
-  gap: 30px;
   align-items: center;
   justify-items: center;
-  h4{
+  gap: 30px;
+    @include media-mobile {
+      gap: 20px;
+      img {
+        width: 50px;
+        height: 50px;
+      }
+  }
+
+  h4 {
     color: $color-dark-l;
     white-space: nowrap;
+    @include media-mobile {
+      @include font(1.5rem, 110%)
+    }
   }
 }
