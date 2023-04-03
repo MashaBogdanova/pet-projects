@@ -1,0 +1,60 @@
+@import "../abstract/constants";
+@import "../abstract/mixins";
+@import "../abstract/placeholders";
+
+html {
+  scroll-behavior: smooth;
+  font-size: 10px;
+}
+
+body, * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  @extend %title-font;
+  font-size: 1.6rem;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+h1 {
+  @include font(3.2rem, 110%);
+}
+
+h2 {
+  @include font(4.4rem, 130%);
+  color: $color-light-xl;
+  @include media-mobile {
+    @include font(2.5rem, 130%);
+  }
+}
+
+h3, {
+  @include font(3.5rem, 130%);
+  color: $color-dark-l;
+  @include media-mobile {
+    @include font(2.5rem, 130%);
+  }
+}
+
+h4 {
+  @include font(2rem, 115%);
+}
+
+h5 {
+  @include font(1.5rem, 110%);
+}
+
+p {
+  @extend %paragraph-font;
+  @include font(1.5rem, 160%, $spacing: normal);
+}
+
+.italic-paragraph {
+  @include font(1.2rem, 150%, italic, normal);
+  color: $color-dark-m;
+}

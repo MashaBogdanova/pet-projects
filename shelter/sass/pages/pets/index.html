@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pets</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="shortcut icon" href="../../../assets/icons/icon-sleeping-area.svg" type="image/x-icon">
+</head>
+<body>
+
+<header class="header">
+    <div class="wrapper header__wrapper">
+        <a class="logo" href="../main/index.html">
+            <h1 class="logo__title logo__title_pets">Cozy House</h1>
+            <p class="logo__subtitle logo__subtitle_pets">Shelter for pets in Boston</p>
+        </a>
+        <nav class="header__navigation">
+            <ul class="nav">
+                <li>
+                    <a class="nav__link nav__link_pets" href="../main/index.html"><p>About the shelter</p></a>
+                </li>
+                <li>
+                    <a class="nav__link nav__link_pets nav__link_pets_active"><p>Our pets</p></a>
+                </li>
+                <li>
+                    <a class="nav__link nav__link_pets" href="../main/index.html#help"><p>Help the shelter</p></a>
+                </li>
+                <li>
+                    <a class="nav__link nav__link_pets" href="#contacts"><p>Contacts</p></a>
+                </li>
+            </ul>
+        </nav>
+        <div class="hamburger">
+            <div class="hamburger__line_pets"></div>
+            <div class="hamburger__line_pets"></div>
+            <div class="hamburger__line_pets"></div>
+        </div>
+    </div>
+</header>
+
+<section class="our-pets">
+    <div class="wrapper our-pets__wrapper">
+        <h3>Our friends who<br>are looking for a house</h3>
+        <div class="our-pets__pets">
+            <article class="pet-card">
+                <img alt="gray cat" src="../../../assets/images/pets-katrine.png">
+                <h4>Katrine</h4>
+                <button class="button button_secondary">Learn more</button>
+            </article>
+            <article class="pet-card">
+                <img alt="white labrador puppy" src="../../../assets/images/pets-jennifer.png">
+                <h4>Jennifer</h4>
+                <button class="button button_secondary">Learn more</button>
+            </article>
+            <article class="pet-card">
+                <img alt="golden retriever" src="../../../assets/images/pets-woody.png">
+                <h4>Woody</h4>
+                <button class="button button_secondary">Learn more</button>
+            </article>
+            <article class="pet-card">
+                <img alt="black and white puppy" src="../../../assets/images/pets-sophia.png">
+                <h4>Sophia</h4>
+                <button class="button button_secondary">Learn more</button>
+            </article>
+            <article class="pet-card">
+                <img alt="gray cat" src="../../../assets/images/pets-timmy.png">
+                <h4>Timmy</h4>
+                <button class="button button_secondary">Learn more</button>
+            </article>
+            <article class="pet-card">
+                <img alt="jack russell terrier" src="../../../assets/images/pets-charly.png">
+                <h4>Charly</h4>
+                <button class="button button_secondary">Learn more</button>
+            </article>
+            <article class="pet-card">
+                <img alt="jack russell terrier puppy" src="../../../assets/images/pets-scarlet.png">
+                <h4>Scarlett</h4>
+                <button class="button button_secondary">Learn more</button>
+            </article>
+            <article class="pet-card">
+                <img alt="tabby cat" src="../../../assets/images/pets-freddie.png">
+                <h4>Freddie</h4>
+                <button class="button button_secondary">Learn more</button>
+            </article>
+        </div>
+        <div class="our-pets__navigation">
+            <button class="button button_circle" disabled>&lt;&lt;</button>
+            <button class="button button_circle" disabled>&lt;</button>
+            <button class="button button_circle" id="page-number-button">1</button>
+            <button class="button button_circle">&gt;</button>
+            <button class="button button_circle">&gt;&gt;</button>
+        </div>
+    </div>
+</section>
+
+<footer class="footer" id="contacts">
+    <div class="wrapper footer__wrapper">
+        <div class="footer__contact-card">
+            <h3 class="footer__visible-capture">For questions<br><span class="nowrap">and suggestions</span></h3>
+            <h3 class="footer__hidden-capture">For questions and<br><span class="nowrap">suggestions</span></h3>
+            <div class="footer__contact">
+                <img alt="email" src="../../../assets/icons/icon-email.svg">
+                <a href="mailto:email@shelter.com">
+                    <h4>email@shelter.com</h4>
+                </a>
+            </div>
+            <div class="footer__contact">
+                <img alt="phone" src="../../../assets/icons/icon-phone.svg">
+                <a href="tel:+13-674-567-75-54">
+                    <h4>+13 674 567 75 54</h4>
+                </a>
+            </div>
+        </div>
+        <div class="footer__contact-card footer__contact-card_right">
+            <h3 class="footer__visible-capture">We are waiting<br>for your visit</h3>
+            <h3 class="footer__hidden-capture">We are waiting for<br>your visit</h3>
+            <div class="footer__contact">
+                <img alt="marker" src="../../../assets/icons/icon-marker.svg">
+                <a target="_blank"
+                   href="https://www.google.com/search?q=Fundacja+Kud%C5%82aty+Kumpel&tbm=lcl&sxsrf=APwXEdcwg-ZGVGnV315L31YinI8YaxM27Q%3A1679769645328&ei=LUAfZLrKE8f2qwH3upHIBw&ved=0ahUKEwj6lI7I3ff9AhVH-yoKHXddBHkQ4dUDCAk&uact=5&oq=Fundacja+Kud%C5%82aty+Kumpel&gs_lcp=Cg1nd3Mtd2l6LWxvY2FsEAMyBwgAEIAEEBMyBwgAEIAEEBMyCAgAEBYQHhATOgcIIxDqAhAnUM8CWM8CYLsGaAFwAHgAgAFOiAFOkgEBMZgBAKABAaABArABCsABAQ&sclient=gws-wiz-local">
+                    <h4>1 Central Street, Boston<br>(entrance from the store)</h4>
+                </a>
+            </div>
+            <div class="footer__contact">
+                <img alt="marker" src="../../../assets/icons/icon-marker.svg">
+                <a target="_blank"
+                   href="https://www.google.com/search?q=ochota+na+kota&tbm=lcl&sxsrf=APwXEdeAZiqaitvVLCUQfG1WDnSRNN5Zyw%3A1679769452843&ei=bD8fZKCXM92GwPAPsM6i4AY&oq=ochota+&gs_lcp=Cg1nd3Mtd2l6LWxvY2FsEAMYADIICAAQgAQQywEyBQgAEIAEMgUIABCABDIICAAQgAQQywEyCAgAEIAEEMsBMggIABCABBDLATIICAAQgAQQywEyCAgAEIAEEMsBMggIABCABBDLATIICAAQgAQQywE6BwgjEOoCECc6BAgjECc6BwgAEIoFEENQwwxYpBlg6iBoAXAAeACAAV2IAdoEkgEBN5gBAKABAbABCsABAQ&sclient=gws-wiz-local">
+                    <h4>18 South Park, London</h4>
+                </a>
+            </div>
+        </div>
+        <img class="footer__puppy" alt="puppy licking screen" src="../../../assets/images/footer-puppy.png">
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+@import "../abstract/constants";
+@import "../abstract/placeholders";
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+
+    font-family: 'Georgia', sans-serif;
+    font-weight: 400;
+    font-size: 1.7rem;
+    line-height: 130%;
+    text-align: center;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    color: $color-dark-3xl;
+
+    border-radius: 100px;
+    @extend %transition;
+
+    &_primary {
+        width: 207px;
+        padding: 15px 45px;
+
+        background-color: $color-primary;
+        border: none;
+    }
+
+    &_secondary {
+        width: 187px;
+        padding: 15px 45px;
+
+        background-color: transparent;
+        border: 2px solid $color-primary;
+    }
+
+    &_circle {
+        width: 52px;
+        padding: 12px 17px;
+
+        font-size: 2rem;
+
+        background-color: transparent;
+        border: 2px solid $color-primary;
+
+        &_reversed {
+            transform: rotate(180deg);
+        }
+
+        &:disabled {
+            border-color: $color-dark-s;
+            color: $color-dark-s;
+        }
+
+        &:disabled > svg path {
+            fill: $color-dark-s;
+        }
+    }
+
+    &:not([disabled]):hover {
+        background-color: $color-primary-light;
+        border: none;
+        cursor: pointer;
+    }
+}
+
+#page-number-button {
+    background-color: $color-primary;
+    border: none;
+}
+
+.button_circle svg {
+    width: 14px;
+    height: 6px;
+}
