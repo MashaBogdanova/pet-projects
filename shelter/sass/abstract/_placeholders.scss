@@ -1,0 +1,17 @@
+@import "../base/fonts";
+
+%transition {
+  transition: all 200ms ease-out;
+}
+
+%color-transition {
+  transition: color 200ms ease-out;
+}
+
+%title-font {
+  font-family: 'Georgia regular', Verdana, sans-serif;
+}
+
+%paragraph-font {
+  font-family: 'Arial regular', Verdana, sans-serif;
+}

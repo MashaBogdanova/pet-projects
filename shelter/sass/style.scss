@@ -1,0 +1,24 @@
+//Abstract
+@import "abstract/constants";
+@import "abstract/placeholders";
+@import "abstract/mixins";
+
+// Base
+@import "base/base";
+@import "base/buttons";
+@import "base/pet-card";
+@import "base/fonts";
+@import "base/hamburger";
+
+// Layouts
+@import "layout/wrapper";
+@import "layout/header";
+@import "layout/footer";
+
+// Components
+@import "components/main/not-only";
+@import "components/main/about";
+@import "components/main/our-friends";
+@import "components/main/help";
+@import "components/main/in-addition";
+@import "components/pets/our-pets";

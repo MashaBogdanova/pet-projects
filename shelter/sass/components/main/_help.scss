@@ -1,0 +1,65 @@
+@import "../../abstract/constants";
+@import "../../abstract/mixins";
+
+.help {
+  background-color: $color-light-xl;
+}
+
+.help__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 57px;
+  padding: 81px 0 100px;
+  text-align: center;
+  @include media-mobile {
+    padding: 43px 15px;
+    gap: 42px;
+  }
+}
+
+.cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 54px 119px;
+  padding: 0 87px;
+  text-align: center;
+  @include media-small-desktop {
+    gap: 55px 67px;
+    padding: 0;
+    > .help-item {
+      flex-basis: 23%;
+    }
+  }
+  @include media-mobile {
+    justify-content: space-between;
+    gap: 30px;
+    > .help-item {
+      flex-basis: 44%;
+    }
+  }
+}
+
+.help-item {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  gap: 30px;
+    @include media-mobile {
+      gap: 20px;
+      img {
+        width: 50px;
+        height: 50px;
+      }
+  }
+
+  h4 {
+    color: $color-dark-l;
+    white-space: nowrap;
+    @include media-mobile {
+      @include font(1.5rem, 110%)
+    }
+  }
+}
