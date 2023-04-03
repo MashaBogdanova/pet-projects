@@ -6,6 +6,9 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   padding: 0 40px;
+  @include media-mobile {
+    padding: 0;
+  }
 }
 
 .not-only__wrapper {
