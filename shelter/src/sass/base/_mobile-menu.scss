@@ -1,0 +1,35 @@
+@import "../abstract/constants";
+@import "../abstract/mixins";
+
+.mobile-menu {
+  display: none;
+  @include media-mobile {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background: $color-modal;
+  }
+}
+
+.mobile-menu__content {
+  width: 320px;
+  height: 100vh;
+  background: $color-dark-3xl;
+}
+
+.hamburger {
+  display: flex;
+  justify-self: end;
+}
+
+.mobile-menu__navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 40px;
+}

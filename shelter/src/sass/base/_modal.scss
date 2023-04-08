@@ -1,0 +1,71 @@
+@import "../abstract/constants";
+
+.modal {
+  //position: fixed;
+  //top: 0;
+  //left: 0;
+
+  display: none;
+
+  width: 100vw;
+  height: 100vh;
+  overflow-y: hidden;
+
+  background: $color-modal;
+}
+
+.modal__window {
+  //position: absolute;
+  //left: 190px;
+  //top: 136px;
+  //
+  //display: block;
+  //justify-self: center;
+  //align-self: center;
+  max-width: 952px;
+  max-height: 552px;
+  margin: auto;
+
+  display: none;
+}
+
+.modal__button {
+  position: absolute;
+  left: 890px;
+  top: 0;
+}
+
+.modal__pet-content {
+  position: absolute;
+  left: 0;
+  top: 52px;
+
+  display: flex;
+  width: 900px;
+  height: 500px;
+
+  background-color: $color-light-s;
+  border-radius: 9px;
+  box-shadow: 0 2px 35px 14px rgba(13, 13, 13, 0.04);
+}
+
+.modal__puppy {
+  max-width: 500px;
+  height: auto;
+  //
+  //background: url("../../assets/images/pets-jennifer.png") no-repeat;
+  //background-size: 100%;
+}
+
+.modal__pet-info {
+  display: grid;
+  gap: 40px;
+  padding: 50px 20px 88px 29px;
+  color: #000000;
+  h3 {
+    text-align: left;
+  }
+  .bold {
+    font-weight: 700;
+  }
+}

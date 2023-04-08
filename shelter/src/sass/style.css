@@ -359,7 +359,9 @@ p {
 }
 
 .modal {
-  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   overflow-y: hidden;
@@ -367,10 +369,10 @@ p {
 }
 
 .modal__window {
+  display: block;
   max-width: 952px;
   max-height: 552px;
   margin: auto;
-  display: none;
 }
 
 .modal__button {
@@ -407,40 +409,6 @@ p {
 }
 .modal__pet-info .bold {
   font-weight: 700;
-}
-
-.mobile-menu {
-  display: none;
-}
-@media (max-width: 720px) {
-  .mobile-menu {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(41, 41, 41, 0.6);
-  }
-}
-
-.mobile-menu__content {
-  width: 320px;
-  height: 100vh;
-  background: #292929;
-}
-
-.hamburger {
-  display: flex;
-  justify-self: end;
-}
-
-.mobile-menu__navigation {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 40px;
 }
 
 .wrapper {
