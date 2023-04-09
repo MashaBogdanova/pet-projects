@@ -1,4 +1,4 @@
-import { Modal } from "./js/Modal"
+import {Modal} from "./js/Modal"
 
 const data = [
     {
@@ -40,7 +40,7 @@ const data = [
     {
         "id": "5",
         "name": "Scarlett",
-        "img": "../../../assets/images/pets-scarlett.png",
+        "img": "../../../assets/images/pets-scarlet.png",
         "type": "Dog",
         "breed": "Jack Russell Terrier",
         "description": "Scarlett is a happy, playful girl who will make you laugh and smile. She forms a bond quickly and will make a loyal companion and a wonderful family dog or a good companion for a single individual too since she likes to hang out and be with her human.",
@@ -101,11 +101,22 @@ const data = [
 
 window.onload = function () {
     pickCardClickHandler();
+    openMobileMenuClickHandler();
 }
 
 const pickCardClickHandler = () => {
-    addListenerToCard(".our-friends__cards")
-    addListenerToCard(".our-pets__pets")
+    addListenerToCard(".our-friends__cards");
+    addListenerToCard(".our-pets__pets");
+}
+
+const addListenerToCard = (selector) => {
+    document.querySelector(selector)?.addEventListener("click", (e) => {
+        if (e.target.closest(".pet-card")) {
+            let petId = e.target.closest('.pet-card').getAttribute('data-id');
+            let petContent = getPetContent(petId);
+            openModalWindow(petContent);
+        }
+    })
 }
 
 const openModalWindow = (petContent) => {
@@ -117,16 +128,27 @@ const getPetContent = (petId) => {
     return data.find(pet => pet.id === petId);
 }
 
-const addListenerToCard = (selector) => {
-    document.querySelector(selector)?.addEventListener("click", (e) => {
-        if (e.target.closest(".pet-card")) {
-            let petId = e.target.closest('.pet-card').getAttribute('data-id');
-            let petContent = getPetContent(petId);
-            openModalWindow(petContent);
-        }
+const openMobileMenuClickHandler = () => {
+    document.querySelector(".hamburger").addEventListener("click", (e) => {
+        document.querySelector(".mobile-menu-overlay").classList.remove("mobile-menu-hidden");
+        document.querySelector(".mobile-menu-overlay").classList.add("mobile-menu-visible");
     })
-};
+    document.body.style.overflow = 'hidden';
+    closeMobileMenuClickHandler();
+}
 
+const closeMobileMenuClickHandler = () => {
+    document.querySelector(".close-hamburger").addEventListener("click", () => {
+        document.querySelector(".mobile-menu-overlay").classList.remove("mobile-menu-visible");
+        // document.querySelector(".mobile-menu-overlay").classList.add("mobile-menu-hidden");
+
+    })
+    document.querySelector(".mobile-menu-overlay").addEventListener("click", () => {
+        document.querySelector(".mobile-menu-overlay").classList.remove("mobile-menu-visible");
+        // document.querySelector(".mobile-menu-overlay").classList.add("mobile-menu-hidden");
+    })
+    document.body.style.overflow = 'auto';
+}
 
 // console.log(
 //     "I. FIRST WEEK \n \n" +
