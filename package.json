@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "style": "sass --watch shelter/src/sass/style.scss shelter/sass/style.css",
+    "style": "sass --watch shelter/src/sass/style.scss shelter/src/sass/style.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/rolling-scopes-school/mashabogdanova-JSFE2023Q1/issues"
   },
-  "homepage": "https://github.com/rolling-scopes-school/mashabogdanova-JSFE2023Q1#readme"
+  "homepage": "https://github.com/rolling-scopes-school/mashabogdanova-JSFE2023Q1#readme",
+  "dependencies": {
+    "webpack": "^5.78.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^5.0.1"
+  }
 }
