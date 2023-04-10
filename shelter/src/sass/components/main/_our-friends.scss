@@ -40,7 +40,7 @@
 .our-friends__overflow {
   width: 990px;
   overflow: hidden;
-  @include media-tablet {
+  @include media-small-desktop {
     width: 580px;
   }
   @include media-mobile {
@@ -71,7 +71,7 @@
 //    display: none;
 //  }
 //}
-
+//
 //.pet-card:nth-last-child(-n + 2) {
 //  @include media-mobile {
 //    display: none;
