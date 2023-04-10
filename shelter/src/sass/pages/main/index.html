@@ -15,6 +15,11 @@
             <h1 class="logo__title logo__title_main">Cozy House</h1>
             <p class="logo__subtitle logo__subtitle_main">Shelter for pets in Boston</p>
         </a>
+        <div class="hamburger">
+            <div class="hamburger__line"></div>
+            <div class="hamburger__line"></div>
+            <div class="hamburger__line"></div>
+        </div>
         <nav class="header__navigation">
             <ul class="nav">
                 <li>
@@ -31,15 +36,35 @@
                 </li>
             </ul>
         </nav>
-        <div class="hamburger">
-            <div class="hamburger__line"></div>
-            <div class="hamburger__line"></div>
-            <div class="hamburger__line"></div>
-        </div>
     </div>
 </header>
 
 <main>
+
+    <section class="mobile-menu-overlay mobile-menu-hidden">
+        <div class="mobile-menu__content">
+            <div class="close-hamburger">
+                <div class="hamburger__line"></div>
+                <div class="hamburger__line"></div>
+                <div class="hamburger__line"></div>
+            </div>
+            <ul class="mobile-menu__navigation">
+                <li>
+                    <a class="nav__link nav__link_main nav__link_main_active"><p>About the shelter</p></a>
+                </li>
+                <li>
+                    <a class="nav__link nav__link_main" href="../pets/index.html"><p>Our pets</p></a>
+                </li>
+                <li>
+                    <a class="nav__link nav__link_main" href="#help"><p>Help the shelter</p></a>
+                </li>
+                <li>
+                    <a class="nav__link nav__link_main" href="#contacts"><p>Contacts</p></a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
     <section class="not-only">
         <div class="wrapper not-only__wrapper">
             <div class="not-only__content">
@@ -76,45 +101,80 @@
     <section class="our-friends" id="our-friends">
         <div class="wrapper our-friends__wrapper">
             <h3>Our friends who<br>are looking for a house</h3>
+
             <div class="our-friends__slider">
-                <button class="button button_circle button_visible">
+                <button class="button button_circle button_visible button_left">
                     <svg width="14" height="6" viewBox="0 0 14 6" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path d="M14 2V4H3V6L0 3L3 0V2H14Z" fill="#292929"/>
                     </svg>
                 </button>
-                <div class="our-friends__cards">
-                    <article class="pet-card">
-                        <img class="our-friends__puppy" alt="gray cat" src="../../../assets/images/pets-katrine.png">
-                        <h4>Katrine</h4>
-                        <button class="button button_secondary">Learn more</button>
-                    </article>
-                    <article class="pet-card">
-                        <img alt="white labrador puppy" src="../../../assets/images/pets-jennifer.png">
-                        <h4>Jennifer</h4>
-                        <button class="button button_secondary">Learn more</button>
-                    </article>
-                    <article class="pet-card">
-                        <img alt="golden retriever" src="../../../assets/images/pets-woody.png">
-                        <h4>Woody</h4>
-                        <button class="button button_secondary">Learn more</button>
-                    </article>
+
+                <div class="our-friends__overflow">
+                    <div class="our-friends__cards">
+
+                        <article class="pet-card" data-id="1">
+                            <img class="our-friends__puppy" alt="gray cat"
+                                 src="../../../assets/images/pets-katrine.png">
+                            <h4>Katrine</h4>
+                            <button class="button button_secondary">Learn more</button>
+                        </article>
+                        <article class="pet-card" data-id="2">
+                            <img alt="white labrador puppy" src="../../../assets/images/pets-jennifer.png">
+                            <h4>Jennifer</h4>
+                            <button class="button button_secondary">Learn more</button>
+                        </article>
+                        <article class="pet-card" data-id="3">
+                            <img alt="golden retriever" src="../../../assets/images/pets-woody.png">
+                            <h4>Woody</h4>
+                            <button class="button button_secondary">Learn more</button>
+                        </article>
+                        <article class="pet-card" data-id="4">
+                            <img alt="little puppy" src="../../../assets/images/pets-sophia.png">
+                            <h4>Sophia</h4>
+                            <button class="button button_secondary">Learn more</button>
+                        </article>
+                        <article class="pet-card" data-id="5">
+                            <img alt="dog" src="../../../assets/images/pets-scarlet.png">
+                            <h4>Scarlett</h4>
+                            <button class="button button_secondary">Learn more</button>
+                        </article>
+                        <article class="pet-card" data-id="6">
+                            <img alt="cat" src="../../../assets/images/pets-timmy.png">
+                            <h4>Timmy</h4>
+                            <button class="button button_secondary">Learn more</button>
+                        </article>
+<!--                        <article class="pet-card" data-id="7">-->
+<!--                            <img alt="golden retriever" src="../../../assets/images/pets-freddie.png">-->
+<!--                            <h4>Freddie</h4>-->
+<!--                            <button class="button button_secondary">Learn more</button>-->
+<!--                        </article>-->
+<!--                        <article class="pet-card" data-id="8">-->
+<!--                            <img alt="dog" src="../../../assets/images/pets-charly.png">-->
+<!--                            <h4>Charly</h4>-->
+<!--                            <button class="button button_secondary">Learn more</button>-->
+<!--                        </article>-->
+
+                    </div>
+
                 </div>
-                <button class="button button_circle button_visible button_circle_reversed">
+
+                <button class="button button_circle button_visible button_right">
                     <svg width="14" height="6" viewBox="0 0 14 6" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path d="M14 2V4H3V6L0 3L3 0V2H14Z" fill="#292929"/>
                     </svg>
                 </button>
             </div>
+
             <div class="our-friends__hidden-buttons">
-                <button class="button button_circle">
+                <button class="button button_circle hidden-button-left">
                     <svg width="14" height="6" viewBox="0 0 14 6" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path d="M14 2V4H3V6L0 3L3 0V2H14Z" fill="#292929"/>
                     </svg>
                 </button>
-                <button class="button button_circle button_circle_reversed">
+                <button class="button button_circle hidden-button-right">
                     <svg width="14" height="6" viewBox="0 0 14 6" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path d="M14 2V4H3V6L0 3L3 0V2H14Z" fill="#292929"/>
@@ -231,6 +291,6 @@
 </footer>
 
 
-<script src="script.js"></script>
+<script src="../../../../../dist/bundle.js"></script>
 </body>
 </html>

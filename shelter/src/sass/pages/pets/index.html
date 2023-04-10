@@ -15,13 +15,18 @@
             <h1 class="logo__title logo__title_pets">Cozy House</h1>
             <p class="logo__subtitle logo__subtitle_pets">Shelter for pets in Boston</p>
         </a>
+        <div class="hamburger">
+            <div class="hamburger__line_pets"></div>
+            <div class="hamburger__line_pets"></div>
+            <div class="hamburger__line_pets"></div>
+        </div>
         <nav class="header__navigation">
             <ul class="nav">
                 <li>
                     <a class="nav__link nav__link_pets" href="../main/index.html"><p>About the shelter</p></a>
                 </li>
                 <li>
-                    <a class="nav__link nav__link_pets nav__link_pets_active"><p>Our pets</p></a>
+                    <a class="nav__link nav__link_pets nav__link_pets_active" href="#"><p>Our pets</p></a>
                 </li>
                 <li>
                     <a class="nav__link nav__link_pets" href="../main/index.html#help"><p>Help the shelter</p></a>
@@ -31,54 +36,73 @@
                 </li>
             </ul>
         </nav>
-        <div class="hamburger">
-            <div class="hamburger__line_pets"></div>
-            <div class="hamburger__line_pets"></div>
-            <div class="hamburger__line_pets"></div>
-        </div>
     </div>
 </header>
+
+<section class="mobile-menu-overlay mobile-menu-hidden">
+    <div class="mobile-menu__content">
+        <div class="close-hamburger">
+            <div class="hamburger__line"></div>
+            <div class="hamburger__line"></div>
+            <div class="hamburger__line"></div>
+        </div>
+        <ul class="mobile-menu__navigation">
+            <li>
+                <a class="nav__link nav__link_main nav__link_main_active" href="../main/index.html"><p>About the shelter</p></a>
+            </li>
+            <li>
+                <a class="nav__link nav__link_main" href="#"><p>Our pets</p></a>
+            </li>
+            <li>
+                <a class="nav__link nav__link_main" href="../main/index.html#help"><p>Help the shelter</p></a>
+            </li>
+            <li>
+                <a class="nav__link nav__link_main" href="#contacts"><p>Contacts</p></a>
+            </li>
+        </ul>
+    </div>
+</section>
 
 <section class="our-pets">
     <div class="wrapper our-pets__wrapper">
         <h3>Our friends who<br>are looking for a house</h3>
         <div class="our-pets__pets">
-            <article class="pet-card">
+            <article class="pet-card" data-id="1">
                 <img alt="gray cat" src="../../../assets/images/pets-katrine.png">
                 <h4>Katrine</h4>
                 <button class="button button_secondary">Learn more</button>
             </article>
-            <article class="pet-card">
+            <article class="pet-card" data-id="2">
                 <img alt="white labrador puppy" src="../../../assets/images/pets-jennifer.png">
                 <h4>Jennifer</h4>
                 <button class="button button_secondary">Learn more</button>
             </article>
-            <article class="pet-card">
+            <article class="pet-card" data-id="3">
                 <img alt="golden retriever" src="../../../assets/images/pets-woody.png">
                 <h4>Woody</h4>
                 <button class="button button_secondary">Learn more</button>
             </article>
-            <article class="pet-card">
+            <article class="pet-card" data-id="4">
                 <img alt="black and white puppy" src="../../../assets/images/pets-sophia.png">
                 <h4>Sophia</h4>
                 <button class="button button_secondary">Learn more</button>
             </article>
-            <article class="pet-card">
+            <article class="pet-card" data-id="6">
                 <img alt="gray cat" src="../../../assets/images/pets-timmy.png">
                 <h4>Timmy</h4>
                 <button class="button button_secondary">Learn more</button>
             </article>
-            <article class="pet-card">
+            <article class="pet-card" data-id="8">
                 <img alt="jack russell terrier" src="../../../assets/images/pets-charly.png">
                 <h4>Charly</h4>
                 <button class="button button_secondary">Learn more</button>
             </article>
-            <article class="pet-card">
+            <article class="pet-card" data-id="5">
                 <img alt="jack russell terrier puppy" src="../../../assets/images/pets-scarlet.png">
                 <h4>Scarlett</h4>
                 <button class="button button_secondary">Learn more</button>
             </article>
-            <article class="pet-card">
+            <article class="pet-card" data-id="7">
                 <img alt="tabby cat" src="../../../assets/images/pets-freddie.png">
                 <h4>Freddie</h4>
                 <button class="button button_secondary">Learn more</button>
@@ -134,5 +158,6 @@
     </div>
 </footer>
 
+<script src="../../../../../dist/bundle.js"></script>
 </body>
 </html>
