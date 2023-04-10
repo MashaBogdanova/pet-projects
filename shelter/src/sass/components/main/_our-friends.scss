@@ -37,10 +37,27 @@
   }
 }
 
+.our-friends__overflow {
+  width: 990px;
+  overflow: hidden;
+  @include media-small-desktop {
+    width: 580px;
+  }
+  @include media-mobile {
+    width: 270px;
+  }
+}
+
 .our-friends__cards {
+  position: relative;
+  left: 0;
+
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: space-between;
   gap: 90px;
+
   @include media-tablet {
     gap: 40px;
   }
@@ -49,21 +66,25 @@
   }
 }
 
-.pet-card:last-child {
-  @include media-small-desktop {
-    display: none;
-  }
-}
-
-.pet-card:nth-last-child(-n + 2) {
-  @include media-mobile {
-    display: none;
-  }
-}
+//.pet-card:last-child {
+//  @include media-small-desktop {
+//    display: none;
+//  }
+//}
+//
+//.pet-card:nth-last-child(-n + 2) {
+//  @include media-mobile {
+//    display: none;
+//  }
+//}
 
 .our-friends__puppy {
   max-width: 270px;
   height: auto;
+}
+
+.button_right {
+    transform: rotate(180deg);
 }
 
 .button_visible {
@@ -79,4 +100,8 @@
     gap: 80px;
     padding: 20px 0 42px;
   }
+}
+
+.hidden-button-right {
+  transform: rotate(180deg);
 }

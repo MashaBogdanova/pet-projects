@@ -44,10 +44,6 @@
         background-color: transparent;
         border: 2px solid $color-primary;
 
-        &_reversed {
-            transform: rotate(180deg);
-        }
-
         &:disabled {
             border-color: $color-dark-s;
             color: $color-dark-s;
