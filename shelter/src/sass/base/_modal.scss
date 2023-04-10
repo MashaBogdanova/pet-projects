@@ -1,5 +1,6 @@
 @import "../abstract/constants";
 @import "../abstract/mixins";
+@import "../abstract/placeholders";
 
 .overlay {
   position: fixed;
@@ -19,20 +20,47 @@
 .modal {
   position: relative;
   display: flex;
-  width: 952px;
-  height: 552px;
+
+  width: 1004px;
+  height: 678px;
+  padding-left: 52px;
+  padding-bottom: 52px;
+
   overflow: hidden;
   background-color: transparent;
+
+  @include media-tablet {
+    width: 733px;
+    height: 530px;
+  }
+  @include media-mobile {
+    height: 625px;
+    padding-left: 40px;
+  }
 }
 
 .modal__close-button {
   position: absolute;
-  top: 0;
-  right: 0;
-  cursor: pointer;
+  top: 74px;
+  right: 10px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @include media-tablet {
+    top: 75px;
+    right: 8px;
+  }
+
+  @include media-mobile {
+    top: 181px;
+    right: 10px;
+  }
 }
 
-.modal__content  {
+.modal__content {
   display: flex;
   justify-content: space-between;
 
@@ -46,24 +74,79 @@
   box-shadow: 0 2px 35px 14px rgba(13, 13, 13, 0.04);
 
   h3 {
+    padding-bottom: 10px;
     text-align: left;
+    color: $color-black;
+    @include media-mobile {
+      text-align: center;
+    }
   }
+
+  h4 {
+    white-space: nowrap;
+  }
+
   .bold {
     font-weight: 700;
   }
-  p {
-    padding-right: 20px;
+
+  ul {
+    padding-left: 15px;
+    color: $color-primary;
+  }
+
+  li {
+    text-decoration: unset;
+    padding: 0 0 10px 0;
+    @include media-tablet {
+      padding: 0 0 5px 0;
+    }
+  }
+
+  .modal__item {
+    color: black;
+    font-size: 1.5rem;
+    line-height: 110%;
+  }
+
+  @include media-tablet {
+    width: 630px;
+    height: 350px;
+    h5 {
+      //width: 260px;
+      font-size: 13px;
+    }
+  }
+
+  @include media-mobile {
+    width: 240px;
+    height: 340px;
   }
 }
 
 .modal__pet-info {
   display: flex;
   flex-direction: column;
-  align-self: center;
   gap: 40px;
+  padding: 50px 20px 88px 29px;
+  @include media-tablet {
+    padding: 10px 10px 32px;
+    gap: 20px;
+  }
+  @include media-mobile {
+    padding: 10px;
+  }
 }
 
 .modal__puppy {
   width: 500px;
   height: 500px;
+  border-radius: 9px;
+  @include media-tablet {
+    width: 350px;
+    height: 350px;
+  }
+  @include media-mobile {
+    display: none;
+  }
 }

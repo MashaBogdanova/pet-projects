@@ -51,23 +51,20 @@ export class Modal {
     }
 
     createPetContentHtml(petContent) {
-        let template = "";
-        template += `<img class="modal__puppy" src=${petContent.img} alt="sweet pet">`
-        template += ` <div class="modal__pet-info">
+        return `<img class="modal__puppy" src=${petContent.img} alt="sweet pet">
+                     <div class="modal__pet-info">
                         <div>
                             <h3>${petContent.name}</h3>
                             <h4>${petContent.type} - ${petContent.breed}</h4>
                         </div>
-                        <p>${petContent.description}</p>
+                        <h5>${petContent.description}</h5>
                         <ul>
-                            <li><span class="bold">Age: </span>${petContent.age}</li>
-                            <li><span class="bold">Inoculations: </span>${petContent.inoculations}</li>
-                            <li><span class="bold">Diseases: </span>${petContent.diseases}</li>
-                            <li><span class="bold">Parasites: </span>${petContent.parasites}</li>
+                            <li><span class="modal__item"><span class="bold">Age: </span>${petContent.age}</span></li>
+                            <li><span class="modal__item"><span class="bold">Inoculations: </span>${petContent.inoculations}</span></li>
+                            <li><span class="modal__item"><span class="bold">Diseases: </span>${petContent.diseases}</span></li>
+                            <li><span class="modal__item"><span class="bold">Parasites: </span>${petContent.parasites}</span></li>
                         </ul>
                      </div>`
-
-        return template;
     }
 
 } 

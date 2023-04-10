@@ -132,22 +132,22 @@ const openMobileMenuClickHandler = () => {
     document.querySelector(".hamburger").addEventListener("click", (e) => {
         document.querySelector(".mobile-menu-overlay").classList.remove("mobile-menu-hidden");
         document.querySelector(".mobile-menu-overlay").classList.add("mobile-menu-visible");
+        document.body.style.overflow = 'hidden';
     })
-    document.body.style.overflow = 'hidden';
     closeMobileMenuClickHandler();
 }
 
 const closeMobileMenuClickHandler = () => {
     document.querySelector(".close-hamburger").addEventListener("click", () => {
         document.querySelector(".mobile-menu-overlay").classList.remove("mobile-menu-visible");
-        // document.querySelector(".mobile-menu-overlay").classList.add("mobile-menu-hidden");
+        document.querySelector(".mobile-menu-overlay").classList.add("mobile-menu-hidden");
 
     })
     document.querySelector(".mobile-menu-overlay").addEventListener("click", () => {
         document.querySelector(".mobile-menu-overlay").classList.remove("mobile-menu-visible");
-        // document.querySelector(".mobile-menu-overlay").classList.add("mobile-menu-hidden");
+        document.querySelector(".mobile-menu-overlay").classList.add("mobile-menu-hidden");
+        document.body.style.overflow = 'auto';
     })
-    document.body.style.overflow = 'auto';
 }
 
 // console.log(
