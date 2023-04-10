@@ -104,6 +104,7 @@ window.onload = function () {
     openMobileMenuClickHandler();
 }
 
+// Modal window
 const pickCardClickHandler = () => {
     addListenerToCard(".our-friends__cards");
     addListenerToCard(".our-pets__pets");
@@ -128,6 +129,8 @@ const getPetContent = (petId) => {
     return data.find(pet => pet.id === petId);
 }
 
+// Mobile menu
+
 const openMobileMenuClickHandler = () => {
     document.querySelector(".hamburger").addEventListener("click", (e) => {
         document.querySelector(".mobile-menu-overlay").classList.remove("mobile-menu-hidden");
@@ -148,6 +151,71 @@ const closeMobileMenuClickHandler = () => {
         document.querySelector(".mobile-menu-overlay").classList.add("mobile-menu-hidden");
         document.body.style.overflow = 'auto';
     })
+}
+
+// Slider
+
+const arrowLeft = document.querySelector(".button_left");
+const arrowRight = document.querySelector(".button_right");
+
+const hiddenArrowLeft = document.querySelector(".hidden-button-left");
+const hiddenArrowRight = document.querySelector(".hidden-button-right");
+
+const petsCards = document.querySelector(".our-friends__cards");
+
+
+arrowRight.onclick = () => {
+    let currentLeft = petsCards.style.left.replace("px", "");
+    if (window.innerWidth > 959) {
+        if (currentLeft > -1080) {
+            petsCards.style.left = `${currentLeft - 1080}px`;
+        } else {
+            petsCards.style.left = '0px';
+        }
+    } else if (window.innerWidth <= 959 && window.innerWidth > 720) {
+        if (currentLeft > -1240) {
+            petsCards.style.left = `${currentLeft - 620}px`;
+        } else {
+            petsCards.style.left = '0px';
+        }
+    }
+}
+
+arrowLeft.onclick = () => {
+    let currentLeft = petsCards.style.left.replace("px", "");
+    if (window.innerWidth > 959) {
+        if (currentLeft < 0) {
+            petsCards.style.left = `${parseInt(currentLeft) + 1080}px`;
+        } else {
+            petsCards.style.left = '-1080px';
+        }
+    } else if (window.innerWidth <= 959 && window.innerWidth > 720) {
+        if (currentLeft < 0) {
+            petsCards.style.left = `${parseInt(currentLeft) + 620}px`;
+        } else {
+            petsCards.style.left = '-1240px';
+        }
+    }
+}
+
+hiddenArrowRight.onclick = () => {
+    let currentLeft = petsCards.style.left.replace("px", "");
+        if (currentLeft > -1550) {
+            petsCards.style.left = `${currentLeft - 310}px`;
+        } else {
+            petsCards.style.left = '0px';
+        }
+        console.log(petsCards.style.left)
+}
+
+hiddenArrowLeft.onclick = () => {
+    let currentLeft = petsCards.style.left.replace("px", "");
+    if (currentLeft < 0) {
+        petsCards.style.left = `${parseInt(currentLeft) + 310}px`;
+    } else {
+        petsCards.style.left = '-1550px';
+    }
+    console.log(petsCards.style.left)
 }
 
 // console.log(

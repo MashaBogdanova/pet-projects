@@ -228,9 +228,6 @@ body, * {
   background-color: transparent;
   border: 2px solid #f1cdb3;
 }
-.button_circle_reversed {
-  transform: rotate(180deg);
-}
 .button_circle:disabled {
   border-color: #cdcdcd;
   color: #cdcdcd;
@@ -1287,8 +1284,27 @@ p {
   }
 }
 
+.our-friends__overflow {
+  width: 990px;
+  overflow: hidden;
+}
+@media screen and (max-width: 959px) {
+  .our-friends__overflow {
+    width: 580px;
+  }
+}
+@media (max-width: 720px) {
+  .our-friends__overflow {
+    width: 270px;
+  }
+}
+
 .our-friends__cards {
+  position: relative;
+  left: 0;
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: space-between;
   gap: 90px;
 }
@@ -1303,21 +1319,13 @@ p {
   }
 }
 
-@media (max-width: 1200px) {
-  .pet-card:last-child {
-    display: none;
-  }
-}
-
-@media (max-width: 720px) {
-  .pet-card:nth-last-child(-n+2) {
-    display: none;
-  }
-}
-
 .our-friends__puppy {
   max-width: 270px;
   height: auto;
+}
+
+.button_right {
+  transform: rotate(180deg);
 }
 
 @media (max-width: 720px) {
@@ -1335,6 +1343,10 @@ p {
     gap: 80px;
     padding: 20px 0 42px;
   }
+}
+
+.hidden-button-right {
+  transform: rotate(180deg);
 }
 
 .help {
