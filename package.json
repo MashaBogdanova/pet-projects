@@ -1,0 +1,9 @@
+{
+  "name": "mashabogdanova-JSFE2023Q1",
+  "version": "1.0.0",
+  "dependencies": {
+  },
+  "scripts": {
+    "style": "sass --watch minesweeper/sass/style.scss minesweeper/sass/style.css"
+  }
+}

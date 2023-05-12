@@ -1,0 +1,44 @@
+@font-face {
+  font-family: "Neon";
+  src: url("../assets/fonts/neon.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+}
+
+.board {
+  display: flex;
+  max-width: 50vw;
+  max-height: 50vw;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.board__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  padding: 5px;
+  font-family: Neon, sans-serif;
+  border: solid 2px white;
+}
+
+.board__cell_mined {
+  background-color: white;
+}
+
+@font-face {
+  font-family: "Neon";
+  src: url("../assets/fonts/neon.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/*# sourceMappingURL=style.css.map */

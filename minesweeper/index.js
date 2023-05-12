@@ -1,24 +1,31 @@
 // Create board class
 class Board {
     constructor() {
-        this.boardElement = document.createElement("section");
-        this.board = [];
         this.rowCount = 10;
         this.minesCount = 10;
+        this.boardElement = this.createBoardElement();
+        this.board = this.createBoard();
     }
-    createBoard() {
-        this.boardElement.classList.add("board");
-        document.body.append(this.boardElement);
 
+    createBoard() {
+        let board = [];
         for (let i = 0; i < this.rowCount; i++) {
-            this.board.push([]);
+            board.push([]);
             for (let j = 0; j < this.rowCount; j++) {
                 const cell = new Cell(this);
-                this.board[i].push(cell);
-                cell.createCell(this.boardElement);
+                board[i].push(cell);
             }
         }
+        return board;
     }
+
+    createBoardElement() {
+        let boardElement = document.createElement("section");
+        boardElement.classList.add("board");
+        document.body.append(boardElement);
+        return boardElement;
+    }
+
     localizeMines() {
         for (let i = 0; i < this.minesCount; i++) {
             const randomNumber = Math.floor(Math.random() * (this.rowCount * this.rowCount));
@@ -34,18 +41,21 @@ class Board {
 // Create cell class
 class Cell {
     constructor(board) {
-       this.opened = false;
-       this.mine = false;
-       this.flagged = false;
-       this.cell = null;
-       this.board = board;
+        this.opened = false;
+        this.mine = false;
+        this.flagged = false;
+        this.board = board;
+        this.cell = this.createCell();
     }
+
     createCell() {
-        this.cell = document.createElement("div");
-        this.cell.classList.add("board__cell");
-        this.cell.setAttribute("style", `flex-basis: ${100/this.board.rowCount}%`)
-        this.board.boardElement.append(this.cell);
+        let cell = document.createElement("div");
+        cell.classList.add("board__cell");
+        cell.setAttribute("style", `flex-basis: ${100 / this.board.rowCount}%`);
+        this.board.boardElement.append(cell);
+        return cell;
     }
+
     addMine() {
         this.mine = true;
         this.cell.classList.add("board__cell_mined");
@@ -53,6 +63,5 @@ class Cell {
 }
 
 const board = new Board();
-board.createBoard();
 board.localizeMines();
 
