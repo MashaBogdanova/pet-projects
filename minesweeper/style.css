@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+
+.board {
+    display: flex;
+    max-width: 50vw;
+    max-height: 50vw;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.board__cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    padding: 5px;
+
+    border: solid 2px yellowgreen;
+}
+
+.board__cell_mined {
+    background-color: yellow;
+}
