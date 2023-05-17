@@ -41,7 +41,7 @@ body {
     background-size: 70% 70%;
   }
 
-  &__cell_flagged {
+  &_flagged {
     background-image: url("../assets/images/flag.png");
     background-repeat: no-repeat;
     background-position: center;
@@ -55,6 +55,7 @@ body {
   display: flex;
   width: 900px;
   height: 500px;
+  margin: auto;
 
   background-color: $color-light-s;
   border-radius: 9px;

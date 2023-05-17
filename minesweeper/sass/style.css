@@ -40,7 +40,7 @@ body {
   background-position: center;
   background-size: 70% 70%;
 }
-.board__cell__cell_flagged {
+.board__cell_flagged {
   background-image: url("../assets/images/flag.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -52,6 +52,7 @@ body {
   display: flex;
   width: 900px;
   height: 500px;
+  margin: auto;
   background-color: #fafafa;
   border-radius: 9px;
   box-shadow: 0 2px 35px 14px rgba(13, 13, 13, 0.04);

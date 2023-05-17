@@ -5,6 +5,9 @@ class Board {
         this.minesCount = 10;
         this.boardElement = this.createBoardElement();
         this.board = this.createBoard();
+        this.boardElement.addEventListener("click", this.onClick);
+        this.boardElement.addEventListener("dblclick", this.onDoubleClick);
+
     }
 
     createBoard() {
@@ -37,12 +40,46 @@ class Board {
         }
     }
 
+    onClick = e => {
+        // todo: extract method
+        const row = e.target.id.split("-")[0];
+        const column = e.target.id.split("-")[1];
+        const chosenCell = this.board[row][column];
+
+        if (chosenCell.mine) {
+            chosenCell.cellElement.classList.add("board__cell_mined")
+            this.endTheGame();
+        } else {
+            chosenCell.cellElement.classList.add("board__cell_opened");
+        }
+        chosenCell.opened = true;
+    }
+
+    onDoubleClick = e => {
+        // todo: extract method
+        const row = e.target.id.split("-")[0];
+        const column = e.target.id.split("-")[1];
+        const chosenCell = this.board[row][column];
+
+        if (chosenCell.flagged) {
+            chosenCell.cellElement.classList.remove("board__cell_flagged");
+            chosenCell.flagged = false;
+        } else {
+            chosenCell.cellElement.classList.remove("board__cell_opened");
+            chosenCell.cellElement.classList.add("board__cell_flagged");
+            console.log(chosenCell.cellElement);
+            chosenCell.flagged = true;
+        }
+    }
+
     endTheGame() {
-        // todo: add modal window with time and steps count
+        // todo: add time and steps count, fix overlay
         const modal = document.createElement("div");
         modal.classList.add("modal");
+
         const modalOverlay = document.createElement("div");
-        modal.classList.add("modal_overlay");
+        modalOverlay.classList.add("modal__overlay");
+
         modalOverlay.append(modal);
         document.body.append(modalOverlay);
     }
@@ -57,8 +94,6 @@ class Cell {
         this.id = `${row}-${column}`;
         this.board = board;
         this.cellElement = this.createCell();
-        this.board.boardElement.addEventListener("click", this.onClickCell);
-        this.board.boardElement.addEventListener("dblclick", this.onDoubleClickCell);
     }
 
     createCell() {
@@ -73,42 +108,9 @@ class Cell {
     addMine() {
         this.mine = true;
     }
-
-    onClickCell = e => {
-        // todo: extract method
-        const row = e.target.id.split("-")[0];
-        const column = e.target.id.split("-")[1];
-        const chosenCell = this.board.board[row][column];
-
-        if (chosenCell.mine) {
-            chosenCell.cellElement.classList.add("board__cell_mined")
-            this.board.endTheGame();
-        } else {
-            chosenCell.cellElement.classList.add("board__cell_opened");
-        }
-        chosenCell.opened = true;
-    }
-
-    onDoubleClickCell = e => {
-        // todo: extract method
-        const row = e.target.id.split("-")[0];
-        const column = e.target.id.split("-")[1];
-        const chosenCell = this.board.board[row][column];
-
-        // if (chosenCell.flagged) {
-        //     chosenCell.cellElement.classList.remove("board__cell_flagged");
-        //     chosenCell.flagged = false;
-        // } else {
-        // todo: nie działa
-        chosenCell.cellElement.classList.remove("board__cell_opened");
-        chosenCell.cellElement.classList.add("board__cell_flagged");
-        console.log(chosenCell.cellElement);
-        chosenCell.flagged = true;
-        // }
-    }
 }
 
 
 const board = new Board();
 board.localizeMines();
-
+console.log(board)
