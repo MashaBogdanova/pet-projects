@@ -29,8 +29,21 @@ body {
   font-family: Neon, sans-serif;
   border: solid 2px white;
 }
-
+.board__cell_opened {
+  background-color: white;
+}
 .board__cell_mined {
+  background-color: yellow;
+  background-image: url("../assets/images/purple-mine.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 70% 70%;
+}
+
+.modal {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
   background-color: white;
 }
 

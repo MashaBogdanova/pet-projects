@@ -12,7 +12,7 @@ class Board {
         for (let i = 0; i < this.rowCount; i++) {
             board.push([]);
             for (let j = 0; j < this.rowCount; j++) {
-                const cell = new Cell(this);
+                const cell = new Cell(this, i, j);
                 board[i].push(cell);
             }
         }
@@ -36,31 +36,54 @@ class Board {
             this.board[rowIndex][colIndex].mine ? i-- : this.board[rowIndex][colIndex].addMine();
         }
     }
+
+    endTheGame() {
+        const modal = document.createElement("div");
+        modal.classList.add("modal");
+        document.body.append(modal);
+    }
 }
 
 // Create cell class
 class Cell {
-    constructor(board) {
+    constructor(board, row, column) {
         this.opened = false;
         this.mine = false;
         this.flagged = false;
+        this.id = `${row}-${column}`;
         this.board = board;
-        this.cell = this.createCell();
+        this.cellElement = this.createCell();
+        this.board.boardElement.addEventListener("click", this.onClickCell);
     }
 
     createCell() {
         let cell = document.createElement("div");
         cell.classList.add("board__cell");
         cell.setAttribute("style", `flex-basis: ${100 / this.board.rowCount}%`);
+        cell.setAttribute("id", this.id);
         this.board.boardElement.append(cell);
         return cell;
     }
 
     addMine() {
         this.mine = true;
-        this.cell.classList.add("board__cell_mined");
+    }
+
+    onClickCell = (e) => {
+        const row = e.target.id.split("-")[0];
+        const column = e.target.id.split("-")[1];
+        const chosenCell = this.board.board[row][column];
+
+        if (chosenCell.mine) {
+            chosenCell.cellElement.classList.add("board__cell_mined")
+            this.board.endTheGame();
+        } else {
+            chosenCell.cellElement.classList.add("board__cell_opened");
+        }
+        chosenCell.opened = true;
     }
 }
+
 
 const board = new Board();
 board.localizeMines();
