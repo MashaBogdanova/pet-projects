@@ -2,9 +2,19 @@
 class Board {
     constructor() {
         this.rowCount = 10;
-        this.minesCount = 10;
+        this.minesCount = 20;
         this.boardElement = this.createBoardElement();
         this.board = this.createBoard();
+        this.closestCellsDirections = [
+            [-1, -1],
+            [-1, 0],
+            [-1, 1],
+            [0, -1],
+            [0, 1],
+            [1, -1],
+            [1, 0],
+            [1, 1]
+        ]
         this.boardElement.addEventListener("click", this.onClick);
         this.boardElement.addEventListener("dblclick", this.onDoubleClick);
 
@@ -48,11 +58,32 @@ class Board {
 
         if (chosenCell.mine) {
             chosenCell.cellElement.classList.add("board__cell_mined")
-            this.endTheGame();
+            // this.endTheGame();
         } else {
+            chosenCell.cellElement.innerHTML = `${this.getMinedNeighboursCount(Number(row), Number(column))}`;
             chosenCell.cellElement.classList.add("board__cell_opened");
         }
         chosenCell.opened = true;
+    }
+
+    getMinedNeighboursCount(row, column) {
+        let counter = 0;
+
+        for (let dir of this.closestCellsDirections) {
+            const rowNumber = row + dir[0];
+            const colNumber = column + dir[1];
+
+            if (rowNumber >= 0 && colNumber >= 0 && rowNumber <= this.rowCount - 1
+                && colNumber <= this.rowCount - 1 && this.board[rowNumber][colNumber].mine) {
+                counter += 1;
+            }
+        }
+
+        return counter;
+    }
+
+    openEmptyNeighbours(row, column) {
+
     }
 
     onDoubleClick = e => {
@@ -113,4 +144,3 @@ class Cell {
 
 const board = new Board();
 board.localizeMines();
-console.log(board)
