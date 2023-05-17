@@ -39,6 +39,14 @@ body {
     background-size: 70% 70%;
   }
 }
+ .board__cell_flagged {
+   background-color: darkred;
+    background-image: url("../assets/images/flag.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 70%;
+  }
+
 
 .modal {
   position: absolute;

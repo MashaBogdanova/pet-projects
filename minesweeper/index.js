@@ -38,6 +38,7 @@ class Board {
     }
 
     endTheGame() {
+        // todo: add modal window with time and steps count
         const modal = document.createElement("div");
         modal.classList.add("modal");
         document.body.append(modal);
@@ -54,6 +55,7 @@ class Cell {
         this.board = board;
         this.cellElement = this.createCell();
         this.board.boardElement.addEventListener("click", this.onClickCell);
+        this.board.boardElement.addEventListener("dblclick", this.onDoubleClickCell);
     }
 
     createCell() {
@@ -69,7 +71,8 @@ class Cell {
         this.mine = true;
     }
 
-    onClickCell = (e) => {
+    onClickCell = e => {
+        // todo: extract method
         const row = e.target.id.split("-")[0];
         const column = e.target.id.split("-")[1];
         const chosenCell = this.board.board[row][column];
@@ -81,6 +84,24 @@ class Cell {
             chosenCell.cellElement.classList.add("board__cell_opened");
         }
         chosenCell.opened = true;
+    }
+
+    onDoubleClickCell = e => {
+        // todo: extract method
+        const row = e.target.id.split("-")[0];
+        const column = e.target.id.split("-")[1];
+        const chosenCell = this.board.board[row][column];
+
+        // if (chosenCell.flagged) {
+        //     chosenCell.cellElement.classList.remove("board__cell_flagged");
+        //     chosenCell.flagged = false;
+        // } else {
+        // todo: nie działa
+        chosenCell.cellElement.classList.remove("board__cell_opened");
+        chosenCell.cellElement.classList.add("board__cell_flagged");
+        console.log(chosenCell.cellElement);
+        chosenCell.flagged = true;
+        // }
     }
 }
 
