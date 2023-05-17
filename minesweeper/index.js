@@ -41,7 +41,10 @@ class Board {
         // todo: add modal window with time and steps count
         const modal = document.createElement("div");
         modal.classList.add("modal");
-        document.body.append(modal);
+        const modalOverlay = document.createElement("div");
+        modal.classList.add("modal_overlay");
+        modalOverlay.append(modal);
+        document.body.append(modalOverlay);
     }
 }
 
