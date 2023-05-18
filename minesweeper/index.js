@@ -2,7 +2,7 @@
 class Board {
     constructor() {
         this.rowCount = 10;
-        this.minesCount = 20;
+        this.minesCount = 10;
         this.boardElement = this.createBoardElement();
         this.board = this.createBoard();
         this.closestCellsDirections = [
@@ -17,7 +17,6 @@ class Board {
         ]
         this.boardElement.addEventListener("click", this.onClick);
         this.boardElement.addEventListener("dblclick", this.onDoubleClick);
-
     }
 
     createBoard() {
@@ -52,26 +51,32 @@ class Board {
 
     onClick = e => {
         // todo: extract method
-        const row = e.target.id.split("-")[0];
-        const column = e.target.id.split("-")[1];
+        const row = Number(e.target.id.split("-")[0]);
+        const column = Number(e.target.id.split("-")[1]);
         const chosenCell = this.board[row][column];
 
         if (chosenCell.mine) {
-            chosenCell.cellElement.classList.add("board__cell_mined")
+            chosenCell.opened = true;
+            chosenCell.cellElement.classList.add("board__cell_mined");
             // this.endTheGame();
         } else {
-            chosenCell.cellElement.innerHTML = `${this.getMinedNeighboursCount(Number(row), Number(column))}`;
-            chosenCell.cellElement.classList.add("board__cell_opened");
+            this.getMinedNeighboursCount(row, column, chosenCell);
         }
-        chosenCell.opened = true;
+
     }
 
-    getMinedNeighboursCount(row, column) {
+    getMinedNeighboursCount(row, column, chosenCell) {
+        // Add opened cell style
+        chosenCell.cellElement.classList.add("board__cell_opened");
+        chosenCell.opened = true;
+
+        // Count mined neighbours
         let counter = 0;
 
-        for (let dir of this.closestCellsDirections) {
-            const rowNumber = row + dir[0];
-            const colNumber = column + dir[1];
+        for (let direction of this.closestCellsDirections) {
+            const rowNumber = row + direction[0];
+            const colNumber = column + direction[1];
+            console.log(rowNumber, colNumber)
 
             if (rowNumber >= 0 && colNumber >= 0 && rowNumber <= this.rowCount - 1
                 && colNumber <= this.rowCount - 1 && this.board[rowNumber][colNumber].mine) {
@@ -79,11 +84,21 @@ class Board {
             }
         }
 
-        return counter;
-    }
+        // Show number of mined neighbours or check each neighbour
+        if (counter === 0) {
+            for (const direction of this.closestCellsDirections) {
+                const rowNumber = row + direction[0];
+                const colNumber = column + direction[1];
+                console.log(rowNumber, colNumber)
 
-    openEmptyNeighbours(row, column) {
-
+                if (rowNumber >= 0 && colNumber >= 0 && rowNumber <= this.rowCount - 1 && colNumber <= this.rowCount - 1
+                    && !this.board[rowNumber][colNumber].opened) {
+                    this.getMinedNeighboursCount(rowNumber, colNumber, this.board[rowNumber][colNumber]);
+                }
+            }
+        } else {
+            this.board[row][column].cellElement.innerHTML = `${counter}`;
+        }
     }
 
     onDoubleClick = e => {
