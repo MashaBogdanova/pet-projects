@@ -1,22 +1,13 @@
 // Create header
 function createHeader() {
-    const headerElement = createElement("header", "header", document.body, "");
+    const headerElement = document.createElement("header");
+    headerElement.classList.add("header");
+    document.body.prepend(headerElement);
     const title = createElement("h1", "header__title", headerElement, "MINESWEEPER");
-    const stepsCounter = createElement("article", "header__steps", headerElement, "00");
+    const stepsCounter = createElement("article", "header__steps", headerElement, `${board.stepsCounter}`);
     const tryAgainButton = createElement("button", "header__button", headerElement, "Try again");
-    tryAgainButton.addEventListener("click", restartTheGame);
+    tryAgainButton.addEventListener("click", board.restartTheGame);
     const timer = createElement("article", "header__timer", headerElement, "00");
-}
-
-function restartTheGame() {
-    document.querySelector(".scoreboard").remove();
-    document.querySelector(".board").classList.remove("hidden");
-    for (const cells of board.board) {
-        for (const cell of cells) {
-            cell.reset();
-        }
-    }
-    board.localizeMines();
 }
 
 // Create board class
@@ -36,10 +27,12 @@ class Board {
             [1, 0],
             [1, 1]
         ];
+        this.stepsCounter = 0;
         this.boardElement.addEventListener("click", this.checkClickedCell);
         this.boardElement.addEventListener("contextmenu", (e) => {
             e.preventDefault();
             this.flagClickedCell(e);
+            addSoundEffect("./assets/sounds/add-flag.mp3");
         });
     }
 
@@ -56,8 +49,7 @@ class Board {
     }
 
     createBoardElement() {
-        let boardElement = createElement("section", "board", document.body, "");
-        return boardElement;
+        return createElement("section", "board", document.body, "");
     }
 
     localizeMines() {
@@ -79,12 +71,15 @@ class Board {
         if (chosenCell.mine) {
             chosenCell.opened = true;
             chosenCell.cellElement.classList.add("board__cell_mined");
+            addSoundEffect("./assets/sounds/explosion.mp3");
             setTimeout(() => {
                 this.endTheGame();
+                addSoundEffect("./assets/sounds/game-over.mp3");
             }, 1000);
         } else {
             this.openAndCheckNeighbours(row, column, chosenCell);
         }
+        this.stepsCounter += 1;
     }
 
     openAndCheckNeighbours(row, column, chosenCell) {
@@ -138,7 +133,6 @@ class Board {
         } else {
             chosenCell.cellElement.classList.remove("board__cell_opened");
             chosenCell.cellElement.classList.add("board__cell_flagged");
-            console.log(chosenCell.cellElement);
             chosenCell.flagged = true;
         }
     }
@@ -152,6 +146,19 @@ class Board {
         const scoreboard = createElement("section", "scoreboard", document.body, "");
         const scoreboardTitle = createElement("h2", "scoreboard__title", scoreboard, "GAME OVER!");
         const scoreboardParagraph = createElement("h3", "scoreboard__paragraph", scoreboard, `Steps and time info`);
+    }
+
+    restartTheGame = () => {
+        document.querySelector(".scoreboard") && document.querySelector(".scoreboard").remove();
+        document.querySelector(".board").classList.remove("hidden");
+
+        for (const cells of this.board) {
+            for (const cell of cells) {
+                cell.reset();
+            }
+        }
+        this.localizeMines();
+        addSoundEffect("./assets/sounds/restart.mp3")
     }
 }
 
@@ -184,7 +191,7 @@ class Cell {
     }
 }
 
-function createElement(elemType, style, parent, text) {
+function createElement(elemType, style, parent, text = "") {
     const elem = document.createElement(elemType);
     elem.classList.add(style);
     elem.innerText = text;
@@ -192,6 +199,11 @@ function createElement(elemType, style, parent, text) {
     return elem;
 }
 
-createHeader();
+function addSoundEffect(path) {
+    const audio = new Audio(path);
+    audio.play();
+}
+
 let board = new Board();
 board.localizeMines();
+createHeader();
