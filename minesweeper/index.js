@@ -15,8 +15,11 @@ class Board {
             [1, 0],
             [1, 1]
         ]
-        this.boardElement.addEventListener("click", this.onClick);
-        this.boardElement.addEventListener("dblclick", this.onDoubleClick);
+        this.boardElement.addEventListener("click", this.checkClickedCell);
+        this.boardElement.addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+            this.onDoubleClick(e);
+        });
     }
 
     createBoard() {
@@ -49,8 +52,7 @@ class Board {
         }
     }
 
-    onClick = e => {
-        // todo: extract method
+    checkClickedCell = e => {
         const row = Number(e.target.id.split("-")[0]);
         const column = Number(e.target.id.split("-")[1]);
         const chosenCell = this.board[row][column];
@@ -58,7 +60,7 @@ class Board {
         if (chosenCell.mine) {
             chosenCell.opened = true;
             chosenCell.cellElement.classList.add("board__cell_mined");
-            // this.endTheGame();
+            this.endTheGame();
         } else {
             this.getMinedNeighboursCount(row, column, chosenCell);
         }
@@ -76,7 +78,6 @@ class Board {
         for (let direction of this.closestCellsDirections) {
             const rowNumber = row + direction[0];
             const colNumber = column + direction[1];
-            console.log(rowNumber, colNumber)
 
             if (rowNumber >= 0 && colNumber >= 0 && rowNumber <= this.rowCount - 1
                 && colNumber <= this.rowCount - 1 && this.board[rowNumber][colNumber].mine) {
@@ -89,7 +90,6 @@ class Board {
             for (const direction of this.closestCellsDirections) {
                 const rowNumber = row + direction[0];
                 const colNumber = column + direction[1];
-                console.log(rowNumber, colNumber)
 
                 if (rowNumber >= 0 && colNumber >= 0 && rowNumber <= this.rowCount - 1 && colNumber <= this.rowCount - 1
                     && !this.board[rowNumber][colNumber].opened) {
