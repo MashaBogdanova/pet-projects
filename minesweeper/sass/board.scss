@@ -3,16 +3,58 @@
 
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 body {
   background-color: black;
+  font-family: Neon, sans-serif;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 400px;
+  margin: 1.7em auto;
+  padding: 1em;
+
+  &__title {
+    flex-basis: 100%;
+    margin: .5em auto;
+
+    font-size: 3.5em;
+    color: purple;
+    text-align: center;
+  }
+  &__steps, &__timer {
+    font-size: 3em;
+    color: darkred;
+    border-radius: .5em;
+  }
+  &__button {
+    padding: 0.5em;
+    font-family: Neon, sans-serif;
+    font-size: 1.7em;
+    color: coral;
+    background-color: transparent;
+    border: 2px dashed purple;
+    border-radius: 1em;
+
+    &:hover {
+      background-color: coral;
+      cursor: pointer;
+    }
+  }
 }
 
 .board {
   display: flex;
-  max-width: 50vw;
-  max-height: 50vw;
+  gap: 2px;
+  max-width: 400px;
+  max-height: 1000px;
   flex-wrap: wrap;
   margin: auto;
 }
@@ -21,12 +63,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 25px;
-  padding: 5px;
+  height: 36px;
 
-  font-family: Neon, sans-serif;
-
-  border: solid 2px white;
+  background-color: coral;
+  border: none;
+  border-radius: 50%;
   cursor: pointer;
 
   &_opened {
@@ -77,34 +118,4 @@ body {
     background: $color-modal;
   }
 
-  &__steps {
-    width: 20%;
-    height: 10%;
-
-    background-color: darkred;
-    border-radius: .5em;
-  }
-
-  &__try-again-btn {
-    width: 30%;
-    height: 10%;
-
-    color: white;
-    background-color: darkred;
-    border: none;
-    border-radius: .5em;
-
-    &:hover {
-      background-color: coral;
-      cursor: pointer;
-    }
-  }
-
-  &__timer {
-    width: 20%;
-    height: 10%;
-
-    background-color: darkred;
-    border-radius: .5em;
-  }
 }

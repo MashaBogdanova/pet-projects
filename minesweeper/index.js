@@ -1,3 +1,12 @@
+// Create header
+function createHeader () {
+    const headerElement = createElement("header", "header", document.body, "");
+    const title = createElement("h1", "header__title", headerElement, "MINESWEEPER");
+    const stepsCounter = createElement("article", "header__steps", headerElement, "00");
+    const tryAgainButton = createElement("button", "header__button", headerElement, "Try again");
+    const timer = createElement("article", "header__timer", headerElement, "00");
+}
+
 // Create board class
 class Board {
     constructor() {
@@ -34,9 +43,7 @@ class Board {
         return board;
     }
     createBoardElement() {
-        let boardElement = document.createElement("section");
-        boardElement.classList.add("board");
-        document.body.append(boardElement);
+        let boardElement = createElement("section", "board", document.body, "");
         return boardElement;
     }
     localizeMines() {
@@ -101,7 +108,6 @@ class Board {
         }
     }
     flagClickedCell = e => {
-        // todo: extract method
         const row = e.target.id.split("-")[0];
         const column = e.target.id.split("-")[1];
         const chosenCell = this.board[row][column];
@@ -125,11 +131,7 @@ class Board {
     createEndGameModal() {
         const modalOverlay = createElement("div", "modal__overlay", document.body, "");
         const modal = createElement("section", "modal", modalOverlay, "");
-        const stepsCounter = createElement("article", "modal__steps", modal, "");
-        const tryAgainButton = createElement("button", "modal__try-again-btn", modal, "Try again");
-        const timer = createElement("article", "modal__timer", modal, "");
-        const gameOver = createElement("h1", "modal__game-over", modal, "GAME OVER");
-    }
+       }
     startTimer() {
 
     }
@@ -151,7 +153,7 @@ class Cell {
     createCell() {
         let cell = document.createElement("div");
         cell.classList.add("board__cell");
-        cell.setAttribute("style", `flex-basis: ${100 / this.board.rowCount}%`);
+        cell.setAttribute("style", `flex-basis: ${100 / this.board.rowCount - 0.5}%`);
         cell.setAttribute("id", this.id);
         this.board.boardElement.append(cell);
         return cell;
@@ -169,5 +171,6 @@ function createElement (elemType, style, parent, text) {
     return elem;
 }
 
+createHeader();
 const board = new Board();
 board.localizeMines();
