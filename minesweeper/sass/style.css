@@ -50,14 +50,15 @@ body {
 .modal {
   position: relative;
   display: flex;
-  width: 900px;
-  height: 500px;
+  justify-content: space-between;
+  width: 30vw;
+  height: 60vh;
   margin: auto;
+  padding: 1em;
   background-color: #fafafa;
-  border-radius: 9px;
+  border-radius: 1em;
   box-shadow: 0 2px 35px 14px rgba(13, 13, 13, 0.04);
 }
-
 .modal__overlay {
   position: fixed;
   top: 0;
@@ -68,6 +69,30 @@ body {
   width: 100%;
   height: 100%;
   background: rgba(41, 41, 41, 0.6);
+}
+.modal__steps {
+  width: 20%;
+  height: 10%;
+  background-color: darkred;
+  border-radius: 0.5em;
+}
+.modal__try-again-btn {
+  width: 30%;
+  height: 10%;
+  color: white;
+  background-color: darkred;
+  border: none;
+  border-radius: 0.5em;
+}
+.modal__try-again-btn:hover {
+  background-color: coral;
+  cursor: pointer;
+}
+.modal__timer {
+  width: 20%;
+  height: 10%;
+  background-color: darkred;
+  border-radius: 0.5em;
 }
 
 @font-face {

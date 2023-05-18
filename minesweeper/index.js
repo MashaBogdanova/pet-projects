@@ -2,7 +2,7 @@
 class Board {
     constructor() {
         this.rowCount = 10;
-        this.minesCount = 10;
+        this.minesCount = 90;
         this.boardElement = this.createBoardElement();
         this.board = this.createBoard();
         this.closestCellsDirections = [
@@ -58,7 +58,7 @@ class Board {
         if (chosenCell.mine) {
             chosenCell.opened = true;
             chosenCell.cellElement.classList.add("board__cell_mined");
-            // this.endTheGame();
+            this.endTheGame();
         } else {
             this.openAndCheckNeighbours(row, column, chosenCell);
         }
@@ -116,16 +116,25 @@ class Board {
             chosenCell.flagged = true;
         }
     }
+
     endTheGame() {
-        // todo: add time and steps count, fix overlay
-        const modal = document.createElement("div");
-        modal.classList.add("modal");
+        this.createEndGameModal();
+        this.startTimer();
+        this.startStepsCounter();
+    }
+    createEndGameModal() {
+        const modalOverlay = createElement("div", "modal__overlay", document.body, "");
+        const modal = createElement("section", "modal", modalOverlay, "");
+        const stepsCounter = createElement("article", "modal__steps", modal, "");
+        const tryAgainButton = createElement("button", "modal__try-again-btn", modal, "Try again");
+        const timer = createElement("article", "modal__timer", modal, "");
+        const gameOver = createElement("h1", "modal__game-over", modal, "GAME OVER");
+    }
+    startTimer() {
 
-        const modalOverlay = document.createElement("div");
-        modalOverlay.classList.add("modal__overlay");
+    }
+    startStepsCounter() {
 
-        modalOverlay.append(modal);
-        document.body.append(modalOverlay);
     }
 }
 
@@ -152,6 +161,13 @@ class Cell {
     }
 }
 
+function createElement (elemType, style, parent, text) {
+    const elem = document.createElement(elemType);
+    elem.classList.add(style);
+    elem.innerText = text;
+    parent.append(elem);
+    return elem;
+}
 
 const board = new Board();
 board.localizeMines();
