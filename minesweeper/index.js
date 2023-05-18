@@ -1,17 +1,29 @@
 // Create header
-function createHeader () {
+function createHeader() {
     const headerElement = createElement("header", "header", document.body, "");
     const title = createElement("h1", "header__title", headerElement, "MINESWEEPER");
     const stepsCounter = createElement("article", "header__steps", headerElement, "00");
     const tryAgainButton = createElement("button", "header__button", headerElement, "Try again");
+    tryAgainButton.addEventListener("click", restartTheGame);
     const timer = createElement("article", "header__timer", headerElement, "00");
+}
+
+function restartTheGame() {
+    document.querySelector(".scoreboard").remove();
+    document.querySelector(".board").classList.remove("hidden");
+    for (const cells of board.board) {
+        for (const cell of cells) {
+            cell.reset();
+        }
+    }
+    board.localizeMines();
 }
 
 // Create board class
 class Board {
     constructor() {
         this.rowCount = 10;
-        this.minesCount = 90;
+        this.minesCount = 10;
         this.boardElement = this.createBoardElement();
         this.board = this.createBoard();
         this.closestCellsDirections = [
@@ -42,10 +54,12 @@ class Board {
         }
         return board;
     }
+
     createBoardElement() {
         let boardElement = createElement("section", "board", document.body, "");
         return boardElement;
     }
+
     localizeMines() {
         for (let i = 0; i < this.minesCount; i++) {
             const randomNumber = Math.floor(Math.random() * (this.rowCount * this.rowCount));
@@ -53,7 +67,7 @@ class Board {
             const colIndex = randomNumber % this.rowCount;
 
             // Check if the cell is already mined
-            this.board[rowIndex][colIndex].mine ? i-- : this.board[rowIndex][colIndex].addMine();
+            this.board[rowIndex][colIndex].mine ? i-- : this.board[rowIndex][colIndex].mine = true;
         }
     }
 
@@ -65,11 +79,14 @@ class Board {
         if (chosenCell.mine) {
             chosenCell.opened = true;
             chosenCell.cellElement.classList.add("board__cell_mined");
-            this.endTheGame();
+            setTimeout(() => {
+                this.endTheGame();
+            }, 1000);
         } else {
             this.openAndCheckNeighbours(row, column, chosenCell);
         }
     }
+
     openAndCheckNeighbours(row, column, chosenCell) {
         chosenCell.cellElement.classList.add("board__cell_opened");
         chosenCell.opened = true;
@@ -77,11 +94,12 @@ class Board {
         const counter = this.countMinedNeighbours(row, column);
 
         if (counter === 0) {
-           this.checkNeighbours(row, column);
+            this.checkNeighbours(row, column);
         } else {
             this.board[row][column].cellElement.innerHTML = `${counter}`;
         }
     }
+
     countMinedNeighbours(row, column) {
         let counter = 0;
 
@@ -96,6 +114,7 @@ class Board {
         }
         return counter;
     }
+
     checkNeighbours(row, column) {
         for (const direction of this.closestCellsDirections) {
             const rowNumber = row + direction[0];
@@ -107,6 +126,7 @@ class Board {
             }
         }
     }
+
     flagClickedCell = e => {
         const row = e.target.id.split("-")[0];
         const column = e.target.id.split("-")[1];
@@ -124,19 +144,14 @@ class Board {
     }
 
     endTheGame() {
-        this.createEndGameModal();
-        this.startTimer();
-        this.startStepsCounter();
+        this.showScoreboard();
     }
-    createEndGameModal() {
-        const modalOverlay = createElement("div", "modal__overlay", document.body, "");
-        const modal = createElement("section", "modal", modalOverlay, "");
-       }
-    startTimer() {
 
-    }
-    startStepsCounter() {
-
+    showScoreboard() {
+        this.boardElement.classList.add("hidden");
+        const scoreboard = createElement("section", "scoreboard", document.body, "");
+        const scoreboardTitle = createElement("h2", "scoreboard__title", scoreboard, "GAME OVER!");
+        const scoreboardParagraph = createElement("h3", "scoreboard__paragraph", scoreboard, `Steps and time info`);
     }
 }
 
@@ -150,6 +165,7 @@ class Cell {
         this.board = board;
         this.cellElement = this.createCell();
     }
+
     createCell() {
         let cell = document.createElement("div");
         cell.classList.add("board__cell");
@@ -158,12 +174,17 @@ class Cell {
         this.board.boardElement.append(cell);
         return cell;
     }
-    addMine() {
-        this.mine = true;
+
+    reset() {
+        this.opened = false;
+        this.mine = false;
+        this.flagged = false;
+        this.cellElement.className = "board__cell";
+        this.cellElement.innerHTML = "";
     }
 }
 
-function createElement (elemType, style, parent, text) {
+function createElement(elemType, style, parent, text) {
     const elem = document.createElement(elemType);
     elem.classList.add(style);
     elem.innerText = text;
@@ -172,5 +193,5 @@ function createElement (elemType, style, parent, text) {
 }
 
 createHeader();
-const board = new Board();
+let board = new Board();
 board.localizeMines();
