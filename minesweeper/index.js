@@ -1,13 +1,29 @@
 // Create header
-function createHeader() {
-    const headerElement = document.createElement("header");
-    headerElement.classList.add("header");
-    document.body.prepend(headerElement);
-    const title = createElement("h1", "header__title", headerElement, "MINESWEEPER");
-    const stepsCounter = createElement("article", "header__steps", headerElement, `${board.stepsCounter}`);
-    const tryAgainButton = createElement("button", "header__button", headerElement, "Try again");
-    tryAgainButton.addEventListener("click", board.restartTheGame);
-    const timer = createElement("article", "header__timer", headerElement, "00");
+class Header {
+    constructor() {
+        this.stepsCounter = 0;
+        this.headerElement = this.createHeader();
+    }
+
+    createHeader() {
+        const headerElement = document.createElement("header");
+        headerElement.classList.add("header");
+        document.body.prepend(headerElement);
+
+        const title = createElement("h1", "header__title", headerElement, "MINESWEEPER");
+        const stepsCounter = createElement("article", "header__steps", headerElement, "00");
+        const tryAgainButton = createElement("button", "header__button", headerElement, "New game");
+        tryAgainButton.addEventListener("click", board.restartTheGame);
+        const timer = createElement("article", "header__timer", headerElement, "00");
+
+        return headerElement;
+    }
+
+    rerenderStepsCounter() {
+        document.querySelector(".header__steps").innerText = this.stepsCounter.toString().length === 1
+            ? `0${this.stepsCounter}`
+            : `${this.stepsCounter}`;
+    }
 }
 
 // Create board class
@@ -27,7 +43,6 @@ class Board {
             [1, 0],
             [1, 1]
         ];
-        this.stepsCounter = 0;
         this.boardElement.addEventListener("click", this.checkClickedCell);
         this.boardElement.addEventListener("contextmenu", (e) => {
             e.preventDefault();
@@ -79,7 +94,8 @@ class Board {
         } else {
             this.openAndCheckNeighbours(row, column, chosenCell);
         }
-        this.stepsCounter += 1;
+        header.stepsCounter += 1;
+        header.rerenderStepsCounter();
     }
 
     openAndCheckNeighbours(row, column, chosenCell) {
@@ -206,4 +222,4 @@ function addSoundEffect(path) {
 
 let board = new Board();
 board.localizeMines();
-createHeader();
+const header = new Header();
