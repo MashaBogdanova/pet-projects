@@ -22,7 +22,6 @@ class Header {
     }
 
     rerenderStepsCounter() {
-        this.stepsCounter === 0 && this.startStopwatch();
         this.stepsCounter += 1;
         document.querySelector(".header__steps").innerText = this.showCorrectNumber(this.stepsCounter);
     }
@@ -39,10 +38,13 @@ class Header {
     }
 
     reset() {
-        header.stepsCounter = 0;
+        this.stepsCounter = 0;
         document.querySelector(".header__steps").innerText = "000";
-        header.secondsCounter = 0;
+        this.secondsCounter = 0;
         document.querySelector(".header__stopwatch").innerText = "000";
+        clearInterval(this.stopwatchInterval);
+        board.openedCellsCount = 0;
+        document.querySelectorAll('audio').forEach(el => el.pause());
     }
 
     showCorrectNumber(num) {
@@ -60,7 +62,8 @@ class Header {
 class Board {
     constructor() {
         this.rowCount = 10;
-        this.minesCount = 10;
+        this.minesCount = 3;
+        this.openedCellsCount = 0;
         this.boardElement = this.createBoardElement();
         this.board = this.createBoard();
         this.closestCellsDirections = [
@@ -97,14 +100,17 @@ class Board {
         return createElement("section", "board", document.body, "");
     }
 
-    localizeMines() {
+    localizeMines(firstClickRow, firstClickCol) {
         for (let i = 0; i < this.minesCount; i++) {
             const randomNumber = Math.floor(Math.random() * (this.rowCount * this.rowCount));
             const rowIndex = Math.floor(randomNumber / this.rowCount);
             const colIndex = randomNumber % this.rowCount;
 
-            // Check if the cell is already mined
-            this.board[rowIndex][colIndex].mine ? i-- : this.board[rowIndex][colIndex].mine = true;
+            // Check if first users click is on the mined cell or if the cell is already mined
+            this.board[rowIndex][colIndex] === this.board[firstClickRow][firstClickCol]
+            || this.board[rowIndex][colIndex].mine
+                ? i--
+                : this.board[rowIndex][colIndex].mine = true;
         }
     }
 
@@ -113,23 +119,31 @@ class Board {
         const column = Number(e.target.id.split("-")[1]);
         const chosenCell = this.board[row][column];
 
+        if (header.stepsCounter === 0) {
+            header.startStopwatch();
+            this.localizeMines(row, column);
+        }
+
         if (chosenCell.mine) {
             chosenCell.opened = true;
+            this.openedCellsCount += 1;
             chosenCell.cellElement.classList.add("board__cell_mined");
             addSoundEffect("./assets/sounds/explosion.mp3");
             setTimeout(() => {
-                this.endTheGame();
-                addSoundEffect("./assets/sounds/game-over.mp3");
+                this.endTheGame(false);
             }, 1000);
         } else {
             this.openAndCheckNeighbours(row, column, chosenCell);
+
         }
         header.rerenderStepsCounter();
+        this.openedCellsCount === Math.pow(this.rowCount, 2) - this.minesCount && this.endTheGame(true);
     }
 
     openAndCheckNeighbours(row, column, chosenCell) {
         chosenCell.cellElement.classList.add("board__cell_opened");
         chosenCell.opened = true;
+        this.openedCellsCount += 1;
 
         const counter = this.countMinedNeighbours(row, column);
 
@@ -182,16 +196,25 @@ class Board {
         }
     }
 
-    endTheGame() {
+    endTheGame(win) {
+        if (win) {
+            const text = `You found all mines in ${header.secondsCounter}
+            ${header.secondsCounter === 1 ? "second" : "seconds"} and ${header.stepsCounter}
+            ${header.stepsCounter === 1 ? "move" : "moves"}!`
+            this.showScoreboard("HOORAY!", `${text}`);
+            addSoundEffect("./assets/sounds/win.mp3");
+        } else {
+            this.showScoreboard("GAME OVER!", "Try again");
+            addSoundEffect("./assets/sounds/game-over.mp3");
+        }
         header.stopStopwatch();
-        this.showScoreboard();
     }
 
-    showScoreboard() {
+    showScoreboard(title, text) {
         this.boardElement.classList.add("hidden");
         const scoreboard = createElement("section", "scoreboard", document.body, "");
-        const scoreboardTitle = createElement("h2", "scoreboard__title", scoreboard, "GAME OVER!");
-        const scoreboardParagraph = createElement("h3", "scoreboard__paragraph", scoreboard, `Try again`);
+        const scoreboardTitle = createElement("h2", "scoreboard__title", scoreboard, title);
+        const scoreboardParagraph = createElement("h3", "scoreboard__paragraph", scoreboard, text);
     }
 
     restartTheGame = () => {
@@ -204,7 +227,6 @@ class Board {
                 cell.reset();
             }
         }
-        this.localizeMines();
         addSoundEffect("./assets/sounds/restart.mp3")
     }
 }
@@ -221,11 +243,9 @@ class Cell {
     }
 
     createCell() {
-        let cell = document.createElement("div");
-        cell.classList.add("board__cell");
+        const cell = createElement("div", "board__cell", this.board.boardElement);
         cell.setAttribute("style", `flex-basis: ${100 / this.board.rowCount - 0.5}%`);
         cell.setAttribute("id", this.id);
-        this.board.boardElement.append(cell);
         return cell;
     }
 
@@ -245,12 +265,10 @@ function createElement(elemType, style, parent, text = "") {
     parent.append(elem);
     return elem;
 }
-
 function addSoundEffect(path) {
     const audio = new Audio(path);
     audio.play();
 }
 
-let board = new Board();
-board.localizeMines();
+const board = new Board();
 const header = new Header();
