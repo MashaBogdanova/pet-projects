@@ -26,27 +26,27 @@ body {
     margin: .5em auto;
 
     font-size: 3.5em;
-    color: purple;
+    color: $color-primary;
     text-align: center;
   }
   &__steps, &__stopwatch {
     font-size: 3em;
-    color: darkred;
+    color: $color-tertiary;
     border-radius: .5em;
   }
   &__button {
     padding: 0.5em;
     font-family: Neon, sans-serif;
     font-size: 1.7em;
-    color: coral;
+    color: $color-secondary;
     background-color: transparent;
-    border: 2px dashed purple;
+    border: 2px dashed $color-primary;
     border-radius: 1em;
     cursor: pointer;
     transition: background-color 300ms;
 
     &:hover {
-      background-color: rgba(128, 0, 128, 0.22);
+      background-color: $color-btn-hovered;
     }
   }
 }
@@ -66,17 +66,17 @@ body {
   justify-content: center;
   height: 36px;
 
-  background-color: coral;
+  background-color: $color-secondary;
   border: none;
   border-radius: 50%;
   cursor: pointer;
   transition: background-color 100ms;
 
   &:hover:not(&_opened, &_mined){
-    background-color: #ff9a6f;
+    background-color: $color-cell-hovered;
   }
   &_opened {
-    background-color: #ea9f86;
+    background-color: $color-cell-opened;
   }
   &_mined {
     background-color: black;
@@ -103,12 +103,12 @@ body {
   margin: auto;
   padding: 2em;
 
-  background-color: purple;
+  background-color: $color-primary;
   border-radius: 1em;
 
   &__title {
     font-size: 4em;
-    color: coral;
+    color: $color-secondary;
     text-align: center;
   }
   &__paragraph {
@@ -119,4 +119,24 @@ body {
 
 .hidden {
   display: none;
+}
+
+.one {
+  color: $color-primary;
+}
+
+.two {
+  color: $color-two;
+}
+
+.three {
+  color: $color-three;
+}
+
+.four {
+  color: $color-four;
+}
+
+.five {
+  color: $color-tertiary;
 }

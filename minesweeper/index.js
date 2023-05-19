@@ -150,7 +150,19 @@ class Board {
         if (counter === 0) {
             this.checkNeighbours(row, column);
         } else {
-            this.board[row][column].cellElement.innerHTML = `${counter}`;
+            const currentCell = this.board[row][column].cellElement;
+            currentCell.innerHTML = `${counter}`;
+            if(counter === 1) {
+                currentCell.classList.add("one");
+            } else if (counter === 2) {
+                currentCell.classList.add("two");
+            } else if (counter === 3) {
+                currentCell.classList.add("three");
+            } else if (counter === 4) {
+                currentCell.classList.add("four");
+            } else if (counter === 5) {
+                currentCell.classList.add("five");
+            }
         }
     }
 

@@ -117,6 +117,26 @@ body {
   display: none;
 }
 
+.one {
+  color: purple;
+}
+
+.two {
+  color: #240080;
+}
+
+.three {
+  color: #ff1300;
+}
+
+.four {
+  color: #805a00;
+}
+
+.five {
+  color: darkred;
+}
+
 @font-face {
   font-family: "Neon";
   src: url("../assets/fonts/neon.ttf") format("truetype");
