@@ -64,6 +64,7 @@ class Board {
         this.rowCount = 10;
         this.minesCount = 3;
         this.openedCellsCount = 0;
+        this.loose = false;
         this.boardElement = this.createBoardElement();
         this.board = this.createBoard();
         this.closestCellsDirections = [
@@ -125,10 +126,13 @@ class Board {
         }
 
         if (chosenCell.mine) {
+            this.loose = true;
             chosenCell.opened = true;
             this.openedCellsCount += 1;
+
             chosenCell.cellElement.classList.add("board__cell_mined");
             addSoundEffect("./assets/sounds/explosion.mp3");
+
             setTimeout(() => {
                 this.endTheGame(false);
             }, 1000);
@@ -137,7 +141,9 @@ class Board {
 
         }
         header.rerenderStepsCounter();
-        this.openedCellsCount === Math.pow(this.rowCount, 2) - this.minesCount && this.endTheGame(true);
+        this.openedCellsCount === Math.pow(this.rowCount, 2) - this.minesCount
+        && this.loose === false
+        && this.endTheGame(true);
     }
 
     openAndCheckNeighbours(row, column, chosenCell) {
@@ -152,7 +158,7 @@ class Board {
         } else {
             const currentCell = this.board[row][column].cellElement;
             currentCell.innerHTML = `${counter}`;
-            if(counter === 1) {
+            if (counter === 1) {
                 currentCell.classList.add("one");
             } else if (counter === 2) {
                 currentCell.classList.add("two");
@@ -210,9 +216,8 @@ class Board {
 
     endTheGame(win) {
         if (win) {
-            const text = `You found all mines in ${header.secondsCounter}
-            ${header.secondsCounter === 1 ? "second" : "seconds"} and ${header.stepsCounter}
-            ${header.stepsCounter === 1 ? "move" : "moves"}!`
+            const text = `You found all mines in ${header.secondsCounter} ${header.secondsCounter === 1 ? "second" : "seconds"}
+            and ${header.stepsCounter} ${header.stepsCounter === 1 ? "move" : "moves"}!`
             this.showScoreboard("HOORAY!", `${text}`);
             addSoundEffect("./assets/sounds/win.mp3");
         } else {
@@ -277,6 +282,7 @@ function createElement(elemType, style, parent, text = "") {
     parent.append(elem);
     return elem;
 }
+
 function addSoundEffect(path) {
     const audio = new Audio(path);
     audio.play();
