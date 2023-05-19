@@ -31,7 +31,7 @@ body {
   color: purple;
   text-align: center;
 }
-.header__steps, .header__timer {
+.header__steps, .header__stopwatch {
   font-size: 3em;
   color: darkred;
   border-radius: 0.5em;

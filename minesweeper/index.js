@@ -2,7 +2,9 @@
 class Header {
     constructor() {
         this.stepsCounter = 0;
+        this.secondsCounter = 0;
         this.headerElement = this.createHeader();
+        this.stopwatchInterval = null;
     }
 
     createHeader() {
@@ -11,18 +13,46 @@ class Header {
         document.body.prepend(headerElement);
 
         const title = createElement("h1", "header__title", headerElement, "MINESWEEPER");
-        const stepsCounter = createElement("article", "header__steps", headerElement, "00");
+        const stepsCounter = createElement("article", "header__steps", headerElement, "000");
         const tryAgainButton = createElement("button", "header__button", headerElement, "New game");
         tryAgainButton.addEventListener("click", board.restartTheGame);
-        const timer = createElement("article", "header__timer", headerElement, "00");
+        const timer = createElement("article", "header__stopwatch", headerElement, "000");
 
         return headerElement;
     }
 
     rerenderStepsCounter() {
-        document.querySelector(".header__steps").innerText = this.stepsCounter.toString().length === 1
-            ? `0${this.stepsCounter}`
-            : `${this.stepsCounter}`;
+        this.stepsCounter === 0 && this.startStopwatch();
+        this.stepsCounter += 1;
+        document.querySelector(".header__steps").innerText = this.showCorrectNumber(this.stepsCounter);
+    }
+
+    startStopwatch() {
+        this.stopwatchInterval = setInterval(() => {
+            this.secondsCounter += 1;
+            document.querySelector(".header__stopwatch").innerText = this.showCorrectNumber(this.secondsCounter);
+        }, 1000);
+    }
+
+    stopStopwatch() {
+        clearInterval(this.stopwatchInterval);
+    }
+
+    reset() {
+        header.stepsCounter = 0;
+        document.querySelector(".header__steps").innerText = "000";
+        header.secondsCounter = 0;
+        document.querySelector(".header__stopwatch").innerText = "000";
+    }
+
+    showCorrectNumber(num) {
+        if (num < 10) {
+            return `00${num}`
+        } else if (num < 100) {
+            return `0${num}`
+        } else {
+            return `${num}`
+        }
     }
 }
 
@@ -94,7 +124,6 @@ class Board {
         } else {
             this.openAndCheckNeighbours(row, column, chosenCell);
         }
-        header.stepsCounter += 1;
         header.rerenderStepsCounter();
     }
 
@@ -154,6 +183,7 @@ class Board {
     }
 
     endTheGame() {
+        header.stopStopwatch();
         this.showScoreboard();
     }
 
@@ -161,12 +191,13 @@ class Board {
         this.boardElement.classList.add("hidden");
         const scoreboard = createElement("section", "scoreboard", document.body, "");
         const scoreboardTitle = createElement("h2", "scoreboard__title", scoreboard, "GAME OVER!");
-        const scoreboardParagraph = createElement("h3", "scoreboard__paragraph", scoreboard, `Steps and time info`);
+        const scoreboardParagraph = createElement("h3", "scoreboard__paragraph", scoreboard, `Try again`);
     }
 
     restartTheGame = () => {
         document.querySelector(".scoreboard") && document.querySelector(".scoreboard").remove();
         document.querySelector(".board").classList.remove("hidden");
+        header.reset();
 
         for (const cells of this.board) {
             for (const cell of cells) {
