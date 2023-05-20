@@ -39,18 +39,18 @@ body {
   background-color: rgba(128, 0, 128, 0.22);
 }
 
-.welcome-modal {
+.modal {
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 400px;
-  height: 400px;
-  margin: 250px auto auto;
+  height: 560px;
+  margin: 75px auto auto;
   padding: 2em;
   background-color: purple;
   border-radius: 1em;
 }
-.welcome-modal__overlay {
+.modal__overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -58,6 +58,15 @@ body {
   height: 100vh;
   display: flex;
   justify-content: center;
+}
+.modal__title {
+  font-size: 4em;
+  color: coral;
+  text-align: center;
+}
+.modal__paragraph {
+  font-size: 1em;
+  color: white;
 }
 
 .header {
@@ -120,28 +129,6 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 70% 70%;
-}
-
-.scoreboard {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 400px;
-  height: 400px;
-  margin: auto;
-  padding: 2em;
-  background-color: purple;
-  border-radius: 1em;
-}
-.scoreboard__title {
-  font-size: 4em;
-  color: coral;
-  text-align: center;
-}
-.scoreboard__paragraph {
-  font-size: 1em;
-  color: white;
 }
 
 .hidden {

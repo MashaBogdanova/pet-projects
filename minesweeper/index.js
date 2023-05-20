@@ -1,11 +1,11 @@
 // Create board class
 class Board {
     constructor() {
+        this.rowCount = 10;
+        this.minesCount = 10;
         this.boardElement = this.createBoardElement();
         this.board = this.createBoard();
         this.headerElement = this.createHeaderElement();
-        this.rowCount = 10;
-        this.minesCount = 10;
         this.openedCellsCount = 0;
         this.loose = false;
         this.stepsCounter = 0;
@@ -21,7 +21,7 @@ class Board {
             [1, 0],
             [1, 1]
         ];
-        this.boardElement.addEventListener("click", this.checkClickedCell);
+        this.boardElement.addEventListener("click", this.checkClickedCell.bind(this));
         this.boardElement.addEventListener("contextmenu", (e) => {
             e.preventDefault();
             this.flagClickedCell(e);
@@ -29,35 +29,40 @@ class Board {
         });
     }
 
-    showWelcomeModal() {
-        const modalOverlay = createElement("div", ["welcome-modal__overlay"], document.body);
-        const welcomeModal = createElement("div", ["welcome-modal"], modalOverlay);
+    showModal(start = true, title = "Welcome to minesweeper!", paragraph = "Chose board size and number of mines") {
+        this.boardElement.classList.add("hidden");
 
-        createElement("h2", ["scoreboard__title"], welcomeModal, "Welcome to minesweeper!");
-        createElement("h3", ["scoreboard__paragraph"], welcomeModal, "Chose board size and number of mines");
+        const modalOverlay = createElement("div", ["modal__overlay"], document.body);
+        const welcomeModal = createElement("div", ["modal"], modalOverlay);
 
-        // Create board size select
-        const boardSizeSelect = createElement("select", ["select"], welcomeModal);
-        boardSizeSelect.setAttribute("id", "select-board");
-        createElement("option", ["select__option"], boardSizeSelect, "10x10", 10);
-        createElement("option", ["select__option"], boardSizeSelect, "15x15", 15);
-        createElement("option", ["select__option"], boardSizeSelect, "25x25", 25);
-        boardSizeSelect.addEventListener('change', () => {
-            this.rowCount = boardSizeSelect.value;
-        });
+        createElement("h2", ["modal__title"], welcomeModal, title);
+        createElement("h3", ["modal__paragraph"], welcomeModal, paragraph);
 
-        // Create mines number select
-        const minesNumberSelect = createElement("select", ["select"], welcomeModal);
-        minesNumberSelect.setAttribute("id", "select-mines");
-        for (let i = 10; i <= 99; i++) {
-            createElement("option", ["select__option"], minesNumberSelect, i, i);
+        if (start) {
+            // Create board size select
+            const boardSizeSelect = createElement("select", ["select"], welcomeModal);
+            createElement("option", ["select__option"], boardSizeSelect, "10x10", 10);
+            createElement("option", ["select__option"], boardSizeSelect, "15x15", 15);
+            createElement("option", ["select__option"], boardSizeSelect, "25x25", 25);
+            boardSizeSelect.addEventListener('change', () => {
+                this.rowCount = boardSizeSelect.value;
+            });
+
+            // Create mines number select
+            const minesNumberSelect = createElement("select", ["select"], welcomeModal);
+            for (let i = 10; i <= 99; i++) {
+                createElement("option", ["select__option"], minesNumberSelect, i, i);
+            }
+            minesNumberSelect.addEventListener('change', () => {
+                this.minesCount = minesNumberSelect.value;
+            });
         }
-        minesNumberSelect.addEventListener('change', () => {
-            this.minesCount = minesNumberSelect.value;
-        });
-
         // Create submit button
         const startGameBtn = createElement("button", ["button", "button_start"], welcomeModal, "Play");
+        startGameBtn.addEventListener("click", () => {
+            modalOverlay.remove();
+            this.restartTheGame();
+        })
     }
 
     createBoardElement() {
@@ -82,7 +87,7 @@ class Board {
         createElement("h1", ["header__title"], headerElement, "MINESWEEPER");
         createElement("article", ["header__steps"], headerElement, "000");
         const tryAgainButton = createElement("button", ["button", "button_restart"], headerElement, "New game");
-        tryAgainButton.addEventListener("click", this.restartTheGame);
+        tryAgainButton.addEventListener("click", this.showModal.bind(this));
         createElement("article", ["header__stopwatch"], headerElement, "000");
 
         return headerElement;
@@ -115,7 +120,7 @@ class Board {
         clearInterval(this.stopwatchInterval);
     }
 
-    checkClickedCell = e => {
+    checkClickedCell(e) {
         const row = Number(e.target.id.split("-")[0]);
         const column = Number(e.target.id.split("-")[1]);
         const chosenCell = this.board[row][column];
@@ -214,25 +219,17 @@ class Board {
         if (win) {
             const text = `You found all mines in ${this.secondsCounter} ${this.secondsCounter === 1 ? "second" : "seconds"}
             and ${this.stepsCounter} ${this.stepsCounter === 1 ? "move" : "moves"}!`
-            this.showScoreboard("HOORAY!", `${text}`);
+            this.showModal(false, "HOORAY!", `${text}`);
             addSoundEffect("./assets/sounds/win.mp3");
         } else {
-            this.showScoreboard("GAME OVER!", "Try again");
+            this.showModal(false, "GAME OVER!", "Try again");
             addSoundEffect("./assets/sounds/game-over.mp3");
         }
         this.stopStopwatch();
     }
-    showScoreboard(title, text) {
-        this.boardElement.classList.add("hidden");
-        const scoreboard = createElement("section", ["scoreboard"], document.body);
-        createElement("h2", ["scoreboard__title"], scoreboard, title);
-        createElement("h3", ["scoreboard__paragraph"], scoreboard, text);
-    }
     restartTheGame = () => {
-        document.querySelector(".scoreboard") && document.querySelector(".scoreboard").remove();
         document.querySelector(".board").classList.remove("hidden");
         this.reset();
-
         for (const cells of this.board) {
             for (const cell of cells) {
                 cell.reset();
@@ -247,6 +244,7 @@ class Board {
         document.querySelector(".header__stopwatch").innerText = "000";
         clearInterval(this.stopwatchInterval);
         this.openedCellsCount = 0;
+        this.loose = false;
         document.querySelectorAll('audio').forEach(el => el.pause());
     }
     showCorrectNumber(num) {
@@ -303,4 +301,4 @@ function addSoundEffect(path) {
 
 // Initialize
 const board = new Board();
-board.showWelcomeModal();
+board.showModal();
