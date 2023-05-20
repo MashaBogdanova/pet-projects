@@ -15,14 +15,28 @@ body {
   font-family: Neon, sans-serif;
 }
 
-.welcome-modal__overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
+.button {
+  padding: 0.5em;
+  font-family: Neon, sans-serif;
+  font-size: 1.7em;
+  color: coral;
+  background-color: transparent;
+  border: 2px dashed;
+  border-radius: 1em;
+  cursor: pointer;
+  transition: background-color 300ms;
+}
+.button_start {
+  border-color: white;
+}
+.button_start:hover {
+  background-color: rgba(255, 127, 80, 0.15);
+}
+.button_restart {
+  border-color: purple;
+}
+.button_restart:hover {
+  background-color: rgba(128, 0, 128, 0.22);
 }
 
 .welcome-modal {
@@ -35,6 +49,15 @@ body {
   padding: 2em;
   background-color: purple;
   border-radius: 1em;
+}
+.welcome-modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 
 .header {
@@ -57,20 +80,6 @@ body {
   font-size: 3em;
   color: darkred;
   border-radius: 0.5em;
-}
-.header__button {
-  padding: 0.5em;
-  font-family: Neon, sans-serif;
-  font-size: 1.7em;
-  color: coral;
-  background-color: transparent;
-  border: 2px dashed purple;
-  border-radius: 1em;
-  cursor: pointer;
-  transition: background-color 300ms;
-}
-.header__button:hover {
-  background-color: rgba(128, 0, 128, 0.22);
 }
 
 .board {

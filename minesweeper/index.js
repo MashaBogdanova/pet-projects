@@ -1,74 +1,16 @@
-// function showStartWindow
-
-// Create header
-class Header {
-    constructor() {
-        this.stepsCounter = 0;
-        this.secondsCounter = 0;
-        this.headerElement = this.createHeader();
-        this.stopwatchInterval = null;
-    }
-
-    createHeader() {
-        const headerElement = document.createElement("header");
-        headerElement.classList.add("header");
-        document.body.prepend(headerElement);
-
-        createElement("h1", "header__title", headerElement, "MINESWEEPER");
-        createElement("article", "header__steps", headerElement, "000");
-        const tryAgainButton = createElement("button", "header__button", headerElement, "New game");
-        tryAgainButton.addEventListener("click", board.restartTheGame);
-        createElement("article", "header__stopwatch", headerElement, "000");
-
-        return headerElement;
-    }
-
-    rerenderStepsCounter() {
-        this.stepsCounter += 1;
-        document.querySelector(".header__steps").innerText = this.showCorrectNumber(this.stepsCounter);
-    }
-
-    startStopwatch() {
-        this.stopwatchInterval = setInterval(() => {
-            this.secondsCounter += 1;
-            document.querySelector(".header__stopwatch").innerText = this.showCorrectNumber(this.secondsCounter);
-        }, 1000);
-    }
-
-    stopStopwatch() {
-        clearInterval(this.stopwatchInterval);
-    }
-
-    reset() {
-        this.stepsCounter = 0;
-        document.querySelector(".header__steps").innerText = "000";
-        this.secondsCounter = 0;
-        document.querySelector(".header__stopwatch").innerText = "000";
-        clearInterval(this.stopwatchInterval);
-        board.openedCellsCount = 0;
-        document.querySelectorAll('audio').forEach(el => el.pause());
-    }
-
-    showCorrectNumber(num) {
-        if (num < 10) {
-            return `00${num}`
-        } else if (num < 100) {
-            return `0${num}`
-        } else {
-            return `${num}`
-        }
-    }
-}
-
 // Create board class
 class Board {
     constructor() {
         this.boardElement = this.createBoardElement();
         this.board = this.createBoard();
+        this.headerElement = this.createHeaderElement();
         this.rowCount = 10;
         this.minesCount = 10;
         this.openedCellsCount = 0;
         this.loose = false;
+        this.stepsCounter = 0;
+        this.secondsCounter = 0;
+        this.stopwatchInterval = null;
         this.closestCellsDirections = [
             [-1, -1],
             [-1, 0],
@@ -88,33 +30,39 @@ class Board {
     }
 
     showWelcomeModal() {
-        const modalOverlay = createElement("div", "welcome-modal__overlay", document.body);
-        const welcomeModal = createElement("div", "welcome-modal", modalOverlay);
+        const modalOverlay = createElement("div", ["welcome-modal__overlay"], document.body);
+        const welcomeModal = createElement("div", ["welcome-modal"], modalOverlay);
 
-        createElement("h2", "scoreboard__title", welcomeModal, "Welcome to minesweeper!");
-        createElement("h3", "scoreboard__paragraph", welcomeModal, "Chose board size and number of mines");
+        createElement("h2", ["scoreboard__title"], welcomeModal, "Welcome to minesweeper!");
+        createElement("h3", ["scoreboard__paragraph"], welcomeModal, "Chose board size and number of mines");
 
         // Create board size select
-        const boardSizeSelect = createElement("select", "select", welcomeModal);
+        const boardSizeSelect = createElement("select", ["select"], welcomeModal);
         boardSizeSelect.setAttribute("id", "select-board");
-        createElement("option", "select__option", boardSizeSelect, "10x10", 10);
-        createElement("option", "select__option", boardSizeSelect, "15x15", 15);
-        createElement("option", "select__option", boardSizeSelect, "25x25", 25);
+        createElement("option", ["select__option"], boardSizeSelect, "10x10", 10);
+        createElement("option", ["select__option"], boardSizeSelect, "15x15", 15);
+        createElement("option", ["select__option"], boardSizeSelect, "25x25", 25);
         boardSizeSelect.addEventListener('change', () => {
             this.rowCount = boardSizeSelect.value;
         });
 
         // Create mines number select
-        const minesNumberSelect = createElement("select", "select", welcomeModal);
+        const minesNumberSelect = createElement("select", ["select"], welcomeModal);
         minesNumberSelect.setAttribute("id", "select-mines");
         for (let i = 10; i <= 99; i++) {
-            createElement("option", "select__option", minesNumberSelect, i, i);
+            createElement("option", ["select__option"], minesNumberSelect, i, i);
         }
         minesNumberSelect.addEventListener('change', () => {
             this.minesCount = minesNumberSelect.value;
         });
+
+        // Create submit button
+        const startGameBtn = createElement("button", ["button", "button_start"], welcomeModal, "Play");
     }
 
+    createBoardElement() {
+        return createElement("section", ["board"], document.body, "");
+    }
     createBoard() {
         let board = [];
         for (let i = 0; i < this.rowCount; i++) {
@@ -126,9 +74,18 @@ class Board {
         }
         return board;
     }
+    createHeaderElement() {
+        const headerElement = document.createElement("header");
+        headerElement.classList.add("header");
+        document.body.prepend(headerElement);
 
-    createBoardElement() {
-        return createElement("section", "board", document.body, "");
+        createElement("h1", ["header__title"], headerElement, "MINESWEEPER");
+        createElement("article", ["header__steps"], headerElement, "000");
+        const tryAgainButton = createElement("button", ["button", "button_restart"], headerElement, "New game");
+        tryAgainButton.addEventListener("click", this.restartTheGame);
+        createElement("article", ["header__stopwatch"], headerElement, "000");
+
+        return headerElement;
     }
 
     localizeMines(firstClickRow, firstClickCol) {
@@ -144,14 +101,27 @@ class Board {
                 : this.board[rowIndex][colIndex].mine = true;
         }
     }
+    rerenderStepsCounter() {
+        this.stepsCounter += 1;
+        document.querySelector(".header__steps").innerText = this.showCorrectNumber(this.stepsCounter);
+    }
+    startStopwatch() {
+        this.stopwatchInterval = setInterval(() => {
+            this.secondsCounter += 1;
+            document.querySelector(".header__stopwatch").innerText = this.showCorrectNumber(this.secondsCounter);
+        }, 1000);
+    }
+    stopStopwatch() {
+        clearInterval(this.stopwatchInterval);
+    }
 
     checkClickedCell = e => {
         const row = Number(e.target.id.split("-")[0]);
         const column = Number(e.target.id.split("-")[1]);
         const chosenCell = this.board[row][column];
 
-        if (header.stepsCounter === 0) {
-            header.startStopwatch();
+        if (this.stepsCounter === 0) {
+            this.startStopwatch();
             this.localizeMines(row, column);
         }
 
@@ -170,12 +140,11 @@ class Board {
             this.openAndCheckNeighbours(row, column, chosenCell);
 
         }
-        header.rerenderStepsCounter();
+        this.rerenderStepsCounter();
         this.openedCellsCount === Math.pow(this.rowCount, 2) - this.minesCount
         && this.loose === false
         && this.endTheGame(true);
     }
-
     openAndCheckNeighbours(row, column, chosenCell) {
         chosenCell.cellElement.classList.add("board__cell_opened");
         chosenCell.opened = true;
@@ -201,7 +170,6 @@ class Board {
             }
         }
     }
-
     countMinedNeighbours(row, column) {
         let counter = 0;
 
@@ -216,7 +184,6 @@ class Board {
         }
         return counter;
     }
-
     checkNeighbours(row, column) {
         for (const direction of this.closestCellsDirections) {
             const rowNumber = row + direction[0];
@@ -228,7 +195,6 @@ class Board {
             }
         }
     }
-
     flagClickedCell = e => {
         const row = e.target.id.split("-")[0];
         const column = e.target.id.split("-")[1];
@@ -246,28 +212,26 @@ class Board {
 
     endTheGame(win) {
         if (win) {
-            const text = `You found all mines in ${header.secondsCounter} ${header.secondsCounter === 1 ? "second" : "seconds"}
-            and ${header.stepsCounter} ${header.stepsCounter === 1 ? "move" : "moves"}!`
+            const text = `You found all mines in ${this.secondsCounter} ${this.secondsCounter === 1 ? "second" : "seconds"}
+            and ${this.stepsCounter} ${this.stepsCounter === 1 ? "move" : "moves"}!`
             this.showScoreboard("HOORAY!", `${text}`);
             addSoundEffect("./assets/sounds/win.mp3");
         } else {
             this.showScoreboard("GAME OVER!", "Try again");
             addSoundEffect("./assets/sounds/game-over.mp3");
         }
-        header.stopStopwatch();
+        this.stopStopwatch();
     }
-
     showScoreboard(title, text) {
         this.boardElement.classList.add("hidden");
-        const scoreboard = createElement("section", "scoreboard", document.body);
-        createElement("h2", "scoreboard__title", scoreboard, title);
-        createElement("h3", "scoreboard__paragraph", scoreboard, text);
+        const scoreboard = createElement("section", ["scoreboard"], document.body);
+        createElement("h2", ["scoreboard__title"], scoreboard, title);
+        createElement("h3", ["scoreboard__paragraph"], scoreboard, text);
     }
-
     restartTheGame = () => {
         document.querySelector(".scoreboard") && document.querySelector(".scoreboard").remove();
         document.querySelector(".board").classList.remove("hidden");
-        header.reset();
+        this.reset();
 
         for (const cells of this.board) {
             for (const cell of cells) {
@@ -275,6 +239,24 @@ class Board {
             }
         }
         addSoundEffect("./assets/sounds/restart.mp3")
+    }
+    reset() {
+        this.stepsCounter = 0;
+        document.querySelector(".header__steps").innerText = "000";
+        this.secondsCounter = 0;
+        document.querySelector(".header__stopwatch").innerText = "000";
+        clearInterval(this.stopwatchInterval);
+        this.openedCellsCount = 0;
+        document.querySelectorAll('audio').forEach(el => el.pause());
+    }
+    showCorrectNumber(num) {
+        if (num < 10) {
+            return `00${num}`
+        } else if (num < 100) {
+            return `0${num}`
+        } else {
+            return `${num}`
+        }
     }
 }
 
@@ -290,12 +272,11 @@ class Cell {
     }
 
     createCell() {
-        const cell = createElement("div", "board__cell", this.board.boardElement);
+        const cell = createElement("div", ["board__cell"], this.board.boardElement);
         cell.setAttribute("style", `flex-basis: ${100 / this.board.rowCount - 0.5}%`);
         cell.setAttribute("id", this.id);
         return cell;
     }
-
     reset() {
         this.opened = false;
         this.mine = false;
@@ -305,9 +286,9 @@ class Cell {
     }
 }
 
-function createElement(elemType, style, parent, text, value, id) {
+function createElement(elemType, styles, parent, text, value, id) {
     const elem = document.createElement(elemType);
-    elem.classList.add(style);
+    elem.classList.add(...styles);
     parent.append(elem);
     if (text) {
         elem.innerText = text;
@@ -315,7 +296,6 @@ function createElement(elemType, style, parent, text, value, id) {
     value && elem.setAttribute("value", value);
     return elem;
 }
-
 function addSoundEffect(path) {
     const audio = new Audio(path);
     audio.play();
@@ -323,5 +303,4 @@ function addSoundEffect(path) {
 
 // Initialize
 const board = new Board();
-const header = new Header();
 board.showWelcomeModal();
