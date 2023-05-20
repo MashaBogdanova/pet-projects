@@ -11,8 +11,30 @@
 }
 
 body {
-  background-color: black;
+  background-color: #0b0121;
   font-family: Neon, sans-serif;
+}
+
+.welcome-modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.welcome-modal {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 400px;
+  margin: 250px auto auto;
+  padding: 2em;
+  background-color: purple;
+  border-radius: 1em;
 }
 
 .header {

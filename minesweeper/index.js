@@ -1,3 +1,5 @@
+// function showStartWindow
+
 // Create header
 class Header {
     constructor() {
@@ -12,11 +14,11 @@ class Header {
         headerElement.classList.add("header");
         document.body.prepend(headerElement);
 
-        const title = createElement("h1", "header__title", headerElement, "MINESWEEPER");
-        const stepsCounter = createElement("article", "header__steps", headerElement, "000");
+        createElement("h1", "header__title", headerElement, "MINESWEEPER");
+        createElement("article", "header__steps", headerElement, "000");
         const tryAgainButton = createElement("button", "header__button", headerElement, "New game");
         tryAgainButton.addEventListener("click", board.restartTheGame);
-        const timer = createElement("article", "header__stopwatch", headerElement, "000");
+        createElement("article", "header__stopwatch", headerElement, "000");
 
         return headerElement;
     }
@@ -61,12 +63,12 @@ class Header {
 // Create board class
 class Board {
     constructor() {
-        this.rowCount = 10;
-        this.minesCount = 3;
-        this.openedCellsCount = 0;
-        this.loose = false;
         this.boardElement = this.createBoardElement();
         this.board = this.createBoard();
+        this.rowCount = 10;
+        this.minesCount = 10;
+        this.openedCellsCount = 0;
+        this.loose = false;
         this.closestCellsDirections = [
             [-1, -1],
             [-1, 0],
@@ -82,6 +84,34 @@ class Board {
             e.preventDefault();
             this.flagClickedCell(e);
             addSoundEffect("./assets/sounds/add-flag.mp3");
+        });
+    }
+
+    showWelcomeModal() {
+        const modalOverlay = createElement("div", "welcome-modal__overlay", document.body);
+        const welcomeModal = createElement("div", "welcome-modal", modalOverlay);
+
+        createElement("h2", "scoreboard__title", welcomeModal, "Welcome to minesweeper!");
+        createElement("h3", "scoreboard__paragraph", welcomeModal, "Chose board size and number of mines");
+
+        // Create board size select
+        const boardSizeSelect = createElement("select", "select", welcomeModal);
+        boardSizeSelect.setAttribute("id", "select-board");
+        createElement("option", "select__option", boardSizeSelect, "10x10", 10);
+        createElement("option", "select__option", boardSizeSelect, "15x15", 15);
+        createElement("option", "select__option", boardSizeSelect, "25x25", 25);
+        boardSizeSelect.addEventListener('change', () => {
+            this.rowCount = boardSizeSelect.value;
+        });
+
+        // Create mines number select
+        const minesNumberSelect = createElement("select", "select", welcomeModal);
+        minesNumberSelect.setAttribute("id", "select-mines");
+        for (let i = 10; i <= 99; i++) {
+            createElement("option", "select__option", minesNumberSelect, i, i);
+        }
+        minesNumberSelect.addEventListener('change', () => {
+            this.minesCount = minesNumberSelect.value;
         });
     }
 
@@ -229,9 +259,9 @@ class Board {
 
     showScoreboard(title, text) {
         this.boardElement.classList.add("hidden");
-        const scoreboard = createElement("section", "scoreboard", document.body, "");
-        const scoreboardTitle = createElement("h2", "scoreboard__title", scoreboard, title);
-        const scoreboardParagraph = createElement("h3", "scoreboard__paragraph", scoreboard, text);
+        const scoreboard = createElement("section", "scoreboard", document.body);
+        createElement("h2", "scoreboard__title", scoreboard, title);
+        createElement("h3", "scoreboard__paragraph", scoreboard, text);
     }
 
     restartTheGame = () => {
@@ -275,11 +305,14 @@ class Cell {
     }
 }
 
-function createElement(elemType, style, parent, text = "") {
+function createElement(elemType, style, parent, text, value, id) {
     const elem = document.createElement(elemType);
     elem.classList.add(style);
-    elem.innerText = text;
     parent.append(elem);
+    if (text) {
+        elem.innerText = text;
+    }
+    value && elem.setAttribute("value", value);
     return elem;
 }
 
@@ -288,5 +321,7 @@ function addSoundEffect(path) {
     audio.play();
 }
 
+// Initialize
 const board = new Board();
 const header = new Header();
+board.showWelcomeModal();
