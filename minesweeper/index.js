@@ -31,6 +31,7 @@ class Board {
 
     showModal(start = true, title = "Welcome to minesweeper!", paragraph = "Chose board size and number of mines") {
         this.boardElement.classList.add("board_hidden");
+        this.headerElement.classList.add("board_hidden");
 
         const modalOverlay = createElement("div", ["modal__overlay"], document.body);
         const welcomeModal = createElement("div", ["modal"], modalOverlay);
@@ -58,16 +59,18 @@ class Board {
             });
         }
         // Create submit button
-        const startGameBtn = createElement("button", ["button", "button_start"], welcomeModal, "Play");
+        const startGameBtn = createElement("button", ["button"], welcomeModal, "Play");
         startGameBtn.addEventListener("click", () => {
-            modalOverlay.remove();
-            this.restartTheGame();
-        })
+                modalOverlay.remove();
+                start ? this.restartTheGame() : this.showModal();
+            }
+        )
     }
 
     createBoardElement() {
         return createElement("section", ["board"], document.body, "");
     }
+
     createBoard() {
         let board = [];
         for (let i = 0; i < this.rowCount; i++) {
@@ -79,6 +82,7 @@ class Board {
         }
         return board;
     }
+
     createHeaderElement() {
         const headerElement = document.createElement("header");
         headerElement.classList.add("header");
@@ -86,7 +90,7 @@ class Board {
 
         createElement("h1", ["header__title"], headerElement, "MINESWEEPER");
         createElement("article", ["header__steps"], headerElement, "000");
-        const tryAgainButton = createElement("button", ["button", "button_restart"], headerElement, "New game");
+        const tryAgainButton = createElement("button", ["button"], headerElement, "New game");
         tryAgainButton.addEventListener("click", this.showModal.bind(this));
         createElement("article", ["header__stopwatch"], headerElement, "000");
 
@@ -106,16 +110,19 @@ class Board {
                 : this.board[rowIndex][colIndex].mine = true;
         }
     }
+
     rerenderStepsCounter() {
         this.stepsCounter += 1;
         document.querySelector(".header__steps").innerText = this.showCorrectNumber(this.stepsCounter);
     }
+
     startStopwatch() {
         this.stopwatchInterval = setInterval(() => {
             this.secondsCounter += 1;
             document.querySelector(".header__stopwatch").innerText = this.showCorrectNumber(this.secondsCounter);
         }, 1000);
     }
+
     stopStopwatch() {
         clearInterval(this.stopwatchInterval);
     }
@@ -150,6 +157,7 @@ class Board {
         && this.loose === false
         && this.endTheGame(true);
     }
+
     openAndCheckNeighbours(row, column, chosenCell) {
         chosenCell.cellElement.classList.add("cell_opened");
         chosenCell.opened = true;
@@ -175,6 +183,7 @@ class Board {
             }
         }
     }
+
     countMinedNeighbours(row, column) {
         let counter = 0;
 
@@ -189,6 +198,7 @@ class Board {
         }
         return counter;
     }
+
     checkNeighbours(row, column) {
         for (const direction of this.closestCellsDirections) {
             const rowNumber = row + direction[0];
@@ -200,6 +210,7 @@ class Board {
             }
         }
     }
+
     flagClickedCell = e => {
         const row = e.target.id.split("-")[0];
         const column = e.target.id.split("-")[1];
@@ -227,8 +238,10 @@ class Board {
         }
         this.stopStopwatch();
     }
+
     restartTheGame = () => {
         document.querySelector(".board").classList.remove("board_hidden");
+        document.querySelector(".header").classList.remove("board_hidden");
         this.reset();
         for (const cells of this.board) {
             for (const cell of cells) {
@@ -237,6 +250,7 @@ class Board {
         }
         addSoundEffect("./assets/sounds/restart.mp3")
     }
+
     reset() {
         this.stepsCounter = 0;
         document.querySelector(".header__steps").innerText = "000";
@@ -247,6 +261,7 @@ class Board {
         this.loose = false;
         document.querySelectorAll('audio').forEach(el => el.pause());
     }
+
     showCorrectNumber(num) {
         if (num < 10) {
             return `00${num}`
@@ -275,6 +290,7 @@ class Cell {
         cell.setAttribute("id", this.id);
         return cell;
     }
+
     reset() {
         this.opened = false;
         this.mine = false;
@@ -294,6 +310,7 @@ function createElement(elemType, styles, parent, text, value, id) {
     value && elem.setAttribute("value", value);
     return elem;
 }
+
 function addSoundEffect(path) {
     const audio = new Audio(path);
     audio.play();

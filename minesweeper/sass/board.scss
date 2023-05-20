@@ -13,42 +13,45 @@ body {
 }
 
 .button {
-  padding: 0.5em;
+  padding: 0.5em 1em;
 
   font-family: Neon, sans-serif;
   font-size: 1.7em;
   color: $color-secondary;
 
   background-color: transparent;
-  border: 2px dashed;
+  border: 2px dashed $color-primary;
   border-radius: 1em;
   cursor: pointer;
   transition: background-color 300ms;
-  &_start {
-    border-color: white;
-    &:hover {
-      background-color: $color-secondary-dark;
-    }
-  }
-  &_restart {
-    border-color: $color-primary;
-    &:hover {
-      background-color: $color-primary-dark;
-    }
+
+  &:hover {
+    background-color: $color-primary-dark;
   }
 }
 
+.select {
+  color: $color-tertiary;
+  background-color: $color-secondary-dark;
+  border: 2px dashed $color-tertiary;
+  border-radius: 1em;
+;
+}
+
 .modal {
+  display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 1.5em;
   align-items: center;
   width: 400px;
   height: 560px;
   margin: 75px auto auto;
   padding: 2em;
 
-  background-color: $color-primary;
-  border-radius: 1em;
+  background-color: rgba(49, 1, 49, 0.15);
+  border: 0.2em dashed $color-secondary-dark;
+  border-radius: 2em;
 
   &__overlay {
     position: absolute;
@@ -60,14 +63,16 @@ body {
     display: flex;
     justify-content: center;
   }
+
   &__title {
     font-size: 4em;
     color: $color-secondary;
     text-align: center;
   }
+
   &__paragraph {
-    font-size: 1em;
-    color: white;
+    font-size: 1.2em;
+    color: $color-secondary-light;
   }
 }
 
@@ -88,6 +93,7 @@ body {
     color: $color-primary;
     text-align: center;
   }
+
   &__steps, &__stopwatch {
     font-size: 3em;
     color: $color-tertiary;
@@ -102,6 +108,7 @@ body {
   max-height: 1000px;
   flex-wrap: wrap;
   margin: auto;
+
   &_hidden {
     display: none;
   }
@@ -119,12 +126,14 @@ body {
   cursor: pointer;
   transition: background-color 100ms;
 
-  &:hover:not(&_opened, &_mined){
+  &:hover:not(&_opened, &_mined) {
     background-color: $color-cell-hovered;
   }
+
   &_opened {
-    background-color: $color-cell-opened;
+    background-color: $color-secondary-light;
   }
+
   &_mined {
     background-color: black;
     background-image: url("../assets/images/explosion.png");
@@ -132,12 +141,14 @@ body {
     background-position: center;
     background-size: 70% 70%;
   }
+
   &_flagged {
     background-image: url("../assets/images/flag.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 70% 70%;
   }
+
   &_1mine {
     color: $color-primary;
   }
