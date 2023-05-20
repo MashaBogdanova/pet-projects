@@ -1,11 +1,62 @@
+initialize();
+
+function initialize() {
+    let rowCount = 10;
+    let minesCount = 10;
+    let modalOverlay = showModal();
+    const boardSizeSelect = document.getElementById("board-size-select");
+    boardSizeSelect.addEventListener('change', () => {
+        rowCount = boardSizeSelect.value;
+    });
+
+    const minesNumberSelect = document.getElementById("mines-number-select");
+    minesNumberSelect.addEventListener('change', () => {
+        minesCount = minesNumberSelect.value;
+    });
+
+    const startGameBtn = document.getElementById("start-board-btn");
+    startGameBtn.addEventListener("click", () => {
+        modalOverlay.remove();
+        new Board(rowCount, minesCount);
+        addSoundEffect("./assets/sounds/restart.mp3");
+    })
+}
+
+function showModal(start = true, title = "Welcome to minesweeper!", paragraph = "Chose board size and number of mines") {
+    const modalOverlay = createElement("div", ["modal__overlay"], document.body);
+    const welcomeModal = createElement("div", ["modal"], modalOverlay);
+
+    createElement("h2", ["modal__title"], welcomeModal, title);
+    createElement("h3", ["modal__paragraph"], welcomeModal, paragraph);
+
+    if (start) {
+        const boardSizeSelect = createElement("select", ["select"], welcomeModal);
+        boardSizeSelect.setAttribute("id", "board-size-select");
+        createElement("option", ["select__option"], boardSizeSelect, "10x10", 10);
+        createElement("option", ["select__option"], boardSizeSelect, "15x15", 15);
+        createElement("option", ["select__option"], boardSizeSelect, "25x25", 25);
+
+        const minesNumberSelect = createElement("select", ["select"], welcomeModal);
+        minesNumberSelect.setAttribute("id", "mines-number-select");
+        for (let i = 10; i <= 99; i++) {
+            createElement("option", ["select__option"], minesNumberSelect, i, i);
+        }
+    }
+
+    const startGameBtn = createElement("button", ["button"], welcomeModal, "Play");
+    startGameBtn.setAttribute("id", "start-board-btn");
+
+    return modalOverlay;
+}
+
 // Create board class
 class Board {
-    constructor() {
-        this.rowCount = 10;
-        this.minesCount = 10;
+    constructor(rowCount, minesCount) {
+        this.rowCount = rowCount;
+        this.minesCount = minesCount;
         this.boardElement = this.createBoardElement();
-        this.board = this.createBoard();
         this.headerElement = this.createHeaderElement();
+        this.board = this.createBoard();
         this.openedCellsCount = 0;
         this.loose = false;
         this.stepsCounter = 0;
@@ -27,44 +78,6 @@ class Board {
             this.flagClickedCell(e);
             addSoundEffect("./assets/sounds/add-flag.mp3");
         });
-    }
-
-    showModal(start = true, title = "Welcome to minesweeper!", paragraph = "Chose board size and number of mines") {
-        this.boardElement.classList.add("board_hidden");
-        this.headerElement.classList.add("board_hidden");
-
-        const modalOverlay = createElement("div", ["modal__overlay"], document.body);
-        const welcomeModal = createElement("div", ["modal"], modalOverlay);
-
-        createElement("h2", ["modal__title"], welcomeModal, title);
-        createElement("h3", ["modal__paragraph"], welcomeModal, paragraph);
-
-        if (start) {
-            // Create board size select
-            const boardSizeSelect = createElement("select", ["select"], welcomeModal);
-            createElement("option", ["select__option"], boardSizeSelect, "10x10", 10);
-            createElement("option", ["select__option"], boardSizeSelect, "15x15", 15);
-            createElement("option", ["select__option"], boardSizeSelect, "25x25", 25);
-            boardSizeSelect.addEventListener('change', () => {
-                this.rowCount = boardSizeSelect.value;
-            });
-
-            // Create mines number select
-            const minesNumberSelect = createElement("select", ["select"], welcomeModal);
-            for (let i = 10; i <= 99; i++) {
-                createElement("option", ["select__option"], minesNumberSelect, i, i);
-            }
-            minesNumberSelect.addEventListener('change', () => {
-                this.minesCount = minesNumberSelect.value;
-            });
-        }
-        // Create submit button
-        const startGameBtn = createElement("button", ["button"], welcomeModal, "Play");
-        startGameBtn.addEventListener("click", () => {
-                modalOverlay.remove();
-                start ? this.restartTheGame() : this.showModal();
-            }
-        )
     }
 
     createBoardElement() {
@@ -91,7 +104,13 @@ class Board {
         createElement("h1", ["header__title"], headerElement, "MINESWEEPER");
         createElement("article", ["header__steps"], headerElement, "000");
         const tryAgainButton = createElement("button", ["button"], headerElement, "New game");
-        tryAgainButton.addEventListener("click", this.showModal.bind(this));
+        tryAgainButton.setAttribute("id", "restart-btn");
+
+        tryAgainButton.addEventListener("click", () => {
+            this.boardElement.remove();
+            this.headerElement.remove();
+            initialize();
+        });
         createElement("article", ["header__stopwatch"], headerElement, "000");
 
         return headerElement;
@@ -227,28 +246,23 @@ class Board {
     }
 
     endTheGame(win) {
+        this.boardElement.classList.add("board_hidden");
+        this.headerElement.classList.add("board_hidden");
+
         if (win) {
             const text = `You found all mines in ${this.secondsCounter} ${this.secondsCounter === 1 ? "second" : "seconds"}
             and ${this.stepsCounter} ${this.stepsCounter === 1 ? "move" : "moves"}!`
-            this.showModal(false, "HOORAY!", `${text}`);
+            showModal(false, "HOORAY!", `${text}`);
             addSoundEffect("./assets/sounds/win.mp3");
         } else {
-            this.showModal(false, "GAME OVER!", "Try again");
+            showModal(false, "GAME OVER!", "Try again");
             addSoundEffect("./assets/sounds/game-over.mp3");
         }
+        document.getElementById("start-board-btn").addEventListener("click", () => {
+            document.querySelector(".modal__overlay").remove();
+            initialize();
+        });
         this.stopStopwatch();
-    }
-
-    restartTheGame = () => {
-        document.querySelector(".board").classList.remove("board_hidden");
-        document.querySelector(".header").classList.remove("board_hidden");
-        this.reset();
-        for (const cells of this.board) {
-            for (const cell of cells) {
-                cell.reset();
-            }
-        }
-        addSoundEffect("./assets/sounds/restart.mp3")
     }
 
     reset() {
@@ -259,7 +273,17 @@ class Board {
         clearInterval(this.stopwatchInterval);
         this.openedCellsCount = 0;
         this.loose = false;
-        document.querySelectorAll('audio').forEach(el => el.pause());
+
+        document.querySelector(".board").classList.remove("board_hidden");
+        document.querySelector(".header").classList.remove("board_hidden");
+
+        for (const cells of this.board) {
+            for (const cell of cells) {
+                cell.reset();
+            }
+        }
+
+
     }
 
     showCorrectNumber(num) {
@@ -300,7 +324,7 @@ class Cell {
     }
 }
 
-function createElement(elemType, styles, parent, text, value, id) {
+function createElement(elemType, styles, parent, text, value) {
     const elem = document.createElement(elemType);
     elem.classList.add(...styles);
     parent.append(elem);
@@ -315,7 +339,3 @@ function addSoundEffect(path) {
     const audio = new Audio(path);
     audio.play();
 }
-
-// Initialize
-const board = new Board();
-board.showModal();
