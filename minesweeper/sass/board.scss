@@ -102,9 +102,12 @@ body {
   max-height: 1000px;
   flex-wrap: wrap;
   margin: auto;
+  &_hidden {
+    display: none;
+  }
 }
 
-.board__cell {
+.cell {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -135,28 +138,23 @@ body {
     background-position: center;
     background-size: 70% 70%;
   }
-}
+  &_1mine {
+    color: $color-primary;
+  }
 
-.hidden {
-  display: none;
-}
+  &_2mines {
+    color: $color-two;
+  }
 
-.one {
-  color: $color-primary;
-}
+  &_3mines {
+    color: $color-three;
+  }
 
-.two {
-  color: $color-two;
-}
+  &_4mines {
+    color: $color-four;
+  }
 
-.three {
-  color: $color-three;
-}
-
-.four {
-  color: $color-four;
-}
-
-.five {
-  color: $color-tertiary;
+  &_5mines {
+    color: $color-tertiary;
+  }
 }

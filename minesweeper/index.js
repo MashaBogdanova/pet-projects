@@ -30,7 +30,7 @@ class Board {
     }
 
     showModal(start = true, title = "Welcome to minesweeper!", paragraph = "Chose board size and number of mines") {
-        this.boardElement.classList.add("hidden");
+        this.boardElement.classList.add("board_hidden");
 
         const modalOverlay = createElement("div", ["modal__overlay"], document.body);
         const welcomeModal = createElement("div", ["modal"], modalOverlay);
@@ -135,7 +135,7 @@ class Board {
             chosenCell.opened = true;
             this.openedCellsCount += 1;
 
-            chosenCell.cellElement.classList.add("board__cell_mined");
+            chosenCell.cellElement.classList.add("cell_mined");
             addSoundEffect("./assets/sounds/explosion.mp3");
 
             setTimeout(() => {
@@ -151,7 +151,7 @@ class Board {
         && this.endTheGame(true);
     }
     openAndCheckNeighbours(row, column, chosenCell) {
-        chosenCell.cellElement.classList.add("board__cell_opened");
+        chosenCell.cellElement.classList.add("cell_opened");
         chosenCell.opened = true;
         this.openedCellsCount += 1;
 
@@ -163,15 +163,15 @@ class Board {
             const currentCell = this.board[row][column].cellElement;
             currentCell.innerHTML = `${counter}`;
             if (counter === 1) {
-                currentCell.classList.add("one");
+                currentCell.classList.add("cell_1mine");
             } else if (counter === 2) {
-                currentCell.classList.add("two");
+                currentCell.classList.add("cell_2mines");
             } else if (counter === 3) {
-                currentCell.classList.add("three");
+                currentCell.classList.add("cell_3mines");
             } else if (counter === 4) {
-                currentCell.classList.add("four");
+                currentCell.classList.add("cell_4mines");
             } else if (counter === 5) {
-                currentCell.classList.add("five");
+                currentCell.classList.add("cell_5mines");
             }
         }
     }
@@ -206,11 +206,11 @@ class Board {
         const chosenCell = this.board[row][column];
 
         if (chosenCell.flagged) {
-            chosenCell.cellElement.classList.remove("board__cell_flagged");
+            chosenCell.cellElement.classList.remove("cell_flagged");
             chosenCell.flagged = false;
         } else {
-            chosenCell.cellElement.classList.remove("board__cell_opened");
-            chosenCell.cellElement.classList.add("board__cell_flagged");
+            chosenCell.cellElement.classList.remove("cell_opened");
+            chosenCell.cellElement.classList.add("cell_flagged");
             chosenCell.flagged = true;
         }
     }
@@ -228,7 +228,7 @@ class Board {
         this.stopStopwatch();
     }
     restartTheGame = () => {
-        document.querySelector(".board").classList.remove("hidden");
+        document.querySelector(".board").classList.remove("board_hidden");
         this.reset();
         for (const cells of this.board) {
             for (const cell of cells) {
@@ -270,7 +270,7 @@ class Cell {
     }
 
     createCell() {
-        const cell = createElement("div", ["board__cell"], this.board.boardElement);
+        const cell = createElement("div", ["cell"], this.board.boardElement);
         cell.setAttribute("style", `flex-basis: ${100 / this.board.rowCount - 0.5}%`);
         cell.setAttribute("id", this.id);
         return cell;
@@ -279,7 +279,7 @@ class Cell {
         this.opened = false;
         this.mine = false;
         this.flagged = false;
-        this.cellElement.className = "board__cell";
+        this.cellElement.className = "cell";
         this.cellElement.innerHTML = "";
     }
 }

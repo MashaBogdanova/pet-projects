@@ -99,8 +99,11 @@ body {
   flex-wrap: wrap;
   margin: auto;
 }
+.board_hidden {
+  display: none;
+}
 
-.board__cell {
+.cell {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,47 +114,38 @@ body {
   cursor: pointer;
   transition: background-color 100ms;
 }
-.board__cell:hover:not(.board__cell_opened, .board__cell_mined) {
+.cell:hover:not(.cell_opened, .cell_mined) {
   background-color: #ff9a6f;
 }
-.board__cell_opened {
+.cell_opened {
   background-color: #ea9f86;
 }
-.board__cell_mined {
+.cell_mined {
   background-color: black;
   background-image: url("../assets/images/explosion.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 70% 70%;
 }
-.board__cell_flagged {
+.cell_flagged {
   background-image: url("../assets/images/flag.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 70% 70%;
 }
-
-.hidden {
-  display: none;
-}
-
-.one {
+.cell_1mine {
   color: purple;
 }
-
-.two {
+.cell_2mines {
   color: #240080;
 }
-
-.three {
+.cell_3mines {
   color: #ff1300;
 }
-
-.four {
+.cell_4mines {
   color: #805a00;
 }
-
-.five {
+.cell_5mines {
   color: darkred;
 }
 
