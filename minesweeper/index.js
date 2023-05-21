@@ -57,6 +57,7 @@ class Board {
         boardElement.setAttribute("style", `width: calc(${boardSize}vw + 2px); height: calc(${boardSize}vw + 2px);`);
         return boardElement;
     }
+
     createBoard() {
         let board = [];
         for (let i = 0; i < this.rowCount; i++) {
@@ -68,6 +69,7 @@ class Board {
         }
         return board;
     }
+
     createHeaderElement() {
         const headerElement = document.createElement("header");
         headerElement.classList.add("header");
@@ -102,16 +104,19 @@ class Board {
                 : this.board[rowIndex][colIndex].mine = true;
         }
     }
+
     rerenderStepsCounter() {
         this.stepsCounter += 1;
         document.querySelector(".header__steps").innerText = this.showCorrectNumber(this.stepsCounter);
     }
+
     startStopwatch() {
         this.stopwatchInterval = setInterval(() => {
             this.secondsCounter += 1;
             document.querySelector(".header__stopwatch").innerText = this.showCorrectNumber(this.secondsCounter);
         }, 1000);
     }
+
     stopStopwatch() {
         clearInterval(this.stopwatchInterval);
     }
@@ -146,6 +151,7 @@ class Board {
         && this.loose === false
         && this.endTheGame(true);
     }
+
     openAndCheckNeighbours(row, column, chosenCell) {
         chosenCell.cellElement.classList.add("cell_opened");
         chosenCell.opened = true;
@@ -171,6 +177,7 @@ class Board {
             }
         }
     }
+
     countMinedNeighbours(row, column) {
         let counter = 0;
 
@@ -185,6 +192,7 @@ class Board {
         }
         return counter;
     }
+
     checkNeighbours(row, column) {
         for (const direction of this.closestCellsDirections) {
             const rowNumber = row + direction[0];
@@ -196,6 +204,7 @@ class Board {
             }
         }
     }
+
     flagClickedCell = e => {
         const row = e.target.id.split("-")[0];
         const column = e.target.id.split("-")[1];
@@ -221,14 +230,35 @@ class Board {
             and ${this.stepsCounter} ${this.stepsCounter === 1 ? "move" : "moves"}!`
             showModal(false, "HOORAY!", `${text}`);
             addSoundEffect("./assets/sounds/win.mp3");
+            this.updatePrevResults(text);
         } else {
             showModal(false, "GAME OVER!", "Try again");
             addSoundEffect("./assets/sounds/game-over.mp3");
+            this.updatePrevResults("You lose");
         }
+
         document.getElementById("start-board-btn").addEventListener("click", () => {
             document.querySelector(".modal__overlay").remove();
             initialize();
         });
+    }
+
+    updatePrevResults(result) {
+        let prevResults;
+        if (localStorage.length === 0) {
+            prevResults = result;
+        } else {
+            prevResults = localStorage.getItem("prevResults").split(",");
+
+            if (prevResults[0] === "initial value" || prevResults.length === 10) {
+                prevResults.shift();
+            }
+
+            prevResults.push(result);
+            prevResults = prevResults.join();
+        }
+
+        localStorage.setItem("prevResults", prevResults);
     }
 
     showCorrectNumber(num) {
@@ -243,7 +273,7 @@ class Board {
     getBoardElementSize() {
         let boardSize;
         if (screen.width > 912) {
-            boardSize = this.rowCount === 10 ? 30 : this.rowCount === 15 ? 45 : 75;
+            boardSize = this.rowCount === 10 ? 40 : this.rowCount === 15 ? 45 : 75;
         } else if (screen.width > 414) {
             boardSize = this.rowCount === 10 ? 75 : 95;
         } else {
@@ -281,16 +311,29 @@ function showModal(start = true, title = "Welcome to minesweeper!", paragraph = 
     createElement("h3", ["modal__paragraph"], welcomeModal, paragraph);
 
     if (start) {
-        const boardSizeSelect = createElement("select", ["select"], welcomeModal);
+        const fieldset = createElement("fieldset", ["modal__fieldset"], welcomeModal)
+        const boardSizeSelect = createElement("select", ["select"], fieldset);
         boardSizeSelect.setAttribute("id", "board-size-select");
         createElement("option", ["select__option"], boardSizeSelect, "10 x 10", 10);
         createElement("option", ["select__option"], boardSizeSelect, "15 x 15", 15);
         createElement("option", ["select__option"], boardSizeSelect, "25 x 25", 25);
 
-        const minesNumberSelect = createElement("select", ["select"], welcomeModal);
+        const minesNumberSelect = createElement("select", ["select"], fieldset);
         minesNumberSelect.setAttribute("id", "mines-number-select");
         for (let i = 10; i <= 99; i++) {
             createElement("option", ["select__option"], minesNumberSelect, `${i} mines`, i);
+        }
+
+        const prevResults = createElement("select", ["select", "select_prev-results"], welcomeModal);
+        prevResults.setAttribute("id", "prev-results");
+        for (let i = 0; i <= 10; i++) {
+            let option;
+            if (i === 0) {
+                option = createElement("option", ["select-option"], prevResults, "Show previous results", "");
+            } else {
+                option = createElement("option", ["select-option"], prevResults, `${i} - ${true}`, i);
+            }
+            option.setAttribute("disabled", "true");
         }
     }
 
@@ -299,6 +342,7 @@ function showModal(start = true, title = "Welcome to minesweeper!", paragraph = 
 
     return modalOverlay;
 }
+
 function createElement(elemType, styles, parent, text, value) {
     const elem = document.createElement(elemType);
     elem.classList.add(...styles);
@@ -309,8 +353,10 @@ function createElement(elemType, styles, parent, text, value) {
     value && elem.setAttribute("value", value);
     return elem;
 }
+
 function addSoundEffect(path) {
     const audio = new Audio(path);
     audio.play();
 }
+
 initialize();

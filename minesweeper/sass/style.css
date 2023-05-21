@@ -38,9 +38,14 @@
   border: 2px dashed darkred;
   border-radius: 1em;
 }
+.select_prev-results {
+  color: purple;
+  background-color: transparent;
+  border: 2px dashed rgba(128, 0, 128, 0.22);
+}
 @media screen and (max-width: 912px) {
   .select {
-    font-size: 1.4em;
+    font-size: 1.2em;
   }
 }
 
@@ -92,6 +97,11 @@
   .modal__paragraph {
     font-size: 1.8em;
   }
+}
+.modal__fieldset {
+  display: flex;
+  gap: 1.5em;
+  border: none;
 }
 @media screen and (max-width: 912px) {
   .modal {

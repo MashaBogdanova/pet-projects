@@ -49,6 +49,12 @@
     }
   }
 
+  &__fieldset {
+    display: flex;
+    gap: 1.5em;
+    border: none;
+  }
+
   @include media-tablet {
     width: $content-width-tablet;
     height: $content-height-tablet;

@@ -11,7 +11,13 @@
   border: 2px dashed $color-tertiary;
   border-radius: 1em;
 
+  &_prev-results {
+    color: $color-primary;
+    background-color: transparent;
+    border: 2px dashed $color-primary-dark;
+  }
+
   @include media-tablet {
-    font-size: 1.4em;
+    font-size: 1.2em;
   }
 }
