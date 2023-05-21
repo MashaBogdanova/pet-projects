@@ -4,12 +4,12 @@ function initialize() {
     let modalOverlay = showModal();
     const boardSizeSelect = document.getElementById("board-size-select");
     boardSizeSelect.addEventListener('change', () => {
-        rowCount = boardSizeSelect.value;
+        rowCount = Number(boardSizeSelect.value);
     });
 
     const minesNumberSelect = document.getElementById("mines-number-select");
     minesNumberSelect.addEventListener('change', () => {
-        minesCount = minesNumberSelect.value;
+        minesCount = Number(minesNumberSelect.value);
     });
 
     const startGameBtn = document.getElementById("start-board-btn");
@@ -52,7 +52,10 @@ class Board {
     }
 
     createBoardElement() {
-        return createElement("section", ["board"], document.body, "");
+        const boardElement = createElement("section", ["board"], document.body, "");
+        const boardSize = this.getBoardElementSize();
+        boardElement.setAttribute("style", `width: calc(${boardSize}vw + 2px); height: calc(${boardSize}vw + 2px);`);
+        return boardElement;
     }
     createBoard() {
         let board = [];
@@ -143,7 +146,6 @@ class Board {
         && this.loose === false
         && this.endTheGame(true);
     }
-
     openAndCheckNeighbours(row, column, chosenCell) {
         chosenCell.cellElement.classList.add("cell_opened");
         chosenCell.opened = true;
@@ -169,7 +171,6 @@ class Board {
             }
         }
     }
-
     countMinedNeighbours(row, column) {
         let counter = 0;
 
@@ -184,7 +185,6 @@ class Board {
         }
         return counter;
     }
-
     checkNeighbours(row, column) {
         for (const direction of this.closestCellsDirections) {
             const rowNumber = row + direction[0];
@@ -196,7 +196,6 @@ class Board {
             }
         }
     }
-
     flagClickedCell = e => {
         const row = e.target.id.split("-")[0];
         const column = e.target.id.split("-")[1];
@@ -241,6 +240,17 @@ class Board {
             return `${num}`
         }
     }
+    getBoardElementSize() {
+        let boardSize;
+        if (screen.width > 912) {
+            boardSize = this.rowCount === 10 ? 30 : this.rowCount === 15 ? 45 : 75;
+        } else if (screen.width > 414) {
+            boardSize = this.rowCount === 10 ? 75 : 95;
+        } else {
+            boardSize = 95;
+        }
+        return boardSize;
+    }
 }
 
 // Create cell class
@@ -256,7 +266,8 @@ class Cell {
 
     createCell() {
         const cell = createElement("div", ["cell"], this.board.boardElement);
-        cell.setAttribute("style", `flex-basis: ${100 / this.board.rowCount - 0.5}%`);
+        const cellSize = 100 / this.board.rowCount;
+        cell.setAttribute("style", `flex-basis: calc(${cellSize}% - 2px); height: calc(${cellSize}% -2px);`);
         cell.setAttribute("id", this.id);
         return cell;
     }

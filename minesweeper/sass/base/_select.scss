@@ -1,0 +1,17 @@
+@import "../abstracts/constants";
+@import "../abstracts/mixins";
+
+.select {
+  padding: 0.3em;
+  font-family: Neon, sans-serif;
+  font-size: 1em;
+  color: $color-tertiary;
+
+  background-color: $color-secondary-dark;
+  border: 2px dashed $color-tertiary;
+  border-radius: 1em;
+
+  @include media-tablet {
+    font-size: 1.4em;
+  }
+}

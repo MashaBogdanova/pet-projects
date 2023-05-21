@@ -1,0 +1,51 @@
+@import "../abstracts/constants";
+@import "../abstracts/mixins";
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: $content-width-desktop;
+  min-width: 400px;
+  margin: auto;
+  padding: 1em;
+
+  &__title {
+    flex-basis: 100%;
+    margin: 3rem auto 1rem;
+
+    font-size: 3.6em;
+    color: $color-primary;
+    text-align: center;
+    @include media-tablet {
+      font-size: 5.5em;
+    }
+    @include media-mobile {
+      font-size: 4em;
+    }
+  }
+
+  &__steps, &__stopwatch {
+    font-size: 3em;
+    color: $color-tertiary;
+    border-radius: .5em;
+    @include media-tablet {
+      font-size: 4em;
+    }
+    @include media-mobile {
+      font-size: 3.2em;
+    }
+  }
+
+  @include media-tablet {
+    width: calc($content-width-tablet - 1em);
+    padding: 2.5em;
+  }
+
+  @include media-mobile {
+    gap: .7em;
+    width: $content-width-mobile;
+    padding: 2.5em;
+  }
+}
