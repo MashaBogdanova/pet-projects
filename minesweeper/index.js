@@ -1,7 +1,7 @@
 function initialize() {
     let rowCount = 10;
     let minesCount = 10;
-    let modalOverlay = showModal();
+    let modalOverlay = showModal( localStorage.getItem("prevResults") || []);
     const boardSizeSelect = document.getElementById("board-size-select");
     boardSizeSelect.addEventListener('change', () => {
         rowCount = Number(boardSizeSelect.value);
@@ -221,20 +221,20 @@ class Board {
     }
 
     endTheGame(win) {
-        this.boardElement.classList.add("board_hidden");
-        this.headerElement.classList.add("board_hidden");
+        this.boardElement.remove();
+        this.headerElement.remove();
         this.stopStopwatch();
 
         if (win) {
             const text = `You found all mines in ${this.secondsCounter} ${this.secondsCounter === 1 ? "second" : "seconds"}
             and ${this.stepsCounter} ${this.stepsCounter === 1 ? "move" : "moves"}!`
-            showModal(false, "HOORAY!", `${text}`);
+            const prevResults = this.updatePrevResults(text);
+            showModal(prevResults, false, "HOORAY!", `${text}`);
             addSoundEffect("./assets/sounds/win.mp3");
-            this.updatePrevResults(text);
         } else {
-            showModal(false, "GAME OVER!", "Try again");
+            const prevResults = this.updatePrevResults("You lose");
+            showModal(prevResults,false, "GAME OVER!", "Try again");
             addSoundEffect("./assets/sounds/game-over.mp3");
-            this.updatePrevResults("You lose");
         }
 
         document.getElementById("start-board-btn").addEventListener("click", () => {
@@ -259,6 +259,7 @@ class Board {
         }
 
         localStorage.setItem("prevResults", prevResults);
+        return prevResults;
     }
 
     showCorrectNumber(num) {
@@ -270,6 +271,7 @@ class Board {
             return `${num}`
         }
     }
+
     getBoardElementSize() {
         let boardSize;
         if (screen.width > 912) {
@@ -303,7 +305,7 @@ class Cell {
     }
 }
 
-function showModal(start = true, title = "Welcome to minesweeper!", paragraph = "Chose board size and number of mines") {
+function showModal(prevResults, start = true, title = "Welcome to minesweeper!", paragraph = "Chose board size and number of mines") {
     const modalOverlay = createElement("div", ["modal__overlay"], document.body);
     const welcomeModal = createElement("div", ["modal"], modalOverlay);
 
@@ -311,7 +313,9 @@ function showModal(start = true, title = "Welcome to minesweeper!", paragraph = 
     createElement("h3", ["modal__paragraph"], welcomeModal, paragraph);
 
     if (start) {
-        const fieldset = createElement("fieldset", ["modal__fieldset"], welcomeModal)
+        // Create board size and mines number elements
+        const fieldset = createElement("fieldset", ["modal__fieldset"], welcomeModal);
+
         const boardSizeSelect = createElement("select", ["select"], fieldset);
         boardSizeSelect.setAttribute("id", "board-size-select");
         createElement("option", ["select__option"], boardSizeSelect, "10 x 10", 10);
@@ -324,17 +328,20 @@ function showModal(start = true, title = "Welcome to minesweeper!", paragraph = 
             createElement("option", ["select__option"], minesNumberSelect, `${i} mines`, i);
         }
 
-        const prevResults = createElement("select", ["select", "select_prev-results"], welcomeModal);
-        prevResults.setAttribute("id", "prev-results");
-        for (let i = 0; i <= 10; i++) {
-            let option;
-            if (i === 0) {
-                option = createElement("option", ["select-option"], prevResults, "Show previous results", "");
-            } else {
-                option = createElement("option", ["select-option"], prevResults, `${i} - ${true}`, i);
-            }
+        // Create previous results element
+        prevResults = prevResults.split(",").reverse();
+        console.log(prevResults)
+
+        const prevResultsElement = createElement("select", ["select", "select_prev-results"], welcomeModal);
+        prevResultsElement.setAttribute("id", "prev-results");
+
+        const option = createElement("option", ["select-option"], prevResultsElement, "Show previous results", "");
+        option.setAttribute("disabled", "true");
+
+        prevResults.map(result => {
+            const option = createElement("option", ["select-option"], prevResultsElement, `${result}`);
             option.setAttribute("disabled", "true");
-        }
+        })
     }
 
     const startGameBtn = createElement("button", ["button"], welcomeModal, "Play");

@@ -12,7 +12,9 @@
   border-radius: 1em;
 
   &_prev-results {
+    width: 65%;
     color: $color-primary;
+    text-align: center;
     background-color: transparent;
     border: 2px dashed $color-primary-dark;
   }

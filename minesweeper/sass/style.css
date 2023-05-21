@@ -39,7 +39,9 @@
   border-radius: 1em;
 }
 .select_prev-results {
+  width: 65%;
   color: purple;
+  text-align: center;
   background-color: transparent;
   border: 2px dashed rgba(128, 0, 128, 0.22);
 }
