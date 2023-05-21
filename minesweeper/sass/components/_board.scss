@@ -16,7 +16,6 @@ body {
 .board {
   display: flex;
   flex-wrap: wrap;
-  gap: 2px;
   margin: auto;
 
   &_hidden {
@@ -44,15 +43,15 @@ body {
   }
 
   &_mined {
-    background-color: black;
-    background-image: url("../../assets/images/explosion.png");
+    background-color: transparent;
+    background-image: url("../assets/images/explosion.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 70% 70%;
   }
 
   &_flagged {
-    background-image: url("../../assets/images/flag.png");
+    background-image: url("../assets/images/flag.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 70% 70%;

@@ -54,7 +54,7 @@ class Board {
     createBoardElement() {
         const boardElement = createElement("section", ["board"], document.body, "");
         const boardSize = this.getBoardElementSize();
-        boardElement.setAttribute("style", `width: calc(${boardSize}vw + 2px); height: calc(${boardSize}vw + 2px);`);
+        boardElement.setAttribute("style", `width: ${boardSize}vw; height: ${boardSize}vw;`);
         return boardElement;
     }
 
@@ -163,7 +163,7 @@ class Board {
             this.checkNeighbours(row, column);
         } else {
             const currentCell = this.board[row][column].cellElement;
-            currentCell.innerHTML = `${counter}`;
+            currentCell.innerHTML = `<p>${counter}</p>`;
             if (counter === 1) {
                 currentCell.classList.add("cell_1mine");
             } else if (counter === 2) {
@@ -297,7 +297,7 @@ class Cell {
     createCell() {
         const cell = createElement("div", ["cell"], this.board.boardElement);
         const cellSize = 100 / this.board.rowCount;
-        cell.setAttribute("style", `flex-basis: calc(${cellSize}% - 2px); height: calc(${cellSize}% -2px);`);
+        cell.setAttribute("style", `flex-basis: ${cellSize}%; height: ${cellSize}%;`);
         cell.setAttribute("id", this.id);
         return cell;
     }
