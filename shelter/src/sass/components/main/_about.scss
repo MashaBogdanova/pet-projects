@@ -1,0 +1,49 @@
+@import "../../abstract/constants";
+@import "../../abstract/mixins";
+
+.about {
+  background-color: $color-light-xl;
+}
+
+.about__wrapper {
+  display: flex;
+  gap: 120px;
+  align-items: center;
+  padding: 79px 175px 100px;
+  @include media-small-desktop {
+    padding: 79px 100px 100px;
+  }
+  @include media-tablet {
+    flex-direction: column-reverse;
+    gap: 80px;
+    padding: 79px 139px 97px;
+  }
+  @include media-mobile {
+    padding: 42px 10px 39px;
+    gap: 39px;
+  }
+
+  h3 {
+    text-align: left;
+    @include media-mobile {
+      text-align: center;
+    }
+  }
+
+  p {
+    padding-top: 25px;
+    color: $color-dark-xl;
+    @include media-mobile {
+    padding: 24px 15px 0;
+      text-align: justify;
+    }
+  }
+}
+
+.about__puppy {
+  max-width: 300px;
+  height: auto;
+  @include media-mobile {
+    max-width: 260px;
+  }
+}

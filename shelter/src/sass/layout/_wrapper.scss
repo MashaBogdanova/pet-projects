@@ -1,0 +1,13 @@
+@import "../abstract/constants";
+@import "../abstract/mixins";
+
+.wrapper {
+    max-width: $content-width;
+    margin: auto;
+    @include media-tablet {
+        max-width: 708px;
+    }
+    @include media-mobile {
+        max-width: 640px;
+    }
+}

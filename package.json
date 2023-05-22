@@ -1,9 +1,25 @@
 {
-  "name": "mashabogdanova-JSFE2023Q1",
+  "name": "mashabogdanova-jsfe2023q1",
   "version": "1.0.0",
-  "dependencies": {
-  },
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "style": "sass --watch minesweeper/sass/style.scss minesweeper/sass/style.css"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolling-scopes-school/mashabogdanova-JSFE2023Q1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rolling-scopes-school/mashabogdanova-JSFE2023Q1/issues"
+  },
+  "homepage": "https://github.com/rolling-scopes-school/mashabogdanova-JSFE2023Q1#readme",
+  "dependencies": {
+    "webpack": "^5.78.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^5.0.1"
   }
 }
