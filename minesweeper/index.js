@@ -266,7 +266,7 @@ class Board {
     }
     updatePrevResults(result) {
         let prevResults;
-        if (localStorage.length === 0) {
+        if (localStorage.getItem("prevResults") === null) {
             prevResults = result;
         } else {
             prevResults = localStorage.getItem("prevResults").split(",");
