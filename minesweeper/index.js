@@ -174,6 +174,12 @@ class Board {
                 currentCell.classList.add("cell_4mines");
             } else if (counter === 5) {
                 currentCell.classList.add("cell_5mines");
+            } else if (counter === 6) {
+                currentCell.classList.add("cell_6mines");
+            } else if (counter === 7) {
+                currentCell.classList.add("cell_7mines");
+            } else if (counter === 8) {
+                currentCell.classList.add("cell_8mines");
             }
         }
     }

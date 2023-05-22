@@ -176,19 +176,28 @@ body {
   background-size: 70% 70%;
 }
 .cell_1mine {
-  color: purple;
-}
-.cell_2mines {
   color: #240080;
 }
-.cell_3mines {
-  color: #ff1300;
-}
-.cell_4mines {
+.cell_2mines {
   color: #805a00;
 }
-.cell_5mines {
+.cell_3mines {
   color: darkred;
+}
+.cell_4mines {
+  color: #0b0121;
+}
+.cell_5mines {
+  color: #ff1300;
+}
+.cell_6mines {
+  color: rgba(30, 144, 147, 0.71);
+}
+.cell_7mines {
+  color: black;
+}
+.cell_8mines {
+  color: white;
 }
 
 .header {

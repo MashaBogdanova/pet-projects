@@ -58,22 +58,27 @@ body {
   }
 
   &_1mine {
-    color: $color-primary;
+    color: $color-1mine;
   }
-
   &_2mines {
-    color: $color-two;
+    color: $color-2mines;
   }
-
   &_3mines {
-    color: $color-three;
-  }
-
-  &_4mines {
-    color: $color-four;
-  }
-
-  &_5mines {
     color: $color-tertiary;
+  }
+  &_4mines {
+    color: $color-background;
+  }
+  &_5mines {
+    color: $color-5mines;
+  }
+  &_6mines {
+    color: $color-6mines;
+  }
+  &_7mines {
+    color: $color-7mines;
+  }
+  &_8mines {
+    color: $color-8mines;
   }
 }
