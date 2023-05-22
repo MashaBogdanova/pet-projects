@@ -17,7 +17,7 @@ function initialize() {
     startGameBtn.addEventListener("click", () => {
         modalOverlay.remove();
         new Board(rowCount, minesCount);
-        addSoundEffect("./assets/sounds/restart.mp3");
+        addSoundEffect("./assets/sounds/restart.mp3", true);
     })
 }
 
@@ -27,6 +27,7 @@ class Board {
         this.rowCount = rowCount;
         this.minesCount = minesCount;
         this.flaggedCells = minesCount;
+        this.soundToggle = true;
         this.boardElement = this.createBoardElement();
         this.headerElement = this.createHeaderElement();
         this.board = this.createBoard();
@@ -49,7 +50,7 @@ class Board {
         this.boardElement.addEventListener("contextmenu", (e) => {
             e.preventDefault();
             this.flagClickedCell(e);
-            addSoundEffect("./assets/sounds/add-flag.mp3");
+            addSoundEffect("./assets/sounds/add-flag.mp3", this.soundToggle);
         });
     }
 
@@ -75,17 +76,29 @@ class Board {
         headerElement.classList.add("header");
         document.body.prepend(headerElement);
 
+        // Title
         createElement("h1", ["header__title"], headerElement, "MINESWEEPER");
-        createElement("article", ["header__steps"], headerElement, "000");
-        const tryAgainButton = createElement("button", ["button"], headerElement, "New game");
-        tryAgainButton.setAttribute("id", "restart-btn");
 
-        tryAgainButton.addEventListener("click", () => {
+        // Sound
+        const soundElement = createElement("article", ["header__sound"], headerElement);
+        soundElement.addEventListener("click", () => {
+          this.rerenderSoundElement(soundElement);
+        })
+
+        // Steps counter
+        createElement("article", ["header__steps"], headerElement, "000");
+
+        // New game button
+        const newGameBtn = createElement("button", ["button"], headerElement, "New game");
+        newGameBtn.setAttribute("id", "restart-btn");
+        newGameBtn.addEventListener("click", () => {
             this.boardElement.remove();
             this.headerElement.remove();
             this.stopStopwatch();
             initialize();
         });
+
+        // Stopwatch and flags counter
         createElement("article", ["header__stopwatch"], headerElement, "000");
         createElement("article", ["header__flags-counter"], headerElement, this.showTwoDigitNumber(this.flaggedCells));
 
@@ -113,6 +126,10 @@ class Board {
         this.flaggedCells -= 1;
         document.querySelector(".header__flags-counter").innerText = this.showTwoDigitNumber(this.flaggedCells);
     }
+    rerenderSoundElement(soundElement) {
+        this.soundToggle = !this.soundToggle;
+        soundElement.classList.toggle("header__sound_off");
+    }
     startStopwatch() {
         this.stopwatchInterval = setInterval(() => {
             this.secondsCounter += 1;
@@ -138,14 +155,14 @@ class Board {
             this.openedCellsCount += 1;
 
             chosenCell.cellElement.classList.add("cell_mined");
-            addSoundEffect("./assets/sounds/explosion.mp3");
+            addSoundEffect("./assets/sounds/explosion.mp3", this.soundToggle);
 
             setTimeout(() => {
                 this.endTheGame(false);
             }, 1000);
         } else {
             this.openAndCheckNeighbours(row, column, chosenCell);
-            addSoundEffect("./assets/sounds/open-cell.mp3");
+            addSoundEffect("./assets/sounds/open-cell.mp3", this.soundToggle);
         }
         this.rerenderStepsCounter();
         this.openedCellsCount === Math.pow(this.rowCount, 2) - this.minesCount
@@ -235,11 +252,11 @@ class Board {
             and ${this.stepsCounter} ${this.stepsCounter === 1 ? "move" : "moves"}!`
             const prevResults = this.updatePrevResults(text);
             showModal(prevResults, false, "HOORAY!", `${text}`);
-            addSoundEffect("./assets/sounds/win.mp3");
+            addSoundEffect("./assets/sounds/win.mp3", this.soundToggle);
         } else {
             const prevResults = this.updatePrevResults("You lose");
             showModal(prevResults,false, "GAME OVER!", "Try again");
-            addSoundEffect("./assets/sounds/game-over.mp3");
+            addSoundEffect("./assets/sounds/game-over.mp3", this.soundToggle);
         }
 
         document.getElementById("start-board-btn").addEventListener("click", () => {
@@ -370,9 +387,11 @@ function createElement(elemType, styles, parent, text, value) {
     value && elem.setAttribute("value", value);
     return elem;
 }
-function addSoundEffect(path) {
-    const audio = new Audio(path);
-    audio.play();
+function addSoundEffect(path, soundToggle) {
+    if (soundToggle) {
+        const audio = new Audio(path);
+        audio.play();
+    }
 }
 
 initialize();

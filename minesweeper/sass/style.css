@@ -5,9 +5,9 @@
   font-style: normal;
 }
 .button {
-  padding: 0.9rem 1em;
+  padding: 0.7rem 0.9em;
   font-family: Neon, sans-serif;
-  font-size: 1.7em;
+  font-size: 1.4em;
   color: coral;
   background-color: transparent;
   border: 2px dashed purple;
@@ -18,12 +18,12 @@
 .button:hover {
   background-color: rgba(128, 0, 128, 0.22);
 }
-@media screen and (max-width: 912px) {
+@media screen and (max-width: 990px) {
   .button {
     font-size: 2.5em;
   }
 }
-@media screen and (max-width: 912px) {
+@media screen and (max-width: 990px) {
   .button {
     font-size: 1.8em;
   }
@@ -34,9 +34,14 @@
   font-family: Neon, sans-serif;
   font-size: 1em;
   color: darkred;
-  background-color: rgba(255, 127, 80, 0.15);
+  background-color: transparent;
   border: 2px dashed darkred;
   border-radius: 1em;
+  transition: background-color 300ms;
+}
+.select:hover {
+  cursor: pointer;
+  background-color: rgba(255, 127, 80, 0.15);
 }
 .select_prev-results {
   width: 65%;
@@ -45,7 +50,15 @@
   background-color: transparent;
   border: 2px dashed rgba(128, 0, 128, 0.22);
 }
-@media screen and (max-width: 912px) {
+.select_prev-results:hover {
+  background-color: rgba(128, 0, 128, 0.22);
+}
+@media screen and (max-width: 414px) {
+  .select_prev-results {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 990px) {
   .select {
     font-size: 1.2em;
   }
@@ -81,7 +94,7 @@
   color: coral;
   text-align: center;
 }
-@media screen and (max-width: 912px) {
+@media screen and (max-width: 990px) {
   .modal__title {
     font-size: 5em;
   }
@@ -95,7 +108,7 @@
   font-size: 1.2em;
   color: #ea9f86;
 }
-@media screen and (max-width: 912px) {
+@media screen and (max-width: 990px) {
   .modal__paragraph {
     font-size: 1.8em;
   }
@@ -105,7 +118,7 @@
   gap: 1.5em;
   border: none;
 }
-@media screen and (max-width: 912px) {
+@media screen and (max-width: 990px) {
   .modal {
     width: 80vw;
     height: 80vh;
@@ -217,7 +230,7 @@ body {
   color: purple;
   text-align: center;
 }
-@media screen and (max-width: 912px) {
+@media screen and (max-width: 990px) {
   .header__title {
     font-size: 5.5em;
   }
@@ -227,22 +240,40 @@ body {
     font-size: 4em;
   }
 }
+.header__sound {
+  width: 2em;
+  height: 2em;
+  background-repeat: no-repeat;
+  background-position: center 1px;
+  background-size: 80% 80%;
+  background-image: url("../assets/images/sound-on.png");
+  border: 2px dashed darkred;
+  border-radius: 50%;
+  transition: background-color 300ms;
+}
+.header__sound_off {
+  background-image: url("../assets/images/sound-off.png");
+}
+.header__sound:hover {
+  cursor: pointer;
+  background-color: rgba(255, 127, 80, 0.15);
+}
 .header__steps, .header__stopwatch, .header__flags-counter {
-  font-size: 3em;
+  font-size: 2.5em;
   color: darkred;
   border-radius: 0.5em;
 }
-@media screen and (max-width: 912px) {
+@media screen and (max-width: 990px) {
   .header__steps, .header__stopwatch, .header__flags-counter {
     font-size: 4em;
   }
 }
 @media screen and (max-width: 414px) {
   .header__steps, .header__stopwatch, .header__flags-counter {
-    font-size: 3.2em;
+    font-size: 2em;
   }
 }
-@media screen and (max-width: 912px) {
+@media screen and (max-width: 990px) {
   .header {
     width: calc(80vw - 1em);
     padding: 2.5em;
@@ -250,9 +281,9 @@ body {
 }
 @media screen and (max-width: 414px) {
   .header {
-    gap: 0.7em;
+    gap: 0.3em;
     width: 90vw;
-    padding: 2.5em;
+    padding: 1.5em;
   }
 }
 
