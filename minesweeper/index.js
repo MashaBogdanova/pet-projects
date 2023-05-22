@@ -26,6 +26,7 @@ class Board {
     constructor(rowCount, minesCount) {
         this.rowCount = rowCount;
         this.minesCount = minesCount;
+        this.flaggedCells = minesCount;
         this.boardElement = this.createBoardElement();
         this.headerElement = this.createHeaderElement();
         this.board = this.createBoard();
@@ -86,6 +87,7 @@ class Board {
             initialize();
         });
         createElement("article", ["header__stopwatch"], headerElement, "000");
+        createElement("article", ["header__flags-counter"], headerElement, this.showTwoDigitNumber(this.flaggedCells));
 
         return headerElement;
     }
@@ -105,12 +107,16 @@ class Board {
     }
     rerenderStepsCounter() {
         this.stepsCounter += 1;
-        document.querySelector(".header__steps").innerText = this.showCorrectNumber(this.stepsCounter);
+        document.querySelector(".header__steps").innerText = this.showThreeDigitNumber(this.stepsCounter);
+    }
+    rerenderFlagsCounter() {
+        this.flaggedCells -= 1;
+        document.querySelector(".header__flags-counter").innerText = this.showTwoDigitNumber(this.flaggedCells);
     }
     startStopwatch() {
         this.stopwatchInterval = setInterval(() => {
             this.secondsCounter += 1;
-            document.querySelector(".header__stopwatch").innerText = this.showCorrectNumber(this.secondsCounter);
+            document.querySelector(".header__stopwatch").innerText = this.showThreeDigitNumber(this.secondsCounter);
         }, 1000);
     }
     stopStopwatch() {
@@ -207,6 +213,8 @@ class Board {
         const column = e.target.id.split("-")[1];
         const chosenCell = this.board[row][column];
 
+        this.rerenderFlagsCounter();
+
         if (chosenCell.flagged) {
             chosenCell.cellElement.classList.remove("cell_flagged");
             chosenCell.flagged = false;
@@ -258,13 +266,22 @@ class Board {
         return prevResults;
     }
 
-    showCorrectNumber(num) {
-        if (num < 10) {
-            return `00${num}`
-        } else if (num < 100) {
-            return `0${num}`
+    showTwoDigitNumber(num) {
+        if (num < 0) {
+            return `${num}`;
+        } else if (num < 10) {
+            return `0${num}`;
         } else {
-            return `${num}`
+            return `${num}`;
+        }
+    }
+    showThreeDigitNumber(num) {
+        if (num < 10) {
+            return `00${num}`;
+        } else if (num < 100) {
+            return `0${num}`;
+        } else {
+            return `${num}`;
         }
     }
     getBoardElementSize() {

@@ -173,7 +173,7 @@ body {
   background-image: url("../assets/images/flag.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 70% 70%;
+  background-size: 60% 60%;
 }
 .cell_1mine {
   color: #240080;
@@ -227,18 +227,18 @@ body {
     font-size: 4em;
   }
 }
-.header__steps, .header__stopwatch {
+.header__steps, .header__stopwatch, .header__flags-counter {
   font-size: 3em;
   color: darkred;
   border-radius: 0.5em;
 }
 @media screen and (max-width: 912px) {
-  .header__steps, .header__stopwatch {
+  .header__steps, .header__stopwatch, .header__flags-counter {
     font-size: 4em;
   }
 }
 @media screen and (max-width: 414px) {
-  .header__steps, .header__stopwatch {
+  .header__steps, .header__stopwatch, .header__flags-counter {
     font-size: 3.2em;
   }
 }
