@@ -1,7 +1,7 @@
 function initialize() {
     let rowCount = 10;
     let minesCount = 10;
-    let modalOverlay = showModal( localStorage.getItem("prevResults") || []);
+    let modalOverlay = showModal( localStorage.getItem("prevResults") || "");
 
     const boardSizeSelect = document.getElementById("board-size-select");
     boardSizeSelect.addEventListener('change', () => {
