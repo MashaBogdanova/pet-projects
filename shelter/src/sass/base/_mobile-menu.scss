@@ -1,0 +1,93 @@
+@import "../abstract/constants";
+@import "../abstract/mixins";
+@import "../abstract/placeholders";
+
+.mobile-menu-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  height: 100%;
+
+  background: $color-modal;
+}
+
+.mobile-menu__content {
+  position: relative;
+  top: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 320px;
+  height: 100%;
+
+  background: $color-dark-3xl;
+
+  animation-name: showMenu;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+}
+
+.close-hamburger {
+  display: flex;
+  align-self: end;
+  flex-direction: column;
+  gap: 8px;
+
+  width: 30px;
+  height: 22px;
+  margin: 45px 20px;
+
+  animation-name: rotateBurger;
+  animation-duration: 300ms;
+  animation-fill-mode: forwards;
+}
+
+.mobile-menu__navigation {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: 135px;
+
+  li {
+    list-style-type: none;
+  }
+
+  p {
+    @extend %paragraph-font;
+    @include font(3.2rem, 160%, $spacing: normal);
+    color: $color-dark-s;
+  }
+}
+
+.mobile-menu-hidden {
+  display: none;
+}
+
+.mobile-menu-visible {
+  display: flex;
+}
+
+@keyframes showMenu {
+  0% {
+    right: -350px;
+  }
+  100% {
+    right: 0;
+  }
+}
+
+@keyframes rotateBurger {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}

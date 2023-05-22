@@ -1,3 +1,5 @@
+.idea/
+
 # Logs
 logs
 *.log
@@ -78,9 +80,6 @@ typings/
 # Next.js build output
 .next
 
-# Nuxt.js build / generate output
-.nuxt
-dist
 
 # Gatsby files
 .cache/
