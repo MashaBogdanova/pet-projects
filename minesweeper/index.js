@@ -1,7 +1,7 @@
 function initialize() {
     let rowCount = 10;
     let minesCount = 10;
-    let modalOverlay = showModal( localStorage.getItem("prevResults") || "");
+    let modalOverlay = showModal(localStorage.getItem("prevResults") || "");
 
     const boardSizeSelect = document.getElementById("board-size-select");
     boardSizeSelect.addEventListener('change', () => {
@@ -60,6 +60,7 @@ class Board {
         boardElement.setAttribute("style", `width: ${boardSize}vw; height: ${boardSize}vw;`);
         return boardElement;
     }
+
     createBoard() {
         let board = [];
         for (let i = 0; i < this.rowCount; i++) {
@@ -71,6 +72,7 @@ class Board {
         }
         return board;
     }
+
     createHeaderElement() {
         const headerElement = document.createElement("header");
         headerElement.classList.add("header");
@@ -82,7 +84,7 @@ class Board {
         // Sound
         const soundElement = createElement("article", ["header__sound"], headerElement);
         soundElement.addEventListener("click", () => {
-          this.rerenderSoundElement(soundElement);
+            this.rerenderSoundElement(soundElement);
         })
 
         // Steps counter
@@ -118,57 +120,68 @@ class Board {
                 : this.board[rowIndex][colIndex].mine = true;
         }
     }
+
     rerenderStepsCounter() {
         this.stepsCounter += 1;
         document.querySelector(".header__steps").innerText = this.showThreeDigitNumber(this.stepsCounter);
     }
+
     rerenderFlagsCounter() {
         this.flaggedCells -= 1;
         document.querySelector(".header__flags-counter").innerText = this.showTwoDigitNumber(this.flaggedCells);
     }
+
     rerenderSoundElement(soundElement) {
         this.soundToggle = !this.soundToggle;
         soundElement.classList.toggle("header__sound_off");
     }
+
     startStopwatch() {
         this.stopwatchInterval = setInterval(() => {
             this.secondsCounter += 1;
             document.querySelector(".header__stopwatch").innerText = this.showThreeDigitNumber(this.secondsCounter);
         }, 1000);
     }
+
     stopStopwatch() {
         clearInterval(this.stopwatchInterval);
     }
+
     checkClickedCell(e) {
-        const row = Number(e.target.id.split("-")[0]);
-        const column = Number(e.target.id.split("-")[1]);
-        const chosenCell = this.board[row][column];
-
-        if (this.stepsCounter === 0) {
-            this.startStopwatch();
-            this.localizeMines(row, column);
-        }
-
-        if (chosenCell.mine) {
-            this.loose = true;
-            chosenCell.opened = true;
-            this.openedCellsCount += 1;
-
-            chosenCell.cellElement.classList.add("cell_mined");
-            addSoundEffect("./assets/sounds/explosion.mp3", this.soundToggle);
-
-            setTimeout(() => {
-                this.endTheGame(false);
-            }, 1000);
+        if (e.target.matches(".board")) {
+            console.warn("Press the cell");
         } else {
-            this.openAndCheckNeighbours(row, column, chosenCell);
-            addSoundEffect("./assets/sounds/open-cell.mp3", this.soundToggle);
+            const row = Number(e.target.id.split("-")[0]);
+            const column = Number(e.target.id.split("-")[1]);
+            const chosenCell = this.board[row][column];
+
+            if (this.stepsCounter === 0) {
+                this.startStopwatch();
+                this.localizeMines(row, column);
+            }
+
+            if (chosenCell.mine) {
+                this.loose = true;
+                chosenCell.opened = true;
+                this.openedCellsCount += 1;
+
+                chosenCell.cellElement.classList.add("cell_mined");
+                addSoundEffect("./assets/sounds/explosion.mp3", this.soundToggle);
+                setTimeout(() => {
+                    this.endTheGame(false);
+                }, 1000);
+
+            } else {
+                this.openAndCheckNeighbours(row, column, chosenCell);
+                addSoundEffect("./assets/sounds/open-cell.mp3", this.soundToggle);
+            }
+            this.rerenderStepsCounter();
+            this.openedCellsCount === Math.pow(this.rowCount, 2) - this.minesCount
+            && this.loose === false
+            && this.endTheGame(true);
         }
-        this.rerenderStepsCounter();
-        this.openedCellsCount === Math.pow(this.rowCount, 2) - this.minesCount
-        && this.loose === false
-        && this.endTheGame(true);
     }
+
     openAndCheckNeighbours(row, column, chosenCell) {
         chosenCell.cellElement.classList.add("cell_opened");
         chosenCell.opened = true;
@@ -255,7 +268,7 @@ class Board {
             addSoundEffect("./assets/sounds/win.mp3", this.soundToggle);
         } else {
             const prevResults = this.updatePrevResults("You lose");
-            showModal(prevResults,false, "GAME OVER!", "Try again");
+            showModal(prevResults, false, "GAME OVER!", "Try again");
             addSoundEffect("./assets/sounds/game-over.mp3", this.soundToggle);
         }
 
@@ -377,6 +390,7 @@ function showModal(prevResults, start = true, title = "Welcome to minesweeper!",
 
     return modalOverlay;
 }
+
 function createElement(elemType, styles, parent, text, value) {
     const elem = document.createElement(elemType);
     elem.classList.add(...styles);
@@ -387,6 +401,7 @@ function createElement(elemType, styles, parent, text, value) {
     value && elem.setAttribute("value", value);
     return elem;
 }
+
 function addSoundEffect(path, soundToggle) {
     if (soundToggle) {
         const audio = new Audio(path);
