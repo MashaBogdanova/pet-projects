@@ -2,6 +2,7 @@ function initialize() {
     let rowCount = 10;
     let minesCount = 10;
     let modalOverlay = showModal( localStorage.getItem("prevResults") || []);
+
     const boardSizeSelect = document.getElementById("board-size-select");
     boardSizeSelect.addEventListener('change', () => {
         rowCount = Number(boardSizeSelect.value);
@@ -57,7 +58,6 @@ class Board {
         boardElement.setAttribute("style", `width: ${boardSize}vw; height: ${boardSize}vw;`);
         return boardElement;
     }
-
     createBoard() {
         let board = [];
         for (let i = 0; i < this.rowCount; i++) {
@@ -69,7 +69,6 @@ class Board {
         }
         return board;
     }
-
     createHeaderElement() {
         const headerElement = document.createElement("header");
         headerElement.classList.add("header");
@@ -104,23 +103,19 @@ class Board {
                 : this.board[rowIndex][colIndex].mine = true;
         }
     }
-
     rerenderStepsCounter() {
         this.stepsCounter += 1;
         document.querySelector(".header__steps").innerText = this.showCorrectNumber(this.stepsCounter);
     }
-
     startStopwatch() {
         this.stopwatchInterval = setInterval(() => {
             this.secondsCounter += 1;
             document.querySelector(".header__stopwatch").innerText = this.showCorrectNumber(this.secondsCounter);
         }, 1000);
     }
-
     stopStopwatch() {
         clearInterval(this.stopwatchInterval);
     }
-
     checkClickedCell(e) {
         const row = Number(e.target.id.split("-")[0]);
         const column = Number(e.target.id.split("-")[1]);
@@ -151,7 +146,6 @@ class Board {
         && this.loose === false
         && this.endTheGame(true);
     }
-
     openAndCheckNeighbours(row, column, chosenCell) {
         chosenCell.cellElement.classList.add("cell_opened");
         chosenCell.opened = true;
@@ -183,7 +177,6 @@ class Board {
             }
         }
     }
-
     countMinedNeighbours(row, column) {
         let counter = 0;
 
@@ -198,7 +191,6 @@ class Board {
         }
         return counter;
     }
-
     checkNeighbours(row, column) {
         for (const direction of this.closestCellsDirections) {
             const rowNumber = row + direction[0];
@@ -210,7 +202,6 @@ class Board {
             }
         }
     }
-
     flagClickedCell = e => {
         const row = e.target.id.split("-")[0];
         const column = e.target.id.split("-")[1];
@@ -248,7 +239,6 @@ class Board {
             initialize();
         });
     }
-
     updatePrevResults(result) {
         let prevResults;
         if (localStorage.length === 0) {
@@ -277,11 +267,10 @@ class Board {
             return `${num}`
         }
     }
-
     getBoardElementSize() {
         let boardSize;
         if (screen.width > 912) {
-            boardSize = this.rowCount === 10 ? 40 : this.rowCount === 15 ? 45 : 75;
+            boardSize = this.rowCount === 10 ? 30 : this.rowCount === 15 ? 45 : 75;
         } else if (screen.width > 414) {
             boardSize = this.rowCount === 10 ? 75 : 95;
         } else {
@@ -336,7 +325,6 @@ function showModal(prevResults, start = true, title = "Welcome to minesweeper!",
 
         // Create previous results element
         prevResults = prevResults.split(",").reverse();
-        console.log(prevResults)
 
         const prevResultsElement = createElement("select", ["select", "select_prev-results"], welcomeModal);
         prevResultsElement.setAttribute("id", "prev-results");
@@ -355,7 +343,6 @@ function showModal(prevResults, start = true, title = "Welcome to minesweeper!",
 
     return modalOverlay;
 }
-
 function createElement(elemType, styles, parent, text, value) {
     const elem = document.createElement(elemType);
     elem.classList.add(...styles);
@@ -366,7 +353,6 @@ function createElement(elemType, styles, parent, text, value) {
     value && elem.setAttribute("value", value);
     return elem;
 }
-
 function addSoundEffect(path) {
     const audio = new Audio(path);
     audio.play();
