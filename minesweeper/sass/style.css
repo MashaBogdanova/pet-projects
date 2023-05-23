@@ -163,6 +163,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: Neon, sans-serif;
+  font-size: 1.1em;
+  font-weight: bold;
   background-color: coral;
   border: none;
   border-radius: 50%;

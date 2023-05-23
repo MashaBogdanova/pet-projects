@@ -46,12 +46,10 @@ class Board {
             [1, 0],
             [1, 1]
         ];
-        this.boardElement.addEventListener("click", this.checkClickedCell.bind(this));
-        this.boardElement.addEventListener("contextmenu", (e) => {
-            e.preventDefault();
-            this.flagClickedCell(e);
-            addSoundEffect("./assets/sounds/add-flag.mp3", this.soundToggle);
-        });
+        this.touchStartTime = null;
+        this.touchEndTime = null;
+        this.screenWidth = screen.width;
+        this.addEventListeners();
     }
 
     createBoardElement() {
@@ -107,6 +105,20 @@ class Board {
         return headerElement;
     }
 
+    addEventListeners() {
+        if (this.screenWidth >= 1024) {
+            this.boardElement.addEventListener("contextmenu", (e) => {
+                e.preventDefault();
+                this.flagClickedCell(e);
+                addSoundEffect("./assets/sounds/add-flag.mp3", this.soundToggle);
+            });
+        } else {
+            this.boardElement.addEventListener("touchstart", this.setStartTime.bind(this));
+            this.boardElement.addEventListener("touchend", this.setEndTime.bind(this));
+        }
+        this.boardElement.addEventListener("click", this.checkClickedCell.bind(this));
+    }
+
     localizeMines(firstClickRow, firstClickCol) {
         for (let i = 0; i < this.minesCount; i++) {
             const randomNumber = Math.floor(Math.random() * (this.rowCount * this.rowCount));
@@ -151,34 +163,43 @@ class Board {
         if (e.target.matches(".board")) {
             console.warn("Press the cell");
         } else {
-            const row = Number(e.target.id.split("-")[0]);
-            const column = Number(e.target.id.split("-")[1]);
-            const chosenCell = this.board[row][column];
-
-            if (this.stepsCounter === 0) {
-                this.startStopwatch();
-                this.localizeMines(row, column);
-            }
-
-            if (chosenCell.mine) {
-                this.loose = true;
-                chosenCell.opened = true;
-                this.openedCellsCount += 1;
-
-                chosenCell.cellElement.classList.add("cell_mined");
-                addSoundEffect("./assets/sounds/explosion.mp3", this.soundToggle);
-                setTimeout(() => {
-                    this.endTheGame(false);
-                }, 1000);
-
+            if (this.touchEndTime - this.touchStartTime >= 500) {
+                this.flagClickedCell(e);
             } else {
-                this.openAndCheckNeighbours(row, column, chosenCell);
-                addSoundEffect("./assets/sounds/open-cell.mp3", this.soundToggle);
+                const row = Number(e.target.id.split("-")[0]);
+                const column = Number(e.target.id.split("-")[1]);
+                const chosenCell = this.board[row][column];
+
+                if (this.stepsCounter === 0) {
+                    this.startStopwatch();
+                    this.localizeMines(row, column);
+                }
+
+                if (chosenCell.mine) {
+                    this.loose = true;
+                    chosenCell.opened = true;
+                    this.openedCellsCount += 1;
+
+                    chosenCell.cellElement.classList.add("cell_mined");
+                    addSoundEffect("./assets/sounds/explosion.mp3", this.soundToggle);
+                    const cells = this.boardElement.children;
+                    for (const cell of cells) {
+                        cell.setAttribute("disabled", "true");
+                    }
+                    setTimeout(() => {
+                        this.endTheGame(false);
+                    }, 1000);
+
+                } else {
+                    this.openAndCheckNeighbours(row, column, chosenCell);
+                    addSoundEffect("./assets/sounds/open-cell.mp3", this.soundToggle);
+                }
+                this.rerenderStepsCounter();
+                this.openedCellsCount === Math.pow(this.rowCount, 2) - this.minesCount
+                && this.loose === false
+                && this.endTheGame(true);
             }
-            this.rerenderStepsCounter();
-            this.openedCellsCount === Math.pow(this.rowCount, 2) - this.minesCount
-            && this.loose === false
-            && this.endTheGame(true);
+
         }
     }
 
@@ -213,6 +234,7 @@ class Board {
             }
         }
     }
+
     countMinedNeighbours(row, column) {
         let counter = 0;
 
@@ -227,6 +249,7 @@ class Board {
         }
         return counter;
     }
+
     checkNeighbours(row, column) {
         for (const direction of this.closestCellsDirections) {
             const rowNumber = row + direction[0];
@@ -238,6 +261,7 @@ class Board {
             }
         }
     }
+
     flagClickedCell = e => {
         const row = e.target.id.split("-")[0];
         const column = e.target.id.split("-")[1];
@@ -253,6 +277,14 @@ class Board {
             chosenCell.cellElement.classList.add("cell_flagged");
             chosenCell.flagged = true;
         }
+    }
+
+    setStartTime(e) {
+        this.touchStartTime = e.timeStamp;
+    }
+
+    setEndTime(e) {
+        this.touchEndTime = e.timeStamp;
     }
 
     endTheGame(win) {
@@ -277,6 +309,7 @@ class Board {
             initialize();
         });
     }
+
     updatePrevResults(result) {
         let prevResults;
         if (localStorage.getItem("prevResults") === null) {
@@ -305,6 +338,7 @@ class Board {
             return `${num}`;
         }
     }
+
     showThreeDigitNumber(num) {
         if (num < 10) {
             return `00${num}`;
@@ -314,6 +348,7 @@ class Board {
             return `${num}`;
         }
     }
+
     getBoardElementSize() {
         let boardSize;
         if (screen.width > 912) {
@@ -339,7 +374,7 @@ class Cell {
     }
 
     createCell() {
-        const cell = createElement("div", ["cell"], this.board.boardElement);
+        const cell = createElement("button", ["cell"], this.board.boardElement);
         const cellSize = 100 / this.board.rowCount;
         cell.setAttribute("style", `flex-basis: ${cellSize}%; height: ${cellSize}%;`);
         cell.setAttribute("id", this.id);
