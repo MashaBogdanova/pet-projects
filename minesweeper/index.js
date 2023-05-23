@@ -164,6 +164,7 @@ class Board {
             console.warn("Press the cell");
         } else {
             if (this.touchEndTime - this.touchStartTime >= 500) {
+                e.preventDefault();
                 this.flagClickedCell(e);
             } else {
                 const row = Number(e.target.id.split("-")[0]);
