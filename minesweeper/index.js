@@ -167,6 +167,10 @@ class Board {
 
                 chosenCell.cellElement.classList.add("cell_mined");
                 addSoundEffect("./assets/sounds/explosion.mp3", this.soundToggle);
+                const cells = this.boardElement.children;
+                for (const cell of cells) {
+                    cell.setAttribute("disabled", "true");
+                }
                 setTimeout(() => {
                     this.endTheGame(false);
                 }, 1000);
@@ -339,7 +343,7 @@ class Cell {
     }
 
     createCell() {
-        const cell = createElement("div", ["cell"], this.board.boardElement);
+        const cell = createElement("button", ["cell"], this.board.boardElement);
         const cellSize = 100 / this.board.rowCount;
         cell.setAttribute("style", `flex-basis: ${cellSize}%; height: ${cellSize}%;`);
         cell.setAttribute("id", this.id);
@@ -390,7 +394,6 @@ function showModal(prevResults, start = true, title = "Welcome to minesweeper!",
 
     return modalOverlay;
 }
-
 function createElement(elemType, styles, parent, text, value) {
     const elem = document.createElement(elemType);
     elem.classList.add(...styles);
@@ -401,7 +404,6 @@ function createElement(elemType, styles, parent, text, value) {
     value && elem.setAttribute("value", value);
     return elem;
 }
-
 function addSoundEffect(path, soundToggle) {
     if (soundToggle) {
         const audio = new Audio(path);
