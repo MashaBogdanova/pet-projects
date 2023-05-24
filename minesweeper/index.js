@@ -167,7 +167,7 @@ class Board {
             if (this.touchEndTime - this.touchStartTime >= 500) {
                 e.preventDefault();
                 this.flagClickedCell(e);
-            } else {
+            } else if (!e.target.matches(".cell_flagged")) {
                 const row = Number(e.target.id.split("-")[0]);
                 const column = Number(e.target.id.split("-")[1]);
                 const chosenCell = this.board[row][column];
@@ -279,6 +279,7 @@ class Board {
             chosenCell.cellElement.classList.add("cell_flagged");
             chosenCell.flagged = true;
         }
+        addSoundEffect("./assets/sounds/flag.mp3", this.soundToggle);
     }
 
     setStartTime(e) {
@@ -385,7 +386,7 @@ class Cell {
     }
 }
 
-function showModal(prevResults, start = true, title = "Welcome to minesweeper!", paragraph = "Chose board size and number of mines") {
+function showModal(prevResults, start = true, title = "Welcome to minesweeper", paragraph = "Choose board size and number of mines") {
     const modalOverlay = createElement("div", ["modal__overlay"], document.body);
     const welcomeModal = createElement("div", ["modal"], modalOverlay);
 
@@ -428,7 +429,6 @@ function showModal(prevResults, start = true, title = "Welcome to minesweeper!",
 
     return modalOverlay;
 }
-
 function createElement(elemType, styles, parent, text, value) {
     const elem = document.createElement(elemType);
     elem.classList.add(...styles);
@@ -439,7 +439,6 @@ function createElement(elemType, styles, parent, text, value) {
     value && elem.setAttribute("value", value);
     return elem;
 }
-
 function addSoundEffect(path, soundToggle) {
     if (soundToggle) {
         const audio = new Audio(path);
