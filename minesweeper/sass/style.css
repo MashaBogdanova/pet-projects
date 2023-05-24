@@ -173,10 +173,12 @@ body {
   flex-wrap: wrap;
   margin: auto;
   user-select: none;
+
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+
 }
 .board_hidden {
   display: none;
@@ -194,13 +196,16 @@ body {
   border-radius: 50%;
   cursor: pointer;
   user-select: none;
+
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+
   transform: scale(0.96);
   transition: all 100ms;
 }
+
 .cell:hover:not(.cell_opened, .cell_mined) {
   background-color: #ff9a6f;
 }

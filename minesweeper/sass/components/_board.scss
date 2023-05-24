@@ -17,6 +17,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   margin: auto;
+  user-select: none;
 
   user-select: none;
   -webkit-touch-callout: none;
