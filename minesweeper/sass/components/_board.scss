@@ -18,6 +18,12 @@ body {
   flex-wrap: wrap;
   margin: auto;
 
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
   &_hidden {
     display: none;
   }
@@ -36,6 +42,13 @@ body {
   border: none;
   border-radius: 50%;
   cursor: pointer;
+
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
   transition: background-color 100ms;
 
   &:hover:not(&_opened, &_mined) {

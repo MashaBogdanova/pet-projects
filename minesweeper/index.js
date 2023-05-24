@@ -56,6 +56,7 @@ class Board {
         const boardElement = createElement("section", ["board"], document.body, "");
         const boardSize = this.getBoardElementSize();
         boardElement.setAttribute("style", `width: ${boardSize}vw; height: ${boardSize}vw;`);
+        boardElement.setAttribute("unselectable", "on");
         return boardElement;
     }
 
@@ -379,6 +380,7 @@ class Cell {
         const cellSize = 100 / this.board.rowCount;
         cell.setAttribute("style", `flex-basis: ${cellSize}%; height: ${cellSize}%;`);
         cell.setAttribute("id", this.id);
+        cell.setAttribute("unselectable", "on");
         return cell;
     }
 }
