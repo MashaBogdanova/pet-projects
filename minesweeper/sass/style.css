@@ -198,13 +198,16 @@ body {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  transition: background-color 100ms;
+  transform: scale(0.96);
+  transition: all 100ms;
 }
 .cell:hover:not(.cell_opened, .cell_mined) {
   background-color: #ff9a6f;
 }
 .cell_opened {
   background-color: #ea9f86;
+  animation-name: scaleCell;
+  animation-duration: 190ms;
 }
 .cell_mined {
   background-color: transparent;

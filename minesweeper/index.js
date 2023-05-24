@@ -97,6 +97,7 @@ class Board {
             this.headerElement.remove();
             this.stopStopwatch();
             initialize();
+            addSoundEffect("./assets/sounds/show-modal.mp3", this.soundToggle);
         });
 
         // Stopwatch and flags counter
@@ -111,7 +112,6 @@ class Board {
             this.boardElement.addEventListener("contextmenu", (e) => {
                 e.preventDefault();
                 this.flagClickedCell(e);
-                addSoundEffect("./assets/sounds/add-flag.mp3", this.soundToggle);
             });
         } else {
             this.boardElement.addEventListener("touchstart", this.setStartTime.bind(this));
@@ -310,6 +310,7 @@ class Board {
         document.getElementById("start-board-btn").addEventListener("click", () => {
             document.querySelector(".modal__overlay").remove();
             initialize();
+            addSoundEffect("./assets/sounds/show-modal.mp3", this.soundToggle);
         });
     }
 
