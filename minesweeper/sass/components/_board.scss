@@ -50,7 +50,8 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
 
-  transition: background-color 100ms;
+  transform: scale(0.96);
+  transition: all 100ms;
 
   &:hover:not(&_opened, &_mined) {
     background-color: $color-cell-hovered;
@@ -58,6 +59,8 @@ body {
 
   &_opened {
     background-color: $color-secondary-light;
+    animation-name: scaleCell;
+    animation-duration: 190ms;
   }
 
   &_mined {
@@ -73,30 +76,48 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 60% 60%;
+
+    animation-name: scaleCell;
+    animation-duration: 190ms;
   }
 
   &_1mine {
     color: $color-1mine;
   }
+
   &_2mines {
     color: $color-2mines;
   }
+
   &_3mines {
     color: $color-tertiary;
   }
+
   &_4mines {
     color: $color-background;
   }
+
   &_5mines {
     color: $color-5mines;
   }
+
   &_6mines {
     color: $color-6mines;
   }
+
   &_7mines {
     color: $color-7mines;
   }
+
   &_8mines {
     color: $color-8mines;
   }
+
+  @include media-desktop {
+    &:hover:not(&_opened, &_mined) {
+      background-color: $color-cell-hovered;
+    }
+  }
 }
+
+@include animation-scale;

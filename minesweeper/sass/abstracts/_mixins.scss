@@ -1,5 +1,11 @@
 @import "constants";
 
+@mixin media-desktop {
+  @media screen and (min-width: $desktop-screen-width) {
+    @content;
+  }
+}
+
 @mixin media-tablet {
   @media screen and (max-width: $tablet-screen-width) {
     @content;
@@ -9,5 +15,19 @@
 @mixin media-mobile {
   @media screen and (max-width: $mobile-screen-width) {
     @content;
+  }
+}
+
+@mixin animation-scale {
+  @keyframes scaleCell {
+    0% {
+      transform: none;
+    }
+    50% {
+      transform: scale(0.96);
+    }
+    100% {
+      transform: none;
+    }
   }
 }

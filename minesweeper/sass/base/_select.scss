@@ -3,6 +3,7 @@
 
 .select {
   padding: 0.3em;
+
   font-family: Neon, sans-serif;
   font-size: 1em;
   color: $color-tertiary;
@@ -12,26 +13,37 @@
   border-radius: 1em;
   transition: background-color 300ms;
 
-  &:hover {
-    cursor: pointer;
-    background-color: $color-secondary-dark;
-  }
-
   &_prev-results {
     width: 65%;
     color: $color-primary;
     text-align: center;
     background-color: transparent;
     border: 2px dashed $color-primary-dark;
-    &:hover {
-      background-color: $color-primary-dark;
-    }
     @include media-mobile {
       width: 80%;
+      background-color: $color-primary-dark;
+    }
+    @include media-tablet {
+      background-color: $color-primary-dark;
+    }
+    @include media-desktop {
+      &:hover {
+        background-color: $color-primary-dark;
+      }
     }
   }
 
+  @include media-mobile {
+    background-color: $color-secondary-dark;
+  }
   @include media-tablet {
     font-size: 1.2em;
+    background-color: $color-secondary-dark;
+  }
+  @include media-desktop {
+    &:hover {
+      cursor: pointer;
+      background-color: $color-secondary-dark;
+    }
   }
 }
