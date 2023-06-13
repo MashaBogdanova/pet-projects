@@ -19,7 +19,7 @@ export class Loader {
             console.error('No callback for GET response');
         }
     ): void {
-        this.load('GET', endpoint, callback, options);
+        this.load<T>('GET', endpoint, callback, options);
     }
 
     private errorHandler(res: Response) {
@@ -45,16 +45,16 @@ export class Loader {
         return url.slice(0, -1);
     }
 
-    private load (
+    private load<T> (
       method: string,
       endpoint: string,
-      callback: (data: INewsRes) => void,
+      callback: (data: T) => void,
       options: ILoaderOptions = {}
     ): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then((res: Response) => this.errorHandler(res))
-            .then((res: Response) => res.json() as Promise<INewsRes>)
-            .then((data: INewsRes) => callback(data))
+            .then((res: Response) => res.json() as Promise<T>)
+            .then((data: T) => callback(data))
             .catch((err: Error) => console.error(err));
     }
 }

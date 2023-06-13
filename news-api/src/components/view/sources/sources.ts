@@ -1,21 +1,23 @@
 import './sources.css';
-import { ISource } from "../../app/types";
+import {ISource} from "../../app/types";
 
 export class Sources {
     draw(data: Array<ISource>): void {
         const fragment: DocumentFragment = document.createDocumentFragment();
-        const sourceItemTemp: Element | null = document.querySelector('#sourceItemTemp');
+        const sourceItemTemp: HTMLTemplateElement | null = document.querySelector('#sourceItemTemp');
 
-        // todo: что такое content?
         data.forEach((item) => {
-            const sourceClone = sourceItemTemp.content.cloneNode(true);
+            if (sourceItemTemp) {
+                const sourceClone: Element = sourceItemTemp.content.cloneNode(true) as Element;
 
-            sourceClone.querySelector('.source__item-name').textContent = item.name;
-            sourceClone.querySelector('.source__item').setAttribute('data-source-id', item.id);
+                sourceClone.querySelector('.source__item-name')!.textContent = item.name;
+                sourceClone.querySelector('.source__item')!.setAttribute('data-source-id', item.id);
 
-            fragment.append(sourceClone);
+                fragment.append(sourceClone);
+            }
         });
 
-        document.querySelector('.sources').append(fragment);
+        const sourcesElem: HTMLElement | null = document.querySelector('.sources');
+        sourcesElem && sourcesElem.append(fragment);
     }
 }
