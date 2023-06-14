@@ -1,5 +1,3 @@
-import { INewsRes } from "../app/types";
-
 interface ILoaderOptions {
     [key: string]: string;
 }
@@ -14,7 +12,7 @@ export class Loader {
     }
 
     getResp<T>(
-        {endpoint, options = {}}: {endpoint: string, options?: ILoaderOptions},
+        { endpoint, options = {} }: { endpoint: string, options?: ILoaderOptions },
         callback: (data: T) => void = () => {
             console.error('No callback for GET response');
         }
@@ -31,10 +29,7 @@ export class Loader {
         return res;
     }
 
-    private makeUrl(
-      options: ILoaderOptions,
-      endpoint: string
-    ): string {
+    private makeUrl(options: ILoaderOptions, endpoint: string): string {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -45,12 +40,7 @@ export class Loader {
         return url.slice(0, -1);
     }
 
-    private load<T> (
-      method: string,
-      endpoint: string,
-      callback: (data: T) => void,
-      options: ILoaderOptions = {}
-    ): void {
+    private load<T>(method: string, endpoint: string, callback: (data: T) => void, options: ILoaderOptions = {}): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then((res: Response) => this.errorHandler(res))
             .then((res: Response) => res.json() as Promise<T>)
