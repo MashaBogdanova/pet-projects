@@ -11,7 +11,7 @@ module.exports = {
         static: {
             directory: path.resolve(__dirname, './css-selectors/dist')
         },
-        port: 8080,
+        port: 8083,
         hot: true,
         open: true,
     },
@@ -21,5 +21,17 @@ module.exports = {
             filename: 'index.html',
         }),
     ],
-    mode: 'development'
+    mode: 'development',
+    module: {
+        rules: [
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
+                ],
+            },
+        ]
+    }
 };
