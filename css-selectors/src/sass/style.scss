@@ -1,5 +1,45 @@
-@import "abstract/constants";
+@import 'abstract/constants';
+@import 'base/fonts';
 
 body {
   background-color: $color-background;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas:
+  'header nav'
+  'main nav'
+  'footer nav';
+}
+
+.header {
+  grid-area: header;
+  &__title {
+    font-family: Exo2, Lato, sans-serif;
+    text-align: center;
+    color: $color-primary;
+  }
+}
+
+.main {
+  display: grid;
+  grid-area: main;
+}
+
+.instruction {
+  font-family: Exo2, Lato, sans-serif;
+  text-align: center;
+  color: $color-primary;
+}
+
+.board {
+
+}
+
+.nav {
+  grid-area: nav;
+}
+
+.footer {
+  grid-area: footer;
 }

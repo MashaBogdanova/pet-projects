@@ -1,5 +1,49 @@
+@font-face {
+  font-family: "Exo2";
+  src: url("../assets/fonts/Exo2-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("../assets/fonts/Lato-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
 body {
-  background-color: #1e1d21;
+  background-color: #2e2a23;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: "header nav" "main nav" "footer nav";
+}
+
+.header {
+  grid-area: header;
+}
+.header__title {
+  font-family: Exo2, Lato, sans-serif;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.main {
+  display: grid;
+  grid-area: main;
+}
+
+.instruction {
+  font-family: Exo2, Lato, sans-serif;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.nav {
+  grid-area: nav;
+}
+
+.footer {
+  grid-area: footer;
 }
 
 /*# sourceMappingURL=style.css.map */
