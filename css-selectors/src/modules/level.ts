@@ -20,9 +20,9 @@ export class Level {
         this.levelHint = params.levelHint;
         this.increaseLevel = increaseLevel;
         this.decreaseLevel = decreaseLevel;
-        this.rerenderLevel();
     }
-    private rerenderLevel() {
+    rerenderLevel() {
+        debugger
         // Header
         createElement({tag: 'header', styles: ['header'], parent: '.body'});
         createElement({

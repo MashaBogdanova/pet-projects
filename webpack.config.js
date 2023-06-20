@@ -11,7 +11,7 @@ module.exports = {
         static: {
             directory: path.resolve(__dirname, './css-selectors/dist')
         },
-        port: 8083,
+        port: 8080,
         hot: true,
         open: true,
     },

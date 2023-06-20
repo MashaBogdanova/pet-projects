@@ -37,7 +37,8 @@ const levelsData: Array<ILevelParams> = [
 function init(): void {
     let currentLevel: levelCountType = 0;
     const params: ILevelParams = levelsData[currentLevel];
-    new Level(params, increaseLevel, decreaseLevel);
+    const level = new Level(params, increaseLevel, decreaseLevel);
+    level.rerenderLevel();
 
     function increaseLevel(): void {
         currentLevel += 1;
