@@ -10,16 +10,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./css-selectors/src/index.ts":
-/*!************************************!*\
-  !*** ./css-selectors/src/index.ts ***!
-  \************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sass_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sass/style.scss */ \"./css-selectors/src/sass/style.scss\");\n\n\nconsole.log(\"Hi!\")\nconsole.log(\"Hi!\")\n\n\n//# sourceURL=webpack:///./css-selectors/src/index.ts?");
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./css-selectors/src/sass/style.scss":
 /*!************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./css-selectors/src/sass/style.scss ***!
@@ -117,6 +107,26 @@ eval("\n\n/* istanbul ignore next  */\nfunction apply(styleElement, options, obj
 /***/ ((module) => {
 
 eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElement) {\n  if (styleElement.styleSheet) {\n    styleElement.styleSheet.cssText = css;\n  } else {\n    while (styleElement.firstChild) {\n      styleElement.removeChild(styleElement.firstChild);\n    }\n    styleElement.appendChild(document.createTextNode(css));\n  }\n}\nmodule.exports = styleTagTransform;\n\n//# sourceURL=webpack:///./node_modules/style-loader/dist/runtime/styleTagTransform.js?");
+
+/***/ }),
+
+/***/ "./css-selectors/src/index.ts":
+/*!************************************!*\
+  !*** ./css-selectors/src/index.ts ***!
+  \************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n__webpack_require__(/*! ./sass/style.scss */ \"./css-selectors/src/sass/style.scss\");\nconst element_creator_1 = __webpack_require__(/*! ./utils/element-creator */ \"./css-selectors/src/utils/element-creator.ts\");\nfunction init() {\n    new element_creator_1.ElementCreator({ tag: 'header', styles: ['header'], parent: '.body' });\n    new element_creator_1.ElementCreator({ tag: 'h1', styles: ['header__title'], parent: '.header', innerText: 'Welcome to RSS CSS Selectors!' });\n    new element_creator_1.ElementCreator({ tag: 'main', styles: ['main'], parent: '.body' });\n    new element_creator_1.ElementCreator({ tag: 'h2', styles: ['instruction'], parent: '.main', innerText: 'Hi! Replace me with normal instruction!' });\n    new element_creator_1.ElementCreator({ tag: 'section', styles: ['board'], parent: '.main' });\n    new element_creator_1.ElementCreator({ tag: 'section', styles: ['editor-wrapper'], parent: '.main' });\n    new element_creator_1.ElementCreator({ tag: 'article', styles: ['editor', 'editor_css'], parent: '.editor-wrapper' });\n    new element_creator_1.ElementCreator({ tag: 'article', styles: ['editor', 'editor_html'], parent: '.editor-wrapper' });\n    new element_creator_1.ElementCreator({ tag: 'nav', styles: ['nav', 'rules'], parent: '.body' });\n    new element_creator_1.ElementCreator({ tag: 'nav', styles: ['nav', 'levels', 'hidden'], parent: '.body' });\n    new element_creator_1.ElementCreator({ tag: 'footer', styles: ['footer'], parent: '.body' });\n}\ninit();\n\n\n//# sourceURL=webpack:///./css-selectors/src/index.ts?");
+
+/***/ }),
+
+/***/ "./css-selectors/src/utils/element-creator.ts":
+/*!****************************************************!*\
+  !*** ./css-selectors/src/utils/element-creator.ts ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.ElementCreator = void 0;\nclass ElementCreator {\n    constructor(param) {\n        this.elem = null;\n        this.createElem(param);\n    }\n    createElem(param) {\n        this.elem = document.createElement(param.tag);\n        this.elem.classList.add(...param.styles);\n        if (param.innerText) {\n            this.elem.innerText = param.innerText;\n        }\n        const parentElem = document.querySelector(param.parent);\n        parentElem && parentElem.append(this.elem);\n        return this.elem;\n    }\n}\nexports.ElementCreator = ElementCreator;\n\n\n//# sourceURL=webpack:///./css-selectors/src/utils/element-creator.ts?");
 
 /***/ })
 
