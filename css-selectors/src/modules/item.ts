@@ -1,9 +1,4 @@
-interface IItemParams {
-    name: string;
-    svg: string;
-    styles: Array<string>;
-    children: Array<Item>;
-}
+import {IItemParams} from "../types/types";
 
 export class Item {
     name: string;

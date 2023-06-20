@@ -1,8 +1,12 @@
 @import 'abstract/constants';
 @import 'base/fonts';
 
+html, * {
+  margin: 0;
+}
+
 body {
-  background-color: $color-background;
+  background-color: $color-background-primary;
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-template-columns: 2fr 1fr;
@@ -38,6 +42,18 @@ body {
 
 .nav {
   grid-area: nav;
+  height: 100vh;
+  background-color: $color-background-secondary;
+}
+
+.levels {
+  display: flex;
+  &__arrow {
+    border: none;
+    background-color: transparent;
+    color: $color-primary;
+    cursor: pointer;
+  }
 }
 
 .footer {
