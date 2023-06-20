@@ -1,5 +1,6 @@
 import './sass/style.scss';
 import {ElementCreator} from './utils/element-creator';
+import {Game} from "./modules/game";
 
 function init(): void {
     new ElementCreator({tag: 'header', styles: ['header'], parent: '.body'});
@@ -13,6 +14,8 @@ function init(): void {
     new ElementCreator({tag: 'nav', styles: ['nav', 'rules'], parent: '.body'});
     new ElementCreator({tag: 'nav', styles: ['nav', 'levels', 'hidden'], parent: '.body'});
     new ElementCreator({tag: 'footer', styles: ['footer'], parent: '.body'});
+
+    new Game(1);
 }
 
 init();
