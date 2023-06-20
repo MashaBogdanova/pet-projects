@@ -1,9 +1,8 @@
 import './sass/style.scss';
-import { ElementCreator } from './utils/element-creator';
-import { Game } from "./modules/game";
-import { Level } from "./modules/level";
+import {ILevelParams, levelCountType} from "./types/types";
+import {Level} from "./modules/level";
 
-const levels: Array<Level> = [
+const levelsData: Array<ILevelParams> = [
     {
         levelNumber: 0,
         levelHeader: 'Select the plates',
@@ -14,7 +13,14 @@ const levels: Array<Level> = [
             exampleHeader: 'Examples',
             exampleText: 'div selects all div elements.'
         },
-        itemsSet: 'asf',
+        itemsSet: [
+            {
+                name: '',
+                svg: '',
+                styles: [''],
+                children: []
+            }
+        ],
         itemsStyle: ['asdf'],
         levelHint: {
             header: 'No worries, you\'ve got this!',
@@ -29,29 +35,16 @@ const levels: Array<Level> = [
 ]
 
 function init(): void {
-    new ElementCreator({ tag: 'header', styles: ['header'], parent: '.body' });
-    new ElementCreator({
-        tag: 'h1',
-        styles: ['header__title'],
-        parent: '.header',
-        innerText: 'Welcome to RSS CSS Selectors!'
-    });
-    new ElementCreator({tag: 'main', styles: ['main'], parent: '.body'});
-    new ElementCreator({
-        tag: 'h2',
-        styles: ['instruction'],
-        parent: '.main',
-        innerText: 'Hi! Replace me with normal instruction!'
-    });
-    new ElementCreator({tag: 'section', styles: ['board'], parent: '.main'});
-    new ElementCreator({tag: 'section', styles: ['editor-wrapper'], parent: '.main'});
-    new ElementCreator({tag: 'article', styles: ['editor', 'editor_css'], parent: '.editor-wrapper'});
-    new ElementCreator({tag: 'article', styles: ['editor', 'editor_html'], parent: '.editor-wrapper'});
-    new ElementCreator({tag: 'nav', styles: ['nav', 'rules'], parent: '.body'});
-    new ElementCreator({tag: 'nav', styles: ['nav', 'levels', 'hidden'], parent: '.body'});
-    new ElementCreator({tag: 'footer', styles: ['footer'], parent: '.body'});
+    let currentLevel: levelCountType = 0;
+    const params: ILevelParams = levelsData[currentLevel];
+    new Level(params, increaseLevel, decreaseLevel);
 
-    new Game(levels, 0);
+    function increaseLevel(): void {
+        currentLevel += 1;
+    }
+    function decreaseLevel(): void {
+        currentLevel -= 1;
+    }
 }
 
 init();
