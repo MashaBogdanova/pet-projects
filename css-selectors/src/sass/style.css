@@ -24,6 +24,7 @@ body {
 
 .header {
   grid-area: header;
+  padding: 1em;
 }
 .header__title {
   font-family: Exo2, Lato, sans-serif;
@@ -33,6 +34,7 @@ body {
 
 .main {
   display: grid;
+  grid-template-rows: auto 1fr 2fr;
   grid-area: main;
 }
 
@@ -77,6 +79,37 @@ body {
   position: absolute;
   bottom: 50%;
   transform: scaleY(1.5);
+}
+
+.editor-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px dashed coral;
+}
+
+.editor {
+  display: grid;
+  grid-template-areas: "editor-header editor-header" "editor-aside editor-field";
+  grid-template-rows: auto 1fr;
+  grid-template-columns: auto 1fr;
+  width: 50%;
+  height: 100%;
+}
+.editor_css {
+  background-color: #efefef;
+}
+.editor_html {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.editor__header {
+  grid-area: editor-header;
+}
+.editor__aside {
+  grid-area: editor-aside;
+}
+.editor__entry-field {
+  grid-area: editor-field;
 }
 
 .nav {

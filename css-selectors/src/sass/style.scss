@@ -18,6 +18,7 @@ body {
 
 .header {
   grid-area: header;
+  padding: 1em;
 
   &__title {
     font-family: Exo2, Lato, sans-serif;
@@ -28,6 +29,7 @@ body {
 
 .main {
   display: grid;
+  grid-template-rows: auto 1fr 2fr;
   grid-area: main;
 }
 
@@ -45,6 +47,7 @@ body {
   align-items: center;
 
   border: 1px dashed purple;
+
   .plate {
     position: relative;
 
@@ -60,10 +63,12 @@ body {
     box-shadow: 3px 6px 3px rgba(0, 0, 0, 0.3);
 
     transform: perspective(500px) rotateX(45deg);
+
     &_fancy {
       background-image: url('../assets/images/fancy-plate.svg');
     }
   }
+
   .yummy {
     width: 70px;
     height: 70px;
@@ -79,7 +84,41 @@ body {
       transform: scaleY(1.5);
     }
   }
+}
 
+.editor-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border: 1px dashed coral;
+}
+
+.editor {
+  display: grid;
+  grid-template-areas:
+  'editor-header editor-header'
+  'editor-aside editor-field';
+  grid-template-rows: auto 1fr;
+  grid-template-columns: auto 1fr;
+
+  width: 50%;
+  height: 100%;
+  &_css {
+    background-color: $color-background-tertiary;
+  }
+  &_html {
+    background-color: $color-background-secondary;
+  }
+  &__header {
+  grid-area: editor-header;
+  }
+  &__aside {
+    grid-area: editor-aside;
+  }
+  &__entry-field {
+    grid-area: editor-field;
+  }
 }
 
 .nav {

@@ -1,7 +1,7 @@
 interface IElementParam {
     tag: string;
     styles: Array<string>;
-    parent: string;
+    parent?: string;
     innerText?: string;
 }
 
@@ -11,7 +11,9 @@ export function createElement(param: IElementParam) {
     if (param.innerText) {
         element!.innerText = param.innerText;
     }
-    const parentElem = document.querySelector(param.parent);
-    parentElem && parentElem.append(element);
+    if (param.parent) {
+        const parentElem = document.querySelector(param.parent);
+        parentElem && parentElem.append(element);
+    }
     return element;
 }
