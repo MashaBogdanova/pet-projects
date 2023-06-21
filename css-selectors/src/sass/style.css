@@ -5,9 +5,33 @@
   font-style: normal;
 }
 @font-face {
+  font-family: "Exo2";
+  src: url("../assets/fonts/Exo2-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Exo2";
+  src: url("../assets/fonts/Exo2-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
   font-family: "Lato";
   src: url("../assets/fonts/Lato-Regular.ttf") format("truetype");
   font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("../assets/fonts/Lato-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Lato";
+  src: url("../assets/fonts/Lato-Thin.ttf") format("truetype");
+  font-weight: 100;
   font-style: normal;
 }
 html, * {
@@ -20,6 +44,7 @@ body {
   grid-template-columns: 2fr 1fr;
   grid-template-areas: "header nav" "main nav" "footer nav";
   font-family: Exo2, Lato, sans-serif;
+  font-weight: 400;
   color: rgb(100, 99, 99);
   background-color: #2e2a23;
 }
@@ -153,6 +178,9 @@ body {
 }
 .rules__title {
   color: rgb(150, 150, 150);
+}
+.rules__subtitle {
+  font-weight: 100;
 }
 .rules__text {
   font-size: 0.9rem;

@@ -15,6 +15,7 @@ body {
   'footer nav';
 
   font-family: Exo2, Lato, sans-serif;
+  font-weight: 400;
   color: $color-dark-m;
   background-color: $color-primary;
 }
@@ -169,7 +170,7 @@ body {
     color: $color-dark-s;
   }
   &__subtitle {
-
+    font-weight: 100;
   }
   &__text {
     font-size: .9rem;
