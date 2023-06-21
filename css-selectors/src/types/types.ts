@@ -9,10 +9,9 @@ export interface ILevelParams {
     html: string;
 }
 type instructionType = {
-    header: string;
-    subheader: string;
+    title: string;
+    subtitle: string;
     text: string;
-    exampleHeader: string;
     exampleText: string;
 }
 type hintType = {

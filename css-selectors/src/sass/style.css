@@ -15,11 +15,13 @@ html, * {
 }
 
 body {
-  background-color: #2e2a23;
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-template-columns: 2fr 1fr;
   grid-template-areas: "header nav" "main nav" "footer nav";
+  font-family: Exo2, Lato, sans-serif;
+  color: rgb(100, 99, 99);
+  background-color: #2e2a23;
 }
 
 .header {
@@ -27,9 +29,8 @@ body {
   padding: 1em;
 }
 .header__title {
-  font-family: Exo2, Lato, sans-serif;
   text-align: center;
-  color: rgba(255, 255, 255, 0.3);
+  color: #e2534b;
 }
 
 .main {
@@ -39,9 +40,8 @@ body {
 }
 
 .instruction {
-  font-family: Exo2, Lato, sans-serif;
   text-align: center;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgb(100, 99, 99);
 }
 
 .board {
@@ -62,7 +62,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 50%;
-  box-shadow: 3px 6px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 6px 3px #221e18;
   transform: perspective(500px) rotateX(45deg);
 }
 .board .plate_fancy {
@@ -100,7 +100,7 @@ body {
   background-color: #efefef;
 }
 .editor_html {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: #221e18;
 }
 .editor__header {
   grid-area: editor-header;
@@ -114,18 +114,36 @@ body {
 
 .nav {
   grid-area: nav;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.2);
+  height: 100%;
+  padding: 1rem;
+  background-color: #221e18;
 }
 
 .levels {
   display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgb(100, 99, 99);
 }
 .levels__arrow {
-  border: none;
+  font-size: 2rem;
+  color: rgb(100, 99, 99);
   background-color: transparent;
-  color: rgba(255, 255, 255, 0.3);
+  border: none;
   cursor: pointer;
+}
+
+.rules {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+.rules__text {
+  font-size: 0.9rem;
+}
+.rules__example-title {
+  margin-top: 1rem;
 }
 
 .footer {

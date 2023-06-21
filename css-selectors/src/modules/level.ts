@@ -35,7 +35,7 @@ export class Level {
         // Editor
         createElement({tag: 'section', styles: ['editor-wrapper'], parent: '.main'});
         createElement({tag: 'article', styles: ['editor', 'editor_css'], parent: '.editor-wrapper'});
-        this.fillEditor('.editor_css', 'CSS Editor', '{\n/*Styles would go here.*/\n}')
+        this.fillEditor('.editor_css', 'CSS Editor', '{\n  /* Styles would go here. */\n}')
 
         createElement({tag: 'article', styles: ['editor', 'editor_html'], parent: '.editor-wrapper'});
         this.fillEditor('.editor_html', 'HTML Viewer', `${this.html}`)
@@ -61,6 +61,11 @@ export class Level {
 
         // Nav Rules
         createElement({tag: 'section', styles: ['rules'], parent: '.nav'});
+        createElement({tag: 'h3', styles: ['rules__title'], parent: '.rules', innerText: `${this.levelRules.title}`});
+        createElement({tag: 'h4', styles: ['rules__subtitle'], parent: '.rules', innerText: `${this.levelRules.subtitle}`});
+        createElement({tag: 'p', styles: ['rules__text'], parent: '.rules', innerText: `${this.levelRules.text}`});
+        createElement({tag: 'h4', styles: ['rules__example-title'], parent: '.rules', innerText: `Examples`});
+        createElement({tag: 'p', styles: ['rules__example'], parent: '.rules', innerText: `${this.levelRules.exampleText}`});
     }
     private fillEditor(parent: string, headerText: string, entryFieldText: string): void {
         const asideText: string = '1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20';

@@ -6,7 +6,6 @@ html, * {
 }
 
 body {
-  background-color: $color-background-primary;
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-template-columns: 2fr 1fr;
@@ -14,6 +13,10 @@ body {
   'header nav'
   'main nav'
   'footer nav';
+
+  font-family: Exo2, Lato, sans-serif;
+  color: $color-dark-m;
+  background-color: $color-primary;
 }
 
 .header {
@@ -21,9 +24,8 @@ body {
   padding: 1em;
 
   &__title {
-    font-family: Exo2, Lato, sans-serif;
     text-align: center;
-    color: $color-primary;
+    color: $color-secondary;
   }
 }
 
@@ -34,9 +36,8 @@ body {
 }
 
 .instruction {
-  font-family: Exo2, Lato, sans-serif;
   text-align: center;
-  color: $color-primary;
+  color: $color-dark-m;
 }
 
 .board {
@@ -60,7 +61,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 50%;
-    box-shadow: 3px 6px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 3px 6px 3px $color-dark-l;
 
     transform: perspective(500px) rotateX(45deg);
 
@@ -104,18 +105,23 @@ body {
 
   width: 50%;
   height: 100%;
+
   &_css {
-    background-color: $color-background-tertiary;
+    background-color: $color-light-l;
   }
+
   &_html {
-    background-color: $color-background-secondary;
+    background-color: $color-dark-l;
   }
+
   &__header {
-  grid-area: editor-header;
+    grid-area: editor-header;
   }
+
   &__aside {
     grid-area: editor-aside;
   }
+
   &__entry-field {
     grid-area: editor-field;
   }
@@ -123,18 +129,43 @@ body {
 
 .nav {
   grid-area: nav;
-  height: 100vh;
-  background-color: $color-background-secondary;
+  height: 100%;
+  padding: 1rem;
+
+  background-color: $color-dark-l;
 }
 
 .levels {
   display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid $color-dark-m;
 
   &__arrow {
-    border: none;
+    font-size: 2rem;
+    color: $color-dark-m;
     background-color: transparent;
-    color: $color-primary;
+    border: none;
     cursor: pointer;
+  }
+}
+
+.rules {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  &__title {
+
+  }
+  &__subtitle {
+
+  }
+  &__text {
+    font-size: .9rem;
+  }
+  &__example-title {
+    margin-top: 1rem;
   }
 }
 

@@ -4,15 +4,15 @@ import {Level} from "./modules/level";
 import {levelsData} from "./data/data";
 import {createElement} from "./utils/create-element";
 
-class InitGame {
+class Game {
     currentLevel: levelCountType;
 
     constructor() {
         this.currentLevel = 0;
-        this.initRender();
+        this.initialRender();
     }
 
-    private initRender(): void {
+    private initialRender(): void {
         // Header
         createElement({tag: 'header', styles: ['header'], parent: '.body'});
         createElement({
@@ -53,5 +53,5 @@ class InitGame {
     }
 }
 
-const game = new InitGame;
+const game = new Game;
 
