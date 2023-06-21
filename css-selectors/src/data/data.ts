@@ -3,8 +3,8 @@ import {ILevelParams} from "../types/types";
 export const levelsData: Array<ILevelParams> = [
     {
         levelNumber: 0,
-        levelHeader: 'Select the plates',
-        instruction: {
+        instruction: 'Select the plates',
+        levelRules: {
             header: 'Type Selector',
             subheader: 'Select elements by their type',
             text: 'Selects all elements of type A. Type refers to the type of tag, so div, p and ul are all different element types.',
@@ -35,8 +35,8 @@ export const levelsData: Array<ILevelParams> = [
     },
     {
         levelNumber: 1,
-        levelHeader: 'Select the fancy plate',
-        instruction: {
+        instruction: 'Select the fancy plate',
+        levelRules: {
             header: 'ID Selector',
             subheader: 'Select elements with an ID',
             text: 'Selects the element with a specific id. You can also combine the ID selector with the type selector.',
@@ -67,8 +67,8 @@ export const levelsData: Array<ILevelParams> = [
     },
     {
         levelNumber: 2,
-        levelHeader: 'Select the jelly on the plate',
-        instruction: {
+        instruction: 'Select the jelly on the plate',
+        levelRules: {
             header: 'Descendant Selector',
             subheader: 'Select an element inside another element',
             text: 'Selects all B inside of A. B is called a descendant because it is inside of another element.',

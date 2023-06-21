@@ -1,8 +1,8 @@
 //Level
 export interface ILevelParams {
     levelNumber: levelCountType;
-    levelHeader: string;
-    instruction: instructionType;
+    instruction: string;
+    levelRules: instructionType;
     itemsSet: Array<IItemParams>;
     itemsStyle: Array<string>;
     levelHint: hintType;

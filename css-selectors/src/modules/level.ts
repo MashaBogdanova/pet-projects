@@ -3,16 +3,16 @@ import {createElement} from "../utils/create-element";
 
 export class Level {
     levelNumber: ILevelParams["levelNumber"];
-    levelHeader: ILevelParams["levelHeader"];
     instruction: ILevelParams["instruction"];
+    levelRules: ILevelParams["levelRules"];
     itemsSet: ILevelParams["itemsSet"];
     itemsStyle: ILevelParams["itemsStyle"];
     levelHint: ILevelParams["levelHint"];
 
     constructor(params: ILevelParams) {
         this.levelNumber = params.levelNumber;
-        this.levelHeader = params.levelHeader;
         this.instruction = params.instruction;
+        this.levelRules = params.levelRules;
         this.itemsSet = params.itemsSet;
         this.itemsStyle = params.itemsStyle;
         this.levelHint = params.levelHint;
@@ -25,7 +25,7 @@ export class Level {
             tag: 'h2',
             styles: ['instruction'],
             parent: '.main',
-            innerText: 'Hi! Replace me with normal instruction!'
+            innerText: `${this.instruction}`
         });
 
         //Board
