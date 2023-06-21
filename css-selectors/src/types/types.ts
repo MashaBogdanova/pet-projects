@@ -3,8 +3,7 @@ export interface ILevelParams {
     levelNumber: levelCountType;
     instruction: string;
     levelRules: instructionType;
-    itemsSet: Array<IItemParams>;
-    itemsStyle: Array<string>;
+    itemsSet: string;
     levelHint: hintType;
     solution: string;
     html: string;
@@ -21,11 +20,3 @@ type hintType = {
     text: string;
 }
 export type levelCountType = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
-
-// Item
-export interface IItemParams {
-    name: string;
-    svg: string;
-    styles: Array<string>;
-    children: Array<IItemParams>;
-}

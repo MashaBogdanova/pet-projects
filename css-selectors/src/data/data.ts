@@ -11,15 +11,7 @@ export const levelsData: Array<ILevelParams> = [
             exampleHeader: 'Examples',
             exampleText: 'div selects all <div> elements.'
         },
-        itemsSet: [
-            {
-                name: '',
-                svg: '',
-                styles: [''],
-                children: []
-            }
-        ],
-        itemsStyle: ['asdf'],
+        itemsSet: '<div class="plate"></div><div class="plate"></div>',
         levelHint: {
             header: 'No worries, you\'ve got this!',
             text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
@@ -43,15 +35,7 @@ export const levelsData: Array<ILevelParams> = [
             exampleHeader: 'Examples',
             exampleText: '#cool selects any element with id="cool"'
         },
-        itemsSet: [
-            {
-                name: '',
-                svg: '',
-                styles: [''],
-                children: []
-            }
-        ],
-        itemsStyle: ['asdf'],
+        itemsSet: '<div class="plate plate_fancy"></div><div class="plate"></div><div class="plate"></div>',
         levelHint: {
             header: 'No worries, you\'ve got this!',
             text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
@@ -67,23 +51,15 @@ export const levelsData: Array<ILevelParams> = [
     },
     {
         levelNumber: 2,
-        instruction: 'Select the jelly on the plate',
+        instruction: 'Select the cupcake on the plate',
         levelRules: {
             header: 'Descendant Selector',
             subheader: 'Select an element inside another element',
             text: 'Selects all B inside of A. B is called a descendant because it is inside of another element.',
             exampleHeader: 'Examples',
-            exampleText: '#fancy span selects any <span> elements that are inside of the element with id="fancy"'
+            exampleText: '#fancy span selects any <span> elements that are \inside of the element with id="fancy"'
         },
-        itemsSet: [
-            {
-                name: '',
-                svg: '',
-                styles: [''],
-                children: []
-            }
-        ],
-        itemsStyle: ['asdf'],
+        itemsSet: '<div class="plate plate_fancy"></div><div class="plate"><div class="yummy yummy_top"></div></div><div class="yummy"></div>',
         levelHint: {
             header: 'No worries, you\'ve got this!',
             text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +

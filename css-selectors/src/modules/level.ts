@@ -6,7 +6,6 @@ export class Level {
     instruction: ILevelParams["instruction"];
     levelRules: ILevelParams["levelRules"];
     itemsSet: ILevelParams["itemsSet"];
-    itemsStyle: ILevelParams["itemsStyle"];
     levelHint: ILevelParams["levelHint"];
 
     constructor(params: ILevelParams) {
@@ -14,7 +13,6 @@ export class Level {
         this.instruction = params.instruction;
         this.levelRules = params.levelRules;
         this.itemsSet = params.itemsSet;
-        this.itemsStyle = params.itemsStyle;
         this.levelHint = params.levelHint;
     }
 
@@ -29,7 +27,8 @@ export class Level {
         });
 
         //Board
-        createElement({tag: 'section', styles: ['board'], parent: '.main'});
+        const board = createElement({tag: 'section', styles: ['board'], parent: '.main'});
+        board.innerHTML = this.itemsSet;
 
         // Editor
         createElement({tag: 'section', styles: ['editor-wrapper'], parent: '.main'});
