@@ -166,7 +166,7 @@ body {
   gap: 1rem;
   padding: 1rem;
   &__title {
-
+    color: $color-dark-s;
   }
   &__subtitle {
 
@@ -176,9 +176,12 @@ body {
   }
   &__example-title {
     margin-top: 1rem;
+    color: $color-dark-s;
   }
 }
 
 .footer {
   grid-area: footer;
+  color: $color-dark-s;
+  text-align: center;
 }

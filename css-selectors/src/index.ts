@@ -26,6 +26,7 @@ class Game {
 
         // Footer
         createElement({tag: 'footer', styles: ['footer'], parent: '.body'});
+        createElement({tag: 'p', styles: ['footer__author'], parent: '.footer', innerText: 'Made by Masha Bogdanova\nStudent of RSS school'})
     }
 
     private renderCurrentLevel(): void {

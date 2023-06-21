@@ -151,15 +151,21 @@ body {
   gap: 1rem;
   padding: 1rem;
 }
+.rules__title {
+  color: rgb(150, 150, 150);
+}
 .rules__text {
   font-size: 0.9rem;
 }
 .rules__example-title {
   margin-top: 1rem;
+  color: rgb(150, 150, 150);
 }
 
 .footer {
   grid-area: footer;
+  color: rgb(150, 150, 150);
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */
