@@ -15,7 +15,7 @@ type instructionType = {
     exampleText: string;
 }
 type hintType = {
-    header: string;
+    title: string;
     text: string;
 }
 export type levelCountType = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;

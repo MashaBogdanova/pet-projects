@@ -69,16 +69,28 @@ body {
   background-image: url("../assets/images/fancy-plate.svg");
 }
 .board .yummy {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   background-image: url("../assets/images/cupcake.svg");
   background-repeat: no-repeat;
   background-size: 100%;
+}
+.board .yummy_cake {
+  background-image: url("../assets/images/cake.svg");
+}
+.board .yummy_strawberry {
+  width: 70px;
+  height: 70px;
+  background-image: url("../assets/images/strawberry.svg");
 }
 .board .yummy_top {
   position: absolute;
   bottom: 50%;
   transform: scaleY(1.5);
+}
+.board .yummy_small {
+  width: 40px;
+  height: 40px;
 }
 
 .editor-wrapper {
