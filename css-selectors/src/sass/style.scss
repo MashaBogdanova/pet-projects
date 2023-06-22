@@ -120,21 +120,43 @@ body {
   &_css {
     background-color: $color-light-l;
   }
-
   &_html {
     background-color: $color-dark-l;
   }
-
   &__header {
     grid-area: editor-header;
   }
-
   &__aside {
     grid-area: editor-aside;
   }
-
   &__entry-field {
     grid-area: editor-field;
+  }
+}
+
+.answer-form {
+  &__input {
+    width: 70%;
+    margin: .7em;
+    padding: .4em;
+    color: $color-dark-s;
+    border: none;
+    border-radius: 2px;
+    animation: blink-background 1s infinite;
+    &:active {
+      border: none;
+    }
+  }
+  &__btn {
+    padding: .3em;
+    color: $color-dark-m;
+    background: none;
+    border: 1px solid $color-secondary;
+    border-radius: 2px;
+    cursor: pointer;
+    &:hover {
+      background-color: $color-secondary;
+    }
   }
 }
 
@@ -185,4 +207,16 @@ body {
   grid-area: footer;
   color: $color-dark-s;
   text-align: center;
+}
+
+@keyframes blink-background {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: $color-secondary;
+  }
+  100% {
+    background-color: transparent;
+  }
 }

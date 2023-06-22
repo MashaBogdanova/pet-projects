@@ -55,7 +55,7 @@ body {
 }
 .header__title {
   text-align: center;
-  color: #e2534b;
+  color: rgba(226, 83, 75, 0.37);
 }
 
 .main {
@@ -149,6 +149,30 @@ body {
   grid-area: editor-field;
 }
 
+.answer-form__input {
+  width: 70%;
+  margin: 0.7em;
+  padding: 0.4em;
+  color: rgb(150, 150, 150);
+  border: none;
+  border-radius: 2px;
+  animation: blink-background 1s infinite;
+}
+.answer-form__input:active {
+  border: none;
+}
+.answer-form__btn {
+  padding: 0.3em;
+  color: rgb(100, 99, 99);
+  background: none;
+  border: 1px solid rgba(226, 83, 75, 0.37);
+  border-radius: 2px;
+  cursor: pointer;
+}
+.answer-form__btn:hover {
+  background-color: rgba(226, 83, 75, 0.37);
+}
+
 .nav {
   grid-area: nav;
   height: 100%;
@@ -194,6 +218,18 @@ body {
   grid-area: footer;
   color: rgb(150, 150, 150);
   text-align: center;
+}
+
+@keyframes blink-background {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgba(226, 83, 75, 0.37);
+  }
+  100% {
+    background-color: transparent;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

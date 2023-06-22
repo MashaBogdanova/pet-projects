@@ -36,8 +36,8 @@ class Game {
         navElement && navElement.remove();
 
         const currentLevelParams: ILevelParams = levelsData[this.currentLevel];
-        const level = new Level(currentLevelParams);
-        level.rerender(this.increaseLevel, this.decreaseLevel);
+        const level = new Level(currentLevelParams, this.increaseLevel, this.decreaseLevel);
+        level.rerender();
     }
 
     increaseLevel = (): void => {

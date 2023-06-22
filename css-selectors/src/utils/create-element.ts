@@ -3,6 +3,9 @@ interface IElementParam {
     styles: Array<string>;
     parent?: string;
     innerText?: string;
+    placeholder?: string;
+    type?: string;
+    method?: string;
 }
 
 export function createElement(param: IElementParam) {
@@ -13,7 +16,15 @@ export function createElement(param: IElementParam) {
     }
     if (param.parent) {
         const parentElem = document.querySelector(param.parent);
-        parentElem && parentElem.append(element);
+        if (parentElem) {
+            param.method === 'prepend' ? parentElem.prepend(element) : parentElem.append(element);
+        }
+    }
+    if (param.placeholder) {
+        element.setAttribute('placeholder', param.placeholder);
+    }
+    if (param.type) {
+        element.setAttribute('type', param.type);
     }
     return element;
 }

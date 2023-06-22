@@ -21,7 +21,7 @@ export const levelsData: Array<ILevelParams> = [
                 'Hover over the items on the table to see their HTML markup.' +
                 'Get help with selectors on the right! →'
         },
-        solution: 'div',
+        solution: 'plate',
         html: '<div class="container">\n  <plate />\n  <plate />\n</div>'
     },
     {
