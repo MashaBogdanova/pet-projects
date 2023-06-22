@@ -43,7 +43,7 @@ export class Level {
 
         // CSS Editor
         createElement({tag: 'article', styles: ['editor', 'editor_css'], parent: '.editor-wrapper'});
-        this.fillEditor('.editor_css', 'CSS Editor', '\n{\n  /* Styles would go here. */\n}', 'editor__entry-field_css');
+        this.fillEditor('.editor_css', 'CSS Editor', '\n{\n/* Styles would go here. */\n}', 'editor__entry-field_css');
         this.addAnswerForm();
 
         // HTML Editor

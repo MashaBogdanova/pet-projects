@@ -36,16 +36,17 @@
 }
 html, * {
   margin: 0;
+  box-sizing: border-box;
 }
 
 body {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 5fr 2fr;
   grid-template-areas: "header nav" "main nav" "footer nav";
   font-family: Exo2, Lato, sans-serif;
   font-weight: 400;
-  color: rgb(100, 99, 99);
+  color: rgb(115, 115, 115);
   background-color: #2e2a23;
 }
 
@@ -60,22 +61,23 @@ body {
 
 .main {
   display: grid;
-  grid-template-rows: auto 1fr 2fr;
+  grid-template-rows: auto 2fr 5fr;
   grid-area: main;
+  padding: 1em 2em;
 }
 
 .instruction {
   text-align: center;
-  color: rgb(100, 99, 99);
 }
 
 .board {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  border: 1px dashed purple;
+  gap: 2em;
+  padding: 0 2.5em;
 }
 .board .plate {
   position: relative;
@@ -122,7 +124,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px dashed coral;
+  border: 0.7em solid #221e18;
+  border-radius: 5px;
 }
 
 .editor {
@@ -132,28 +135,40 @@ body {
   grid-template-columns: auto 1fr;
   width: 50%;
   height: 100%;
+  border: 1px solid #26211c;
 }
 .editor_css {
   background-color: #efefef;
+  border-right: none;
 }
 .editor_html {
-  background-color: #221e18;
+  background-color: #26211c;
 }
 .editor__header {
   grid-area: editor-header;
+  padding: 0.5em;
+  font-weight: normal;
+  color: rgb(115, 115, 115);
+  background-color: #2e2a23;
+  border-bottom: 1px solid rgb(115, 115, 115);
 }
 .editor__aside {
   grid-area: editor-aside;
+  padding: 0.5em;
+  color: rgb(115, 115, 115);
+  border-right: 1px solid rgb(115, 115, 115);
 }
 .editor__entry-field {
   grid-area: editor-field;
+  padding: 1em;
+  color: rgb(115, 115, 115);
 }
 
 .answer-form__input {
-  width: 70%;
-  margin: 0.7em;
+  width: 75%;
+  margin-right: 0.7em;
   padding: 0.4em;
-  color: rgb(150, 150, 150);
+  color: rgb(115, 115, 115);
   border: none;
   border-radius: 2px;
   animation: blink-background 1s infinite;
@@ -162,8 +177,8 @@ body {
   border: none;
 }
 .answer-form__btn {
-  padding: 0.3em;
-  color: rgb(100, 99, 99);
+  padding: 0.35em;
+  color: rgb(115, 115, 115);
   background: none;
   border: 1px solid rgba(226, 83, 75, 0.37);
   border-radius: 2px;
@@ -185,11 +200,11 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding-bottom: 0.6rem;
-  border-bottom: 1px solid rgb(100, 99, 99);
+  border-bottom: 1px solid rgb(115, 115, 115);
 }
 .levels__arrow {
   font-size: 2rem;
-  color: rgb(100, 99, 99);
+  color: rgb(115, 115, 115);
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -201,7 +216,7 @@ body {
   padding: 1rem;
 }
 .rules__title {
-  color: rgb(150, 150, 150);
+  color: rgb(115, 115, 115);
 }
 .rules__subtitle {
   font-weight: 100;
@@ -211,12 +226,13 @@ body {
 }
 .rules__example-title {
   margin-top: 1rem;
-  color: rgb(150, 150, 150);
+  color: rgb(115, 115, 115);
 }
 
 .footer {
   grid-area: footer;
-  color: rgb(150, 150, 150);
+  padding-bottom: 1em;
+  font-size: 0.8em;
   text-align: center;
 }
 
