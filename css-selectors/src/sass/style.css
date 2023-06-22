@@ -88,9 +88,6 @@ body {
   background-image: url("../assets/images/plate.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  border-radius: 50%;
-  box-shadow: 3px 6px 3px #221e18;
-  transform: perspective(500px) rotateX(45deg);
 }
 .board .plate_fancy {
   background-image: url("../assets/images/fancy-plate.svg");
@@ -112,12 +109,17 @@ body {
 }
 .board .yummy_top {
   position: absolute;
-  bottom: 50%;
+  bottom: 40%;
   transform: scaleY(1.5);
 }
 .board .yummy_small {
   width: 40px;
   height: 40px;
+}
+.board .target {
+  transform-origin: bottom;
+  animation: jelly-start 0.5s ease-out, jelly 1s infinite;
+  animation-delay: 0s, 0.5s;
 }
 
 .editor-wrapper {
@@ -245,6 +247,36 @@ body {
   }
   100% {
     background-color: transparent;
+  }
+}
+@keyframes jelly-start {
+  0% {
+    transform: skew(0deg, 0deg) scaleY(1);
+    animation-timing-function: ease-in;
+  }
+  40% {
+    transform: skew(0deg, 0deg) scaleY(0.9);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: skew(4deg, 0deg) scaleX(1);
+  }
+}
+@keyframes jelly {
+  0% {
+    transform: skew(4deg, 0deg) scaleX(1);
+  }
+  10% {
+    transform: skew(1deg, 0deg) scaleY(0.9);
+  }
+  50% {
+    transform: skew(-4deg, 0deg) scaleX(1);
+  }
+  60% {
+    transform: skew(-1deg, 0deg) scaleY(0.9);
+  }
+  100% {
+    transform: skew(4deg, 0deg) scaleX(1);
   }
 }
 
