@@ -7,6 +7,7 @@ export const levelsData: Array<ILevelParams> = [
         levelRules: {
             title: 'Type Selector',
             subtitle: 'Select elements by their type',
+            selector: 'A',
             text: 'Selects all elements of type A. Type refers to the type of tag, so div, p and ul are all different element types.',
             exampleText: 'div selects all <div> elements.'
         },
@@ -32,6 +33,7 @@ export const levelsData: Array<ILevelParams> = [
         levelRules: {
             title: 'ID Selector',
             subtitle: 'Select elements with an ID',
+            selector: '#id',
             text: 'Selects the element with a specific id. You can also combine the ID selector with the type selector.',
             exampleText: '#cool selects any element with id="cool"'
         },
@@ -58,6 +60,7 @@ export const levelsData: Array<ILevelParams> = [
         levelRules: {
             title: 'Descendant Selector',
             subtitle: 'Select an element inside another element',
+            selector: 'A  B',
             text: 'Selects all B inside of A. B is called a descendant because it is inside of another element.',
             exampleText: '#fancy span selects any <span> elements that are \inside of the element with id="fancy"'
         },
@@ -84,6 +87,7 @@ export const levelsData: Array<ILevelParams> = [
         levelRules: {
             title: 'Class Selector',
             subtitle: 'Select elements by their class',
+            selector: '.classname',
             text: 'The class selector selects all elements with that class attribute. Elements can only have one ID, but many classes.',
             exampleText: '.neato selects all elements with class="neato"'
         },
@@ -116,6 +120,7 @@ export const levelsData: Array<ILevelParams> = [
         levelRules: {
             title: 'Comma Combinator',
             subtitle: 'Combine, selectors, with... commas!',
+            selector: 'A, B',
             text: 'Thanks to Shatner technology, this selects all A and B elements. You can combine any selectors this way, and you can specify more than two.',
             exampleText: 'p, .fun selects all <p> elements as well as all elements with class="fun"'
         },
@@ -151,6 +156,7 @@ export const levelsData: Array<ILevelParams> = [
         levelRules: {
             title: 'The Universal Selector',
             subtitle: 'You can select everything!',
+            selector: '*',
             text: 'You can select all elements with the universal selector!',
             exampleText: '* selects all elements.'
         },
@@ -186,6 +192,7 @@ export const levelsData: Array<ILevelParams> = [
         levelRules: {
             title: 'The Universal Selector',
             subtitle: 'Combine the Universal Selector',
+            selector: 'A  *',
             text: 'This selects all elements inside of A.',
             exampleText: 'p * selects every element inside all <p> elements.'
         },
@@ -219,6 +226,7 @@ export const levelsData: Array<ILevelParams> = [
         levelRules: {
             title: 'Adjacent Sibling Selector',
             subtitle: 'Select an element that directly follows another element',
+            selector: 'A + B',
             text:
                 'This selects all B elements that directly follow A. Elements that follow one another are called ' +
                 'siblings. They\'re on the same level, or depth.\n' +
@@ -261,6 +269,7 @@ export const levelsData: Array<ILevelParams> = [
         levelRules: {
             title: 'Nth Child Pseudo-selector',
             subtitle: 'Select an element by its order in another element',
+            selector: ':nth-child(A)',
             text:
                 'Selects the nth (Ex: 1st, 3rd, 12th etc.) child element in another element.',
             exampleText: 'div p:nth-child(2) selects the second <p> in every <div>.'
@@ -295,6 +304,7 @@ export const levelsData: Array<ILevelParams> = [
         levelRules: {
             title: 'Empty Selector',
             subtitle: 'Select elements that don\'t have children',
+            selector: ':empty',
             text: 'Selects elements that don\'t have any other elements inside of them.',
             exampleText: 'div:empty selects all empty div elements.'
         },
@@ -328,6 +338,7 @@ export const levelsData: Array<ILevelParams> = [
         levelRules: {
             title: 'Super challenge!',
             subtitle: 'Select an element that directly follows another element',
+            selector: ':empty',
             text:
                 'This selects all B elements that directly follow A. Elements that follow one another are called ' +
                 'siblings. They\'re on the same level, or depth.\n' +

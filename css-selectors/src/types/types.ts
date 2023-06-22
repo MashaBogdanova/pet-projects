@@ -11,6 +11,7 @@ export interface ILevelParams {
 type instructionType = {
     title: string;
     subtitle: string;
+    selector: string;
     text: string;
     exampleText: string;
 }
