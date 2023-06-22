@@ -73,6 +73,7 @@ export class Level {
         createElement({tag: 'section', styles: ['rules'], parent: '.nav'});
         createElement({tag: 'h3', styles: ['rules__title'], parent: '.rules', innerText: `${this.levelRules.title}`});
         createElement({tag: 'h4', styles: ['rules__subtitle'], parent: '.rules', innerText: `${this.levelRules.subtitle}`});
+        createElement({tag: 'plaintext', styles: ['rules__selector'], parent: '.rules', innerText: `${this.levelRules.selector}`});
         createElement({tag: 'p', styles: ['rules__text'], parent: '.rules', innerText: `${this.levelRules.text}`});
         createElement({tag: 'h4', styles: ['rules__example-title'], parent: '.rules', innerText: `Examples`});
         createElement({tag: 'p', styles: ['rules__example'], parent: '.rules', innerText: `${this.levelRules.exampleText}`});
@@ -80,7 +81,7 @@ export class Level {
     private fillEditor(parent: string, headerText: string, entryFieldText: string, additionalStyle?: string): void {
         const asideText: string = '1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20';
         createElement({tag: 'h3', styles: ['editor__header'], parent: parent, innerText: headerText});
-        createElement({tag: 'aside', styles: ['editor__aside'], parent: parent, innerText: asideText});
+        createElement({tag: 'plaintext', styles: ['editor__aside'], parent: parent, innerText: asideText});
         createElement({tag: 'plaintext', styles: ['editor__entry-field', `${additionalStyle}`], parent: parent, innerText: entryFieldText});
     }
     private addAnswerForm() {

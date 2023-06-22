@@ -15,18 +15,19 @@ class Game {
     private initialRender(): void {
         // Header
         createElement({tag: 'header', styles: ['header'], parent: '.body'});
+        createElement({tag: 'div', styles: ['header__logo'], parent: '.header'});
         createElement({
             tag: 'h1',
             styles: ['header__title'],
             parent: '.header',
-            innerText: 'Welcome to RSS CSS Selectors!'
+            innerText: 'RSS CSS Selectors'
         });
 
         this.renderCurrentLevel();
 
         // Footer
         createElement({tag: 'footer', styles: ['footer'], parent: '.body'});
-        createElement({tag: 'p', styles: ['footer__author'], parent: '.footer', innerText: 'Made by Masha Bogdanova\nRSS School'})
+        createElement({tag: 'p', styles: ['footer__author'], parent: '.footer', innerText: 'Made by Masha Bogdanova in RSS School'})
     }
 
     private renderCurrentLevel(): void {

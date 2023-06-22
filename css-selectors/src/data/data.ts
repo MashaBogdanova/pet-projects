@@ -29,7 +29,7 @@ export const levelsData: Array<ILevelParams> = [
     },
     {
         levelNumber: 1,
-        instruction: 'Select the fancy plate',
+        instruction: 'Select the pink plate',
         levelRules: {
             title: 'ID Selector',
             subtitle: 'Select elements with an ID',
@@ -38,7 +38,7 @@ export const levelsData: Array<ILevelParams> = [
             exampleText: '#cool selects any element with id="cool"'
         },
         itemsSet:
-            '<div class="plate plate_fancy target"></div>' +
+            '<div class="plate plate_pink target"></div>' +
             '<div class="plate"></div>' +
             '<div class="plate"></div>',
         levelHint: {
@@ -51,8 +51,8 @@ export const levelsData: Array<ILevelParams> = [
                 'Hover over the items on the table to see their HTML markup.' +
                 'Get help with selectors on the right! →'
         },
-        solution: '#fancy',
-        html: '<div class="container">\n  <plate id="fancy"/>\n  <plate />\n  <plate />\n</div>'
+        solution: '#pink',
+        html: '<div class="container">\n  <plate id="pink"/>\n  <plate />\n  <plate />\n</div>'
     },
     {
         levelNumber: 2,
@@ -62,10 +62,10 @@ export const levelsData: Array<ILevelParams> = [
             subtitle: 'Select an element inside another element',
             selector: 'A  B',
             text: 'Selects all B inside of A. B is called a descendant because it is inside of another element.',
-            exampleText: '#fancy span selects any <span> elements that are \inside of the element with id="fancy"'
+            exampleText: '#pink span selects any <span> elements that are \inside of the element with id="pink"'
         },
         itemsSet:
-            '<div class="plate plate_fancy"></div>' +
+            '<div class="plate plate_pink"></div>' +
             '<div class="plate"><div class="yummy yummy_top target"></div></div>' +
             '<div class="yummy"></div>',
         levelHint: {
@@ -83,7 +83,7 @@ export const levelsData: Array<ILevelParams> = [
     },
     {
         levelNumber: 3,
-        instruction: 'Select the small cupcakes',
+        instruction: 'Select the small cakes',
         levelRules: {
             title: 'Class Selector',
             subtitle: 'Select elements by their class',
@@ -92,10 +92,10 @@ export const levelsData: Array<ILevelParams> = [
             exampleText: '.neato selects all elements with class="neato"'
         },
         itemsSet:
-            '<div class="yummy yummy_cupcake"></div>' +
-            '<div class="yummy yummy_cupcake yummy_small target"></div>' +
-            '<div class="plate"><div class="yummy yummy_cupcake yummy_small yummy_top target"></div></div>' +
-            '<div class="plate"></div>',
+            '<div class="yummy yummy_cake"></div>' +
+            '<div class="yummy yummy_cake yummy_small target"></div>' +
+            '<div class="plate plate_pink"><div class="yummy yummy_cake yummy_small yummy_top target"></div></div>' +
+            '<div class="plate plate_pink"></div>',
         levelHint: {
             title: 'No worries, you\'ve got this!',
             text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
@@ -109,10 +109,10 @@ export const levelsData: Array<ILevelParams> = [
         solution: '.small',
         html:
             '<div class="container">\n' +
-            '  <cupcake />\n' +
-            '  <cupcake class="small" />\n' +
-            '  <plate>\n    <cupcake class="small" />\n  </plate>\n' +
-            '  </plate>\n' +
+            '  <cake />\n' +
+            '  <cake class="small" />\n' +
+            '  <plate class="pink">\n    <cake class="small" />\n  </plate>\n' +
+            '  <plate class="pink" />\n' +
             '</div>'},
     {
         levelNumber: 4,
@@ -125,10 +125,10 @@ export const levelsData: Array<ILevelParams> = [
             exampleText: 'p, .fun selects all <p> elements as well as all elements with class="fun"'
         },
         itemsSet:
-            '<div class="plate plate_fancy"></div>' +
-            '<div class="yummy yummy_strawberry target"></div>' +
+            '<div class="plate plate_pink"></div>' +
+            '<div class="yummy yummy_donut target"></div>' +
             '<div class="plate"><div class="yummy yummy_cupcake yummy_top target"></div></div>' +
-            '<div class="plate plate_fancy"><div class="yummy yummy_cake yummy_top target"></div></div>' +
+            '<div class="plate plate_pink"><div class="yummy yummy_cake yummy_top target"></div></div>' +
             '<div class="plate"></div>',
         levelHint: {
             title: 'No worries, you\'ve got this!',
@@ -143,10 +143,10 @@ export const levelsData: Array<ILevelParams> = [
         solution: 'strawberry, cupcake, cake',
         html:
             '<div class="container">\n' +
-            '  <plate class="fancy"/>\n' +
-            '  <strawberry />\n' +
+            '  <plate class="pink"/>\n' +
+            '  <donut />\n' +
             '  <plate>\n    <cupcake />\n  </plate>\n' +
-            '  <plate class="fancy">\n    <cake />\n  </plate>\n' +
+            '  <plate class="pink">\n    <cake />\n  </plate>\n' +
             '  </plate>\n' +
             '</div>'
     },
@@ -163,8 +163,8 @@ export const levelsData: Array<ILevelParams> = [
         itemsSet:
             '<div class="yummy yummy_strawberry target"></div>' +
             '<div class="plate target"><div class="yummy yummy_cupcake yummy_top yummy_small target"></div></div>' +
-            '<div class="plate plate_fancy target"></div>' +
-            '<div class="plate plate_fancy target"><div class="yummy yummy_cupcake yummy_top target"></div></div>' +
+            '<div class="plate plate_pink target"></div>' +
+            '<div class="plate plate_pink target"><div class="yummy yummy_cupcake yummy_top target"></div></div>' +
             '<div class="plate target"></div>',
         levelHint: {
             title: 'No worries, you\'ve got this!',
@@ -181,8 +181,8 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="container">\n' +
             '  <strawberry />\n' +
             '  <plate>\n    <cupcake class="small"/>\n  </plate>\n' +
-            '  <plate class="fancy" />\n' +
-            '  <plate class="fancy" />\n    <cupcake />\n  </plate>\n' +
+            '  <plate class="pink" />\n' +
+            '  <plate class="pink" />\n    <cupcake />\n  </plate>\n' +
             '  </plate>\n' +
             '</div>'
     },
@@ -222,7 +222,7 @@ export const levelsData: Array<ILevelParams> = [
     },
     {
         levelNumber: 7,
-        instruction: 'Select every strawberry that\'s next to a plate',
+        instruction: 'Select every donuts that\'s next to a plate',
         levelRules: {
             title: 'Adjacent Sibling Selector',
             subtitle: 'Select an element that directly follows another element',
@@ -234,13 +234,12 @@ export const levelsData: Array<ILevelParams> = [
             exampleText: 'p + .intro selects every element with class="intro" that directly follows a <p>.'
         },
         itemsSet:
-            '<div class="plate plate_fancy"><div class="yummy yummy_strawberry yummy_top yummy_small"></div></div>' +
+            '<div class="plate plate_pink"><div class="yummy yummy_donut yummy_top yummy_small"></div></div>' +
             '<div class="plate"></div>' +
-            '<div class="yummy yummy_strawberry yummy_small target"></div>' +
+            '<div class="yummy yummy_donut yummy_small target"></div>' +
             '<div class="plate"></div>' +
-            '<div class="yummy yummy_strawberry target"></div>' +
-            '<div class="yummy yummy_strawberry yummy_small"></div>' +
-            '<div class="yummy yummy_strawberry yummy_small"></div>',
+            '<div class="yummy yummy_donut target"></div>' +
+            '<div class="yummy yummy_donut yummy_small"></div>',
             levelHint: {
             title: 'No worries, you\'ve got this!',
             text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
@@ -251,16 +250,16 @@ export const levelsData: Array<ILevelParams> = [
                 'Hover over the items on the table to see their HTML markup.' +
                 'Get help with selectors on the right! →'
         },
-        solution: 'plate + strawberry',
+        solution: 'plate + donut',
         html:
             '<div class="container">\n' +
-            '  <plate>\n    <strawberry class="small" />\n  </plate>\n' +
+            '  <plate>\n    <donut class="small" />\n  </plate>\n' +
             '  <plate />\n'+
-            '  <strawberry class="small" />\n' +
+            '  <donut class="small" />\n' +
             '  <plate />\n'+
-            '  <strawberry />\n' +
-            '  <strawberry class="small" />\n' +
-            '  <strawberry class="small" />\n' +
+            '  <donut />\n' +
+            '  <donut class="small" />\n' +
+            '  <donut class="small" />\n' +
             '</div>'
     },
     {
@@ -275,9 +274,9 @@ export const levelsData: Array<ILevelParams> = [
             exampleText: 'div p:nth-child(2) selects the second <p> in every <div>.'
         },
         itemsSet:
-            '<div class="plate plate_fancy"></div>' +
-            '<div class="plate plate_fancy"></div>' +
-            '<div class="plate plate_fancy target"></div>' +
+            '<div class="plate plate_pink"></div>' +
+            '<div class="plate plate_pink"></div>' +
+            '<div class="plate plate_pink target"></div>' +
             '<div class="plate"></div>',
         levelHint: {
             title: 'No worries, you\'ve got this!',
@@ -292,9 +291,9 @@ export const levelsData: Array<ILevelParams> = [
         solution: '.container plate:nth-child(3)',
         html:
             '<div class="container">\n' +
-            '  <plate class="fancy"/>\n'+
-            '  <plate class="fancy"/>\n'+
-            '  <plate class="fancy"/>\n'+
+            '  <plate class="pink"/>\n'+
+            '  <plate class="pink"/>\n'+
+            '  <plate class="pink"/>\n'+
             '  <plate />\n'+
             '</div>'
     },
@@ -309,9 +308,9 @@ export const levelsData: Array<ILevelParams> = [
             exampleText: 'div:empty selects all empty div elements.'
         },
         itemsSet:
-            '<div class="plate plate_fancy"><div class="yummy yummy_top"></div></div>' +
+            '<div class="plate plate_pink"><div class="yummy yummy_top"></div></div>' +
             '<div class="plate target"></div>' +
-            '<div class="plate plate_fancy target"></div>' +
+            '<div class="plate plate_pink target"></div>' +
             '<div class="plate"><div class="yummy yummy_strawberry yummy_top"></div></div>',
             levelHint: {
             title: 'No worries, you\'ve got this!',
@@ -326,9 +325,9 @@ export const levelsData: Array<ILevelParams> = [
         solution: 'plate:empty',
         html:
             '<div class="container">\n' +
-            '  <plate class="fancy">\n    <cupcake />\n  </plate>\n' +
+            '  <plate class="pink">\n    <cupcake />\n  </plate>\n' +
             '  <plate />\n'+
-            '  <plate class="fancy" />\n'+
+            '  <plate class="pink" />\n'+
             '  <plate>\n    <strawberry />\n  </plate>\n' +
             '</div>'
     },
@@ -346,7 +345,7 @@ export const levelsData: Array<ILevelParams> = [
             exampleText: 'p + .intro selects every element with class="intro" that directly follows a <p>'
         },
         itemsSet:
-            '<div class="plate plate_fancy"><div class="yummy yummy_strawberry yummy_top yummy_small"></div></div>' +
+            '<div class="plate plate_pink"><div class="yummy yummy_strawberry yummy_top yummy_small"></div></div>' +
             '<div class="plate"></div>' +
             '<div class="yummy yummy_strawberry yummy_small"></div>' +
             '<div class="plate"></div>' +

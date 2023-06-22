@@ -44,6 +44,7 @@ body {
   grid-template-rows: auto 1fr auto;
   grid-template-columns: 5fr 2fr;
   grid-template-areas: "header nav" "main nav" "footer nav";
+  height: 100vh;
   font-family: Exo2, Lato, sans-serif;
   font-weight: 400;
   color: rgb(115, 115, 115);
@@ -52,21 +53,34 @@ body {
 
 .header {
   grid-area: header;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   padding: 1em;
 }
+.header__logo {
+  width: 20px;
+  height: 20px;
+  background-image: url("../assets/images/cupcake.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .header__title {
+  font-size: 0.85em;
   text-align: center;
-  color: rgba(226, 83, 75, 0.37);
+  color: rgba(231, 195, 243, 0.53);
 }
 
 .main {
   display: grid;
-  grid-template-rows: auto 2fr 5fr;
+  grid-template-rows: auto 2.2fr 5fr;
   grid-area: main;
-  padding: 1em 2em;
+  padding: 0 2em;
 }
 
 .instruction {
+  font-size: 2em;
+  font-weight: normal;
   text-align: center;
 }
 
@@ -76,8 +90,7 @@ body {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  gap: 2em;
-  padding: 0 2.5em;
+  gap: 0.9em;
 }
 .board .plate {
   position: relative;
@@ -89,7 +102,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
-.board .plate_fancy {
+.board .plate_pink {
   background-image: url("../assets/images/fancy-plate.svg");
 }
 .board .yummy {
@@ -107,14 +120,18 @@ body {
   height: 70px;
   background-image: url("../assets/images/strawberry.svg");
 }
+.board .yummy_donut {
+  width: 70px;
+  height: 70px;
+  background-image: url("../assets/images/donut.svg");
+}
 .board .yummy_top {
   position: absolute;
-  bottom: 40%;
-  transform: scaleY(1.5);
+  bottom: 45%;
 }
 .board .yummy_small {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
 }
 .board .target {
   transform-origin: bottom;
@@ -162,7 +179,7 @@ body {
 }
 .editor__entry-field {
   grid-area: editor-field;
-  padding: 1em;
+  padding: 0.5em 1em;
   color: rgb(115, 115, 115);
 }
 
@@ -182,12 +199,12 @@ body {
   padding: 0.35em;
   color: rgb(115, 115, 115);
   background: none;
-  border: 1px solid rgba(226, 83, 75, 0.37);
+  border: 1px solid rgba(231, 195, 243, 0.53);
   border-radius: 2px;
   cursor: pointer;
 }
 .answer-form__btn:hover {
-  background-color: rgba(226, 83, 75, 0.37);
+  background-color: rgba(231, 195, 243, 0.53);
 }
 
 .nav {
@@ -202,6 +219,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding-bottom: 0.6rem;
+  color: rgba(255, 255, 255, 0.6);
   border-bottom: 1px solid rgb(115, 115, 115);
 }
 .levels__arrow {
@@ -218,22 +236,29 @@ body {
   padding: 1rem;
 }
 .rules__title {
-  color: rgb(115, 115, 115);
+  color: rgba(255, 255, 255, 0.6);
 }
 .rules__subtitle {
   font-weight: 100;
+}
+.rules__selector {
+  width: max-content;
+  padding: 0.3em;
+  font-size: 1.5em;
+  color: rgba(255, 255, 255, 0.6);
+  background-color: #2e2a23;
 }
 .rules__text {
   font-size: 0.9rem;
 }
 .rules__example-title {
   margin-top: 1rem;
-  color: rgb(115, 115, 115);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .footer {
   grid-area: footer;
-  padding-bottom: 1em;
+  padding: 1em;
   font-size: 0.8em;
   text-align: center;
 }
@@ -243,7 +268,7 @@ body {
     background-color: transparent;
   }
   50% {
-    background-color: rgba(226, 83, 75, 0.37);
+    background-color: rgba(231, 195, 243, 0.53);
   }
   100% {
     background-color: transparent;
