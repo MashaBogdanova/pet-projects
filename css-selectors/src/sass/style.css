@@ -103,7 +103,7 @@ body {
   background-size: cover;
 }
 .board .plate_pink {
-  background-image: url("../assets/images/fancy-plate.svg");
+  background-image: url("../assets/images/plate-pink.svg");
 }
 .board .yummy {
   width: 60px;
@@ -127,7 +127,7 @@ body {
 }
 .board .yummy_top {
   position: absolute;
-  bottom: 45%;
+  bottom: 43%;
 }
 .board .yummy_small {
   width: 45px;

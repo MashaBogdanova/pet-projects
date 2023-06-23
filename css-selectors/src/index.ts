@@ -42,7 +42,7 @@ class Game {
     }
 
     increaseLevel = (): void => {
-        if (this.currentLevel < 9) {
+        if (this.currentLevel < 11) {
             this.currentLevel += 1;
         }
         this.renderCurrentLevel();

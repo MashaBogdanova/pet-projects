@@ -3,7 +3,7 @@ import {ILevelParams} from "../types/types";
 export const levelsData: Array<ILevelParams> = [
     {
         levelNumber: 0,
-        instruction: 'Select the plates',
+        instruction: 'Select the donuts',
         levelRules: {
             title: 'Type Selector',
             subtitle: 'Select elements by their type',
@@ -12,8 +12,8 @@ export const levelsData: Array<ILevelParams> = [
             exampleText: 'div selects all <div> elements.'
         },
         itemsSet:
-            '<div class="plate target"></div>' +
-            '<div class="plate target"></div>',
+            '<div class="yummy yummy_donut target"></div>' +
+            '<div class="yummy yummy_donut target"></div>',
         levelHint: {
             title: 'No worries, you\'ve got this!',
             text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
@@ -24,8 +24,8 @@ export const levelsData: Array<ILevelParams> = [
                 'Hover over the items on the table to see their HTML markup.' +
                 'Get help with selectors on the right! →'
         },
-        solution: 'plate',
-        html: '<div class="container">\n  <plate />\n  <plate />\n</div>'
+        solution: 'donut',
+        html: '<div class="container">\n  <donut />\n  <donut />\n</div>'
     },
     {
         levelNumber: 1,
@@ -111,8 +111,8 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="container">\n' +
             '  <cake />\n' +
             '  <cake class="small" />\n' +
-            '  <plate class="pink">\n    <cake class="small" />\n  </plate>\n' +
-            '  <plate class="pink" />\n' +
+            '  <plate>\n    <cake class="small" />\n  </plate>\n' +
+            '  <plate />\n' +
             '</div>'},
     {
         levelNumber: 4,
@@ -143,10 +143,10 @@ export const levelsData: Array<ILevelParams> = [
         solution: 'strawberry, cupcake, cake',
         html:
             '<div class="container">\n' +
-            '  <plate class="pink"/>\n' +
+            '  <plate />\n' +
             '  <donut />\n' +
             '  <plate>\n    <cupcake />\n  </plate>\n' +
-            '  <plate class="pink">\n    <cake />\n  </plate>\n' +
+            '  <plate>\n    <cake />\n  </plate>\n' +
             '  </plate>\n' +
             '</div>'
     },
@@ -181,8 +181,8 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="container">\n' +
             '  <strawberry />\n' +
             '  <plate>\n    <cupcake class="small"/>\n  </plate>\n' +
-            '  <plate class="pink" />\n' +
-            '  <plate class="pink" />\n    <cupcake />\n  </plate>\n' +
+            '  <plate />\n' +
+            '  <plate />\n    <cupcake />\n  </plate>\n' +
             '  </plate>\n' +
             '</div>'
     },
@@ -291,9 +291,9 @@ export const levelsData: Array<ILevelParams> = [
         solution: '.container plate:nth-child(3)',
         html:
             '<div class="container">\n' +
-            '  <plate class="pink"/>\n'+
-            '  <plate class="pink"/>\n'+
-            '  <plate class="pink"/>\n'+
+            '  <plate />\n'+
+            '  <plate />\n'+
+            '  <plate />\n'+
             '  <plate />\n'+
             '</div>'
     },
@@ -325,33 +325,28 @@ export const levelsData: Array<ILevelParams> = [
         solution: 'plate:empty',
         html:
             '<div class="container">\n' +
-            '  <plate class="pink">\n    <cupcake />\n  </plate>\n' +
+            '  <plate>\n    <cupcake />\n  </plate>\n' +
             '  <plate />\n'+
-            '  <plate class="pink" />\n'+
+            '  <plate />\n'+
             '  <plate>\n    <strawberry />\n  </plate>\n' +
             '</div>'
     },
     {
         levelNumber: 10,
-        instruction: 'Select every strawberry that\'s next to a plate',
+        instruction: 'Select the big cakes',
         levelRules: {
-            title: 'Super challenge!',
-            subtitle: 'Select an element that directly follows another element',
-            selector: ':empty',
-            text:
-                'This selects all B elements that directly follow A. Elements that follow one another are called ' +
-                'siblings. They\'re on the same level, or depth.\n' +
-                'In the HTML markup for this level, elements that have the same indentation are siblings.',
-            exampleText: 'p + .intro selects every element with class="intro" that directly follows a <p>'
+            title: 'Negation Pseudo-class',
+            subtitle: 'Select all elements that don\'t match the negation selector',
+            selector: ':not(X)',
+            text: 'You can use this to select all elements that do not match selector "X".',
+            exampleText: ':not(.big, .medium) selects all elements that do not have class="big" or class="medium".'
         },
         itemsSet:
-            '<div class="plate plate_pink"><div class="yummy yummy_strawberry yummy_top yummy_small"></div></div>' +
-            '<div class="plate"></div>' +
-            '<div class="yummy yummy_strawberry yummy_small"></div>' +
-            '<div class="plate"></div>' +
-            '<div class="yummy yummy_strawberry"></div>' +
-            '<div class="yummy yummy_strawberry yummy_small"></div>' +
-            '<div class="yummy yummy_strawberry yummy_small"></div>',
+            '<div class="plate plate_pink"><div class="yummy yummy_cake yummy_small yummy_top"></div></div>' +
+            '<div class="plate"><div class="yummy yummy_cake yummy_top target"></div></div>' +
+            '<div class="yummy yummy_cake target"></div>' +
+            '<div class="plate"><div class="yummy yummy_strawberry yummy_top"></div></div>' +
+            '<div class="yummy yummy_donut"></div>',
         levelHint: {
             title: 'No worries, you\'ve got this!',
             text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
@@ -362,16 +357,49 @@ export const levelsData: Array<ILevelParams> = [
                 'Hover over the items on the table to see their HTML markup.' +
                 'Get help with selectors on the right! →'
         },
-        solution: 'plate + strawberry',
+        solution: 'cake:not(.small)',
         html:
             '<div class="container">\n' +
-            '  <plate>\n    <strawberry class="small" />\n  </plate>\n' +
-            '  <plate />\n'+
-            '  <strawberry class="small" />\n' +
-            '  <plate />\n'+
+            '  <plate>\n    <cake class="small"/>\n  </plate>\n' +
+            '  <plate>\n    <cake />\n  </plate>\n' +
+            '  <cake />\n' +
+            '  <plate>\n    <strawberry />\n  </plate>\n' +
+            '  <donut />\n' +
+            '</div>'
+    },
+    {
+        levelNumber: 11,
+        instruction: 'Select all strawberries, but not the one is after a pink plate',
+        levelRules: {
+            title: 'Super challenge!',
+            subtitle: 'Combine selectors to choose strawberries',
+            selector: '?',
+            text: '',
+            exampleText: ''
+        },
+        itemsSet:
+            '<div class="plate plate_pink"><div class="yummy yummy_strawberry yummy_top target"></div></div>' +
+            '<div class="yummy yummy_strawberry"></div>' +
+            '<div class="yummy yummy_strawberry yummy_small target"></div>' +
+            '<div class="plate"><div class="yummy yummy_strawberry yummy_top target"></div></div>' +
+            '<div class="plate plate_pink"></div>',
+        levelHint: {
+            title: 'No worries, you\'ve got this!',
+            text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
+                'p { margin-bottom: 12px; }' +
+                'Here, the "p" is the selector (selects all <p> elements) and applies the margin-bottom style.' +
+                'To play, type in a CSS selector in the editor below to select the correct items on the table.' +
+                'If you get it right, you\'ll advance to the next level.' +
+                'Hover over the items on the table to see their HTML markup.' +
+                'Get help with selectors on the right! →'
+        },
+        solution: 'strawberry:not(#pink + strawberry)',
+        html:
+            '<div class="container">\n' +
+            '  <plate id="pink">\n    <strawberry />\n  </plate>\n' +
             '  <strawberry />\n' +
-            '  <strawberry class="small" />\n' +
-            '  <strawberry class="small" />\n' +
+            '  <plate>\n    <strawberry />\n  </plate>\n' +
+            '  <plate id="pink" />\n' +
             '</div>'
     }
 ]
