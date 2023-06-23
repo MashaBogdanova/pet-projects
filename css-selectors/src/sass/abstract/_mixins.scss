@@ -1,0 +1,7 @@
+@import './constants';
+
+@mixin media-tablet {
+  @media screen and (max-width: $screen-width-tablet) {
+    @content;
+  }
+}

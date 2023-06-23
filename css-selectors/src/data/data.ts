@@ -238,8 +238,7 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="plate"></div>' +
             '<div class="yummy yummy_donut yummy_small target"></div>' +
             '<div class="plate"></div>' +
-            '<div class="yummy yummy_donut target"></div>' +
-            '<div class="yummy yummy_donut yummy_small"></div>',
+            '<div class="yummy yummy_donut target"></div>',
             levelHint: {
             title: 'No worries, you\'ve got this!',
             text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
@@ -258,7 +257,6 @@ export const levelsData: Array<ILevelParams> = [
             '  <donut class="small" />\n' +
             '  <plate />\n'+
             '  <donut />\n' +
-            '  <donut class="small" />\n' +
             '  <donut class="small" />\n' +
             '</div>'
     },

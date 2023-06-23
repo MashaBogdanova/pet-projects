@@ -1,5 +1,7 @@
 @import 'abstract/constants';
+@import 'abstract/mixins';
 @import 'base/fonts';
+@import 'base/burger-menu';
 
 html, * {
   margin: 0;
@@ -20,14 +22,20 @@ body {
   font-weight: 400;
   color: $color-dark-s;
   background-color: $color-primary;
+  @include media-tablet {
+    grid-template-columns: 1fr;
+  }
 }
-
 .header {
   grid-area: header;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: space-between;
   padding: 1em;
+  &__logo-wrapper {
+    display: flex;
+    gap: 8px;
+  }
   &__logo {
     width: 20px;
     height: 20px;
@@ -193,9 +201,13 @@ body {
 
 .nav {
   grid-area: nav;
+  min-width: 240px;
   height: 100%;
   padding: 1rem;
   background-color: $color-dark-l;
+  @include media-tablet {
+    display: none;
+  }
 }
 
 .levels {
@@ -291,4 +303,12 @@ body {
   100% {
     transform: skew(4deg,0deg) scaleX(1);
   }
+}
+
+.visible {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: unset;
+  width: 60vw;
 }

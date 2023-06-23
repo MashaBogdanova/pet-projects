@@ -15,13 +15,15 @@ export class Game {
     private initialRender(): void {
         // Header
         createElement({tag: 'header', styles: ['header'], parent: '.body'});
-        createElement({tag: 'div', styles: ['header__logo'], parent: '.header'});
+        createElement({tag: 'div', styles: ['header__logo-wrapper'], parent: '.header'})
+        createElement({tag: 'div', styles: ['header__logo'], parent: '.header__logo-wrapper'});
         createElement({
             tag: 'h1',
             styles: ['header__title'],
-            parent: '.header',
+            parent: '.header__logo-wrapper',
             innerText: 'RSS CSS Selectors'
         });
+        this.addBurgerMenu();
 
         // Main
         this.renderCurrentLevel();
@@ -53,5 +55,16 @@ export class Game {
             this.currentLevel -= 1;
         }
         this.renderCurrentLevel();
+    }
+    private addBurgerMenu() {
+        const burgerMenu = createElement({tag: 'div', styles: ['burger-icon'], parent: '.header'});
+        createElement({tag: 'div', styles: ['burger-icon__line'], parent: '.burger-icon'});
+        createElement({tag: 'div', styles: ['burger-icon__line'], parent: '.burger-icon'});
+        createElement({tag: 'div', styles: ['burger-icon__line'], parent: '.burger-icon'});
+
+        burgerMenu.addEventListener('click', (e: Event) => {
+            const nav = document.querySelector('.nav');
+            nav && nav.classList.toggle('visible');
+        })
     }
 }
