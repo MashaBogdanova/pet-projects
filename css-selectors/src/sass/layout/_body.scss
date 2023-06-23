@@ -1,0 +1,16 @@
+@import '../abstract/mixins';
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 5fr 2fr;
+  grid-template-areas:
+  'header nav'
+  'main nav'
+  'footer nav';
+  height: 100vh;
+
+  @include media-tablet {
+    grid-template-columns: 1fr;
+  }
+}

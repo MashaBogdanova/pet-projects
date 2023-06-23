@@ -1,0 +1,21 @@
+@import '../abstract/mixins';
+
+.nav {
+  grid-area: nav;
+  min-width: 240px;
+  height: 100%;
+  padding: 1rem;
+  background-color: $color-dark-l;
+  opacity: 100%;
+  @include media-tablet {
+    display: none;
+  }
+}
+
+.visible {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: unset;
+  width: 60vw;
+}

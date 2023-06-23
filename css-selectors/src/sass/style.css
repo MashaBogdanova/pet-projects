@@ -1,3 +1,16 @@
+html, * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.body {
+  font-family: Exo2, Lato, sans-serif;
+  font-weight: 400;
+  color: rgb(115, 115, 115);
+  background-color: #2e2a23;
+}
+
 @font-face {
   font-family: "Exo2";
   src: url("../assets/fonts/Exo2-Regular.ttf") format("truetype");
@@ -34,46 +47,12 @@
   font-weight: 100;
   font-style: normal;
 }
-.burger-icon {
-  display: none;
-}
-@media screen and (max-width: 850px) {
-  .burger-icon {
-    position: absolute;
-    top: 1.5em;
-    right: 1em;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 30px;
-    height: 22px;
-    cursor: pointer;
-  }
-}
-
-.burger-icon__line {
-  height: 2px;
-  width: 100%;
-  border-radius: 5px;
-  background-color: rgba(231, 195, 243, 0.53);
-}
-
-html, * {
-  margin: 0;
-  box-sizing: border-box;
-}
-
 body {
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-template-columns: 5fr 2fr;
   grid-template-areas: "header nav" "main nav" "footer nav";
   height: 100vh;
-  font-family: Exo2, Lato, sans-serif;
-  font-weight: 400;
-  color: rgb(115, 115, 115);
-  background-color: #2e2a23;
 }
 @media screen and (max-width: 850px) {
   body {
@@ -115,6 +94,35 @@ body {
   .main {
     padding: 0;
   }
+}
+
+.nav {
+  grid-area: nav;
+  min-width: 240px;
+  height: 100%;
+  padding: 1rem;
+  background-color: #221e18;
+  opacity: 100%;
+}
+@media screen and (max-width: 850px) {
+  .nav {
+    display: none;
+  }
+}
+
+.visible {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: unset;
+  width: 60vw;
+}
+
+.footer {
+  grid-area: footer;
+  padding: 1em;
+  font-size: 0.8em;
+  text-align: center;
 }
 
 .instruction {
@@ -175,7 +183,36 @@ body {
 .board .target {
   transform-origin: bottom;
   animation: jelly-start 0.5s ease-out, jelly 1s infinite;
-  animation-delay: 0s, 0.5s;
+}
+@keyframes jellyStart {
+  0% {
+    transform: skew(0deg, 0deg) scaleY(1);
+    animation-timing-function: ease-in;
+  }
+  40% {
+    transform: skew(0deg, 0deg) scaleY(0.9);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: skew(4deg, 0deg) scaleX(1);
+  }
+}
+@keyframes jelly {
+  0% {
+    transform: skew(4deg, 0deg) scaleX(1);
+  }
+  10% {
+    transform: skew(1deg, 0deg) scaleY(0.9);
+  }
+  50% {
+    transform: skew(-4deg, 0deg) scaleX(1);
+  }
+  60% {
+    transform: skew(-1deg, 0deg) scaleY(0.9);
+  }
+  100% {
+    transform: skew(4deg, 0deg) scaleX(1);
+  }
 }
 
 .editor-wrapper {
@@ -229,7 +266,18 @@ body {
   color: rgb(115, 115, 115);
   border: none;
   border-radius: 2px;
-  animation: blink-background 1s infinite;
+  animation: blinkBackground 1s infinite;
+}
+@keyframes blinkBackground {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgba(231, 195, 243, 0.53);
+  }
+  100% {
+    background-color: transparent;
+  }
 }
 .answer-form__input:active {
   border: none;
@@ -244,19 +292,6 @@ body {
 }
 .answer-form__btn:hover {
   background-color: rgba(231, 195, 243, 0.53);
-}
-
-.nav {
-  grid-area: nav;
-  min-width: 240px;
-  height: 100%;
-  padding: 1rem;
-  background-color: #221e18;
-}
-@media screen and (max-width: 850px) {
-  .nav {
-    display: none;
-  }
 }
 
 .levels {
@@ -301,60 +336,29 @@ body {
   color: rgba(255, 255, 255, 0.6);
 }
 
-.footer {
-  grid-area: footer;
-  padding: 1em;
-  font-size: 0.8em;
-  text-align: center;
+.burger-icon {
+  display: none;
+}
+@media screen and (max-width: 850px) {
+  .burger-icon {
+    position: absolute;
+    top: 1.5em;
+    right: 1em;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 30px;
+    height: 22px;
+    cursor: pointer;
+  }
 }
 
-@keyframes blink-background {
-  0% {
-    background-color: transparent;
-  }
-  50% {
-    background-color: rgba(231, 195, 243, 0.53);
-  }
-  100% {
-    background-color: transparent;
-  }
-}
-@keyframes jelly-start {
-  0% {
-    transform: skew(0deg, 0deg) scaleY(1);
-    animation-timing-function: ease-in;
-  }
-  40% {
-    transform: skew(0deg, 0deg) scaleY(0.9);
-    animation-timing-function: ease-out;
-  }
-  100% {
-    transform: skew(4deg, 0deg) scaleX(1);
-  }
-}
-@keyframes jelly {
-  0% {
-    transform: skew(4deg, 0deg) scaleX(1);
-  }
-  10% {
-    transform: skew(1deg, 0deg) scaleY(0.9);
-  }
-  50% {
-    transform: skew(-4deg, 0deg) scaleX(1);
-  }
-  60% {
-    transform: skew(-1deg, 0deg) scaleY(0.9);
-  }
-  100% {
-    transform: skew(4deg, 0deg) scaleX(1);
-  }
-}
-.visible {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: unset;
-  width: 60vw;
+.burger-icon__line {
+  height: 2px;
+  width: 100%;
+  border-radius: 5px;
+  background-color: rgba(231, 195, 243, 0.53);
 }
 
 /*# sourceMappingURL=style.css.map */
