@@ -111,6 +111,11 @@ body {
   grid-area: main;
   padding: 0 2em;
 }
+@media screen and (max-width: 620px) {
+  .main {
+    padding: 0;
+  }
+}
 
 .instruction {
   font-size: 2em;

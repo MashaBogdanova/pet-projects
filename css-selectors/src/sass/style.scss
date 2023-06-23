@@ -55,6 +55,9 @@ body {
   grid-template-rows: auto 2.2fr 5fr;
   grid-area: main;
   padding: 0 2em;
+  @include media-mobile {
+    padding: 0;
+  }
 }
 
 .instruction {

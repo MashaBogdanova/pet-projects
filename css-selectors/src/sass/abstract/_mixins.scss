@@ -5,3 +5,8 @@
     @content;
   }
 }
+@mixin media-mobile {
+  @media screen and (max-width: $screen-width-mobile) {
+    @content;
+  }
+}
