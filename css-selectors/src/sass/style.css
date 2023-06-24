@@ -368,12 +368,22 @@ body {
   color: rgba(255, 255, 255, 0.6);
   border-bottom: 1px solid rgb(115, 115, 115);
 }
+@media screen and (max-width: 850px) {
+  .levels {
+    font-size: 0.8em;
+  }
+}
 .levels__arrow {
   font-size: 2rem;
   color: rgb(115, 115, 115);
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+@media screen and (max-width: 850px) {
+  .levels__arrow {
+    font-size: 1.8em;
+  }
 }
 .levels__check {
   width: 30px;

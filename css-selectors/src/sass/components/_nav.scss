@@ -1,4 +1,4 @@
-@import '../abstract/constants';
+@import '../abstract/mixins';
 
 .levels {
   display: flex;
@@ -7,12 +7,18 @@
   padding-bottom: .6rem;
   color: $color-light-s;
   border-bottom: 1px solid $color-dark-s;
+  @include media-tablet {
+    font-size: .8em;
+  }
   &__arrow {
     font-size: 2rem;
     color: $color-dark-s;
     background-color: transparent;
     border: none;
     cursor: pointer;
+    @include media-tablet {
+      font-size: 1.8em;
+    }
   }
   &__check {
     width: 30px;
