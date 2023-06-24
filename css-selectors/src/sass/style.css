@@ -57,6 +57,7 @@ body {
 @media screen and (max-width: 850px) {
   body {
     grid-template-columns: 1fr;
+    overflow: hidden;
   }
 }
 

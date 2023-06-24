@@ -12,5 +12,6 @@ body {
 
   @include media-tablet {
     grid-template-columns: 1fr;
+    overflow: hidden;
   }
 }
