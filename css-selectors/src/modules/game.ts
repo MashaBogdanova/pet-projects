@@ -41,7 +41,7 @@ export class Game {
 
         const currentLevelParams: ILevelParams = levelsData[this.currentLevel];
         const level = new Level(currentLevelParams, this.increaseLevel, this.decreaseLevel);
-        level.rerender();
+        level.render();
     }
 
     increaseLevel = (): void => {

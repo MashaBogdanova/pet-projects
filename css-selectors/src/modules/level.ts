@@ -26,7 +26,7 @@ export class Level {
         this.isHintUsed = false;
     }
 
-    rerender() {
+    render() {
         createElement({ tag: 'main', styles: ['main'], parent: '.body' });
         // Instruction
         createElement({
@@ -58,26 +58,15 @@ export class Level {
 
         // Nav Levels
         createElement({ tag: 'section', styles: ['levels'], parent: '.nav' });
-
-        const arrowLeft = createElement({ tag: 'button', styles: ['levels__arrow'], parent: '.levels', innerText: '<' });
-        arrowLeft && arrowLeft.addEventListener('click', () => this.decreaseLevel());
-
-        const arrowRight = createElement({ tag: 'button', styles: ['levels__arrow'], parent: '.levels', innerText: '>' });
-        arrowRight && arrowRight.addEventListener('click', () => this.increaseLevel());
-
+        this.addArrow('<', this.decreaseLevel);
+        this.addArrow('>', this.increaseLevel);
         createElement({
             tag: 'h2',
             styles: ['levels__header'],
             parent: '.levels',
             innerText: `Level ${this.levelNumber + 1} from 12`
         });
-
-        if (localStorage.getItem(`level ${this.levelNumber}`) === 'true') {
-            createElement({ tag: 'div', styles: ['levels__check', 'levels__check_done'], parent: '.levels' });
-        } else {
-            createElement({ tag: 'div', styles: ['levels__check'], parent: '.levels' });
-        }
-
+        this.addCheck();
 
         // Nav Rules
         createElement({ tag: 'section', styles: ['rules'], parent: '.nav' });
@@ -104,6 +93,17 @@ export class Level {
         });
     }
 
+    private addArrow(innerText: '<' | '>', callback: () => void) {
+        const arrow: HTMLElement = createElement({ tag: 'button', styles: ['levels__arrow'], parent: '.levels', innerText: innerText });
+        arrow.addEventListener('click', () => callback());
+    }
+    private addCheck() {
+        if (localStorage.getItem(`level ${this.levelNumber}`) === 'true') {
+            createElement({ tag: 'div', styles: ['levels__check', 'levels__check_done'], parent: '.levels' });
+        } else {
+            createElement({ tag: 'div', styles: ['levels__check'], parent: '.levels' });
+        }
+    }
     private fillEditor(parent: string, headerText: string, entryFieldText: string, additionalStyle?: string): void {
         const asideText = '1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20';
         createElement({ tag: 'h3', styles: ['editor__header'], parent: parent, innerText: headerText });
@@ -115,7 +115,6 @@ export class Level {
             innerText: entryFieldText
         });
     }
-
     private addAnswerForm() {
         const form = createElement({
             tag: 'form',
@@ -138,42 +137,40 @@ export class Level {
             type: 'submit'
         });
 
-        const handleSubmit = (e: Event) => {
-            e.preventDefault();
-            const usersAnswer = input.value.trim().toLowerCase();
-
-            if (usersAnswer === this.solution) {
-                if (this.levelNumber === 11) {
-                    this.showWinModal();
-                }
-
-                const check = document.querySelector('.levels__check');
-                if (!this.isHintUsed) {
-                    localStorage.setItem(`level ${this.levelNumber}`, 'true');
-                    check && check.classList.add('levels__check_done');
-                }
-
-                const targetElements: NodeListOf<HTMLElement> = document.querySelectorAll('.target');
-                for (const elem of targetElements) {
-                    elem.classList.add('target_fly-up');
-                }
-                setTimeout(() => {
-                    this.increaseLevel();
-                    input.value = '';
-                }, 1000)
-            } else {
-                const editorWrapper = document.querySelector('.editor-wrapper');
-                editorWrapper && editorWrapper.classList.add('editor-wrapper_shake');
-                setTimeout(() => {
-                    editorWrapper && editorWrapper.classList.remove('editor-wrapper_shake');
-                }, 500);
-            }
-        }
-
-        form.addEventListener('submit', handleSubmit);
-        button.addEventListener('click', handleSubmit);
+        form.addEventListener('submit', (e: Event) => this.checkAnswer(e, input));
+        button.addEventListener('click', (e: Event) => this.checkAnswer(e, input));
     }
+    private checkAnswer(e: Event, input: HTMLInputElement) {
+        e.preventDefault();
+        const usersAnswer = input.value.trim().toLowerCase();
 
+        if (usersAnswer === this.solution) {
+            if (this.levelNumber === 11) {
+                this.showWinModal();
+            }
+
+            const check = document.querySelector('.levels__check');
+            if (!this.isHintUsed) {
+                localStorage.setItem(`level ${this.levelNumber}`, 'true');
+                check && check.classList.add('levels__check_done');
+            }
+
+            const targetElements: NodeListOf<HTMLElement> = document.querySelectorAll('.target');
+            for (const elem of targetElements) {
+                elem.classList.add('target_fly-up');
+            }
+            setTimeout(() => {
+                this.increaseLevel();
+                input.value = '';
+            }, 1000)
+        } else {
+            const editorWrapper = document.querySelector('.editor-wrapper');
+            editorWrapper && editorWrapper.classList.add('editor-wrapper_shake');
+            setTimeout(() => {
+                editorWrapper && editorWrapper.classList.remove('editor-wrapper_shake');
+            }, 500);
+        }
+    }
     private addHelpBtn() {
         const helpBtn = createElement({
             tag: 'button',
@@ -198,7 +195,6 @@ export class Level {
             }
         });
     }
-
     private showWinModal() {
         createElement({ tag: 'div', styles: ['modal-overlay'], parent: '.body' });
         createElement({ tag: 'div', styles: ['modal-window'], parent: '.modal-overlay' });
