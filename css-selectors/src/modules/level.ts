@@ -90,31 +90,12 @@ export class Level {
             parent: '.rules',
             innerText: `${this.levelRules.exampleText}`
         });
+
+        // Nav reset button
+        this.addResetBtn();
     }
-    private addArrow(innerText: '<' | '>', callback: () => void) {
-        const arrow: HTMLElement = createElement({ tag: 'button', styles: ['levels__arrow'], parent: '.levels', innerText: innerText });
-        arrow.addEventListener('click', () => callback());
-    }
-    private addCheck() {
-        if (localStorage.getItem(`level ${this.levelNumber}`) === 'true') {
-            createElement({ tag: 'div', styles: ['levels__check', 'levels__check_done'], parent: '.levels' });
-        } else {
-            createElement({ tag: 'div', styles: ['levels__check'], parent: '.levels' });
-        }
-    }
-    private fillEditor(parent: string, headerText: string, entryFieldText: string, additionalStyle?: string): void {
-        const asideText = '1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20';
-        createElement({ tag: 'h3', styles: ['editor__header'], parent: parent, innerText: headerText });
-        createElement({ tag: 'plaintext', styles: ['editor__aside'], parent: parent, innerText: asideText });
-        createElement({
-            tag: 'plaintext',
-            styles: ['editor__entry-field', `${additionalStyle}`],
-            parent: parent,
-            innerText: entryFieldText
-        });
-    }
-    private addAnswerForm() {
-        const form = createElement({
+    private addAnswerForm(): void {
+        const form: HTMLElement = createElement({
             tag: 'form',
             styles: ['answer-form'],
             parent: '.editor__entry-field_css',
@@ -127,7 +108,7 @@ export class Level {
             placeholder: 'Type in a CSS selector',
             type: 'text'
         }) as HTMLInputElement;
-        const button = createElement({
+        const button: HTMLElement = createElement({
             tag: 'button',
             styles: ['answer-form__btn'],
             parent: '.answer-form',
@@ -138,16 +119,16 @@ export class Level {
         form.addEventListener('submit', (e: Event) => this.checkAnswer(e, input));
         button.addEventListener('click', (e: Event) => this.checkAnswer(e, input));
     }
-    private checkAnswer(e: Event, input: HTMLInputElement) {
+    private checkAnswer(e: Event, input: HTMLInputElement): void {
         e.preventDefault();
-        const usersAnswer = input.value.trim().toLowerCase();
+        const usersAnswer: string = input.value.trim().toLowerCase();
 
         if (usersAnswer === this.solution) {
             if (this.levelNumber === 11) {
                 this.showWinModal();
             }
 
-            const check = document.querySelector('.levels__check');
+            const check: HTMLElement | null = document.querySelector('.levels__check');
             if (!this.isHintUsed) {
                 localStorage.setItem(`level ${this.levelNumber}`, 'true');
                 check && check.classList.add('levels__check_done');
@@ -162,15 +143,15 @@ export class Level {
                 input.value = '';
             }, 1000)
         } else {
-            const editorWrapper = document.querySelector('.editor-wrapper');
+            const editorWrapper: HTMLElement | null = document.querySelector('.editor-wrapper');
             editorWrapper && editorWrapper.classList.add('editor-wrapper_shake');
             setTimeout(() => {
                 editorWrapper && editorWrapper.classList.remove('editor-wrapper_shake');
             }, 500);
         }
     }
-    private addHelpBtn() {
-        const helpBtn = createElement({
+    private addHelpBtn(): void {
+        const helpBtn: HTMLElement = createElement({
             tag: 'button',
             styles: ['editor__help-btn'],
             parent: '.editor_css .editor__header',
@@ -178,7 +159,7 @@ export class Level {
         });
         helpBtn.addEventListener('click', () => {
             this.isHintUsed = true;
-            const answerInput = document.querySelector('.answer-form__input') as HTMLInputElement;
+            const answerInput: HTMLInputElement = document.querySelector('.answer-form__input');
             if (answerInput) {
                 answerInput.value = '';
                 let index = 0;
@@ -194,7 +175,29 @@ export class Level {
             }
         });
     }
-    private showWinModal() {
+    private fillEditor(parent: string, headerText: string, entryFieldText: string, additionalStyle?: string): void {
+        const asideText = '1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20';
+        createElement({ tag: 'h3', styles: ['editor__header'], parent: parent, innerText: headerText });
+        createElement({ tag: 'plaintext', styles: ['editor__aside'], parent: parent, innerText: asideText });
+        createElement({
+            tag: 'plaintext',
+            styles: ['editor__entry-field', `${additionalStyle}`],
+            parent: parent,
+            innerText: entryFieldText
+        });
+    }
+    private addArrow(innerText: '<' | '>', callback: () => void): void {
+        const arrow: HTMLElement = createElement({ tag: 'button', styles: ['levels__arrow'], parent: '.levels', innerText: innerText });
+        arrow.addEventListener('click', () => callback());
+    }
+    private addCheck(): void {
+        if (localStorage.getItem(`level ${this.levelNumber}`) === 'true') {
+            createElement({ tag: 'div', styles: ['levels__check', 'levels__check_done'], parent: '.levels' });
+        } else {
+            createElement({ tag: 'div', styles: ['levels__check'], parent: '.levels' });
+        }
+    }
+    private showWinModal(): void {
         createElement({ tag: 'div', styles: ['modal-overlay'], parent: '.body' });
         createElement({ tag: 'div', styles: ['modal-window'], parent: '.modal-overlay' });
         createElement({
