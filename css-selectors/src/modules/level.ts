@@ -94,6 +94,12 @@ export class Level {
             if (input.value.trim().toLowerCase() === this.solution) {
                 this.increaseLevel();
                 input.value = '';
+            } else {
+                const editorWrapper = document.querySelector('.editor-wrapper');
+                editorWrapper && editorWrapper.classList.add('editor-wrapper_shake');
+                setTimeout(() => {
+                    editorWrapper && editorWrapper.classList.remove('editor-wrapper_shake');
+                }, 500);
             }
         }
 
