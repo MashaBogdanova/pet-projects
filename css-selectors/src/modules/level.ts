@@ -66,7 +66,7 @@ export class Level {
             tag: 'h2',
             styles: ['levels__header'],
             parent: '.levels',
-            innerText: `Level ${this.levelNumber + 1} from 10`
+            innerText: `Level ${this.levelNumber + 1} from 12`
         });
 
         // Nav Rules
@@ -91,7 +91,11 @@ export class Level {
 
         const handleSubmit = (e: Event) => {
             e.preventDefault();
-            if (input.value.trim().toLowerCase() === this.solution) {
+            const usersAnswer = input.value.trim().toLowerCase();
+            if (usersAnswer === this.solution) {
+                if (this.levelNumber === 11) {
+                    this.showWinModal();
+                }
                 const targetElements: NodeListOf<HTMLElement> = document.querySelectorAll('.target');
                 for (const elem of targetElements) {
                     elem.classList.add('target_fly-up');
@@ -111,5 +115,11 @@ export class Level {
 
         form.addEventListener('submit', handleSubmit);
         button.addEventListener('click', handleSubmit);
+    }
+    private showWinModal() {
+        createElement({ tag: 'div', styles: ['modal-overlay'], parent: '.body' });
+        createElement({ tag: 'div', styles: ['modal-window'], parent: '.modal-overlay' });
+        createElement({ tag: 'h2', styles: ['modal-window__title'], parent: '.modal-window', innerText: 'Congratulations!\nYou completed all levels!' });
+        createElement({ tag: 'div', styles: ['modal-window__cake'], parent: '.modal-window' });
     }
 }
