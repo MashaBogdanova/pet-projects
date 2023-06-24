@@ -219,6 +219,19 @@ body {
     transform: skew(4deg, 0deg) scaleX(1);
   }
 }
+.board .target_fly-up {
+  animation: flyUp 1s ease-in forwards;
+}
+@keyframes flyUp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
 
 .editor-wrapper {
   display: flex;

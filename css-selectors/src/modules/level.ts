@@ -92,8 +92,14 @@ export class Level {
         const handleSubmit = (e: Event) => {
             e.preventDefault();
             if (input.value.trim().toLowerCase() === this.solution) {
-                this.increaseLevel();
-                input.value = '';
+                const targetElements: NodeListOf<HTMLElement> = document.querySelectorAll('.target');
+                for (const elem of targetElements) {
+                    elem.classList.add('target_fly-up');
+                }
+                setTimeout(() => {
+                    this.increaseLevel();
+                    input.value = '';
+                }, 1000)
             } else {
                 const editorWrapper = document.querySelector('.editor-wrapper');
                 editorWrapper && editorWrapper.classList.add('editor-wrapper_shake');

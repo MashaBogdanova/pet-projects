@@ -65,5 +65,9 @@
     animation: jelly-start .5s ease-out, jelly 1s infinite;
     @include jellyStart;
     @include jelly;
+    &_fly-up {
+    animation: flyUp 1s ease-in forwards;
+      @include flyUp;
+    }
   }
 }
