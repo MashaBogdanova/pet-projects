@@ -1,5 +1,8 @@
 .footer {
   grid-area: footer;
+  display: flex;
+  gap: 2px;
+  justify-content: center;
   padding: 1em;
   font-size: .8em;
   text-align: center;

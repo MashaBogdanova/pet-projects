@@ -12,3 +12,9 @@ html, * {
   color: $color-dark-s;
   background-color: $color-primary;
 }
+
+a {
+  color: $color-secondary;
+  text-decoration: none;
+  cursor: pointer;
+}

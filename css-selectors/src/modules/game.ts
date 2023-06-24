@@ -15,7 +15,7 @@ export class Game {
     private initialRender(): void {
         // Header
         createElement({ tag: 'header', styles: ['header'], parent: '.body' });
-        createElement({ tag: 'div', styles: ['header__logo-wrapper'], parent: '.header' })
+        createElement({ tag: 'div', styles: ['header__logo-wrapper'], parent: '.header' });
         createElement({ tag: 'div', styles: ['header__logo'], parent: '.header__logo-wrapper' });
         createElement({
             tag: 'h1',
@@ -30,7 +30,10 @@ export class Game {
 
         // Footer
         createElement({ tag: 'footer', styles: ['footer'], parent: '.body' });
-        createElement({ tag: 'p', styles: ['footer__author'], parent: '.footer', innerText: 'Made by Masha Bogdanova in RSS School' })
+        createElement({ tag: 'p', styles: ['footer__author'], parent: '.footer', innerText: 'Made by ' });
+        createElement({ tag: 'a', styles: ['footer__link'], parent: '.footer', innerText: 'Masha Bogdanova', attribute: { key: 'href', value: 'https://github.com/rolling-scopes-school/mashabogdanova-JSFE2023Q1' } });
+        createElement({ tag: 'p', styles: ['footer__author'], parent: '.footer', innerText: 'in' });
+        createElement({ tag: 'a', styles: ['footer__link'], parent: 'footer', innerText: 'RSS School', attribute: { key: 'href', value: 'https://rs.school/' } });
     }
 
     private renderCurrentLevel(): void {
@@ -44,14 +47,14 @@ export class Game {
         level.render();
     }
 
-    increaseLevel = (): void => {
+    private increaseLevel = (): void => {
         if (this.currentLevel < 11) {
             this.currentLevel += 1;
             localStorage.setItem('level', `${this.currentLevel}`);
         }
         this.renderCurrentLevel();
     }
-    decreaseLevel = (): void => {
+    private decreaseLevel = (): void => {
         if (this.currentLevel > 0) {
             this.currentLevel -= 1;
             localStorage.setItem('level', `${this.currentLevel}`);

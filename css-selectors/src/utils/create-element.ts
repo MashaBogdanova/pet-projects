@@ -6,6 +6,10 @@ interface IElementParam {
     placeholder?: string;
     type?: string;
     method?: string;
+    attribute?: {
+        key: string,
+        value: string
+    };
 }
 
 export function createElement(param: IElementParam) {
@@ -25,6 +29,9 @@ export function createElement(param: IElementParam) {
     }
     if (param.type) {
         element.setAttribute('type', param.type);
+    }
+    if (param.attribute) {
+        element.setAttribute(param.attribute.key, param.attribute.value);
     }
     return element;
 }

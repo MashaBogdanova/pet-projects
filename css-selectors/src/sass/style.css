@@ -11,6 +11,12 @@ html, * {
   background-color: #2e2a23;
 }
 
+a {
+  color: rgba(231, 195, 243, 0.53);
+  text-decoration: none;
+  cursor: pointer;
+}
+
 @font-face {
   font-family: "Exo2";
   src: url("../assets/fonts/Exo2-Regular.ttf") format("truetype");
@@ -126,6 +132,9 @@ body {
 
 .footer {
   grid-area: footer;
+  display: flex;
+  gap: 2px;
+  justify-content: center;
   padding: 1em;
   font-size: 0.8em;
   text-align: center;
