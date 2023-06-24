@@ -280,12 +280,22 @@ body {
   background-color: #26211c;
 }
 .editor__header {
+  position: relative;
   grid-area: editor-header;
   padding: 0.5em;
   font-weight: normal;
   color: rgb(115, 115, 115);
   background-color: #2e2a23;
   border-bottom: 1px solid rgb(115, 115, 115);
+}
+.editor__help-btn {
+  position: absolute;
+  top: 1.1em;
+  right: 1em;
+  color: rgba(231, 195, 243, 0.53);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 .editor__aside {
   grid-area: editor-aside;

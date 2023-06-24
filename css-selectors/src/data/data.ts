@@ -14,16 +14,7 @@ export const levelsData: Array<ILevelParams> = [
         itemsSet:
             '<div class="yummy yummy_donut target"></div>' +
             '<div class="yummy yummy_donut target"></div>',
-        levelHint: {
-            title: 'No worries, you\'ve got this!',
-            text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
-                'p { margin-bottom: 12px; }' +
-                'Here, the "p" is the selector (selects all <p> elements) and applies the margin-bottom style.' +
-                'To play, type in a CSS selector in the editor below to select the correct items on the table.' +
-                'If you get it right, you\'ll advance to the next level.' +
-                'Hover over the items on the table to see their HTML markup.' +
-                'Get help with selectors on the right! →'
-        },
+
         solution: 'donut',
         html: '<div class="container">\n  <donut />\n  <donut />\n</div>'
     },
@@ -41,16 +32,6 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="plate plate_pink target"></div>' +
             '<div class="plate"></div>' +
             '<div class="plate"></div>',
-        levelHint: {
-            title: 'No worries, you\'ve got this!',
-            text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
-                'p { margin-bottom: 12px; }' +
-                'Here, the "p" is the selector (selects all <p> elements) and applies the margin-bottom style.' +
-                'To play, type in a CSS selector in the editor below to select the correct items on the table.' +
-                'If you get it right, you\'ll advance to the next level.' +
-                'Hover over the items on the table to see their HTML markup.' +
-                'Get help with selectors on the right! →'
-        },
         solution: '#pink',
         html: '<div class="container">\n  <plate id="pink"/>\n  <plate />\n  <plate />\n</div>'
     },
@@ -68,16 +49,6 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="plate plate_pink"></div>' +
             '<div class="plate"><div class="yummy yummy_top target"></div></div>' +
             '<div class="yummy"></div>',
-        levelHint: {
-            title: 'No worries, you\'ve got this!',
-            text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
-                'p { margin-bottom: 12px; }' +
-                'Here, the "p" is the selector (selects all <p> elements) and applies the margin-bottom style.' +
-                'To play, type in a CSS selector in the editor below to select the correct items on the table.' +
-                'If you get it right, you\'ll advance to the next level.' +
-                'Hover over the items on the table to see their HTML markup.' +
-                'Get help with selectors on the right! →'
-        },
         solution: 'plate cupcake',
         html: '<div class="container">\n  <plate />\n  <plate>\n    <cupcake />\n  </plate>\n  <cupcake />\n</div>'
     },
@@ -96,16 +67,6 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="yummy yummy_cake yummy_small target"></div>' +
             '<div class="plate plate_pink"><div class="yummy yummy_cake yummy_small yummy_top target"></div></div>' +
             '<div class="plate plate_pink"></div>',
-        levelHint: {
-            title: 'No worries, you\'ve got this!',
-            text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
-                'p { margin-bottom: 12px; }' +
-                'Here, the "p" is the selector (selects all <p> elements) and applies the margin-bottom style.' +
-                'To play, type in a CSS selector in the editor below to select the correct items on the table.' +
-                'If you get it right, you\'ll advance to the next level.' +
-                'Hover over the items on the table to see their HTML markup.' +
-                'Get help with selectors on the right! →'
-        },
         solution: '.small',
         html:
             '<div class="container">\n' +
@@ -130,16 +91,6 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="plate"><div class="yummy yummy_cupcake yummy_top target"></div></div>' +
             '<div class="plate plate_pink"><div class="yummy yummy_cake yummy_top target"></div></div>' +
             '<div class="plate"></div>',
-        levelHint: {
-            title: 'No worries, you\'ve got this!',
-            text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
-                'p { margin-bottom: 12px; }' +
-                'Here, the "p" is the selector (selects all <p> elements) and applies the margin-bottom style.' +
-                'To play, type in a CSS selector in the editor below to select the correct items on the table.' +
-                'If you get it right, you\'ll advance to the next level.' +
-                'Hover over the items on the table to see their HTML markup.' +
-                'Get help with selectors on the right! →'
-        },
         solution: 'strawberry, cupcake, cake',
         html:
             '<div class="container">\n' +
@@ -166,16 +117,6 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="plate plate_pink target"></div>' +
             '<div class="plate plate_pink target"><div class="yummy yummy_cupcake yummy_top target"></div></div>' +
             '<div class="plate target"></div>',
-        levelHint: {
-            title: 'No worries, you\'ve got this!',
-            text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
-                'p { margin-bottom: 12px; }' +
-                'Here, the "p" is the selector (selects all <p> elements) and applies the margin-bottom style.' +
-                'To play, type in a CSS selector in the editor below to select the correct items on the table.' +
-                'If you get it right, you\'ll advance to the next level.' +
-                'Hover over the items on the table to see their HTML markup.' +
-                'Get help with selectors on the right! →'
-        },
         solution: '*',
         html:
             '<div class="container">\n' +
@@ -201,16 +142,6 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="plate"><div class="yummy yummy_strawberry yummy_top target"></div></div>' +
             '<div class="yummy yummy_cake"></div>' +
             '<div class="plate"><div class="yummy yummy_cupcake yummy_top yummy_small target"></div></div>',
-        levelHint: {
-            title: 'No worries, you\'ve got this!',
-            text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
-                'p { margin-bottom: 12px; }' +
-                'Here, the "p" is the selector (selects all <p> elements) and applies the margin-bottom style.' +
-                'To play, type in a CSS selector in the editor below to select the correct items on the table.' +
-                'If you get it right, you\'ll advance to the next level.' +
-                'Hover over the items on the table to see their HTML markup.' +
-                'Get help with selectors on the right! →'
-        },
         solution: 'plate *',
         html:
             '<div class="container">\n' +
@@ -239,16 +170,6 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="yummy yummy_donut yummy_small target"></div>' +
             '<div class="plate"></div>' +
             '<div class="yummy yummy_donut target"></div>',
-            levelHint: {
-            title: 'No worries, you\'ve got this!',
-            text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
-                'p { margin-bottom: 12px; }' +
-                'Here, the "p" is the selector (selects all <p> elements) and applies the margin-bottom style.' +
-                'To play, type in a CSS selector in the editor below to select the correct items on the table.' +
-                'If you get it right, you\'ll advance to the next level.' +
-                'Hover over the items on the table to see their HTML markup.' +
-                'Get help with selectors on the right! →'
-        },
         solution: 'plate + donut',
         html:
             '<div class="container">\n' +
@@ -276,16 +197,6 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="plate plate_pink"></div>' +
             '<div class="plate plate_pink target"></div>' +
             '<div class="plate"></div>',
-        levelHint: {
-            title: 'No worries, you\'ve got this!',
-            text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
-                'p { margin-bottom: 12px; }' +
-                'Here, the "p" is the selector (selects all <p> elements) and applies the margin-bottom style.' +
-                'To play, type in a CSS selector in the editor below to select the correct items on the table.' +
-                'If you get it right, you\'ll advance to the next level.' +
-                'Hover over the items on the table to see their HTML markup.' +
-                'Get help with selectors on the right! →'
-        },
         solution: '.container plate:nth-child(3)',
         html:
             '<div class="container">\n' +
@@ -310,16 +221,6 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="plate target"></div>' +
             '<div class="plate plate_pink target"></div>' +
             '<div class="plate"><div class="yummy yummy_strawberry yummy_top"></div></div>',
-            levelHint: {
-            title: 'No worries, you\'ve got this!',
-            text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
-                'p { margin-bottom: 12px; }' +
-                'Here, the "p" is the selector (selects all <p> elements) and applies the margin-bottom style.' +
-                'To play, type in a CSS selector in the editor below to select the correct items on the table.' +
-                'If you get it right, you\'ll advance to the next level.' +
-                'Hover over the items on the table to see their HTML markup.' +
-                'Get help with selectors on the right! →'
-        },
         solution: 'plate:empty',
         html:
             '<div class="container">\n' +
@@ -345,16 +246,6 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="yummy yummy_cake target"></div>' +
             '<div class="plate"><div class="yummy yummy_strawberry yummy_top"></div></div>' +
             '<div class="yummy yummy_donut"></div>',
-        levelHint: {
-            title: 'No worries, you\'ve got this!',
-            text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
-                'p { margin-bottom: 12px; }' +
-                'Here, the "p" is the selector (selects all <p> elements) and applies the margin-bottom style.' +
-                'To play, type in a CSS selector in the editor below to select the correct items on the table.' +
-                'If you get it right, you\'ll advance to the next level.' +
-                'Hover over the items on the table to see their HTML markup.' +
-                'Get help with selectors on the right! →'
-        },
         solution: 'cake:not(.small)',
         html:
             '<div class="container">\n' +
@@ -381,16 +272,6 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="yummy yummy_strawberry yummy_small target"></div>' +
             '<div class="plate"><div class="yummy yummy_strawberry yummy_top target"></div></div>' +
             '<div class="plate plate_pink"></div>',
-        levelHint: {
-            title: 'No worries, you\'ve got this!',
-            text: 'You\'re about to learn CSS Selectors! Selectors are how you pick which element to apply styles to.' +
-                'p { margin-bottom: 12px; }' +
-                'Here, the "p" is the selector (selects all <p> elements) and applies the margin-bottom style.' +
-                'To play, type in a CSS selector in the editor below to select the correct items on the table.' +
-                'If you get it right, you\'ll advance to the next level.' +
-                'Hover over the items on the table to see their HTML markup.' +
-                'Get help with selectors on the right! →'
-        },
         solution: 'strawberry:not(#pink + strawberry)',
         html:
             '<div class="container">\n' +

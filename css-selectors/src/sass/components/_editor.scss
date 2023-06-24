@@ -36,12 +36,22 @@
     background-color: $color-dark-m;
   }
   &__header {
+    position: relative;
     grid-area: editor-header;
     padding: .5em;
     font-weight: normal;
     color: $color-dark-s;
     background-color: $color-primary;
     border-bottom: 1px solid $color-dark-s;
+  }
+  &__help-btn {
+    position: absolute;
+    top: 1.1em;
+    right: 1em;
+    color: $color-secondary;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
   }
   &__aside {
     grid-area: editor-aside;
