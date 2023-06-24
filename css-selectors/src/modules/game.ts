@@ -1,7 +1,7 @@
-import {ILevelParams, levelCountType} from '../types/types';
-import {createElement} from '../utils/create-element';
-import {levelsData} from '../data/data';
-import {Level} from './level';
+import { ILevelParams, levelCountType } from '../types/types';
+import { createElement } from '../utils/create-element';
+import { levelsData } from '../data/data';
+import { Level } from './level';
 import '../sass/style.scss';
 
 export class Game {
@@ -14,9 +14,9 @@ export class Game {
 
     private initialRender(): void {
         // Header
-        createElement({tag: 'header', styles: ['header'], parent: '.body'});
-        createElement({tag: 'div', styles: ['header__logo-wrapper'], parent: '.header'})
-        createElement({tag: 'div', styles: ['header__logo'], parent: '.header__logo-wrapper'});
+        createElement({ tag: 'header', styles: ['header'], parent: '.body' });
+        createElement({ tag: 'div', styles: ['header__logo-wrapper'], parent: '.header' })
+        createElement({ tag: 'div', styles: ['header__logo'], parent: '.header__logo-wrapper' });
         createElement({
             tag: 'h1',
             styles: ['header__title'],
@@ -29,8 +29,8 @@ export class Game {
         this.renderCurrentLevel();
 
         // Footer
-        createElement({tag: 'footer', styles: ['footer'], parent: '.body'});
-        createElement({tag: 'p', styles: ['footer__author'], parent: '.footer', innerText: 'Made by Masha Bogdanova in RSS School'})
+        createElement({ tag: 'footer', styles: ['footer'], parent: '.body' });
+        createElement({ tag: 'p', styles: ['footer__author'], parent: '.footer', innerText: 'Made by Masha Bogdanova in RSS School' })
     }
 
     private renderCurrentLevel(): void {
@@ -59,12 +59,12 @@ export class Game {
         this.renderCurrentLevel();
     }
     private addBurgerMenu() {
-        const burgerMenu = createElement({tag: 'div', styles: ['burger-icon'], parent: '.header'});
-        createElement({tag: 'div', styles: ['burger-icon__line'], parent: '.burger-icon'});
-        createElement({tag: 'div', styles: ['burger-icon__line'], parent: '.burger-icon'});
-        createElement({tag: 'div', styles: ['burger-icon__line'], parent: '.burger-icon'});
+        const burgerMenu = createElement({ tag: 'div', styles: ['burger-icon'], parent: '.header' });
+        createElement({ tag: 'div', styles: ['burger-icon__line'], parent: '.burger-icon' });
+        createElement({ tag: 'div', styles: ['burger-icon__line'], parent: '.burger-icon' });
+        createElement({ tag: 'div', styles: ['burger-icon__line'], parent: '.burger-icon' });
 
-        burgerMenu.addEventListener('click', (e: Event) => {
+        burgerMenu.addEventListener('click', () => {
             const nav = document.querySelector('.nav');
             nav && nav.classList.toggle('visible');
         })

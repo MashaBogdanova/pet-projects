@@ -1,4 +1,4 @@
-import {ILevelParams} from "../types/types";
+import { ILevelParams } from '../types/types';
 
 export const levelsData: Array<ILevelParams> = [
     {
@@ -62,7 +62,7 @@ export const levelsData: Array<ILevelParams> = [
             subtitle: 'Select an element inside another element',
             selector: 'A  B',
             text: 'Selects all B inside of A. B is called a descendant because it is inside of another element.',
-            exampleText: '#pink span selects any <span> elements that are \inside of the element with id="pink"'
+            exampleText: '#pink span selects any <span> elements that are inside the element with id="pink"'
         },
         itemsSet:
             '<div class="plate plate_pink"></div>' +
@@ -113,7 +113,7 @@ export const levelsData: Array<ILevelParams> = [
             '  <cake class="small" />\n' +
             '  <plate>\n    <cake class="small" />\n  </plate>\n' +
             '  <plate />\n' +
-            '</div>'},
+            '</div>' },
     {
         levelNumber: 4,
         instruction: 'Select all desserts',
