@@ -421,6 +421,13 @@ body {
   margin-top: 1rem;
   color: rgba(255, 255, 255, 0.6);
 }
+.rules__reset {
+  width: max-content;
+  color: rgba(231, 195, 243, 0.53);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
 
 .burger-icon {
   display: none;

@@ -56,4 +56,11 @@
     margin-top: 1rem;
     color: $color-light-s;
   }
+  &__reset {
+    width: max-content;
+    color: $color-secondary;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
 }

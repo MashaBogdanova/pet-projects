@@ -1,5 +1,6 @@
 import { ILevelParams } from '../types/types';
 import { createElement } from '../utils/create-element';
+import { init } from '../index';
 
 export class Level {
     levelNumber: ILevelParams['levelNumber'];
@@ -159,7 +160,7 @@ export class Level {
         });
         helpBtn.addEventListener('click', () => {
             this.isHintUsed = true;
-            const answerInput: HTMLInputElement = document.querySelector('.answer-form__input');
+            const answerInput: HTMLInputElement | null = document.querySelector('.answer-form__input');
             if (answerInput) {
                 answerInput.value = '';
                 let index = 0;
@@ -196,6 +197,17 @@ export class Level {
         } else {
             createElement({ tag: 'div', styles: ['levels__check'], parent: '.levels' });
         }
+    }
+    private addResetBtn(): void {
+        const resetBtn: HTMLElement = createElement({ tag: 'button', styles: ['rules__reset'], parent: '.rules', innerText: 'Reset results' });
+        resetBtn.addEventListener('click', () => {
+            localStorage.clear();
+            const header: HTMLElement | null = document.querySelector('.header');
+            header && header.remove();
+            const footer: HTMLElement | null = document.querySelector('.footer');
+            footer && footer.remove();
+            init();
+        })
     }
     private showWinModal(): void {
         createElement({ tag: 'div', styles: ['modal-overlay'], parent: '.body' });
