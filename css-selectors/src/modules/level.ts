@@ -1,12 +1,11 @@
-import {ILevelParams} from '../types/types';
-import {createElement} from '../utils/create-element';
+import { ILevelParams } from '../types/types';
+import { createElement } from '../utils/create-element';
 
 export class Level {
     levelNumber: ILevelParams['levelNumber'];
     instruction: ILevelParams['instruction'];
     levelRules: ILevelParams['levelRules'];
     itemsSet: ILevelParams['itemsSet'];
-    levelHint: ILevelParams['levelHint'];
     solution: ILevelParams['solution'];
     html: ILevelParams['html'];
     increaseLevel: () => void;
@@ -17,7 +16,6 @@ export class Level {
         this.instruction = params.instruction;
         this.levelRules = params.levelRules;
         this.itemsSet = params.itemsSet;
-        this.levelHint = params.levelHint;
         this.solution = params.solution;
         this.html = params.html;
         this.increaseLevel = increaseLevel;
@@ -25,7 +23,7 @@ export class Level {
     }
 
     rerender() {
-        createElement({tag: 'main', styles: ['main'], parent: '.body'});
+        createElement({ tag: 'main', styles: ['main'], parent: '.body' });
         // Instruction
         createElement({
             tag: 'h2',
@@ -35,32 +33,32 @@ export class Level {
         });
 
         //Board
-        const board = createElement({tag: 'section', styles: ['board'], parent: '.main'});
+        const board = createElement({ tag: 'section', styles: ['board'], parent: '.main' });
         board.innerHTML = this.itemsSet;
 
         // Editor
-        createElement({tag: 'section', styles: ['editor-wrapper'], parent: '.main'});
+        createElement({ tag: 'section', styles: ['editor-wrapper'], parent: '.main' });
 
         // CSS Editor
-        createElement({tag: 'article', styles: ['editor', 'editor_css'], parent: '.editor-wrapper'});
+        createElement({ tag: 'article', styles: ['editor', 'editor_css'], parent: '.editor-wrapper' });
         this.fillEditor('.editor_css', 'CSS Editor', '\n{\n/* Styles would go here. */\n}', 'editor__entry-field_css');
         this.addHelpBtn();
         this.addAnswerForm();
 
         // HTML Editor
-        createElement({tag: 'article', styles: ['editor', 'editor_html'], parent: '.editor-wrapper'});
+        createElement({ tag: 'article', styles: ['editor', 'editor_html'], parent: '.editor-wrapper' });
         this.fillEditor('.editor_html', 'HTML Viewer', `${this.html}`);
 
         // Nav
-        createElement({tag: 'nav', styles: ['nav'], parent: '.body'});
+        createElement({ tag: 'nav', styles: ['nav'], parent: '.body' });
 
         // Nav Levels
-        createElement({tag: 'section', styles: ['levels'], parent: '.nav'});
+        createElement({ tag: 'section', styles: ['levels'], parent: '.nav' });
 
-        const arrowLeft = createElement({tag: 'button', styles: ['levels__arrow'], parent: '.levels', innerText: '<'});
+        const arrowLeft = createElement({ tag: 'button', styles: ['levels__arrow'], parent: '.levels', innerText: '<' });
         arrowLeft && arrowLeft.addEventListener('click', () => this.decreaseLevel());
 
-        const arrowRight = createElement({tag: 'button', styles: ['levels__arrow'], parent: '.levels', innerText: '>'});
+        const arrowRight = createElement({ tag: 'button', styles: ['levels__arrow'], parent: '.levels', innerText: '>' });
         arrowRight && arrowRight.addEventListener('click', () => this.increaseLevel());
 
         createElement({
@@ -71,8 +69,8 @@ export class Level {
         });
 
         // Nav Rules
-        createElement({tag: 'section', styles: ['rules'], parent: '.nav'});
-        createElement({tag: 'h3', styles: ['rules__title'], parent: '.rules', innerText: `${this.levelRules.title}`});
+        createElement({ tag: 'section', styles: ['rules'], parent: '.nav' });
+        createElement({ tag: 'h3', styles: ['rules__title'], parent: '.rules', innerText: `${this.levelRules.title}` });
         createElement({
             tag: 'h4',
             styles: ['rules__subtitle'],
@@ -85,8 +83,8 @@ export class Level {
             parent: '.rules',
             innerText: `${this.levelRules.selector}`
         });
-        createElement({tag: 'p', styles: ['rules__text'], parent: '.rules', innerText: `${this.levelRules.text}`});
-        createElement({tag: 'h4', styles: ['rules__example-title'], parent: '.rules', innerText: 'Examples'});
+        createElement({ tag: 'p', styles: ['rules__text'], parent: '.rules', innerText: `${this.levelRules.text}` });
+        createElement({ tag: 'h4', styles: ['rules__example-title'], parent: '.rules', innerText: 'Examples' });
         createElement({
             tag: 'p',
             styles: ['rules__example'],
@@ -97,8 +95,8 @@ export class Level {
 
     private fillEditor(parent: string, headerText: string, entryFieldText: string, additionalStyle?: string): void {
         const asideText = '1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20';
-        createElement({tag: 'h3', styles: ['editor__header'], parent: parent, innerText: headerText});
-        createElement({tag: 'plaintext', styles: ['editor__aside'], parent: parent, innerText: asideText});
+        createElement({ tag: 'h3', styles: ['editor__header'], parent: parent, innerText: headerText });
+        createElement({ tag: 'plaintext', styles: ['editor__aside'], parent: parent, innerText: asideText });
         createElement({
             tag: 'plaintext',
             styles: ['editor__entry-field', `${additionalStyle}`],

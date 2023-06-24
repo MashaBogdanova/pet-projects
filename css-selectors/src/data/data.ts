@@ -264,7 +264,7 @@ export const levelsData: Array<ILevelParams> = [
             subtitle: 'Combine selectors to choose strawberries',
             selector: '?',
             text: '',
-            exampleText: ''
+            exampleText: '.big:not(.pink, .orange) selects all big elements, but not pink or orange.'
         },
         itemsSet:
             '<div class="plate plate_pink"><div class="yummy yummy_strawberry yummy_top target"></div></div>' +
