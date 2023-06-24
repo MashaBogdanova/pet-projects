@@ -7,8 +7,8 @@ import '../sass/style.scss';
 export class Game {
     currentLevel: levelCountType;
 
-    constructor() {
-        this.currentLevel = 0;
+    constructor(currentLevel: levelCountType) {
+        this.currentLevel = currentLevel;
         this.initialRender();
     }
 
@@ -47,12 +47,14 @@ export class Game {
     increaseLevel = (): void => {
         if (this.currentLevel < 11) {
             this.currentLevel += 1;
+            localStorage.setItem('level', `${this.currentLevel}`);
         }
         this.renderCurrentLevel();
     }
     decreaseLevel = (): void => {
         if (this.currentLevel > 0) {
             this.currentLevel -= 1;
+            localStorage.setItem('level', `${this.currentLevel}`);
         }
         this.renderCurrentLevel();
     }
