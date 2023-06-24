@@ -25,7 +25,6 @@ export class Level {
         this.isLevelChecked = false;
         this.isHintUsed = false;
     }
-
     render() {
         createElement({ tag: 'main', styles: ['main'], parent: '.body' });
         // Instruction
@@ -92,7 +91,6 @@ export class Level {
             innerText: `${this.levelRules.exampleText}`
         });
     }
-
     private addArrow(innerText: '<' | '>', callback: () => void) {
         const arrow: HTMLElement = createElement({ tag: 'button', styles: ['levels__arrow'], parent: '.levels', innerText: innerText });
         arrow.addEventListener('click', () => callback());
@@ -182,6 +180,7 @@ export class Level {
             this.isHintUsed = true;
             const answerInput = document.querySelector('.answer-form__input') as HTMLInputElement;
             if (answerInput) {
+                answerInput.value = '';
                 let index = 0;
                 const delay = 100;
                 const typeText = () => {
