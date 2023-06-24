@@ -374,6 +374,16 @@ body {
   border: none;
   cursor: pointer;
 }
+.levels__check {
+  width: 30px;
+  height: 30px;
+  background-image: url("../assets/images/check.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.levels__check_done {
+  background-image: url("../assets/images/check-done.svg");
+}
 
 .rules {
   display: grid;

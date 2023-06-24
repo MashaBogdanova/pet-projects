@@ -10,6 +10,8 @@ export class Level {
     html: ILevelParams['html'];
     increaseLevel: () => void;
     decreaseLevel: () => void;
+    isLevelChecked: boolean;
+    isHintUsed: boolean;
 
     constructor(params: ILevelParams, increaseLevel: () => void, decreaseLevel: () => void) {
         this.levelNumber = params.levelNumber;
@@ -20,6 +22,8 @@ export class Level {
         this.html = params.html;
         this.increaseLevel = increaseLevel;
         this.decreaseLevel = decreaseLevel;
+        this.isLevelChecked = false;
+        this.isHintUsed = false;
     }
 
     rerender() {
@@ -67,6 +71,13 @@ export class Level {
             parent: '.levels',
             innerText: `Level ${this.levelNumber + 1} from 12`
         });
+
+        if (localStorage.getItem(`level ${this.levelNumber}`) === 'true') {
+            createElement({ tag: 'div', styles: ['levels__check', 'levels__check_done'], parent: '.levels' });
+        } else {
+            createElement({ tag: 'div', styles: ['levels__check'], parent: '.levels' });
+        }
+
 
         // Nav Rules
         createElement({ tag: 'section', styles: ['rules'], parent: '.nav' });
@@ -130,10 +141,18 @@ export class Level {
         const handleSubmit = (e: Event) => {
             e.preventDefault();
             const usersAnswer = input.value.trim().toLowerCase();
+
             if (usersAnswer === this.solution) {
                 if (this.levelNumber === 11) {
                     this.showWinModal();
                 }
+
+                const check = document.querySelector('.levels__check');
+                if (!this.isHintUsed) {
+                    localStorage.setItem(`level ${this.levelNumber}`, 'true');
+                    check && check.classList.add('levels__check_done');
+                }
+
                 const targetElements: NodeListOf<HTMLElement> = document.querySelectorAll('.target');
                 for (const elem of targetElements) {
                     elem.classList.add('target_fly-up');
@@ -163,6 +182,7 @@ export class Level {
             innerText: 'Help!'
         });
         helpBtn.addEventListener('click', () => {
+            this.isHintUsed = true;
             const answerInput = document.querySelector('.answer-form__input') as HTMLInputElement;
             if (answerInput) {
                 let index = 0;

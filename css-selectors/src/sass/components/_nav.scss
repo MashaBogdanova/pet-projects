@@ -7,13 +7,22 @@
   padding-bottom: .6rem;
   color: $color-light-s;
   border-bottom: 1px solid $color-dark-s;
-
   &__arrow {
     font-size: 2rem;
     color: $color-dark-s;
     background-color: transparent;
     border: none;
     cursor: pointer;
+  }
+  &__check {
+    width: 30px;
+    height: 30px;
+    background-image: url('../assets/images/check.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    &_done {
+      background-image: url('../assets/images/check-done.svg');
+    }
   }
 }
 
