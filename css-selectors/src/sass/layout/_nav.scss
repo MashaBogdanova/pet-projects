@@ -1,0 +1,29 @@
+@import '../abstract/mixins';
+@import '../abstract/placeholders';
+
+.nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30vw;
+
+  grid-area: nav;
+  min-width: 240px;
+  height: 100%;
+  padding: 1rem;
+  background-color: $color-dark-l;
+  opacity: 100%;
+  transition: transform 0.3s ease-out;
+
+  @include media-tablet {
+    transform: translateX(60vw);
+  }
+}
+
+.visible {
+  top: 0;
+  right: 0;
+  display: unset;
+  width: 60vw;
+  transform: translateX(0);
+}

@@ -1,0 +1,104 @@
+@import '../abstract/mixins';
+
+.editor-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: .7em solid $color-dark-l;
+  border-radius: 5px;
+  &_shake {
+    animation: shakeEditor 0.4s;
+    @include shakeEditor;
+  }
+}
+
+.editor {
+  display: grid;
+  grid-template-areas:
+  'editor-header editor-header'
+  'editor-aside editor-field';
+  grid-template-rows: auto 1fr;
+  grid-template-columns: auto 1fr;
+
+  width: 50%;
+  height: 100%;
+
+  border: 1px solid $color-dark-m;
+  @include media-mobile {
+    font-size: .9em;
+  }
+
+  &_css {
+    background-color: $color-light-l;
+    border-right: none;
+  }
+  &_html {
+    background-color: $color-dark-m;
+  }
+  &__header {
+    position: relative;
+    grid-area: editor-header;
+    padding: .5em;
+    font-weight: normal;
+    color: $color-dark-s;
+    background-color: $color-primary;
+    border-bottom: 1px solid $color-dark-s;
+  }
+  &__help-btn {
+    position: absolute;
+    top: 1.1em;
+    right: 1em;
+    color: $color-secondary;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  &__aside {
+    grid-area: editor-aside;
+    padding: .5em;
+    color: $color-dark-s;
+    border-right: 1px solid $color-dark-s;
+  }
+  &__entry-field {
+    grid-area: editor-field;
+    padding: .5em 1em;
+    color: $color-dark-s;
+  }
+}
+
+.answer-form {
+  display: flex;
+  gap: .5em;
+  @include media-mobile {
+    flex-direction: column;
+  }
+  &__input {
+    width: 75%;
+    margin-right: .7em;
+    padding: .4em;
+    color: $color-dark-s;
+    border: none;
+    border-radius: 2px;
+    animation: blinkBackground 1s infinite;
+    @include blinkBackground;
+    @include media-mobile {
+      font-size: .9em;
+    }
+
+    &:active {
+      border: none;
+    }
+  }
+  &__btn {
+    width: 4em;
+    padding: .35em;
+    color: $color-dark-s;
+    background: none;
+    border: 1px solid $color-secondary;
+    border-radius: 2px;
+    cursor: pointer;
+    &:hover {
+      background-color: $color-secondary;
+    }
+  }
+}

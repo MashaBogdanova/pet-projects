@@ -1,0 +1,105 @@
+@import './constants';
+
+@mixin media-tablet {
+  @media screen and (max-width: $screen-width-tablet) {
+    @content;
+  }
+}
+
+@mixin media-mobile {
+  @media screen and (max-width: $screen-width-mobile) {
+    @content;
+  }
+}
+
+@mixin blinkBackground {
+  @keyframes blinkBackground {
+    0% {
+      background-color: transparent;
+    }
+    50% {
+      background-color: $color-secondary;
+    }
+    100% {
+      background-color: transparent;
+    }
+  }
+}
+
+@mixin jellyStart {
+  @keyframes jellyStart {
+    0% {
+      transform: skew(0deg, 0deg) scaleY(1);
+      animation-timing-function: ease-in;
+    }
+
+    40% {
+      transform: skew(0deg, 0deg) scaleY(.9);
+      animation-timing-function: ease-out;
+    }
+    100% {
+      transform: skew(4deg, 0deg) scaleX(1);
+    }
+  }
+}
+
+@mixin jelly {
+  @keyframes jelly {
+    0% {
+      transform: skew(4deg, 0deg) scaleX(1);
+    }
+    10% {
+      transform: skew(1deg, 0deg) scaleY(.9);
+    }
+    50% {
+      transform: skew(-4deg, 0deg) scaleX(1);
+    }
+    60% {
+      transform: skew(-1deg, 0deg) scaleY(.9);
+    }
+    100% {
+      transform: skew(4deg, 0deg) scaleX(1);
+    }
+  }
+}
+
+@mixin shakeEditor {
+  @keyframes shakeEditor {
+    0% {
+      transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      transform: translateX(-8px);
+    }
+    20%, 40%, 60%, 80% {
+      transform: translateX(8px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
+
+@mixin flyUp {
+  @keyframes flyUp {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+  }
+}
+
+@mixin showModal {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,73 @@
+@import '../abstract/mixins';
+
+.instruction {
+  font-size: 2em;
+  font-weight: normal;
+  text-align: center;
+}
+
+.board {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: .9em;
+
+  .plate {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+
+    background-image: url('../assets/images/plate.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    &_pink {
+      background-image: url('../assets/images/plate-pink.svg');
+    }
+  }
+
+  .yummy {
+    width: 60px;
+    height: 60px;
+
+    background-image: url('../assets/images/cupcake.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    &_cake {
+      background-image: url('../assets/images/cake.svg');
+    }
+    &_strawberry {
+      width: 70px;
+      height: 70px;
+      background-image: url('../assets/images/strawberry.svg');
+    }
+    &_donut {
+      width: 70px;
+      height: 70px;
+      background-image: url('../assets/images/donut.svg');
+    }
+    &_top {
+      position: absolute;
+      bottom: 43%;
+    }
+    &_small {
+      width: 45px;
+      height: 45px;
+    }
+  }
+
+  .target {
+    transform-origin: bottom;
+    animation: jelly-start .5s ease-out, jelly 1s infinite;
+    @include jellyStart;
+    @include jelly;
+    &_fly-up {
+    animation: flyUp 1s ease-in forwards;
+      @include flyUp;
+    }
+  }
+}

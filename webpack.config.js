@@ -1,43 +1,45 @@
 const path = require('path');
-const { merge } = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const baseConfig = {
-    entry: './news-api/src/index.ts',
+module.exports = {
+    entry: './css-selectors/src/index.ts',
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, './css-selectors/dist'),
+    },
+    devServer: {
+        static: {
+            directory: path.resolve(__dirname, './css-selectors/dist')
+        },
+        port: 8080,
+        hot: true,
+        open: true,
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './css-selectors/src', 'index.html'),
+            filename: 'index.html',
+        }),
+    ],
     mode: 'development',
     module: {
         rules: [
             {
-                test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
+                test: /\.[tj]s$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
             },
             {
-                test: /\.ts$/,
-                use: 'ts-loader',
-                include: [path.resolve(__dirname, 'news-api/src')],
+                test: /\.s[ac]ss$/i,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
+                ],
             },
-        ],
+        ]
     },
     resolve: {
-        extensions: ['.js', '.ts'],
-    },
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, './news-api/dist'),
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './news-api/src/index.html'),
-            filename: 'index.html',
-        }),
-        new CleanWebpackPlugin(),
-    ],
-};
-
-module.exports = ({ mode }) => {
-    const isProductionMode = mode === 'prod';
-    const envConfig = isProductionMode ? require('./webpack.prod.config') : require('./webpack.dev.config');
-
-    return merge(baseConfig, envConfig);
+        extensions: [".js", ".ts"]
+    }
 };

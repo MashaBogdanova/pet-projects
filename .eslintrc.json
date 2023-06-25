@@ -1,25 +1,24 @@
 {
-    "plugins": ["prettier", "import", "@typescript-eslint"],
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
     "extends": [
-        "plugin:prettier/recommended",
-        "prettier",
+        "eslint:recommended",
         "plugin:@typescript-eslint/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "ecmaVersion": 2020,
-        "sourceType": "module",
-        "project": "./tsconfig.json"
+        "ecmaVersion": "latest",
+        "sourceType": "module"
     },
-    "env": {
-        "es6": true,
-        "browser": true,
-        "node": true
-    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
     "rules": {
-        "no-debugger": "off",
-        "no-console": 0,
-        "class-methods-use-this": "off",
-        "no-explicit-any": "error"
-    }
+        "no-debugger": "error",
+        "quotes": ["error", "single"],
+        "object-curly-spacing": ["error", "always"]
+    },
+    "ignorePatterns": ["css-selectors/dist/*.js", "webpack.config.js"]
 }
