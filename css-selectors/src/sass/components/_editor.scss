@@ -64,6 +64,9 @@
     padding: .5em 1em;
     color: $color-dark-s;
   }
+  &_highlight {
+    color: $color-light-s;
+  }
 }
 
 .answer-form {

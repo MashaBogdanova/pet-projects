@@ -1,4 +1,4 @@
-import {ILevelParams} from '../types/types';
+import { ILevelParams } from '../types/types';
 
 export const levelsData: Array<ILevelParams> = [
     {
@@ -12,13 +12,13 @@ export const levelsData: Array<ILevelParams> = [
             exampleText: 'div selects all <div> elements.'
         },
         itemsSet:
-            '<div class="yummy yummy_donut target" id="0-1"></div>' +
-            '<div class="yummy yummy_donut target" id="0-2"></div>',
+            '<div class="yummy yummy_donut target" id="0"></div>' +
+            '<div class="yummy yummy_donut target" id="1"></div>',
 
         solution: 'donut',
         html: {
-            '1': '<div>&lt;donut /></div>',
-            '2': '<div>&lt;donut /></div>'
+            '0': '<div class="elem-0">&lt;donut /></div>',
+            '1': '<div class="elem-1">&lt;donut /></div>'
         }
     },
     {
@@ -32,33 +32,39 @@ export const levelsData: Array<ILevelParams> = [
             exampleText: '#cool selects any element with id="cool"'
         },
         itemsSet:
-            '<div class="plate plate_pink target" id="1-1"></div>' +
-            '<div class="plate" id="1-2"></div>' +
-            '<div class="plate" id="1-3"></div>',
+            '<div class="plate plate_pink target" id="0"></div>' +
+            '<div class="plate" id="1"></div>' +
+            '<div class="plate" id="2"></div>',
         solution: '#pink',
         html: {
-            '1': '<div>&lt;plate id="pink"/></div>',
-            '2': '<div>&lt;plate /></div>',
-            '3': '<div>&lt;plate /></div>'
+            '0': '<div class="elem-0">&lt;plate id="pink"/></div>',
+            '1': '<div class="elem-1">&lt;plate /></div>',
+            '2': '<div class="elem-2">&lt;plate /></div>'
         }
     },
-    // {
-    //     levelNumber: 2,
-    //     instruction: 'Select the cupcake on the plate',
-    //     levelRules: {
-    //         title: 'Descendant Selector',
-    //         subtitle: 'Select an element inside another element',
-    //         selector: 'A  B',
-    //         text: 'Selects all B inside of A. B is called a descendant because it is inside of another element.',
-    //         exampleText: '#pink span selects any <span> elements that are inside the element with id="pink"'
-    //     },
-    //     itemsSet:
-    //         '<div class="plate plate_pink"></div>' +
-    //         '<div class="plate"><div class="yummy yummy_top target"></div></div>' +
-    //         '<div class="yummy"></div>',
-    //     solution: 'plate cupcake',
-    //     html: '<plate />\n<plate>\n  <cupcake />\n</plate>\n<cupcake />'
-    // },
+    {
+        levelNumber: 2,
+        instruction: 'Select the cupcake on the plate',
+        levelRules: {
+            title: 'Descendant Selector',
+            subtitle: 'Select an element inside another element',
+            selector: 'A  B',
+            text: 'Selects all B inside of A. B is called a descendant because it is inside of another element.',
+            exampleText: '#pink span selects any <span> elements that are inside the element with id="pink"'
+        },
+        itemsSet:
+            '<div class="plate plate_pink" id="0"></div>' +
+            '<div class="plate" id="1"><div class="yummy yummy_top target" id="2"></div></div>' +
+            '<div class="yummy" id="4"></div>',
+        solution: 'plate cupcake',
+        html: {
+            '0': '<div class="elem-0">&lt;plate /></div>',
+            '1': '<div class="elem-1">&lt;plate></div>',
+            '2': '<div class="elem-2">  &lt;cupcake /></div>',
+            '3': '<div class="elem-1">&lt;/plate></div>',
+            '4': '<div class="elem-4">&lt;cupcake /></div>',
+        }
+    },
     // {
     //     levelNumber: 3,
     //     instruction: 'Select the small cakes',

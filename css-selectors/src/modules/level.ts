@@ -1,6 +1,6 @@
-import { ILevelParams } from '../types/types';
-import { createElement } from '../utils/create-element';
-import { init } from '../index';
+import {ILevelParams} from '../types/types';
+import {createElement} from '../utils/create-element';
+import {init} from '../index';
 
 export class Level {
     levelNumber: ILevelParams['levelNumber'];
@@ -26,8 +26,9 @@ export class Level {
         this.isLevelChecked = false;
         this.isHintUsed = false;
     }
+
     render() {
-        createElement({ tag: 'main', styles: ['main'], parent: '.body' });
+        createElement({tag: 'main', styles: ['main'], parent: '.body'});
         // Instruction
         createElement({
             tag: 'h2',
@@ -37,27 +38,33 @@ export class Level {
         });
 
         //Board
-        const board: HTMLElement = createElement({ tag: 'section', styles: ['board'], parent: '.main', innerHTML: this.itemsSet });
-        this.onHoverDecorate(board);
+        const board: HTMLElement = createElement({
+            tag: 'section',
+            styles: ['board'],
+            parent: '.main',
+            innerHTML: this.itemsSet
+        });
+        this.onBoardElemHover(board);
 
         // Editor
-        createElement({ tag: 'section', styles: ['editor-wrapper'], parent: '.main' });
+        createElement({tag: 'section', styles: ['editor-wrapper'], parent: '.main'});
 
         // CSS Editor
-        createElement({ tag: 'article', styles: ['editor', 'editor_css'], parent: '.editor-wrapper' });
+        createElement({tag: 'article', styles: ['editor', 'editor_css'], parent: '.editor-wrapper'});
         this.fillEditor('.editor_css', 'CSS Editor', '\n{\n/* Styles would go here. */\n}', 'editor__entry-field_css');
         this.addHelpBtn();
         this.addAnswerForm();
 
         // HTML Editor
-        const template = this.getEditorHTML();
+        createElement({tag: 'article', styles: ['editor', 'editor_html'], parent: '.editor-wrapper'});
+        const template = this.getHTMLTemplate();
         this.fillEditor('.editor_html', 'HTML Viewer', `${template}`);
 
         // Nav
-        createElement({ tag: 'nav', styles: ['nav'], parent: '.body' });
+        createElement({tag: 'nav', styles: ['nav'], parent: '.body'});
 
         // Nav Levels
-        createElement({ tag: 'section', styles: ['levels'], parent: '.nav' });
+        createElement({tag: 'section', styles: ['levels'], parent: '.nav'});
         this.addArrow('<', this.decreaseLevel);
         this.addArrow('>', this.increaseLevel);
         createElement({
@@ -69,8 +76,8 @@ export class Level {
         this.addCheck();
 
         // Nav Rules
-        createElement({ tag: 'section', styles: ['rules'], parent: '.nav' });
-        createElement({ tag: 'h3', styles: ['rules__title'], parent: '.rules', innerText: `${this.levelRules.title}` });
+        createElement({tag: 'section', styles: ['rules'], parent: '.nav'});
+        createElement({tag: 'h3', styles: ['rules__title'], parent: '.rules', innerText: `${this.levelRules.title}`});
         createElement({
             tag: 'h4',
             styles: ['rules__subtitle'],
@@ -83,8 +90,8 @@ export class Level {
             parent: '.rules',
             innerText: `${this.levelRules.selector}`
         });
-        createElement({ tag: 'p', styles: ['rules__text'], parent: '.rules', innerText: `${this.levelRules.text}` });
-        createElement({ tag: 'h4', styles: ['rules__example-title'], parent: '.rules', innerText: 'Examples' });
+        createElement({tag: 'p', styles: ['rules__text'], parent: '.rules', innerText: `${this.levelRules.text}`});
+        createElement({tag: 'h4', styles: ['rules__example-title'], parent: '.rules', innerText: 'Examples'});
         createElement({
             tag: 'p',
             styles: ['rules__example'],
@@ -95,24 +102,44 @@ export class Level {
         // Nav reset button
         this.addResetBtn();
     }
-    private onHoverDecorate(board: HTMLElement): void {
+
+    private onBoardElemHover(board: HTMLElement): void {
         let popup: HTMLElement;
+        let elemId: string | null;
 
         board.addEventListener('mouseover', (e: Event) => {
-            const elem = e.target as HTMLElement;
-            if(!elem.classList.contains('board')) {
-                const htmlKey = Number(elem.getAttribute('id')!.split('').pop());
-                popup = createElement({ tag: 'div', styles: ['popup'], innerHTML: `${this.html[htmlKey]}` });
-                elem.append(popup);
+            const targetElem = e.target as HTMLElement;
+            if (!targetElem.classList.contains('board')) {
+                elemId = targetElem.getAttribute('id');
+
+                if (elemId) {
+                    // Create and show popup
+                    popup = createElement({ tag: 'div', styles: ['popup'], innerHTML: `${this.html[elemId]}` });
+                    targetElem.append(popup);
+
+                    // Remove class property in popup children elements
+                    const children: NodeListOf<Element> = popup.querySelectorAll('*');
+                    children.forEach(child => child.className = '');
+
+                    // Highlight tags in editor
+                    const editorHTMLTags = document.querySelectorAll<HTMLElement>(`.elem-${elemId}`);
+                    Array.from(editorHTMLTags).forEach(tag => tag.classList.add('editor_highlight'));
+
+                }
             }
-        })
+        });
+
         board.addEventListener('mouseout', (e: Event) => {
-            const elem = e.target as HTMLElement;
-            if(!elem.classList.contains('board')) {
+            const targetElem = e.target as HTMLElement;
+            if (!targetElem.classList.contains('board')) {
                 popup.remove();
+                // todo: убрать дублирование кода
+                const editorHTMLTags = document.querySelectorAll<HTMLElement>(`.elem-${elemId}`);
+                Array.from(editorHTMLTags).forEach(tag => tag.classList.remove('editor_highlight'));
             }
-        })
+        });
     }
+
     private addAnswerForm(): void {
         const form: HTMLElement = createElement({
             tag: 'form',
@@ -138,6 +165,7 @@ export class Level {
         form.addEventListener('submit', (e: Event) => this.checkAnswer(e, input));
         button.addEventListener('click', (e: Event) => this.checkAnswer(e, input));
     }
+
     private checkAnswer(e: Event, input: HTMLInputElement): void {
         e.preventDefault();
         const usersAnswer: string = input.value.trim().toLowerCase();
@@ -169,6 +197,7 @@ export class Level {
             }, 500);
         }
     }
+
     private addHelpBtn(): void {
         const helpBtn: HTMLElement = createElement({
             tag: 'button',
@@ -194,10 +223,11 @@ export class Level {
             }
         });
     }
+
     private fillEditor(parent: string, headerText: string, entryFieldText: string, additionalStyle?: string): void {
         const asideText = '1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20';
-        createElement({ tag: 'h3', styles: ['editor__header'], parent: parent, innerText: headerText });
-        createElement({ tag: 'plaintext', styles: ['editor__aside'], parent: parent, innerText: asideText });
+        createElement({tag: 'h3', styles: ['editor__header'], parent: parent, innerText: headerText});
+        createElement({tag: 'plaintext', styles: ['editor__aside'], parent: parent, innerText: asideText});
         createElement({
             tag: 'div',
             styles: ['editor__entry-field', `${additionalStyle}`],
@@ -205,25 +235,38 @@ export class Level {
             innerHTML: entryFieldText
         });
     }
-    private getEditorHTML(): string {
+
+    private getHTMLTemplate(): string {
         let template = '';
         Object.keys(this.html).map(key => template += this.html[key]);
-        createElement({ tag: 'article', styles: ['editor', 'editor_html'], parent: '.editor-wrapper' });
         return template;
     }
+
     private addArrow(innerText: '<' | '>', callback: () => void): void {
-        const arrow: HTMLElement = createElement({ tag: 'button', styles: ['levels__arrow'], parent: '.levels', innerText: innerText });
+        const arrow: HTMLElement = createElement({
+            tag: 'button',
+            styles: ['levels__arrow'],
+            parent: '.levels',
+            innerText: innerText
+        });
         arrow.addEventListener('click', () => callback());
     }
+
     private addCheck(): void {
         if (localStorage.getItem(`level ${this.levelNumber}`) === 'true') {
-            createElement({ tag: 'div', styles: ['levels__check', 'levels__check_done'], parent: '.levels' });
+            createElement({tag: 'div', styles: ['levels__check', 'levels__check_done'], parent: '.levels'});
         } else {
-            createElement({ tag: 'div', styles: ['levels__check'], parent: '.levels' });
+            createElement({tag: 'div', styles: ['levels__check'], parent: '.levels'});
         }
     }
+
     private addResetBtn(): void {
-        const resetBtn: HTMLElement = createElement({ tag: 'button', styles: ['rules__reset'], parent: '.rules', innerText: 'Reset results' });
+        const resetBtn: HTMLElement = createElement({
+            tag: 'button',
+            styles: ['rules__reset'],
+            parent: '.rules',
+            innerText: 'Reset results'
+        });
         resetBtn.addEventListener('click', () => {
             localStorage.clear();
             const header: HTMLElement | null = document.querySelector('.header');
@@ -233,15 +276,16 @@ export class Level {
             init();
         })
     }
+
     private showWinModal(): void {
-        createElement({ tag: 'div', styles: ['modal-overlay'], parent: '.body' });
-        createElement({ tag: 'div', styles: ['modal-window'], parent: '.modal-overlay' });
+        createElement({tag: 'div', styles: ['modal-overlay'], parent: '.body'});
+        createElement({tag: 'div', styles: ['modal-window'], parent: '.modal-overlay'});
         createElement({
             tag: 'h2',
             styles: ['modal-window__title'],
             parent: '.modal-window',
             innerText: 'Congratulations!\nYou completed all levels!'
         });
-        createElement({ tag: 'div', styles: ['modal-window__cake'], parent: '.modal-window' });
+        createElement({tag: 'div', styles: ['modal-window__cake'], parent: '.modal-window'});
     }
 }

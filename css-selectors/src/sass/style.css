@@ -177,7 +177,6 @@ body {
   background-repeat: no-repeat;
   background-size: 100%;
   cursor: pointer;
-  transition: transform 0.2s ease;
 }
 .board .yummy_cake {
   background-image: url("../assets/images/cake.svg");
@@ -336,6 +335,9 @@ body {
   grid-area: editor-field;
   padding: 0.5em 1em;
   color: rgb(115, 115, 115);
+}
+.editor_highlight {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .answer-form {
