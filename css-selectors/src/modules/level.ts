@@ -37,8 +37,8 @@ export class Level {
         });
 
         //Board
-        const board = createElement({ tag: 'section', styles: ['board'], parent: '.main' });
-        board.innerHTML = this.itemsSet;
+        const board: HTMLElement = createElement({ tag: 'section', styles: ['board'], parent: '.main', innerHTML: this.itemsSet });
+        this.onHoverDecorate(board);
 
         // Editor
         createElement({ tag: 'section', styles: ['editor-wrapper'], parent: '.main' });
@@ -50,8 +50,8 @@ export class Level {
         this.addAnswerForm();
 
         // HTML Editor
-        createElement({ tag: 'article', styles: ['editor', 'editor_html'], parent: '.editor-wrapper' });
-        this.fillEditor('.editor_html', 'HTML Viewer', `${this.html}`);
+        const template = this.getEditorHTML();
+        this.fillEditor('.editor_html', 'HTML Viewer', `${template}`);
 
         // Nav
         createElement({ tag: 'nav', styles: ['nav'], parent: '.body' });
@@ -94,6 +94,24 @@ export class Level {
 
         // Nav reset button
         this.addResetBtn();
+    }
+    private onHoverDecorate(board: HTMLElement): void {
+        let popup: HTMLElement;
+
+        board.addEventListener('mouseover', (e: Event) => {
+            const elem = e.target as HTMLElement;
+            if(!elem.classList.contains('board')) {
+                const htmlKey = Number(elem.getAttribute('id')!.split('').pop());
+                popup = createElement({ tag: 'div', styles: ['popup'], innerHTML: `${this.html[htmlKey]}` });
+                elem.append(popup);
+            }
+        })
+        board.addEventListener('mouseout', (e: Event) => {
+            const elem = e.target as HTMLElement;
+            if(!elem.classList.contains('board')) {
+                popup.remove();
+            }
+        })
     }
     private addAnswerForm(): void {
         const form: HTMLElement = createElement({
@@ -181,11 +199,17 @@ export class Level {
         createElement({ tag: 'h3', styles: ['editor__header'], parent: parent, innerText: headerText });
         createElement({ tag: 'plaintext', styles: ['editor__aside'], parent: parent, innerText: asideText });
         createElement({
-            tag: 'plaintext',
+            tag: 'div',
             styles: ['editor__entry-field', `${additionalStyle}`],
             parent: parent,
-            innerText: entryFieldText
+            innerHTML: entryFieldText
         });
+    }
+    private getEditorHTML(): string {
+        let template = '';
+        Object.keys(this.html).map(key => template += this.html[key]);
+        createElement({ tag: 'article', styles: ['editor', 'editor_html'], parent: '.editor-wrapper' });
+        return template;
     }
     private addArrow(innerText: '<' | '>', callback: () => void): void {
         const arrow: HTMLElement = createElement({ tag: 'button', styles: ['levels__arrow'], parent: '.levels', innerText: innerText });

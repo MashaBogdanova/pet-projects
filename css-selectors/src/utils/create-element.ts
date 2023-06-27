@@ -3,6 +3,7 @@ interface IElementParam {
     styles: Array<string>;
     parent?: string;
     innerText?: string;
+    innerHTML?: string;
     placeholder?: string;
     type?: string;
     method?: string;
@@ -17,6 +18,9 @@ export function createElement(param: IElementParam) {
     element.classList.add(...param.styles);
     if (param.innerText) {
         element.innerText = param.innerText;
+    }
+    if (param.innerHTML) {
+        element.innerHTML = param.innerHTML;
     }
     if (param.parent) {
         const parentElem = document.querySelector(param.parent);

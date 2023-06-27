@@ -4,7 +4,9 @@ export interface ILevelParams {
     levelRules: instructionType;
     itemsSet: string;
     solution: string;
-    html: string;
+    html: {
+        [key: string]: string;
+    };
 }
 type instructionType = {
     title: string;

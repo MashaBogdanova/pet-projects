@@ -147,6 +147,7 @@ body {
 }
 
 .board {
+  position: relative;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -163,16 +164,20 @@ body {
   background-image: url("../assets/images/plate.svg");
   background-repeat: no-repeat;
   background-size: cover;
+  cursor: pointer;
 }
 .board .plate_pink {
   background-image: url("../assets/images/plate-pink.svg");
 }
 .board .yummy {
+  position: relative;
   width: 60px;
   height: 60px;
   background-image: url("../assets/images/cupcake.svg");
   background-repeat: no-repeat;
   background-size: 100%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 .board .yummy_cake {
   background-image: url("../assets/images/cake.svg");
@@ -241,6 +246,20 @@ body {
     transform: translateY(-100%);
     opacity: 0;
   }
+}
+.board .popup {
+  position: absolute;
+  top: -50px;
+  left: 40%;
+  display: flex;
+  flex-direction: column;
+  padding: 0.8em;
+  width: max-content;
+  height: max-content;
+  font-weight: 100;
+  color: #ddd;
+  background-color: rgba(231, 195, 243, 0.53);
+  border-radius: 1em;
 }
 
 .editor-wrapper {
