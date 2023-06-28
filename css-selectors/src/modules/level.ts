@@ -1,4 +1,4 @@
-import { ILevelParams } from '../types/types';
+import { editorParamsType, ILevelParams } from '../types/types';
 import { createElement } from '../utils/create-element';
 import { init } from '../index';
 
@@ -52,14 +52,14 @@ export class Level {
 
         // CSS Editor
         createElement({ tag: 'article', styles: ['editor', 'editor_css'], parent: '.editor-wrapper' });
-        this.fillEditor('.editor_css', 'CSS Editor', '\n{\n/* Styles would go here. */\n}', 'editor__entry-field_css');
+        this.fillEditor({ parent: '.editor_css', headerText: 'CSS Editor', innerText: '{\n/* Styles would go here. */\n}', additionalStyle: 'editor__entry-field_css' });
         this.addHelpBtn();
         this.addAnswerForm();
 
         // HTML Editor
         createElement({ tag: 'article', styles: ['editor', 'editor_html'], parent: '.editor-wrapper' });
         const template = this.getHTMLTemplate();
-        this.fillEditor('.editor_html', 'HTML Viewer', `${template}`);
+        this.fillEditor({ parent: '.editor_html', headerText: 'HTML Viewer', innerHTML: `${template}` });
 
         // Nav
         createElement({ tag: 'nav', styles: ['nav'], parent: '.body' });
@@ -231,15 +231,16 @@ export class Level {
         });
     }
 
-    private fillEditor(parent: string, headerText: string, entryFieldText: string, additionalStyle?: string): void {
+    private fillEditor(params: editorParamsType): void {
         const asideText = '1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20';
-        createElement({ tag: 'h3', styles: ['editor__header'], parent: parent, innerText: headerText });
-        createElement({ tag: 'plaintext', styles: ['editor__aside'], parent: parent, innerText: asideText });
+        createElement({ tag: 'h3', styles: ['editor__header'], parent: params.parent, innerText: params.headerText });
+        createElement({ tag: 'plaintext', styles: ['editor__aside'], parent: params.parent, innerText: asideText });
         const editor: HTMLElement = createElement({
             tag: 'div',
-            styles: ['editor__entry-field', `${additionalStyle}`],
-            parent: parent,
-            innerHTML: entryFieldText
+            styles: ['editor__entry-field', `${params.additionalStyle}`],
+            parent: params.parent,
+            innerHTML: params.innerHTML,
+            innerText: params.innerText
         });
         this.onTagElemHover(editor);
     }
