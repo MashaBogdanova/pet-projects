@@ -349,6 +349,7 @@ body {
   grid-area: editor-field;
   padding: 0.5em 1em;
   color: rgb(115, 115, 115);
+  font-size: 0.9em;
 }
 .editor_highlight {
   color: rgba(255, 255, 255, 0.6);

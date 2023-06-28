@@ -250,7 +250,7 @@ export class Level {
         let boardElem: HTMLElement | null;
         editor.addEventListener('mouseover', (e: MouseEvent) => {
             targetElem = e.target as HTMLElement;
-            if (!targetElem.classList.contains('editor__entry-field')) {
+            if (!targetElem.classList.contains('editor__entry-field') && !targetElem.classList.contains('answer-form__input')) {
                 targetElem.classList.add('elem');
                 const boardElemId: string = targetElem.classList[0][targetElem.classList[0].length - 1];
                 boardElem = document.getElementById(`${boardElemId}`);
