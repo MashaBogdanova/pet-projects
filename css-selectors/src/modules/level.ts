@@ -139,7 +139,6 @@ export class Level {
             }
         });
     }
-
     private addAnswerForm(): void {
         const form: HTMLElement = createElement({
             tag: 'form',
@@ -165,7 +164,6 @@ export class Level {
         form.addEventListener('submit', (e: Event) => this.checkAnswer(e, input));
         button.addEventListener('click', (e: Event) => this.checkAnswer(e, input));
     }
-
     private checkAnswer(e: Event, input: HTMLInputElement): void {
         e.preventDefault();
         const usersAnswer: string = input.value.trim().toLowerCase();
@@ -197,7 +195,6 @@ export class Level {
             }, 500);
         }
     }
-
     private addHelpBtn(): void {
         const helpBtn: HTMLElement = createElement({
             tag: 'button',
@@ -223,7 +220,6 @@ export class Level {
             }
         });
     }
-
     private fillEditor(parent: string, headerText: string, entryFieldText: string, additionalStyle?: string): void {
         const asideText = '1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20';
         createElement({tag: 'h3', styles: ['editor__header'], parent: parent, innerText: headerText});
@@ -235,13 +231,11 @@ export class Level {
             innerHTML: entryFieldText
         });
     }
-
     private getHTMLTemplate(): string {
         let template = '';
         Object.keys(this.html).map(key => template += this.html[key]);
         return template;
     }
-
     private addArrow(innerText: '<' | '>', callback: () => void): void {
         const arrow: HTMLElement = createElement({
             tag: 'button',
@@ -251,7 +245,6 @@ export class Level {
         });
         arrow.addEventListener('click', () => callback());
     }
-
     private addCheck(): void {
         if (localStorage.getItem(`level ${this.levelNumber}`) === 'true') {
             createElement({tag: 'div', styles: ['levels__check', 'levels__check_done'], parent: '.levels'});
@@ -259,7 +252,6 @@ export class Level {
             createElement({tag: 'div', styles: ['levels__check'], parent: '.levels'});
         }
     }
-
     private addResetBtn(): void {
         const resetBtn: HTMLElement = createElement({
             tag: 'button',
@@ -276,7 +268,6 @@ export class Level {
             init();
         })
     }
-
     private showWinModal(): void {
         createElement({tag: 'div', styles: ['modal-overlay'], parent: '.body'});
         createElement({tag: 'div', styles: ['modal-window'], parent: '.modal-overlay'});
