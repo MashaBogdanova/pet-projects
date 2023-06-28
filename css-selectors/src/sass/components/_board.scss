@@ -27,6 +27,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     cursor: pointer;
+
     &_pink {
       background-image: url('../assets/images/plate-pink.svg');
     }
@@ -42,23 +43,28 @@
     background-repeat: no-repeat;
     background-size: 100%;
     cursor: pointer;
+
     &_cake {
       background-image: url('../assets/images/cake.svg');
     }
+
     &_strawberry {
       width: 70px;
       height: 70px;
       background-image: url('../assets/images/strawberry.svg');
     }
+
     &_donut {
       width: 70px;
       height: 70px;
       background-image: url('../assets/images/donut.svg');
     }
+
     &_top {
       position: absolute;
       bottom: 43%;
     }
+
     &_small {
       width: 45px;
       height: 45px;
@@ -70,10 +76,16 @@
     animation: jelly-start .5s ease-out, jelly 1s infinite;
     @include jellyStart;
     @include jelly;
+
     &_fly-up {
-    animation: flyUp 1s ease-in forwards;
+      animation: flyUp 1s ease-in forwards;
       @include flyUp;
     }
+  }
+
+  .hovered {
+    animation: jump 450ms ease-out;
+    @include jump;
   }
 
   .popup {

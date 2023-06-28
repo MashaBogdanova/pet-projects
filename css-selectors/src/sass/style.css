@@ -246,6 +246,20 @@ body {
     opacity: 0;
   }
 }
+.board .hovered {
+  animation: jump 450ms ease-out;
+}
+@keyframes jump {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .board .popup {
   position: absolute;
   top: -50px;
@@ -388,6 +402,11 @@ body {
 }
 .answer-form__btn:hover {
   background-color: rgba(231, 195, 243, 0.53);
+}
+
+.elem:hover {
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
 }
 
 .levels {

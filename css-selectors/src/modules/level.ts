@@ -110,8 +110,8 @@ export class Level {
         board.addEventListener('mouseover', (e: Event) => {
             const targetElem = e.target as HTMLElement;
             if (!targetElem.classList.contains('board')) {
+                targetElem.classList.add('hovered');
                 elemId = targetElem.getAttribute('id');
-
                 if (elemId) {
                     // Create and show popup
                     popup = createElement({ tag: 'div', styles: ['popup'], innerHTML: `${this.html[elemId]}` });
@@ -224,11 +224,31 @@ export class Level {
         const asideText = '1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20';
         createElement({ tag: 'h3', styles: ['editor__header'], parent: parent, innerText: headerText });
         createElement({ tag: 'plaintext', styles: ['editor__aside'], parent: parent, innerText: asideText });
-        createElement({
+        const editor: HTMLElement = createElement({
             tag: 'div',
             styles: ['editor__entry-field', `${additionalStyle}`],
             parent: parent,
             innerHTML: entryFieldText
+        });
+        this.onTagElemHover(editor);
+    }
+    private onTagElemHover(editor: HTMLElement): void {
+        let targetElem: HTMLElement;
+        let boardElem: HTMLElement | null;
+        editor.addEventListener('mouseover', (e: MouseEvent) => {
+            targetElem = e.target as HTMLElement;
+            if (!targetElem.classList.contains('editor__entry-field')) {
+                targetElem.classList.add('elem');
+                const boardElemId: string = targetElem.classList[0][targetElem.classList[0].length - 1];
+                boardElem = document.getElementById(`${boardElemId}`);
+                boardElem && boardElem.classList.add('hovered');
+            }
+        });
+        editor.addEventListener('mouseout', () => {
+            if (!targetElem.classList.contains('editor__entry-field')) {
+                targetElem.classList.remove('elem');
+                boardElem && boardElem.classList.remove('hovered');
+            }
         });
     }
     private getHTMLTemplate(): string {

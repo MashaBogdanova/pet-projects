@@ -105,3 +105,10 @@
     }
   }
 }
+
+.elem {
+  &:hover {
+    color: $color-light-s;
+    cursor: pointer;
+  }
+}
