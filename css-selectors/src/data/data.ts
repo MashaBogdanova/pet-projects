@@ -1,4 +1,4 @@
-import {ILevelParams} from '../types/types';
+import { ILevelParams } from '../types/types';
 
 export const levelsData: Array<ILevelParams> = [
     {
@@ -54,13 +54,15 @@ export const levelsData: Array<ILevelParams> = [
         },
         itemsSet:
             '<div class="plate plate_pink" id="0"></div>' +
-            '<div class="plate" id="1"><div class="yummy yummy_top target" id="2"></div></div>' +
+            '<div class="plate" id="1">' +
+            '<div class="yummy yummy_top target" id="2"></div>' +
+            '</div>' +
             '<div class="yummy" id="4"></div>',
         solution: 'plate cupcake',
         html: {
             0: '<div class="elem-0">&lt;plate /></div>',
             1: '<div class="elem-1">&lt;plate></div>',
-            2: '<div class="elem-2">  &lt;cupcake /></div>',
+            2: '<div class="elem-2">&nbsp;&nbsp;&lt;cupcake /></div>',
             3: '<div class="elem-1">&lt;/plate></div>',
             4: '<div class="elem-4">&lt;cupcake /></div>',
         }
@@ -87,7 +89,7 @@ export const levelsData: Array<ILevelParams> = [
             0: '<div class="elem-0">&lt;cake /></div>',
             1: '<div class="elem-1">&lt;cake class="small" /></div>',
             2: '<div class="elem-2">&lt;plate></div>',
-            3: '<div class="elem-3">&lt;cake class="small" /></div>',
+            3: '<div class="elem-3">&nbsp;&nbsp;&lt;cake class="small" /></div>',
             4: '<div class="elem-2">&lt;/plate></div>',
             5: '<div class="elem-5">&lt;plate /></div>'
         }
@@ -117,10 +119,10 @@ export const levelsData: Array<ILevelParams> = [
             0: '<div class="elem-0">&lt;plate /></div>',
             1: '<div class="elem-1">&lt;donut /></div>',
             2: '<div class="elem-2">&lt;plate></div>',
-            3: '<div class="elem-3">&lt;cupcake /></div>',
+            3: '<div class="elem-3">&nbsp;&nbsp;&lt;cupcake /></div>',
             4: '<div class="elem-2">&lt;/plate></div>',
             5: '<div class="elem-5">&lt;plate></div>',
-            6: '<div class="elem-6">&lt;cake /></div>',
+            6: '<div class="elem-6">&nbsp;&nbsp;&lt;cake /></div>',
             7: '<div class="elem-5">&lt;/plate></div>',
             8: '<div class="elem-8">&lt;plate /></div>'
         }
@@ -149,11 +151,11 @@ export const levelsData: Array<ILevelParams> = [
         html: {
             0: '<div class="elem-0">&lt;strawberry /></div>',
             1: '<div class="elem-1">&lt;plate></div>',
-            2: '<div class="elem-2">&lt;cupcake class="small"/></div>',
+            2: '<div class="elem-2">&nbsp;&nbsp;&lt;cupcake class="small"/></div>',
             3: '<div class="elem-1">&lt;/plate></div>',
             4: '<div class="elem-4">&lt;plate /></div>',
             5: '<div class="elem-5">&lt;plate></div>',
-            6: '<div class="elem-6">&lt;cupcake /></div>',
+            6: '<div class="elem-6">&nbsp;&nbsp;&lt;cupcake /></div>',
             7: '<div class="elem-5">&lt;/plate></div>',
             8: '<div class="elem-8">&lt;plate /></div>'
         }
@@ -182,14 +184,14 @@ export const levelsData: Array<ILevelParams> = [
         solution: 'plate *',
         html: {
             0: '<div class="elem-0">&lt;plate></div>',
-            1: '<div class="elem-1">&lt;cake /></div>',
+            1: '<div class="elem-1">&nbsp;&nbsp;&lt;cake /></div>',
             2: '<div class="elem-0">&lt;/plate></div>',
             3: '<div class="elem-3">&lt;plate></div>',
-            4: '<div class="elem-4">&lt;strawberry /></div>',
+            4: '<div class="elem-4">&nbsp;&nbsp;&lt;strawberry /></div>',
             5: '<div class="elem-3">&lt;/plate></div>',
             6: '<div class="elem-6">&lt;cake /></div>',
             7: '<div class="elem-7">&lt;plate></div>',
-            8: '<div class="elem-8">&lt;cupcake class="small"/></div>',
+            8: '<div class="elem-8">&nbsp;&nbsp;&lt;cupcake class="small"/></div>',
             9: '<div class="elem-7">&lt;/plate></div>'
         }
     },
@@ -217,7 +219,7 @@ export const levelsData: Array<ILevelParams> = [
         solution: 'plate + donut',
         html: {
             0: '<div class="elem-0">&lt;plate></div>',
-            1: '<div class="elem-1">&lt;donut class="small" /></div>',
+            1: '<div class="elem-1">&nbsp;&nbsp;&lt;donut class="small" /></div>',
             2: '<div class="elem-0">&lt;/plate></div>',
             3: '<div class="elem-3">&lt;plate /></div>',
             4: '<div class="elem-4">&lt;donut class="small" /></div>',
@@ -271,12 +273,12 @@ export const levelsData: Array<ILevelParams> = [
         solution: 'plate:empty',
         html: {
             0: '<div class="elem-0">&lt;plate></div>',
-            1: '<div class="elem-1">&lt;cupcake /></div>',
+            1: '<div class="elem-1">&nbsp;&nbsp;&lt;cupcake /></div>',
             2: '<div class="elem-0">&lt;/plate></div>',
             3: '<div class="elem-3">&lt;plate /></div>',
             4: '<div class="elem-4">&lt;plate /></div>',
             5: '<div class="elem-5">&lt;plate></div>',
-            6: '<div class="elem-6">&lt;strawberry /></div>',
+            6: '<div class="elem-6">&nbsp;&nbsp;&lt;strawberry /></div>',
             7: '<div class="elem-5">&lt;/plate></div>'
         }
     },
@@ -305,14 +307,14 @@ export const levelsData: Array<ILevelParams> = [
         solution: 'cake:not(.small)',
         html: {
             0: '<div class="elem-0">&lt;plate></div>',
-            1: '<div class="elem-1">&lt;cake class="small"/></div>',
+            1: '<div class="elem-1">&nbsp;&nbsp;&lt;cake class="small"/></div>',
             2: '<div class="elem-0">&lt;/plate></div>',
             3: '<div class="elem-3">&lt;plate></div>',
-            4: '<div class="elem-4">&lt;cake /></div>',
+            4: '<div class="elem-4">&nbsp;&nbsp;&lt;cake /></div>',
             5: '<div class="elem-3">&lt;/plate></div>',
             6: '<div class="elem-6">&lt;cake /></div>',
             7: '<div class="elem-7">&lt;plate></div>',
-            8: '<div class="elem-8">&lt;strawberry /></div>',
+            8: '<div class="elem-8">&nbsp;&nbsp;&lt;strawberry /></div>',
             9: '<div class="elem-7">&lt;/plate></div>',
             10: '<div class="elem-10">&lt;donut /></div>'
         }
@@ -340,12 +342,12 @@ export const levelsData: Array<ILevelParams> = [
         solution: 'strawberry:not(#pink + strawberry)',
         html: {
             0: '<div class="elem-0">&lt;plate id="pink"></div>',
-            1: '<div class="elem-1">&lt;strawberry /></div>',
+            1: '<div class="elem-1">&nbsp;&nbsp;&lt;strawberry /></div>',
             2: '<div class="elem-0">&lt;/plate></div>',
             3: '<div class="elem-3">&lt;strawberry /></div>',
-            4: '<div class="elem-4">&lt;strawberry /></div>',
+            4: '<div class="elem-4">&lt;strawberry class="small" /></div>',
             5: '<div class="elem-5">&lt;plate></div>',
-            6: '<div class="elem-6">&lt;strawberry /></div>',
+            6: '<div class="elem-6">&nbsp;&nbsp;&lt;strawberry /></div>',
             7: '<div class="elem-5">&lt;/plate></div>',
             8: '<div class="elem-8">&lt;plate id="pink" /></div>'
         }
