@@ -1,6 +1,6 @@
-import {ILevelParams} from '../types/types';
-import {createElement} from '../utils/create-element';
-import {init} from '../index';
+import { ILevelParams } from '../types/types';
+import { createElement } from '../utils/create-element';
+import { init } from '../index';
 
 export class Level {
     levelNumber: ILevelParams['levelNumber'];
@@ -28,7 +28,7 @@ export class Level {
     }
 
     render() {
-        createElement({tag: 'main', styles: ['main'], parent: '.body'});
+        createElement({ tag: 'main', styles: ['main'], parent: '.body' });
 
         // Instruction
         createElement({
@@ -48,24 +48,24 @@ export class Level {
         this.onBoardElemHover(board);
 
         // Editor
-        createElement({tag: 'section', styles: ['editor-wrapper'], parent: '.main'});
+        createElement({ tag: 'section', styles: ['editor-wrapper'], parent: '.main' });
 
         // CSS Editor
-        createElement({tag: 'article', styles: ['editor', 'editor_css'], parent: '.editor-wrapper'});
+        createElement({ tag: 'article', styles: ['editor', 'editor_css'], parent: '.editor-wrapper' });
         this.fillEditor('.editor_css', 'CSS Editor', '\n{\n/* Styles would go here. */\n}', 'editor__entry-field_css');
         this.addHelpBtn();
         this.addAnswerForm();
 
         // HTML Editor
-        createElement({tag: 'article', styles: ['editor', 'editor_html'], parent: '.editor-wrapper'});
+        createElement({ tag: 'article', styles: ['editor', 'editor_html'], parent: '.editor-wrapper' });
         const template = this.getHTMLTemplate();
         this.fillEditor('.editor_html', 'HTML Viewer', `${template}`);
 
         // Nav
-        createElement({tag: 'nav', styles: ['nav'], parent: '.body'});
+        createElement({ tag: 'nav', styles: ['nav'], parent: '.body' });
 
         // Nav Levels
-        createElement({tag: 'section', styles: ['levels'], parent: '.nav'});
+        createElement({ tag: 'section', styles: ['levels'], parent: '.nav' });
         this.addArrow('<', this.decreaseLevel);
         this.addArrow('>', this.increaseLevel);
         createElement({
@@ -77,8 +77,8 @@ export class Level {
         this.addCheck();
 
         // Nav Rules
-        createElement({tag: 'section', styles: ['rules'], parent: '.nav'});
-        createElement({tag: 'h3', styles: ['rules__title'], parent: '.rules', innerText: `${this.levelRules.title}`});
+        createElement({ tag: 'section', styles: ['rules'], parent: '.nav' });
+        createElement({ tag: 'h3', styles: ['rules__title'], parent: '.rules', innerText: `${this.levelRules.title}` });
         createElement({
             tag: 'h4',
             styles: ['rules__subtitle'],
@@ -91,8 +91,8 @@ export class Level {
             parent: '.rules',
             innerText: `${this.levelRules.selector}`
         });
-        createElement({tag: 'p', styles: ['rules__text'], parent: '.rules', innerText: `${this.levelRules.text}`});
-        createElement({tag: 'h4', styles: ['rules__example-title'], parent: '.rules', innerText: 'Examples'});
+        createElement({ tag: 'p', styles: ['rules__text'], parent: '.rules', innerText: `${this.levelRules.text}` });
+        createElement({ tag: 'h4', styles: ['rules__example-title'], parent: '.rules', innerText: 'Examples' });
         createElement({
             tag: 'p',
             styles: ['rules__example'],
@@ -111,11 +111,17 @@ export class Level {
         board.addEventListener('mouseover', (e: Event) => {
             const targetElem = e.target as HTMLElement;
             if (!targetElem.classList.contains('board')) {
+
+                // Add hover animation to board element
                 targetElem.classList.add('hovered');
+                setTimeout(() => {
+                    targetElem.classList.remove('hovered');
+                }, 450);
+
                 elemId = targetElem.getAttribute('id');
                 if (elemId) {
                     // Create and show popup
-                    popup = createElement({tag: 'div', styles: ['popup'], innerHTML: `${this.html[elemId]}`});
+                    popup = createElement({ tag: 'div', styles: ['popup'], innerHTML: `${this.html[elemId]}` });
                     targetElem.append(popup);
 
                     // Remove class property in popup children elements
@@ -227,8 +233,8 @@ export class Level {
 
     private fillEditor(parent: string, headerText: string, entryFieldText: string, additionalStyle?: string): void {
         const asideText = '1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20';
-        createElement({tag: 'h3', styles: ['editor__header'], parent: parent, innerText: headerText});
-        createElement({tag: 'plaintext', styles: ['editor__aside'], parent: parent, innerText: asideText});
+        createElement({ tag: 'h3', styles: ['editor__header'], parent: parent, innerText: headerText });
+        createElement({ tag: 'plaintext', styles: ['editor__aside'], parent: parent, innerText: asideText });
         const editor: HTMLElement = createElement({
             tag: 'div',
             styles: ['editor__entry-field', `${additionalStyle}`],
@@ -276,9 +282,9 @@ export class Level {
 
     private addCheck(): void {
         if (localStorage.getItem(`level ${this.levelNumber}`) === 'true') {
-            createElement({tag: 'div', styles: ['levels__check', 'levels__check_done'], parent: '.levels'});
+            createElement({ tag: 'div', styles: ['levels__check', 'levels__check_done'], parent: '.levels' });
         } else {
-            createElement({tag: 'div', styles: ['levels__check'], parent: '.levels'});
+            createElement({ tag: 'div', styles: ['levels__check'], parent: '.levels' });
         }
     }
 
@@ -300,14 +306,14 @@ export class Level {
     }
 
     private showWinModal(): void {
-        createElement({tag: 'div', styles: ['modal-overlay'], parent: '.body'});
-        createElement({tag: 'div', styles: ['modal-window'], parent: '.modal-overlay'});
+        createElement({ tag: 'div', styles: ['modal-overlay'], parent: '.body' });
+        createElement({ tag: 'div', styles: ['modal-window'], parent: '.modal-overlay' });
         createElement({
             tag: 'h2',
             styles: ['modal-window__title'],
             parent: '.modal-window',
             innerText: 'Congratulations!\nYou completed all levels!'
         });
-        createElement({tag: 'div', styles: ['modal-window__cake'], parent: '.modal-window'});
+        createElement({ tag: 'div', styles: ['modal-window__cake'], parent: '.modal-window' });
     }
 }
