@@ -14,8 +14,7 @@ export const levelsData: Array<ILevelParams> = [
         itemsSet:
             '<div class="yummy yummy_donut target" id="0"></div>' +
             '<div class="yummy yummy_donut target" id="1"></div>',
-
-        solution: 'donut',
+        solution: ['donut', '*'],
         html: {
             0: '<div class="elem-0">&lt;donut /></div>',
             1: '<div class="elem-1">&lt;donut /></div>'
@@ -35,7 +34,7 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="plate plate_pink target" id="0"></div>' +
             '<div class="plate" id="1"></div>' +
             '<div class="plate" id="2"></div>',
-        solution: '#pink',
+        solution: ['#pink', 'plate #pink', 'plate > #pink', 'plate>#pink', ':first-child', ':nth-child(1)', 'plate:first-of-type'],
         html: {
             0: '<div class="elem-0">&lt;plate id="pink"/></div>',
             1: '<div class="elem-1">&lt;plate /></div>',
@@ -58,7 +57,7 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="yummy yummy_top target" id="2"></div>' +
             '</div>' +
             '<div class="yummy" id="4"></div>',
-        solution: 'plate cupcake',
+        solution: ['plate cupcake', 'plate > cupcake', 'plate>cupcake', 'cupcake:first-of-type', 'cupcake:only-child'],
         html: {
             0: '<div class="elem-0">&lt;plate /></div>',
             1: '<div class="elem-1">&lt;plate></div>',
@@ -84,7 +83,7 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="yummy yummy_cake yummy_small yummy_top target" id="3"></div>' +
             '</div>' +
             '<div class="plate plate_pink" id="5"></div>',
-        solution: '.small',
+        solution: ['.small'],
         html: {
             0: '<div class="elem-0">&lt;cake /></div>',
             1: '<div class="elem-1">&lt;cake class="small" /></div>',
@@ -114,7 +113,14 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="yummy yummy_cake yummy_top target" id="6"></div>' +
             '</div>' +
             '<div class="plate" id="8"></div>',
-        solution: 'strawberry, cupcake, cake',
+        solution: [
+            'strawberry, plate, cupcake',
+            'strawberry, cupcake, plate',
+            'cupcake, plate, strawberry',
+            'cupcake, strawberry, plate',
+            'plate, cupcake, strawberry',
+            'plate, strawberry, cupcake'
+        ],
         html: {
             0: '<div class="elem-0">&lt;plate /></div>',
             1: '<div class="elem-1">&lt;donut /></div>',
@@ -147,7 +153,15 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="yummy yummy_cupcake yummy_top target" id="6"></div>' +
             '</div>' +
             '<div class="plate target" id="8"></div>',
-        solution: '*',
+        solution: [
+            '*',
+            'strawberry, plate, cupcake',
+            'strawberry, cupcake, plate',
+            'cupcake, plate, strawberry',
+            'cupcake, strawberry, plate',
+            'plate, cupcake, strawberry',
+            'plate, strawberry, cupcake'
+        ],
         html: {
             0: '<div class="elem-0">&lt;strawberry /></div>',
             1: '<div class="elem-1">&lt;plate></div>',
@@ -181,7 +195,7 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="plate" id="7">' +
             '<div class="yummy yummy_cupcake yummy_top yummy_small target" id="8"></div>' +
             '</div>',
-        solution: 'plate *',
+        solution: ['plate *', ':only-child', ':first-child'],
         html: {
             0: '<div class="elem-0">&lt;plate></div>',
             1: '<div class="elem-1">&nbsp;&nbsp;&lt;cake /></div>',
@@ -216,7 +230,7 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="yummy yummy_donut yummy_small target" id="4"></div>' +
             '<div class="plate" id="5"></div>' +
             '<div class="yummy yummy_donut target" id="6"></div>',
-        solution: 'plate + donut',
+        solution: ['plate + donut'],
         html: {
             0: '<div class="elem-0">&lt;plate></div>',
             1: '<div class="elem-1">&nbsp;&nbsp;&lt;donut class="small" /></div>',
@@ -243,7 +257,7 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="plate plate_pink" id="1"></div>' +
             '<div class="plate plate_pink target" id="2"></div>' +
             '<div class="plate" id="3"></div>',
-        solution: '.container plate:nth-child(3)',
+        solution: [':nth-child(3)', 'plate:nth-child(3)'],
         html: {
             0: '<div class="elem-0">&lt;plate /></div>',
             1: '<div class="elem-1">&lt;plate /></div>',
@@ -270,7 +284,7 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="plate" id="5">' +
             '<div class="yummy yummy_strawberry yummy_top" id="6"></div>' +
             '</div>',
-        solution: 'plate:empty',
+        solution: ['plate:empty', ':empty', ':nth-child(3), :nth-child(4)'],
         html: {
             0: '<div class="elem-0">&lt;plate></div>',
             1: '<div class="elem-1">&nbsp;&nbsp;&lt;cupcake /></div>',
@@ -304,7 +318,7 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="yummy yummy_strawberry yummy_top" id="8"></div>' +
             '</div>' +
             '<div class="yummy yummy_donut" id="10"></div>',
-        solution: 'cake:not(.small)',
+        solution: ['cake:not(.small)'],
         html: {
             0: '<div class="elem-0">&lt;plate></div>',
             1: '<div class="elem-1">&nbsp;&nbsp;&lt;cake class="small"/></div>',
@@ -339,7 +353,7 @@ export const levelsData: Array<ILevelParams> = [
             '<div class="yummy yummy_strawberry yummy_top target" id="6"></div>' +
             '</div>' +
             '<div class="plate plate_pink" id="8"></div>',
-        solution: 'strawberry:not(#pink + strawberry)',
+        solution: ['strawberry:not(#pink + strawberry)'],
         html: {
             0: '<div class="elem-0">&lt;plate id="pink"></div>',
             1: '<div class="elem-1">&nbsp;&nbsp;&lt;strawberry /></div>',

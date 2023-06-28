@@ -3,7 +3,7 @@ export interface ILevelParams {
     instruction: string;
     levelRules: instructionType;
     itemsSet: string;
-    solution: string;
+    solution: Array<string>;
     html: {
         [key: string]: string;
     };
