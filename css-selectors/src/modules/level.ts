@@ -158,15 +158,20 @@ export class Level {
             tag: 'input',
             styles: ['answer-form__input'],
             parent: '.answer-form',
-            placeholder: 'Type in a CSS selector',
-            type: 'text'
+            attribute: {
+                key: 'placeholder',
+                value: 'Type in a CSS selector'
+            }
         }) as HTMLInputElement;
         const button: HTMLElement = createElement({
             tag: 'button',
             styles: ['answer-form__btn'],
             parent: '.answer-form',
             innerText: 'Enter',
-            type: 'submit'
+            attribute: {
+                key: 'type',
+                value: 'submit'
+            }
         });
 
         form.addEventListener('submit', (e: Event) => this.checkAnswer(e, input));
