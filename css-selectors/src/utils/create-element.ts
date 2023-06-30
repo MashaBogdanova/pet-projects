@@ -1,10 +1,9 @@
 interface IElementParam {
     tag: string;
-    styles: Array<string>;
+    styles?: Array<string>;
     parent?: string;
     innerText?: string;
-    placeholder?: string;
-    type?: string;
+    innerHTML?: string;
     method?: string;
     attribute?: {
         key: string,
@@ -14,9 +13,9 @@ interface IElementParam {
 
 export function createElement(param: IElementParam) {
     const element: HTMLElement = document.createElement(param.tag);
-    element.classList.add(...param.styles);
-    if (param.innerText) {
-        element.innerText = param.innerText;
+
+    if(param.styles && param.styles.length !== 0) {
+        element.classList.add(...param.styles);
     }
     if (param.parent) {
         const parentElem = document.querySelector(param.parent);
@@ -24,11 +23,11 @@ export function createElement(param: IElementParam) {
             param.method === 'prepend' ? parentElem.prepend(element) : parentElem.append(element);
         }
     }
-    if (param.placeholder) {
-        element.setAttribute('placeholder', param.placeholder);
+    if (param.innerText) {
+        element.innerText = param.innerText;
     }
-    if (param.type) {
-        element.setAttribute('type', param.type);
+    if (param.innerHTML) {
+        element.innerHTML = param.innerHTML;
     }
     if (param.attribute) {
         element.setAttribute(param.attribute.key, param.attribute.value);

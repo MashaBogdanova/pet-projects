@@ -7,6 +7,8 @@
 }
 
 .board {
+  position: relative;
+
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -25,18 +27,28 @@
     background-image: url('../assets/images/plate.svg');
     background-repeat: no-repeat;
     background-size: cover;
+    cursor: pointer;
+
     &_pink {
       background-image: url('../assets/images/plate-pink.svg');
+    }
+    @include media-mobile {
+      width: 90px;
+      height: 90px;
     }
   }
 
   .yummy {
+    position: relative;
+
     width: 60px;
     height: 60px;
 
     background-image: url('../assets/images/cupcake.svg');
     background-repeat: no-repeat;
     background-size: 100%;
+    cursor: pointer;
+
     &_cake {
       background-image: url('../assets/images/cake.svg');
     }
@@ -58,6 +70,10 @@
       width: 45px;
       height: 45px;
     }
+    @include media-mobile {
+      width: 55px;
+      height: 55px;
+    }
   }
 
   .target {
@@ -65,9 +81,32 @@
     animation: jelly-start .5s ease-out, jelly 1s infinite;
     @include jellyStart;
     @include jelly;
+
     &_fly-up {
-    animation: flyUp 1s ease-in forwards;
+      animation: flyUp 1s ease-in forwards;
       @include flyUp;
     }
+  }
+
+  .hovered {
+    animation: jump 450ms ease-out;
+    @include jump;
+  }
+
+  .popup {
+    position: absolute;
+    top: -50px;
+    left: 40%;
+
+    display: flex;
+    flex-direction: column;
+    padding: .8em;
+    width: max-content;
+    height: max-content;
+
+    font-weight: 100;
+    color: $color-light-m;
+    background-color: $color-secondary;
+    border-radius: 1em;
   }
 }

@@ -4,8 +4,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   border: .7em solid $color-dark-l;
   border-radius: 5px;
+
   &_shake {
     animation: shakeEditor 0.4s;
     @include shakeEditor;
@@ -63,6 +65,10 @@
     grid-area: editor-field;
     padding: .5em 1em;
     color: $color-dark-s;
+    font-size: .9em;
+  }
+  &_highlight {
+    color: $color-light-s;
   }
 }
 
@@ -72,10 +78,12 @@
   @include media-mobile {
     flex-direction: column;
   }
+
   &__input {
     width: 75%;
     margin-right: .7em;
     padding: .4em;
+
     color: $color-dark-s;
     border: none;
     border-radius: 2px;
@@ -84,7 +92,6 @@
     @include media-mobile {
       font-size: .9em;
     }
-
     &:active {
       border: none;
     }
@@ -92,6 +99,7 @@
   &__btn {
     width: 4em;
     padding: .35em;
+
     color: $color-dark-s;
     background: none;
     border: 1px solid $color-secondary;
@@ -100,5 +108,12 @@
     &:hover {
       background-color: $color-secondary;
     }
+  }
+}
+
+.elem {
+  &:hover {
+    color: $color-light-s;
+    cursor: pointer;
   }
 }

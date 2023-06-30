@@ -105,5 +105,10 @@
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
-  }
+  },
+  "include": [
+    "css-selectors/src/index.ts",
+    "css-selectors/src/tests/create-element.test.ts",
+    "node_modules/ts-jest/globals.d.ts",
+  ]
 }
