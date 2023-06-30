@@ -140,7 +140,6 @@ export class Level {
             const targetElem = e.target as HTMLElement;
             if (!targetElem.classList.contains('board')) {
                 popup.remove();
-                // todo: убрать дублирование кода
                 const editorHTMLTags = document.querySelectorAll<HTMLElement>(`.elem-${elemId}`);
                 Array.from(editorHTMLTags).forEach(tag => tag.classList.remove('editor_highlight'));
             }

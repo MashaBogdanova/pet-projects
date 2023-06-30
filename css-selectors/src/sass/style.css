@@ -169,6 +169,12 @@ body {
 .board .plate_pink {
   background-image: url("../assets/images/plate-pink.svg");
 }
+@media screen and (max-width: 620px) {
+  .board .plate {
+    width: 90px;
+    height: 90px;
+  }
+}
 .board .yummy {
   position: relative;
   width: 60px;
@@ -198,6 +204,12 @@ body {
 .board .yummy_small {
   width: 45px;
   height: 45px;
+}
+@media screen and (max-width: 620px) {
+  .board .yummy {
+    width: 55px;
+    height: 55px;
+  }
 }
 .board .target {
   transform-origin: bottom;

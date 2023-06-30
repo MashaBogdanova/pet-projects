@@ -5,11 +5,13 @@
   align-items: center;
   gap: .5rem;
   padding-bottom: .6rem;
+
   color: $color-light-s;
   border-bottom: 1px solid $color-dark-s;
   @include media-tablet {
     font-size: .8em;
   }
+
   &__arrow {
     font-size: 2rem;
     color: $color-dark-s;
@@ -23,6 +25,7 @@
   &__check {
     width: 30px;
     height: 30px;
+
     background-image: url('../assets/images/check.svg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -36,6 +39,7 @@
   display: grid;
   gap: 1rem;
   padding: 1rem;
+
   &__title {
     color: $color-light-s;
   }

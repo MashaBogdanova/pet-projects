@@ -8,6 +8,7 @@
 
 .board {
   position: relative;
+
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -31,6 +32,10 @@
     &_pink {
       background-image: url('../assets/images/plate-pink.svg');
     }
+    @include media-mobile {
+      width: 90px;
+      height: 90px;
+    }
   }
 
   .yummy {
@@ -47,27 +52,27 @@
     &_cake {
       background-image: url('../assets/images/cake.svg');
     }
-
     &_strawberry {
       width: 70px;
       height: 70px;
       background-image: url('../assets/images/strawberry.svg');
     }
-
     &_donut {
       width: 70px;
       height: 70px;
       background-image: url('../assets/images/donut.svg');
     }
-
     &_top {
       position: absolute;
       bottom: 43%;
     }
-
     &_small {
       width: 45px;
       height: 45px;
+    }
+    @include media-mobile {
+      width: 55px;
+      height: 55px;
     }
   }
 
