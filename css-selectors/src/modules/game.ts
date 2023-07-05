@@ -4,6 +4,8 @@ import { levelsData } from '../data/data';
 import { Level } from './level';
 import '../sass/style.scss';
 
+const NUMBER_OF_LEVELS = 12;
+
 export class Game {
     currentLevel: levelCountType;
 
@@ -48,7 +50,7 @@ export class Game {
     }
 
     private increaseLevel = (): void => {
-        if (this.currentLevel < 11) {
+        if (this.currentLevel <= NUMBER_OF_LEVELS) {
             this.currentLevel += 1;
             localStorage.setItem('level', `${this.currentLevel}`);
         }

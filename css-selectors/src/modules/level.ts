@@ -109,8 +109,8 @@ export class Level {
         let elemId: string | null;
 
         board.addEventListener('mouseover', (e: Event) => {
-            const targetElem = e.target as HTMLElement;
-            if (!targetElem.classList.contains('board')) {
+            const targetElem = this.setTargetElem(e);
+            if (targetElem) {
 
                 // Add hover animation to board element
                 targetElem.classList.add('hovered');
@@ -137,13 +137,19 @@ export class Level {
         });
 
         board.addEventListener('mouseout', (e: Event) => {
-            const targetElem = e.target as HTMLElement;
-            if (!targetElem.classList.contains('board')) {
+            if (this.setTargetElem(e)) {
                 popup.remove();
                 const editorHTMLTags = document.querySelectorAll<HTMLElement>(`.elem-${elemId}`);
                 Array.from(editorHTMLTags).forEach(tag => tag.classList.remove('editor_highlight'));
             }
         });
+    }
+
+    private setTargetElem(e: Event): HTMLElement | undefined {
+        const targetElem = e.target as HTMLElement;
+        if (!targetElem.classList.contains('board')) {
+            return targetElem
+        }
     }
 
     private addAnswerForm(): void {
