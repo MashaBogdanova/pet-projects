@@ -1,1 +1,1 @@
-console.log('Hi')
+import './sass/styles.scss'
