@@ -1,4 +1,3 @@
 .idea/
-css-selectors/
-node_modules/
+async-race/node_modules/
 async-race/dist
