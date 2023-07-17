@@ -1,0 +1,30 @@
+.button {
+  width: 50px;
+  height: 25px;
+  margin: 1em;
+
+  font-size: .8em;
+  color: greenyellow;
+
+  &_primary {
+    background-color: transparent;
+    border: dashed 2px $color-primary;
+    border-radius: .8em;
+
+    &:hover {
+      background-color: $color-primary-dark;
+      cursor: pointer;
+    }
+  }
+
+  &_secondary {
+    background-color: #e1f8c9;
+    border: dashed 2px $color-primary;
+    border-radius: .8em;
+
+    &:hover {
+      background-color: $color-primary-dark;
+      cursor: pointer;
+    }
+  }
+}
