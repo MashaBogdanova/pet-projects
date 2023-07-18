@@ -1,4 +1,7 @@
 import {createElem} from "../utils/createElem";
+import {Car} from "./Car";
+
+const cars: Array<Car> = [];
 
 export class Garage {
     constructor() {
@@ -24,10 +27,36 @@ export class Garage {
             placeholder: 'Write a car model'
         });
         createElem({
+            htmlTag: 'input',
+            styles: ['input_color'],
+            parentNode: createForm,
+            type: 'color'
+        });
+        createElem({
             htmlTag: 'button',
-            styles: ['button_secondary'],
+            styles: ['button', 'button_secondary'],
             parentNode: createForm,
             innerText: 'Create'
         });
+
+        const garageBtns = createElem({htmlTag: 'div', styles: ['garage__btns'], parentNode: garagePage});
+        createElem({
+            htmlTag: 'button',
+            styles: ['button', 'button_primary'],
+            parentNode: garageBtns,
+            innerText: 'Race'
+        });
+        createElem({
+            htmlTag: 'button',
+            styles: ['button', 'button_primary'],
+            parentNode: garageBtns,
+            innerText: 'Reset'
+        });
+
+        createElem({htmlTag: 'h1', styles: ['garage__title'], parentNode: garagePage, innerText: `Garage ${'(6)'}`});
+        createElem({htmlTag: 'h2', styles: ['garage__pagination'], parentNode: garagePage, innerText: `Page #${'1'}`});
+
+        const garageCars = createElem({htmlTag: 'div', styles: ['garage__cars'], parentNode: garagePage});
+        // garageCars.innerHTML = cars.map(car => new Car());
     }
 }

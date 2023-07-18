@@ -1,6 +1,13 @@
 @import "abstract/colors";
 @import "buttons";
 @import "inputs";
+@import "pages/garage";
+
+html, * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
 body {
   font-size: 12px;

@@ -1,0 +1,51 @@
+.car {
+  display: flex;
+  flex-direction: column;
+  border-bottom: dashed 2px $color-primary;
+  &__info {
+    display: flex;
+    gap: 1em;
+  }
+  &__move {
+    display: flex;
+    gap: 1em;
+  }
+  &__start-btn {
+    width: 10px;
+    height: 10px;
+
+    background-image: url('../assets/images/play.svg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  &__restart-btn {
+    width: 10px;
+    height: 10px;
+
+    background-image: url('../assets/images/replay.svg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  &__car-icon {
+    width: 30px;
+    height: 15px;
+
+    background-image: url('../assets/images/car.svg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &__flag {
+    width: 10px;
+    height: 10px;
+    align-self: end;
+
+    background-image: url('../assets/images/flag.svg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}

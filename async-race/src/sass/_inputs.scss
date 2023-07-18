@@ -1,8 +1,15 @@
 .input {
-  width: 5em;
+  width: 8em;
   height: 1.5em;
+  margin: .5em;
 
   background-color: $color-primary-dark;
   border: none;
-  border-radius: 1em;
+  border-radius: 2px;
+  &_color {
+    width: 2em;
+    height: 2em;
+    margin: 1em;
+    cursor: pointer;
+  }
 }
