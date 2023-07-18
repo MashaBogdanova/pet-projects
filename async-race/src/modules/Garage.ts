@@ -1,14 +1,23 @@
 import {createElem} from "../utils/createElem";
+import {getData} from "../api/api";
+import {ICar} from "../types/apiTypes";
 import {Car} from "./Car";
-
-const cars: Array<Car> = [];
 
 export class Garage {
     constructor() {
-        this.render();
+        this.getData();
     }
 
-    private render() {
+    private async getData(): Promise<void> {
+        try {
+            const data = await getData();
+            this.render(data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    private render(data: any): void {
         const garagePage = createElem({
             htmlTag: 'section',
             styles: ['garage'],
@@ -57,6 +66,9 @@ export class Garage {
         createElem({htmlTag: 'h2', styles: ['garage__pagination'], parentNode: garagePage, innerText: `Page #${'1'}`});
 
         const garageCars = createElem({htmlTag: 'div', styles: ['garage__cars'], parentNode: garagePage});
-        // garageCars.innerHTML = cars.map(car => new Car());
+        data.map((carData: ICar) => {
+            const car = new Car(carData);
+            garageCars.append(car.carElem);
+        });
     }
 }
