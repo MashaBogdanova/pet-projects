@@ -6,6 +6,7 @@ import {Car} from "./Car";
 export class Garage {
     data: any;
     garageElem: HTMLElement | null;
+
     constructor() {
         this.data = this.getData();
         this.garageElem = null;
@@ -41,7 +42,12 @@ export class Garage {
             innerText: 'Reset'
         });
 
-        createElem({htmlTag: 'h1', styles: ['garage__title'], parentNode: garagePage, innerText: `Garage ${data.length}`});
+        createElem({
+            htmlTag: 'h1',
+            styles: ['garage__title'],
+            parentNode: garagePage,
+            innerText: `Garage ${data.length}`
+        });
         createElem({htmlTag: 'h2', styles: ['garage__pagination'], parentNode: garagePage, innerText: `Page #${'1'}`});
 
         const garageCars = createElem({htmlTag: 'div', styles: ['garage__cars'], parentNode: garagePage});

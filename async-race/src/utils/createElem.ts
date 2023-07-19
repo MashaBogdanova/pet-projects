@@ -4,8 +4,7 @@ interface IParams {
     parentNode?: HTMLElement
     parentClass?: string
     innerText?: string
-    type?: string
-    placeholder?: string
+    attribute?: { [key: string]: string }
 }
 
 export function createElem(params: IParams): HTMLElement {
@@ -21,11 +20,8 @@ export function createElem(params: IParams): HTMLElement {
     if(params.innerText) {
         elem.innerText = params.innerText;
     }
-    if(params.type) {
-        elem.setAttribute('type', params.type);
-    }
-    if(params.placeholder) {
-        elem.setAttribute('placeholder', params.placeholder);
+    if(params.attribute) {
+        elem.setAttribute(params.attribute.name, params.attribute.value);
     }
     return elem;
 }
