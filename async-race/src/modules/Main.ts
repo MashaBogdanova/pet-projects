@@ -32,6 +32,7 @@ export class Main {
             parentNode: body,
             innerText: 'Winners'
         });
+        this.renderGaragePage(body);
         this.addRenderPageListeners(garageBtn, winnersBtn);
     }
 
@@ -46,7 +47,7 @@ export class Main {
     }
 
     private renderGaragePage(body: HTMLElement | null) {
-        if (!this.garagePageElem) {
+        if (!document.querySelector('.garage')) {
             this.garagePage = new Garage();
             this.garagePageElem = this.garagePage.garageElem;
             body && body.append(this.garagePageElem as HTMLElement);
@@ -56,7 +57,7 @@ export class Main {
     }
 
     private renderWinnersPage(body: HTMLElement | null) {
-        if (!this.winnersPageElem) {
+        if (!document.querySelector('.winners')) {
             this.winnersPage = new Winners();
             this.winnersPageElem = this.winnersPage.winnersElem;
             body && body.append(this.winnersPageElem as HTMLElement);
