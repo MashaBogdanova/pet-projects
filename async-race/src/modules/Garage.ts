@@ -23,30 +23,6 @@ export class Garage {
             styles: ['garage'],
             parentClass: '.body'
         });
-        const createForm = createElem({
-            htmlTag: 'form',
-            styles: ['garage__create-form'],
-            parentNode: garagePage,
-            placeholder: 'Write a car model'
-        });
-        createElem({
-            htmlTag: 'input',
-            styles: ['input'],
-            parentNode: createForm,
-            placeholder: 'Write a car model'
-        });
-        createElem({
-            htmlTag: 'input',
-            styles: ['input_color'],
-            parentNode: createForm,
-            type: 'color'
-        });
-        createElem({
-            htmlTag: 'button',
-            styles: ['button', 'button_secondary'],
-            parentNode: createForm,
-            innerText: 'Create'
-        });
 
         const garageBtns = createElem({htmlTag: 'div', styles: ['garage__btns'], parentNode: garagePage});
         createElem({

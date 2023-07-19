@@ -1,14 +1,22 @@
 .car {
   display: flex;
   flex-direction: column;
-  border-bottom: dashed 2px $color-primary;
+  border-bottom: dashed 2px $color-secondary-dark;
   &__info {
     display: flex;
-    gap: 1em;
+    gap: .5em;
+    align-items: center;
   }
   &__move {
     display: flex;
     gap: 1em;
+    width: 100vw;
+  }
+  &__model {
+    cursor: pointer;
+  }
+  &__input {
+
   }
   &__start-btn {
     width: 10px;
@@ -48,4 +56,8 @@
     background-repeat: no-repeat;
     background-position: center;
   }
+}
+
+.hidden {
+  display: none;
 }
