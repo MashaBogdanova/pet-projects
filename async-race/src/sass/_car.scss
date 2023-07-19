@@ -1,6 +1,8 @@
 .car {
   display: flex;
   flex-direction: column;
+  gap: 1em;
+  padding: .2em;
   border-bottom: dashed 2px $color-secondary-dark;
   &__info {
     display: flex;
@@ -13,28 +15,32 @@
     width: 100vw;
   }
   &__model {
+    font-size: 1.4em;
     cursor: pointer;
   }
-  &__input {
-
-  }
   &__start-btn {
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
 
+    background-color: transparent;
     background-image: url('../assets/images/play.svg');
+    border: none;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
+    cursor: pointer;
   }
   &__restart-btn {
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
 
+    background-color: transparent;
     background-image: url('../assets/images/replay.svg');
+    border: none;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
+    cursor: pointer;
   }
   &__car-icon {
     width: 30px;
@@ -47,14 +53,15 @@
   }
 
   &__flag {
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     align-self: end;
 
     background-image: url('../assets/images/flag.svg');
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
+    border: none;
   }
 }
 

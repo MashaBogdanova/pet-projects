@@ -3,33 +3,69 @@ import {Garage} from "./Garage";
 import {Winners} from "./Winners";
 
 export class Main {
-    garagePage: any;
-    winnersPage: any
+    garagePage: Garage | null;
+    garagePageElem: HTMLElement | null;
+    winnersPage: Winners | null;
+    winnersPageElem: HTMLElement | null;
+
     constructor() {
         this.garagePage = null;
+        this.garagePageElem = null;
         this.winnersPage = null;
+        this.winnersPageElem = null;
         this.render();
     }
+
     private render() {
         const body: HTMLElement = document.getElementsByTagName('body')[0];
         body.classList.add('body');
 
-        const garageBtn: HTMLElement = createElem({htmlTag: 'button', styles: ['button', 'button_primary'], parentNode: body, innerText: 'Garage'});
-        this.renderGarage(garageBtn);
+        const garageBtn: HTMLElement = createElem({
+            htmlTag: 'button',
+            styles: ['button', 'button_primary'],
+            parentNode: body,
+            innerText: 'Garage'
+        });
+        const winnersBtn: HTMLElement = createElem({
+            htmlTag: 'button',
+            styles: ['button', 'button_primary'],
+            parentNode: body,
+            innerText: 'Winners'
+        });
+        this.addRenderPageListeners(garageBtn, winnersBtn);
+    }
 
-        const winnersBtn: HTMLElement = createElem({htmlTag: 'button', styles: ['button', 'button_primary'], parentNode: body, innerText: 'Winners'});
-        this.renderWinners(winnersBtn);
+    private addRenderPageListeners(garageBtn: HTMLElement, winnersBtn: HTMLElement) {
+        const body: HTMLElement | null = document.querySelector('.body');
+        garageBtn.addEventListener('click', e => {
+            this.renderGaragePage(body);
+        });
+        winnersBtn.addEventListener('click', e => {
+            this.renderWinnersPage(body);
+        });
     }
-    private renderGarage(btn: HTMLElement) {
-        btn.addEventListener('click', () => {
-            // this.winnersPage && this.winnersPage.remove();
+
+    private renderGaragePage(body: HTMLElement | null) {
+        if (!this.garagePageElem) {
             this.garagePage = new Garage();
-        });
+            this.garagePageElem = this.garagePage.garageElem;
+            body && body.append(this.garagePageElem as HTMLElement);
+        }
+        this.removePage('.winners');
+
     }
-    private renderWinners(btn: HTMLElement) {
-        btn.addEventListener('click', () => {
-            // this.garagePage && this.garagePage.remove();
+
+    private renderWinnersPage(body: HTMLElement | null) {
+        if (!this.winnersPageElem) {
             this.winnersPage = new Winners();
-        });
+            this.winnersPageElem = this.winnersPage.winnersElem;
+            body && body.append(this.winnersPageElem as HTMLElement);
+        }
+        this.removePage('.garage');
+    }
+
+    private removePage(pageSelector: string): void {
+        const pageToRemove = document.querySelector(pageSelector);
+        pageToRemove && pageToRemove.remove();
     }
 }

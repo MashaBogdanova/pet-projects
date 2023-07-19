@@ -1,6 +1,5 @@
 import {createElem} from "../utils/createElem";
-import {ICar} from "../types/apiTypes";
-import {render} from "sass";
+import {ICar} from "../types/dataTypes";
 
 export class Car {
     data: ICar;
@@ -38,15 +37,17 @@ export class Car {
             type: 'submit',
             innerText: 'Edit'
         });
-        this.addEditCarListeners(carModel, carEditor);
 
+        const editBtn = createElem({htmlTag: 'button', styles: ['button', 'button_secondary'], parentNode: carInfo, innerText: 'Edit'});
         createElem({htmlTag: 'button', styles: ['button', 'button_secondary'], parentNode: carInfo, innerText: 'Remove'});
+
+        this.addEditCarListeners(editBtn, carEditor);
 
         const carMove = createElem({htmlTag: 'div', styles: ['car__move'], parentNode: car});
         createElem({htmlTag: 'button', styles: ['button_invisible', 'car__start-btn'], parentNode: carMove});
         createElem({htmlTag: 'button', styles: ['button_invisible', 'car__restart-btn'], parentNode: carMove});
-        createElem({htmlTag: 'img', styles: ['car__car-icon'], parentNode: carMove});
-        createElem({htmlTag: 'img', styles: ['car__flag'], parentNode: carMove});
+        createElem({htmlTag: 'div', styles: ['car__car-icon'], parentNode: carMove});
+        createElem({htmlTag: 'div', styles: ['car__flag'], parentNode: carMove});
 
         return car;
     }

@@ -1,23 +1,26 @@
 import {createElem} from "../utils/createElem";
-import {getData} from "../api/api";
-import {ICar} from "../types/apiTypes";
+import {getData} from "../api/getData";
+import {ICar} from "../types/dataTypes";
 import {Car} from "./Car";
 
 export class Garage {
+    data: any;
+    garageElem: HTMLElement | null;
     constructor() {
-        this.getData();
+        this.data = this.getData();
+        this.garageElem = null;
     }
 
     private async getData(): Promise<void> {
         try {
-            const data = await getData();
+            const data = await getData('garage');
             this.render(data);
         } catch (error) {
             console.error(error);
         }
     }
 
-    private render(data: any): void {
+    private render(data: ICar[]): void {
         const garagePage = createElem({
             htmlTag: 'section',
             styles: ['garage'],
@@ -38,7 +41,7 @@ export class Garage {
             innerText: 'Reset'
         });
 
-        createElem({htmlTag: 'h1', styles: ['garage__title'], parentNode: garagePage, innerText: `Garage ${'(6)'}`});
+        createElem({htmlTag: 'h1', styles: ['garage__title'], parentNode: garagePage, innerText: `Garage ${data.length}`});
         createElem({htmlTag: 'h2', styles: ['garage__pagination'], parentNode: garagePage, innerText: `Page #${'1'}`});
 
         const garageCars = createElem({htmlTag: 'div', styles: ['garage__cars'], parentNode: garagePage});
@@ -46,5 +49,6 @@ export class Garage {
             const car = new Car(carData);
             garageCars.append(car.carElem);
         });
+        this.garageElem = garagePage;
     }
 }
