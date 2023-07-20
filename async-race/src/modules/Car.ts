@@ -5,6 +5,7 @@ import {createCarForm} from "../utils/createCarForm";
 import {sendFormData} from "../utils/sendFormData";
 import {updateCar} from "../api/updateCar";
 import {toggleCarEngine} from "../api/toggleCarEngine";
+import {carSVG} from "../assets/images/carSVG";
 
 enum carStatus {
     started = 'started',
@@ -65,8 +66,12 @@ export class Car {
             parentNode: carMoveWrapper
         });
 
-        // todo: менять цвет svg
-        const carIcon = createElem({htmlTag: 'div', styles: ['car__icon'], parentNode: carMoveWrapper});
+        const carIcon = createElem({htmlTag: 'div', styles: ['car__icon'], parentNode: carMoveWrapper, innerHTML: carSVG});
+        const svgElements = carIcon.getElementsByTagName('path');
+        for (const path of svgElements) {
+            path.setAttribute('fill', `${data.color}`);
+        }
+
         createElem({htmlTag: 'div', styles: ['car__flag'], parentNode: carMove});
 
         this.onMoveBtnPress(startBtn, data.id, carStatus.started, carIcon);

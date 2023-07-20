@@ -17,6 +17,7 @@
   }
   &__move-wrapper {
     display: flex;
+    align-items: center;
     gap: 1em;
   }
   &__model {
@@ -49,12 +50,15 @@
   }
   &__icon {
     width: 30px;
-    height: 15px;
-
-    background-image: url('../assets/images/car.svg');
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
+    height: 30px;
+    & svg {
+      width: 30px;
+      height: 30px;
+    }
+    //background-image: url('../assets/images/car.svg');
+    //background-size: 100%;
+    //background-repeat: no-repeat;
+    //background-position: center;
     &_animated {
       transform: translateX(90vw);
     }
