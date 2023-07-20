@@ -3,7 +3,7 @@ interface IParam {
     status: 'started' | 'stopped' | 'drive'
 }
 
-export async function toggleCarEngine(params: IParam) {
+export async function toggleCarEngine(params: IParam): Promise<number | undefined> {
     if (Number.isInteger(params.id)) {
         const queryParams = new URLSearchParams({
             id: String(params.id),

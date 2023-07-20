@@ -1,5 +1,5 @@
 import {createElem} from "../utils/createElem";
-import {getData} from "../api/getData";
+import {fetchData} from "../api/fetchData";
 import {IWinner} from "../types/dataTypes";
 
 export class Winners {
@@ -13,7 +13,7 @@ export class Winners {
 
     private async getData(): Promise<void> {
         try {
-            const data = await getData('winners');
+            const data = await fetchData('winners');
             this.render(data);
         } catch (error) {
             console.error(error);
@@ -21,7 +21,7 @@ export class Winners {
     }
     private async getAdditionalData(id: number) {
         try {
-            const data = await getData(`garage/${id}`);
+            const data = await fetchData(`garage/${id}`);
             return {
                 name: data.name,
                 color: data.color

@@ -1,4 +1,4 @@
-export async function getData(page: string) {
+export async function fetchData(page: string) {
     const url: string = `http://127.0.0.1:3000/${page}`;
     try {
         const response = await fetch(url);

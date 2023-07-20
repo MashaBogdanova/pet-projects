@@ -1,23 +1,25 @@
 import {createElem} from "../utils/createElem";
-import {getData} from "../api/getData";
+import {fetchData} from "../api/fetchData";
 import {ICar} from "../types/dataTypes";
-import {Car} from "./Car";
+import {Car, carStatus} from "./Car";
 import {createCarForm} from "../utils/createCarForm";
 import {addNewCar} from "../api/addNewCar";
 import {sendFormData} from "../utils/sendFormData";
 
 export class Garage {
     data: any;
-    garageElem: HTMLElement | null;
+    garageElem: null | HTMLElement;
 
     constructor() {
-        this.data = this.getData();
+        this.data = null;
+        this.getData();
         this.garageElem = null;
     }
 
-    private async getData(): Promise<void> {
+    private async getData() {
         try {
-            const data = await getData('garage');
+            const data = await fetchData('garage');
+            this.data = data;
             this.render(data);
         } catch (error) {
             console.error(error);
@@ -25,7 +27,7 @@ export class Garage {
     }
 
     private render(data: ICar[]): void {
-        const garagePage = createElem({
+        const garagePage: HTMLElement = createElem({
             htmlTag: 'section',
             styles: ['garage'],
             parentClass: '.body'
@@ -33,13 +35,15 @@ export class Garage {
         const carCreator = createCarForm({parent: garagePage, formAdditionalStyle: ['garage__create']});
         this.onCreateFormSubmit(carCreator);
 
-        const garageBtns = createElem({htmlTag: 'div', styles: ['garage__btns'], parentNode: garagePage});
-        createElem({
+        const garageBtns: HTMLElement = createElem({htmlTag: 'div', styles: ['garage__btns'], parentNode: garagePage});
+        const raceBtn: HTMLElement = createElem({
             htmlTag: 'button',
             styles: ['button', 'button_primary'],
             parentNode: garageBtns,
             innerText: 'Race'
         });
+        this.onRaceBtnPress(raceBtn);
+
         createElem({
             htmlTag: 'button',
             styles: ['button', 'button_primary'],
@@ -64,14 +68,69 @@ export class Garage {
     }
 
     private onCreateFormSubmit(carCreator: HTMLFormElement) {
-        carCreator.addEventListener('submit', e => {
-            sendFormData(e, carCreator, addNewCar, '.garage__create .input');
+        carCreator.addEventListener('submit', async (e) => {
+            const newCarData = await sendFormData(e, carCreator, addNewCar, '.garage__create .input');
+            this.data.push(newCarData);
 
-            // Rerender garage with updated data
-            // todo: пофиксить ререндер гаража и добавить ререндер при апдейте машины
-            const garage: HTMLElement | null = document.querySelector('.garage');
-            garage && garage.remove();
-            this.getData();
+            const car = new Car(newCarData);
+            const garageCars = document.querySelector('.garage__cars');
+            garageCars && garageCars.append(car.carElem);
+        });
+    }
+
+    private onRaceBtnPress(btn: HTMLElement) {
+        btn.addEventListener('click', async (e) => {
+            const carsToRace: { [key: string]: any } = await this.getCarsToRace();
+            const winner = this.getWinner(carsToRace);
+
+            for (let carId in carsToRace) {
+                const carElem = document.getElementById(`${carId}`);
+                carElem && Car.race(Number(carId), carStatus.started, carElem);
+            }
+        });
+    }
+
+    private async getCarsToRace(): Promise<{ [key: string]: any }> {
+        const allCars: ICar[] = this.data;
+        const raceResults: { [key: string]: any } = {}
+
+        for (let i = 0; i < 7; i += 1) {
+            if (allCars[i]) {
+                const id = allCars[i].id;
+                const model = allCars[i].name;
+                const carIcon: HTMLElement | null = document.getElementById(`${id}`);
+                const time: number | undefined = await Car.getRaceTime(id, carStatus.started);
+
+                if (carIcon && time) {
+                    raceResults[id] = {
+                        time: time,
+                        model: model
+                    };
+                }
+            }
+        }
+        return raceResults;
+    }
+
+    private getWinner(raceResults: { [key: string]: any }) {
+        let bestResult: number | undefined;
+        let fastestCarId: string | undefined;
+
+        for (let carId in raceResults) {
+            if (!bestResult) {
+                bestResult = Number(raceResults[carId].time);
+            } else if (raceResults[carId].time < bestResult) {
+                bestResult = Number(raceResults[carId].time);
+                fastestCarId = carId;
+            }
+        }
+        const winnerElem: HTMLElement | null = document.getElementById(`${fastestCarId}`);
+        winnerElem && bestResult && fastestCarId && this.showWinner(winnerElem, bestResult, raceResults[fastestCarId].model);
+    }
+
+    private showWinner(winner: HTMLElement, time: number, model: string): void {
+        winner.addEventListener('transitionend', e => {
+            alert(`${model} finished first (${time} s)!`);
         });
     }
 }

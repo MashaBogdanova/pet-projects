@@ -7,7 +7,7 @@ import {updateCar} from "../api/updateCar";
 import {toggleCarEngine} from "../api/toggleCarEngine";
 import {carSVG} from "../assets/images/carSVG";
 
-enum carStatus {
+export enum carStatus {
     started = 'started',
     stopped = 'stopped',
     drive = 'drive'
@@ -25,7 +25,11 @@ export class Car {
     }
 
     render(data: ICar): HTMLElement {
-        const car = createElem({htmlTag: 'article', styles: ['car'], parentClass: '.garage__cars'});
+        const car = createElem({
+            htmlTag: 'article',
+            styles: ['car'],
+            parentClass: '.garage__cars'
+        });
 
         // Car information
         const carInfo = createElem({htmlTag: 'div', styles: ['car__info'], parentNode: car});
@@ -66,7 +70,13 @@ export class Car {
             parentNode: carMoveWrapper
         });
 
-        const carIcon = createElem({htmlTag: 'div', styles: ['car__icon'], parentNode: carMoveWrapper, innerHTML: carSVG});
+        const carIcon = createElem({
+            htmlTag: 'div',
+            styles: ['car__icon'],
+            parentNode: carMoveWrapper,
+            innerHTML: carSVG
+        });
+        carIcon.id = data.id.toString();
         const svgElements = carIcon.getElementsByTagName('path');
         for (const path of svgElements) {
             path.setAttribute('fill', `${data.color}`);
@@ -102,22 +112,28 @@ export class Car {
     }
 
     private onMoveBtnPress(btn: HTMLElement, id: number, status: carStatus, carIcon: HTMLElement) {
-        btn.addEventListener('click', async (e) => {
-            this.carStatus = status;
-            // todo: какие тут величины времени?
-            const time: number | undefined = await toggleCarEngine({id, status});
-            if (time) {
-                carIcon.classList.add('car__icon_animated');
-                carIcon.style.transition = `transform ${Math.round(time / 1200)}s linear`;
-            } else {
-                carIcon.removeAttribute('style');
-                carIcon.style.transform = 'translateX(0vw)';
-                carIcon.style.transition = `transform 0s linear`;
-                carIcon.className = 'car__icon';
-                setTimeout(() => {
-                    carIcon.removeAttribute('style');
-                }, 1)
-            }
+        btn.addEventListener('click', (e) => {
+            Car.race(id, status, carIcon);
         });
+    }
+    static async race(id: number, status: carStatus, carIcon: HTMLElement) {
+        // todo: какие тут величины времени?
+        const time: number | undefined = await Car.getRaceTime(id, status);
+        if (time) {
+            carIcon.classList.add('car__icon_animated');
+            carIcon.style.transition = `transform ${Math.round(time / 1200)}s linear`;
+        } else {
+            carIcon.removeAttribute('style');
+            carIcon.style.transform = 'translateX(0vw)';
+            carIcon.style.transition = `transform 0s linear`;
+            carIcon.className = 'car__icon';
+            setTimeout(() => {
+                carIcon.removeAttribute('style');
+            }, 1)
+        }
+        return time;
+    }
+    static async getRaceTime (id: number, status: carStatus) {
+        return await toggleCarEngine({id, status});
     }
 }
