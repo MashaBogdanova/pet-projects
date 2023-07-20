@@ -55,9 +55,10 @@ export class Car {
         this.addRemoveCarListener(removeBtn);
 
         const carMove = createElem({htmlTag: 'div', styles: ['car__move'], parentNode: car});
-        createElem({htmlTag: 'button', styles: ['button_invisible', 'car__start-btn'], parentNode: carMove});
-        createElem({htmlTag: 'button', styles: ['button_invisible', 'car__restart-btn'], parentNode: carMove});
-        createElem({htmlTag: 'div', styles: ['car__car-icon'], parentNode: carMove});
+        const carMoveWrapper = createElem({htmlTag: 'div', styles: ['car__move-wrapper'], parentNode: carMove});
+        createElem({htmlTag: 'button', styles: ['button_invisible', 'car__start-btn'], parentNode: carMoveWrapper});
+        createElem({htmlTag: 'button', styles: ['button_invisible', 'car__restart-btn'], parentNode: carMoveWrapper});
+        createElem({htmlTag: 'div', styles: ['car__car-icon'], parentNode: carMoveWrapper});
         createElem({htmlTag: 'div', styles: ['car__flag'], parentNode: carMove});
 
         return car;
