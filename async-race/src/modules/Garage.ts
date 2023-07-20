@@ -2,6 +2,8 @@ import {createElem} from "../utils/createElem";
 import {getData} from "../api/getData";
 import {ICar} from "../types/dataTypes";
 import {Car} from "./Car";
+import {createCarForm} from "../utils/createCarForm";
+import {addNewCar} from "../api/addNewCar";
 
 export class Garage {
     data: any;
@@ -27,6 +29,8 @@ export class Garage {
             styles: ['garage'],
             parentClass: '.body'
         });
+        const carCreator = createCarForm({parent: garagePage, formAdditionalStyle: ['garage__create']});
+        this.onCreateFormSubmit(carCreator);
 
         const garageBtns = createElem({htmlTag: 'div', styles: ['garage__btns'], parentNode: garagePage});
         createElem({
@@ -56,5 +60,22 @@ export class Garage {
             garageCars.append(car.carElem);
         });
         this.garageElem = garagePage;
+    }
+
+    private onCreateFormSubmit(form: HTMLFormElement) {
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const formData: FormData = new FormData(form);
+            const name = formData.get('name') as string;
+            const color = formData.get('color') as string;
+
+            if (name.length !== 0 && color.length !== 0) {
+                addNewCar({name: name, color: color});
+                const input: HTMLInputElement | null = document.querySelector('.garage__create .input');
+                if (input) {
+                    input.value = '';
+                }
+            }
+        });
     }
 }

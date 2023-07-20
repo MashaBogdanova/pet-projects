@@ -5,6 +5,7 @@ interface IParams {
     parentClass?: string
     innerText?: string
     attribute?: { [key: string]: string }
+    inputName?: string
 }
 
 export function createElem(params: IParams): HTMLElement {
@@ -22,6 +23,9 @@ export function createElem(params: IParams): HTMLElement {
     }
     if(params.attribute) {
         elem.setAttribute(params.attribute.name, params.attribute.value);
+    }
+    if(params.inputName) {
+        elem.setAttribute('name', params.inputName);
     }
     return elem;
 }

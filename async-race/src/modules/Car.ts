@@ -1,6 +1,7 @@
 import {createElem} from "../utils/createElem";
 import {ICar} from "../types/dataTypes";
 import {removeCarData} from "../api/removeCarData";
+import {createCarForm} from "../utils/createCarForm";
 
 export class Car {
     data: ICar;
@@ -14,39 +15,7 @@ export class Car {
 
         const carInfo = createElem({htmlTag: 'div', styles: ['car__info'], parentNode: car});
         createElem({htmlTag: 'h3', styles: ['car__model'], parentNode: carInfo, innerText: `${data.name}`});
-        const carEditor = createElem({
-            htmlTag: 'form',
-            styles: ['car__edit', 'hidden'],
-            parentNode: car
-        });
-        createElem({
-            htmlTag: 'input',
-            styles: ['input'],
-            parentNode: carEditor,
-            attribute: {
-                name: 'placeholder',
-                value: 'Write a car model'
-            }
-        });
-        createElem({
-            htmlTag: 'input',
-            styles: ['input_color'],
-            parentNode: carEditor,
-            attribute: {
-                type: 'placeholder',
-                value: 'color'
-            }
-        });
-        createElem({
-            htmlTag: 'button',
-            styles: ['button', 'button_secondary'],
-            parentNode: carEditor,
-            attribute: {
-                type: 'placeholder',
-                value: 'submit'
-            },
-            innerText: 'Edit'
-        });
+        const carEditor = createCarForm({parent: carInfo, formAdditionalStyle: ['car__edit', 'hidden']});
 
         const editBtn = createElem({htmlTag: 'button', styles: ['button', 'button_secondary'], parentNode: carInfo, innerText: 'Edit'});
         const removeBtn = createElem({htmlTag: 'button', styles: ['button', 'button_secondary'], parentNode: carInfo, innerText: 'Remove'});
