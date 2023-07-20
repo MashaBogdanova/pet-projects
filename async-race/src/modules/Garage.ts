@@ -4,6 +4,7 @@ import {ICar} from "../types/dataTypes";
 import {Car} from "./Car";
 import {createCarForm} from "../utils/createCarForm";
 import {addNewCar} from "../api/addNewCar";
+import {sendFormData} from "../utils/sendFormData";
 
 export class Garage {
     data: any;
@@ -62,20 +63,9 @@ export class Garage {
         this.garageElem = garagePage;
     }
 
-    private onCreateFormSubmit(form: HTMLFormElement) {
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            const formData: FormData = new FormData(form);
-            const name = formData.get('name') as string;
-            const color = formData.get('color') as string;
-
-            if (name.length !== 0 && color.length !== 0) {
-                addNewCar({name: name, color: color});
-                const input: HTMLInputElement | null = document.querySelector('.garage__create .input');
-                if (input) {
-                    input.value = '';
-                }
-            }
+    private onCreateFormSubmit(carCreator: HTMLFormElement) {
+        carCreator.addEventListener('submit', e => {
+            sendFormData(e, carCreator, addNewCar, '.garage__create .input');
         });
     }
 }
