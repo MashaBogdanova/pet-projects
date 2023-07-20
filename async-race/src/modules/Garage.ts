@@ -66,6 +66,12 @@ export class Garage {
     private onCreateFormSubmit(carCreator: HTMLFormElement) {
         carCreator.addEventListener('submit', e => {
             sendFormData(e, carCreator, addNewCar, '.garage__create .input');
+
+            // Rerender garage with updated data
+            // todo: пофиксить ререндер гаража и добавить ререндер при апдейте машины
+            const garage: HTMLElement | null = document.querySelector('.garage');
+            garage && garage.remove();
+            this.getData();
         });
     }
 }

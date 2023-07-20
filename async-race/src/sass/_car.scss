@@ -47,7 +47,7 @@
     background-position: center;
     cursor: pointer;
   }
-  &__car-icon {
+  &__icon {
     width: 30px;
     height: 15px;
 
@@ -55,6 +55,9 @@
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
+    &_animated {
+      transform: translateX(90vw);
+    }
   }
   &__flag {
     display: flex;
