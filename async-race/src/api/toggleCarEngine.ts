@@ -21,7 +21,7 @@ export async function toggleCarEngine(params: IParam): Promise<number | undefine
             });
             const data = await response.json();
             const {velocity, distance} = data;
-            return velocity === 0 ? undefined : distance / velocity
+            return velocity === 0 ? undefined : Math.round((distance / velocity) / 1000);
         } catch (e) {
             console.error(e);
         }

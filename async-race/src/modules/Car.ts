@@ -121,7 +121,7 @@ export class Car {
         const time: number | undefined = await Car.getRaceTime(id, status);
         if (time) {
             carIcon.classList.add('car__icon_animated');
-            carIcon.style.transition = `transform ${Math.round(time / 1200)}s linear`;
+            carIcon.style.transition = `transform ${time}s linear`;
         } else {
             carIcon.removeAttribute('style');
             carIcon.style.transform = 'translateX(0vw)';
