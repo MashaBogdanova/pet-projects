@@ -26,45 +26,43 @@ export class Main {
             parentNode: body,
             innerText: 'Garage'
         });
+        this.onGarageBtnPress(garageBtn);
+
         const winnersBtn: HTMLElement = createElem({
             htmlTag: 'button',
             styles: ['button', 'button_primary'],
             parentNode: body,
             innerText: 'Winners'
         });
-        this.renderGaragePage(body);
-        this.addRenderPageListeners(garageBtn, winnersBtn);
-    }
+        this.onWinnersBtnPress(winnersBtn);
 
-    private addRenderPageListeners(garageBtn: HTMLElement, winnersBtn: HTMLElement) {
-        const body: HTMLElement | null = document.querySelector('.body');
+        this.renderGaragePage();
+    }
+    private onGarageBtnPress(garageBtn: HTMLElement) {
         garageBtn.addEventListener('click', e => {
-            this.renderGaragePage(body);
-        });
-        winnersBtn.addEventListener('click', e => {
-            this.renderWinnersPage(body);
+            this.renderGaragePage();
         });
     }
-
-    private renderGaragePage(body: HTMLElement | null) {
-        if (!document.querySelector('.garage')) {
+    private onWinnersBtnPress(winnersBtn: HTMLElement) {
+        winnersBtn.addEventListener('click', e => {
+            this.renderWinnersPage();
+        });
+    }
+    private renderGaragePage() {
+        const garage = document.querySelector('.garage');
+        if (!garage) {
             this.garagePage = new Garage();
             this.garagePageElem = this.garagePage.garageElem;
-            body && body.append(this.garagePageElem as HTMLElement);
         }
         this.removePage('.winners');
-
     }
-
-    private renderWinnersPage(body: HTMLElement | null) {
+    private renderWinnersPage() {
         if (!document.querySelector('.winners')) {
             this.winnersPage = new Winners();
             this.winnersPageElem = this.winnersPage.winnersElem;
-            body && body.append(this.winnersPageElem as HTMLElement);
         }
         this.removePage('.garage');
     }
-
     private removePage(pageSelector: string): void {
         const pageToRemove = document.querySelector(pageSelector);
         pageToRemove && pageToRemove.remove();

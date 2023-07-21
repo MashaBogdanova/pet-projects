@@ -117,11 +117,13 @@ export class Garage {
         let fastestCarId: string | undefined;
 
         for (let carId in raceResults) {
+            // todo: показывает не первого
             if (!bestResult) {
                 bestResult = Number(raceResults[carId].time);
             } else if (raceResults[carId].time < bestResult) {
                 bestResult = Number(raceResults[carId].time);
                 fastestCarId = carId;
+                console.log(raceResults[fastestCarId].model, bestResult)
             }
         }
         const winnerElem: HTMLElement | null = document.getElementById(`${fastestCarId}`);
