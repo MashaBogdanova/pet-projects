@@ -19,6 +19,7 @@ export class Winners {
             console.error(error);
         }
     }
+
     private async getAdditionalData(id: number) {
         try {
             const data = await fetchData(`garage/${id}`);
@@ -30,13 +31,19 @@ export class Winners {
             console.error(error);
         }
     }
+
     private render(data: IWinner[]): void {
         const winnersPage = createElem({
             htmlTag: 'section',
             styles: ['winners'],
             parentClass: '.body'
         });
-        createElem({htmlTag: 'h1', styles: ['winners__title'], parentNode: winnersPage, innerText: `Winners (${data.length})`});
+        createElem({
+            htmlTag: 'h1',
+            styles: ['winners__title'],
+            parentNode: winnersPage,
+            innerText: `Winners (${data.length})`
+        });
         createElem({
             htmlTag: 'h2',
             styles: ['winners__pagination'],
@@ -52,7 +59,7 @@ export class Winners {
 
             this.getAdditionalData(winner.id)
                 .then(data => {
-                    if(data) {
+                    if (data) {
                         carName = data.name;
                         carColor = data.color;
                     }
@@ -72,4 +79,5 @@ export class Winners {
         createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: wins});
         createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: time});
     }
+
 }

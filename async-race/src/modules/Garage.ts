@@ -3,8 +3,11 @@ import {fetchData} from "../api/fetchData";
 import {ICar} from "../types/dataTypes";
 import {Car, carStatus} from "./Car";
 import {createCarForm} from "../utils/createCarForm";
-import {addNewCar} from "../api/addNewCar";
 import {sendFormData} from "../utils/sendFormData";
+import {Winners} from "./Winners";
+import {addNewCar} from "../api/addNewCar";
+import {addWinnerData} from "../api/addWinnerData";
+import {fetchWinner} from "../api/fetchWinner";
 
 export class Garage {
     data: any;
@@ -83,7 +86,7 @@ export class Garage {
 
     private onCreateFormSubmit(carCreator: HTMLFormElement) {
         carCreator.addEventListener('submit', async (e) => {
-            const newCarData = await sendFormData(e, carCreator, addNxewCar, '.garage__create .input');
+            const newCarData = await sendFormData(e, carCreator, addNewCar, '.garage__create .input');
             this.data.push(newCarData);
 
             const car = new Car(newCarData);
@@ -106,16 +109,24 @@ export class Garage {
 
     private onGenerateBtnPress(generateBtn: HTMLElement) {
         generateBtn.addEventListener('click', () => {
-            const carsToGenerate = this.generateRandomCars();
+            this.generateRandomCars();
+            const garageTitle = document.querySelector('.garage__title');
+            if (garageTitle) {
+                garageTitle.innerHTML = `Garage ${this.data.length + 100}`;
+            }
         });
     }
 
-    private generateRandomCars() {
+    private async generateRandomCars() {
         const firstModelPart = ['Ford', 'Ferrari', 'Mercedes', 'Tesla', 'Opel', 'Mustang', 'BMW', 'Mazda', 'Range Rover', 'KIA'];
         const secondModelPart = ['Model A', 'Model Q', 'Model Z', 'Model S', 'Model V', 'Model S', 'Model W', 'Model R', 'Model P', "Model L"];
-        const carData = {
-            name: `${'sdrg'}`,
-            color: `string`
+
+        for (let i = 0; i < 100; i += 1) {
+            const name = `${firstModelPart[Math.floor(Math.random() * 10)]} ${secondModelPart[Math.floor(Math.random() * 10)]}`;
+            const color = `#${((Math.random() * 0xfffff * 1000000).toString(16)).slice(0, 6)}`;
+            const newCarData = await addNewCar({name, color});
+            new Car(newCarData);
+            this.data.push(newCarData);
         }
     }
 
@@ -152,13 +163,13 @@ export class Garage {
             } else if (raceResults[carId].time < bestResult) {
                 bestResult = Number(raceResults[carId].time);
                 fastestCarId = carId;
-                console.log(raceResults[fastestCarId].model, bestResult)
+                // console.log(raceResults[fastestCarId].model, bestResult)
             }
         }
         const winnerElem: HTMLElement | null = document.getElementById(`${fastestCarId}`);
         if (winnerElem && bestResult && fastestCarId) {
             this.showWinner(winnerElem, bestResult, raceResults[fastestCarId].model);
-            this.updateWinnersTable();
+            this.updateWinnersTable(Number(fastestCarId), bestResult);
         }
     }
 
@@ -167,7 +178,12 @@ export class Garage {
             alert(`${model} finished first (${time} s)!`);
         });
     }
-    private updateWinnersTable() {
 
+    private async updateWinnersTable(id: number, time: number) {
+        const winnerData = await fetchWinner(id);
+        const wins = await winnerData;
+        console.log(winnerData, wins)
+        // const winnerData = {id, wins, time}
+        // addWinnerData(winnerData);
     }
 }
