@@ -1,27 +1,28 @@
 .button {
-  width: 50px;
-  height: 25px;
+  width: 55px;
+  height: 27px;
 
   font-size: .8em;
+  color: $color-primary-dark;
+
   border-radius: .8em;
   cursor: pointer;
 
   &_primary {
-    color: $color-primary;
-    background-color: transparent;
-    border: dashed 2px $color-primary;
-    &:hover {
-      background-color: $color-primary-dark;
+    background-color: $color-primary;
+    border: none;
 
+    &:hover {
+      background-color: $color-primary-light;
     }
   }
 
   &_secondary {
-    color: $color-secondary;
     background-color: transparent;
-    border: dashed 2px $color-secondary;
+    border: 2px solid $color-primary;
+
     &:hover {
-      background-color: $color-secondary-dark;
+      background-color: $color-primary-light;
     }
   }
 }

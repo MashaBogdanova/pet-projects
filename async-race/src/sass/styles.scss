@@ -4,6 +4,7 @@
 @import "inputs";
 @import "pages/garage";
 @import "car";
+@import "pages/nav";
 
 html, * {
   padding: 0;
@@ -12,7 +13,12 @@ html, * {
 }
 
 body {
+  padding: 1em;
   font-size: 12px;
-  background-color: #7c387e;
-  color: $color-light;
+  background-color: $color-primary-extralight;
+  color: $color-secondary-light;
+}
+
+h1 {
+  color: $color-secondary;
 }

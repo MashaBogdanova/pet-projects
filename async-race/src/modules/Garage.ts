@@ -32,7 +32,8 @@ export class Garage {
             styles: ['garage'],
             parentClass: '.body'
         });
-        const carCreator = createCarForm({parent: garagePage, formAdditionalStyle: ['garage__create']});
+        createElem({htmlTag: 'h2', styles: ['garage__create-title'], parentNode: garagePage, innerText: 'Create your own car'});
+        const carCreator = createCarForm({parent: garagePage, formAdditionalStyle: ['garage__create-form']});
         this.onCreateFormSubmit(carCreator);
 
         const garageBtns: HTMLElement = createElem({htmlTag: 'div', styles: ['garage__btns'], parentNode: garagePage});

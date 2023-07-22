@@ -20,10 +20,11 @@ export class Main {
         const body: HTMLElement = document.getElementsByTagName('body')[0];
         body.classList.add('body');
 
+        const nav = createElem({htmlTag: 'nav', styles: ['nav'], parentNode: body});
         const garageBtn: HTMLElement = createElem({
             htmlTag: 'button',
             styles: ['button', 'button_primary'],
-            parentNode: body,
+            parentNode: nav,
             innerText: 'Garage'
         });
         this.onGarageBtnPress(garageBtn);
@@ -31,23 +32,26 @@ export class Main {
         const winnersBtn: HTMLElement = createElem({
             htmlTag: 'button',
             styles: ['button', 'button_primary'],
-            parentNode: body,
+            parentNode: nav,
             innerText: 'Winners'
         });
         this.onWinnersBtnPress(winnersBtn);
 
         this.renderGaragePage();
     }
+
     private onGarageBtnPress(garageBtn: HTMLElement) {
         garageBtn.addEventListener('click', e => {
             this.renderGaragePage();
         });
     }
+
     private onWinnersBtnPress(winnersBtn: HTMLElement) {
         winnersBtn.addEventListener('click', e => {
             this.renderWinnersPage();
         });
     }
+
     private renderGaragePage() {
         const garage = document.querySelector('.garage');
         if (!garage) {
@@ -56,6 +60,7 @@ export class Main {
         }
         this.removePage('.winners');
     }
+
     private renderWinnersPage() {
         if (!document.querySelector('.winners')) {
             this.winnersPage = new Winners();
@@ -63,6 +68,7 @@ export class Main {
         }
         this.removePage('.garage');
     }
+
     private removePage(pageSelector: string): void {
         const pageToRemove = document.querySelector(pageSelector);
         pageToRemove && pageToRemove.remove();
