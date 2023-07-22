@@ -32,7 +32,12 @@ export class Garage {
             styles: ['garage'],
             parentClass: '.body'
         });
-        createElem({htmlTag: 'h2', styles: ['garage__create-title'], parentNode: garagePage, innerText: 'Create your own car'});
+        createElem({
+            htmlTag: 'h2',
+            styles: ['garage__create-title'],
+            parentNode: garagePage,
+            innerText: 'Create your own car'
+        });
         const carCreator = createCarForm({parent: garagePage, formAdditionalStyle: ['garage__create-form']});
         this.onCreateFormSubmit(carCreator);
 
@@ -52,6 +57,14 @@ export class Garage {
             innerText: 'Reset'
         });
 
+        const generateBtn = createElem({
+            htmlTag: 'button',
+            styles: ['button', 'button_primary'],
+            parentNode: garageBtns,
+            innerText: 'Generate'
+        });
+        this.onGenerateBtnPress(generateBtn);
+
         createElem({
             htmlTag: 'h1',
             styles: ['garage__title'],
@@ -70,7 +83,7 @@ export class Garage {
 
     private onCreateFormSubmit(carCreator: HTMLFormElement) {
         carCreator.addEventListener('submit', async (e) => {
-            const newCarData = await sendFormData(e, carCreator, addNewCar, '.garage__create .input');
+            const newCarData = await sendFormData(e, carCreator, addNxewCar, '.garage__create .input');
             this.data.push(newCarData);
 
             const car = new Car(newCarData);
@@ -89,6 +102,21 @@ export class Garage {
                 carElem && Car.race(Number(carId), carStatus.started, carElem);
             }
         });
+    }
+
+    private onGenerateBtnPress(generateBtn: HTMLElement) {
+        generateBtn.addEventListener('click', () => {
+            const carsToGenerate = this.generateRandomCars();
+        });
+    }
+
+    private generateRandomCars() {
+        const firstModelPart = ['Ford', 'Ferrari', 'Mercedes', 'Tesla', 'Opel', 'Mustang', 'BMW', 'Mazda', 'Range Rover', 'KIA'];
+        const secondModelPart = ['Model A', 'Model Q', 'Model Z', 'Model S', 'Model V', 'Model S', 'Model W', 'Model R', 'Model P', "Model L"];
+        const carData = {
+            name: `${'sdrg'}`,
+            color: `string`
+        }
     }
 
     private async getCarsToRace(): Promise<{ [key: string]: any }> {
@@ -128,12 +156,18 @@ export class Garage {
             }
         }
         const winnerElem: HTMLElement | null = document.getElementById(`${fastestCarId}`);
-        winnerElem && bestResult && fastestCarId && this.showWinner(winnerElem, bestResult, raceResults[fastestCarId].model);
+        if (winnerElem && bestResult && fastestCarId) {
+            this.showWinner(winnerElem, bestResult, raceResults[fastestCarId].model);
+            this.updateWinnersTable();
+        }
     }
 
     private showWinner(winner: HTMLElement, time: number, model: string): void {
         winner.addEventListener('transitionend', e => {
             alert(`${model} finished first (${time} s)!`);
         });
+    }
+    private updateWinnersTable() {
+
     }
 }
