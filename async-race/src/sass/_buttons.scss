@@ -25,4 +25,10 @@
       background-color: $color-primary-light;
     }
   }
+
+  &_circle {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+  }
 }

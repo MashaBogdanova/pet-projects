@@ -51,7 +51,7 @@ export class Winners {
             innerText: `Page #${'1'}`
         });
         const table = createElem({htmlTag: 'table', styles: ['win-table'], parentNode: winnersPage});
-        this.createTableRow(table, 'Number', 'Car', 'Name', 'Wins', 'Best time (seconds)');
+        this.createTableRow(table, 'Number', 'Car', 'Name', 'Wins', 'Best time (s)');
 
         data.map((winner: IWinner, index: number) => {
             let carName: string | undefined;
