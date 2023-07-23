@@ -7,29 +7,39 @@ import {sendFormData} from "../utils/sendFormData";
 import {addNewCar} from "../api/addNewCar";
 import {fetchWinner} from "../api/fetchWinner";
 
+const CARS_ON_PAGE = 7;
+
 export class Garage {
     data: any;
-    garageElem: null | HTMLElement;
+    totalCarsNumber: number;
     currentPage: number;
+    garageElem: null | HTMLElement;
+
 
     constructor() {
         this.data = null;
-        this.getData();
-        this.garageElem = null;
+        this.totalCarsNumber = 0;
         this.currentPage = 1;
+        this.getPageData();
+        this.garageElem = null;
     }
 
-    private async getData() {
+    private async getPageData() {
         try {
-            const data = await fetchData('garage');
-            this.data = data;
-            this.render(data);
+            const response = await fetchData('garage', this.currentPage, CARS_ON_PAGE);
+            let pageData;
+            if(response) {
+                pageData = await response.json();
+                this.data = pageData;
+                this.totalCarsNumber = Number(response.headers.get('X-Total-Count'));
+                this.renderPage(pageData);
+            }
         } catch (error) {
             console.error(error);
         }
     }
 
-    private render(data: ICar[]): void {
+    private renderPage(data: ICar[]): void {
         const garagePage: HTMLElement = createElem({
             htmlTag: 'section',
             styles: ['garage'],
@@ -57,7 +67,7 @@ export class Garage {
             htmlTag: 'h1',
             styles: ['garage__title'],
             parentNode: garagePage,
-            innerText: `Garage ${data.length}`
+            innerText: `Garage (${this.totalCarsNumber})`
         });
 
         const garageBtns: HTMLElement = createElem({htmlTag: 'div', styles: ['garage__btns'], parentNode: garagePage});
@@ -87,7 +97,6 @@ export class Garage {
     }
 
     private renderGaragePage(garagePage: HTMLElement, data: ICar[]) {
-        createElem({htmlTag: 'h2', styles: ['garage__page-number'], parentNode: garagePage, innerText: `Page #${'1'}`});
         const garageCars = createElem({htmlTag: 'div', styles: ['garage__cars'], parentNode: garagePage});
         data.map((carData: ICar) => {
             const car = new Car(carData);
@@ -97,40 +106,28 @@ export class Garage {
     }
 
     private renderPagination(garagePage: HTMLElement) {
-        const totalPageNumbers = Math.ceil(this.data.length / 7);
         const pagination = createElem({htmlTag: 'div', styles: ['pagination'], parentNode: garagePage});
-        const leftArrow = createElem({
+        createElem({
+            htmlTag: 'h2',
+            styles: ['pagination__title'],
+            parentNode: pagination,
+            innerText: `Page #${this.currentPage}`
+        });
+
+        const paginationBtns = createElem({htmlTag: 'div', styles: ['pagination__buttons'], parentNode: pagination});
+        createElem({
             htmlTag: 'button',
             styles: ['button', 'button_primary', 'button_circle'],
-            parentNode: pagination,
+            parentNode: paginationBtns,
             innerText: '<'
         });
         createElem({
             htmlTag: 'button',
             styles: ['button', 'button_primary', 'button_circle'],
-            parentNode: pagination,
-            innerText: '1'
-        });
-        createElem({
-            htmlTag: 'button',
-            styles: ['button', 'button_primary', 'button_circle'],
-            parentNode: pagination,
-            innerText: '2'
-        });
-        createElem({htmlTag: 'p', styles: ['pagination__triple'], parentNode: pagination, innerText: '...'});
-        const lastPage = createElem({
-            htmlTag: 'button',
-            styles: ['button', 'button_primary', 'button_circle'],
-            parentNode: pagination,
-            innerText: `${totalPageNumbers}`
-        });
-        const rightArrow = createElem({
-            htmlTag: 'button',
-            styles: ['button', 'button_primary', 'button_circle'],
-            parentNode: pagination,
+            parentNode: paginationBtns,
             innerText: '>'
         });
-        this.onPageBtnPress(pagination);
+        this.onPageBtnPress(paginationBtns);
     }
 
     private onCreateFormSubmit(carCreator: HTMLFormElement) {
@@ -160,7 +157,7 @@ export class Garage {
         const allCars: ICar[] = this.data;
         const raceResults: { [key: string]: any } = {}
 
-        for (let i = 0; i < 7; i += 1) {
+        for (let i = 0; i < CARS_ON_PAGE; i += 1) {
             if (allCars[i]) {
                 const id = allCars[i].id;
                 const model = allCars[i].name;
@@ -236,22 +233,21 @@ export class Garage {
         });
     }
 
-    private onPageBtnPress(paginationElem: HTMLElement) {
-        paginationElem.addEventListener('click', (e) => {
+    private onPageBtnPress(paginationBtns: HTMLElement) {
+        paginationBtns.addEventListener('click', (e) => {
             const pressedBtn = e.target as HTMLElement;
-            const pageNumber = +pressedBtn.innerText;
-            if (pressedBtn.innerText === '<' && this.currentPage !== 1) {
+            const pressedBtnText = pressedBtn.innerText;
+            if (pressedBtnText === '<' && this.currentPage > 1) {
                 this.currentPage -= 1;
-                fetchData('garage', this.currentPage, 7);
-            } else if (pressedBtn.innerText === '>' && this.currentPage < this.data.length) {
+                const garage = document.querySelector('.garage');
+                garage && garage.remove();
+                this.getPageData();
+            } else if (pressedBtnText === '>' && this.currentPage < Math.ceil(this.totalCarsNumber / CARS_ON_PAGE)) {
                 this.currentPage += 1;
-                fetchData('garage', this.currentPage, 7);
-                console.log(this.currentPage)
-            } else {
-                fetchData('garage', pageNumber, 7);
-                console.log(this.currentPage)
+                const garage = document.querySelector('.garage');
+                garage && garage.remove();
+                this.getPageData();
             }
         })
-        console.log(this.currentPage)
     }
 }

@@ -13,7 +13,11 @@ export class Winners {
 
     private async getData(): Promise<void> {
         try {
-            const data = await fetchData('winners');
+            const response = await fetchData('winners');
+            let data;
+            if(response) {
+                data = await response.json();
+            }
             this.render(data);
         } catch (error) {
             console.error(error);
@@ -22,7 +26,11 @@ export class Winners {
 
     private async getAdditionalData(id: number) {
         try {
-            const data = await fetchData(`garage/${id}`);
+            const response = await fetchData(`garage/${id}`);
+            let data;
+            if(response) {
+                data = await response.json();
+            }
             return {
                 name: data.name,
                 color: data.color
