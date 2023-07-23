@@ -35,6 +35,13 @@ export class Garage {
             styles: ['garage'],
             parentClass: '.body'
         });
+        this.renderCarCreator(garagePage);
+        this.renderGarageTitle(garagePage, data);
+        this.renderPagination(garagePage);
+        this.renderGaragePage(garagePage, data);
+    }
+
+    private renderCarCreator(garagePage: HTMLElement) {
         createElem({
             htmlTag: 'h1',
             styles: ['garage__create-title'],
@@ -43,8 +50,18 @@ export class Garage {
         });
         const carCreator = createCarForm({parent: garagePage, formAdditionalStyle: ['garage__create-form']});
         this.onCreateFormSubmit(carCreator);
+    }
+
+    private renderGarageTitle(garagePage: HTMLElement, data: ICar[]) {
+        createElem({
+            htmlTag: 'h1',
+            styles: ['garage__title'],
+            parentNode: garagePage,
+            innerText: `Garage ${data.length}`
+        });
 
         const garageBtns: HTMLElement = createElem({htmlTag: 'div', styles: ['garage__btns'], parentNode: garagePage});
+        // Race
         const raceBtn: HTMLElement = createElem({
             htmlTag: 'button',
             styles: ['button', 'button_primary'],
@@ -52,14 +69,14 @@ export class Garage {
             innerText: 'Race'
         });
         this.onRaceBtnPress(raceBtn);
-
+        // Reset
         createElem({
             htmlTag: 'button',
             styles: ['button', 'button_primary'],
             parentNode: garageBtns,
             innerText: 'Reset'
         });
-
+        // Generate cars
         const generateBtn = createElem({
             htmlTag: 'button',
             styles: ['button', 'button_primary'],
@@ -67,22 +84,53 @@ export class Garage {
             innerText: 'Generate'
         });
         this.onGenerateBtnPress(generateBtn);
+    }
 
-        createElem({
-            htmlTag: 'h1',
-            styles: ['garage__title'],
-            parentNode: garagePage,
-            innerText: `Garage ${data.length}`
-        });
+    private renderGaragePage(garagePage: HTMLElement, data: ICar[]) {
         createElem({htmlTag: 'h2', styles: ['garage__page-number'], parentNode: garagePage, innerText: `Page #${'1'}`});
-        this.addPagination(garagePage);
-
         const garageCars = createElem({htmlTag: 'div', styles: ['garage__cars'], parentNode: garagePage});
         data.map((carData: ICar) => {
             const car = new Car(carData);
             garageCars.append(car.carElem);
         });
         this.garageElem = garagePage;
+    }
+
+    private renderPagination(garagePage: HTMLElement) {
+        const totalPageNumbers = Math.ceil(this.data.length / 7);
+        const pagination = createElem({htmlTag: 'div', styles: ['pagination'], parentNode: garagePage});
+        const leftArrow = createElem({
+            htmlTag: 'button',
+            styles: ['button', 'button_primary', 'button_circle'],
+            parentNode: pagination,
+            innerText: '<'
+        });
+        createElem({
+            htmlTag: 'button',
+            styles: ['button', 'button_primary', 'button_circle'],
+            parentNode: pagination,
+            innerText: '1'
+        });
+        createElem({
+            htmlTag: 'button',
+            styles: ['button', 'button_primary', 'button_circle'],
+            parentNode: pagination,
+            innerText: '2'
+        });
+        createElem({htmlTag: 'p', styles: ['pagination__triple'], parentNode: pagination, innerText: '...'});
+        const lastPage = createElem({
+            htmlTag: 'button',
+            styles: ['button', 'button_primary', 'button_circle'],
+            parentNode: pagination,
+            innerText: `${totalPageNumbers}`
+        });
+        const rightArrow = createElem({
+            htmlTag: 'button',
+            styles: ['button', 'button_primary', 'button_circle'],
+            parentNode: pagination,
+            innerText: '>'
+        });
+        this.onPageBtnPress(pagination);
     }
 
     private onCreateFormSubmit(carCreator: HTMLFormElement) {
@@ -108,6 +156,28 @@ export class Garage {
         });
     }
 
+    private async getCarsToRace(): Promise<{ [key: string]: any }> {
+        const allCars: ICar[] = this.data;
+        const raceResults: { [key: string]: any } = {}
+
+        for (let i = 0; i < 7; i += 1) {
+            if (allCars[i]) {
+                const id = allCars[i].id;
+                const model = allCars[i].name;
+                const carIcon: HTMLElement | null = document.getElementById(`${id}`);
+                const time: number | undefined = await Car.getRaceTime(id, carStatus.started);
+
+                if (carIcon && time) {
+                    raceResults[id] = {
+                        time: time,
+                        model: model
+                    };
+                }
+            }
+        }
+        return raceResults;
+    }
+
     private onGenerateBtnPress(generateBtn: HTMLElement) {
         generateBtn.addEventListener('click', () => {
             this.generateRandomCars();
@@ -131,28 +201,6 @@ export class Garage {
         }
     }
 
-    private async getCarsToRace(): Promise<{ [key: string]: any }> {
-        const allCars: ICar[] = this.data;
-        const raceResults: { [key: string]: any } = {}
-
-        for (let i = 0; i < 7; i += 1) {
-            if (allCars[i]) {
-                const id = allCars[i].id;
-                const model = allCars[i].name;
-                const carIcon: HTMLElement | null = document.getElementById(`${id}`);
-                const time: number | undefined = await Car.getRaceTime(id, carStatus.started);
-
-                if (carIcon && time) {
-                    raceResults[id] = {
-                        time: time,
-                        model: model
-                    };
-                }
-            }
-        }
-        return raceResults;
-    }
-
     private getWinner(raceResults: { [key: string]: any }) {
         let bestResult: number | undefined;
         let fastestCarId: string | undefined;
@@ -174,12 +222,6 @@ export class Garage {
         }
     }
 
-    private showWinner(winner: HTMLElement, time: number, model: string): void {
-        winner.addEventListener('transitionend', e => {
-            alert(`${model} finished first (${time} s)!`);
-        });
-    }
-
     private async updateWinnersTable(id: number, time: number) {
         const winnerData = await fetchWinner(id);
         const wins = await winnerData;
@@ -187,16 +229,11 @@ export class Garage {
         // const winnerData = {id, wins, time}
         // addWinnerData(winnerData);
     }
-    private addPagination(garagePage: HTMLElement) {
-        const totalPageNumbers = Math.ceil(this.data.length / 7);
-        const pagination = createElem({htmlTag: 'div', styles: ['pagination'], parentNode: garagePage});
-        const leftArrow = createElem({htmlTag: 'button', styles: ['button', 'button_primary', 'button_circle'], parentNode: pagination, innerText: '<'});
-        createElem({htmlTag: 'button', styles: ['button', 'button_primary', 'button_circle'], parentNode: pagination, innerText: '1'});
-        createElem({htmlTag: 'button', styles: ['button', 'button_primary', 'button_circle'], parentNode: pagination, innerText: '2'});
-        createElem({htmlTag: 'p', styles: ['pagination__triple'], parentNode: pagination, innerText: '...'});
-        const lastPage = createElem({htmlTag: 'button', styles: ['button', 'button_primary', 'button_circle'], parentNode: pagination, innerText: `${totalPageNumbers}`});
-        const rightArrow = createElem({htmlTag: 'button', styles: ['button', 'button_primary', 'button_circle'], parentNode: pagination, innerText: '>'});
-        this.onPageBtnPress(pagination);
+
+    private showWinner(winner: HTMLElement, time: number, model: string): void {
+        winner.addEventListener('transitionend', e => {
+            alert(`${model} finished first (${time} s)!`);
+        });
     }
 
     private onPageBtnPress(paginationElem: HTMLElement) {
@@ -209,8 +246,10 @@ export class Garage {
             } else if (pressedBtn.innerText === '>' && this.currentPage < this.data.length) {
                 this.currentPage += 1;
                 fetchData('garage', this.currentPage, 7);
+                console.log(this.currentPage)
             } else {
                 fetchData('garage', pageNumber, 7);
+                console.log(this.currentPage)
             }
         })
         console.log(this.currentPage)
