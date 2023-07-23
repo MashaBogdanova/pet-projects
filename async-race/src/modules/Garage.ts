@@ -6,31 +6,33 @@ import {createCarForm} from "../utils/createCarForm";
 import {sendFormData} from "../utils/sendFormData";
 import {addNewCar} from "../api/addNewCar";
 import {fetchWinner} from "../api/fetchWinner";
+import {Winners} from "./Winners";
 
 const CARS_ON_PAGE = 7;
 
 export class Garage {
-    data: any;
+    carsData: any;
     totalCarsNumber: number;
     currentPage: number;
     garageElem: null | HTMLElement;
-
+    winners: Winners;
 
     constructor() {
-        this.data = null;
+        this.carsData = null;
         this.totalCarsNumber = 0;
         this.currentPage = 1;
-        this.getPageData();
         this.garageElem = null;
+        this.winners = new Winners();
+        this.getPageData();
     }
 
     private async getPageData() {
         try {
             const response = await fetchData('garage', this.currentPage, CARS_ON_PAGE);
             let pageData;
-            if(response) {
+            if (response) {
                 pageData = await response.json();
-                this.data = pageData;
+                this.carsData = pageData;
                 this.totalCarsNumber = Number(response.headers.get('X-Total-Count'));
                 this.renderPage(pageData);
             }
@@ -133,7 +135,7 @@ export class Garage {
     private onCreateFormSubmit(carCreator: HTMLFormElement) {
         carCreator.addEventListener('submit', async (e) => {
             const newCarData = await sendFormData(e, carCreator, addNewCar, '.garage__create .input');
-            this.data.push(newCarData);
+            this.carsData.push(newCarData);
 
             const car = new Car(newCarData);
             const garageCars = document.querySelector('.garage__cars');
@@ -143,36 +145,25 @@ export class Garage {
 
     private onRaceBtnPress(btn: HTMLElement) {
         btn.addEventListener('click', async (e) => {
-            const carsToRace: { [key: string]: any } = await this.getCarsToRace();
-            const winner = this.getWinner(carsToRace);
+            const raceResults: any = {};
 
-            for (let carId in carsToRace) {
-                const carElem = document.getElementById(`${carId}`);
-                carElem && Car.race(+carId, carStatus.started, carElem);
-            }
-        });
-    }
-
-    private async getCarsToRace(): Promise<{ [key: string]: any }> {
-        const allCars: ICar[] = this.data;
-        const raceResults: { [key: string]: any } = {}
-
-        for (let i = 0; i < CARS_ON_PAGE; i += 1) {
-            if (allCars[i]) {
-                const id = allCars[i].id;
-                const model = allCars[i].name;
-                const carIcon: HTMLElement | null = document.getElementById(`${id}`);
+            for (let car of this.carsData) {
+                const id: number = car.id;
+                const model: string = car.name;
                 const time: number | undefined = await Car.getRaceTime(id, carStatus.started);
 
-                if (carIcon && time) {
-                    raceResults[id] = {
-                        time: time,
-                        model: model
-                    };
+                if (time) {
+                    raceResults[id] = {time, model};
                 }
             }
-        }
-        return raceResults;
+
+            for (let car in raceResults) {
+                const carElem = document.getElementById(`${car}`);
+                carElem && Car.race(Number(car), carStatus.started, carElem);
+            }
+
+            this.getWinner(raceResults);
+        });
     }
 
     private onGenerateBtnPress(generateBtn: HTMLElement) {
@@ -180,7 +171,7 @@ export class Garage {
             this.generateRandomCars();
             const garageTitle = document.querySelector('.garage__title');
             if (garageTitle) {
-                garageTitle.innerHTML = `Garage ${this.data.length + 100}`;
+                garageTitle.innerHTML = `Garage ${this.carsData.length + 100}`;
             }
         });
     }
@@ -194,7 +185,7 @@ export class Garage {
             const color = `#${((Math.random() * 0xfffff * 1000000).toString(16)).slice(0, 6)}`;
             const newCarData = await addNewCar({name, color});
             new Car(newCarData);
-            this.data.push(newCarData);
+            this.carsData.push(newCarData);
         }
     }
 
@@ -203,32 +194,21 @@ export class Garage {
         let fastestCarId: string | undefined;
 
         for (let carId in raceResults) {
-            // todo: показывает не первого
-            if (!bestResult) {
-                bestResult = +raceResults[carId].time;
-            } else if (raceResults[carId].time < bestResult) {
-                bestResult = +raceResults[carId].time;
+            if (!bestResult || raceResults[carId].time < bestResult) {
+                bestResult = Number(raceResults[carId].time);
                 fastestCarId = carId;
-                // console.log(raceResults[fastestCarId].model, bestResult)
             }
         }
-        const winnerElem: HTMLElement | null = document.getElementById(`${fastestCarId}`);
-        if (winnerElem && bestResult && fastestCarId) {
-            this.showWinner(winnerElem, bestResult, raceResults[fastestCarId].model);
-            this.updateWinnersTable(+fastestCarId, bestResult);
+
+        if (bestResult && fastestCarId) {
+            this.showWinner(fastestCarId, bestResult, raceResults[fastestCarId].model);
+            this.winners.addNewWin(fastestCarId);
         }
     }
 
-    private async updateWinnersTable(id: number, time: number) {
-        const winnerData = await fetchWinner(id);
-        const wins = await winnerData;
-        console.log(winnerData, wins)
-        // const winnerData = {id, wins, time}
-        // addWinnerData(winnerData);
-    }
-
-    private showWinner(winner: HTMLElement, time: number, model: string): void {
-        winner.addEventListener('transitionend', e => {
+    private showWinner(id: string, time: number, model: string): void {
+        const winnerElem = document.getElementById(`${id}`);
+        winnerElem && winnerElem.addEventListener('transitionend', e => {
             alert(`${model} finished first (${time} s)!`);
         });
     }

@@ -117,7 +117,6 @@ export class Car {
         });
     }
     static async race(id: number, status: carStatus, carIcon: HTMLElement) {
-        // todo: какие тут величины времени?
         const time: number | undefined = await Car.getRaceTime(id, status);
         if (time) {
             carIcon.classList.add('car__icon_animated');

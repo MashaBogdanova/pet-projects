@@ -4,15 +4,11 @@ import {Winners} from "./Winners";
 
 export class Main {
     garagePage: Garage | null;
-    garagePageElem: HTMLElement | null;
     winnersPage: Winners | null;
-    winnersPageElem: HTMLElement | null;
 
     constructor() {
         this.garagePage = null;
-        this.garagePageElem = null;
         this.winnersPage = null;
-        this.winnersPageElem = null;
         this.render();
     }
 
@@ -56,7 +52,6 @@ export class Main {
         const garage = document.querySelector('.garage');
         if (!garage) {
             this.garagePage = new Garage();
-            this.garagePageElem = this.garagePage.garageElem;
         }
         this.removePage('.winners');
     }
@@ -64,7 +59,7 @@ export class Main {
     private renderWinnersPage() {
         if (!document.querySelector('.winners')) {
             this.winnersPage = new Winners();
-            this.winnersPageElem = this.winnersPage.winnersElem;
+            this.winnersPage.getData();
         }
         this.removePage('.garage');
     }

@@ -1,24 +1,25 @@
 import {createElem} from "../utils/createElem";
 import {fetchData} from "../api/fetchData";
 import {IWinner} from "../types/dataTypes";
+import {fetchWinner} from "../api/fetchWinner";
+import {addWinnerData} from "../api/addWinnerData";
 
 export class Winners {
     data: any;
     winnersElem: HTMLElement | null;
 
     constructor() {
-        this.data = this.getData();
+        this.data = null;
         this.winnersElem = null;
     }
 
-    private async getData(): Promise<void> {
+    async getData(): Promise<void> {
         try {
             const response = await fetchData('winners');
-            let data;
             if(response) {
-                data = await response.json();
+                this.data = await response.json();
             }
-            this.render(data);
+            this.render();
         } catch (error) {
             console.error(error);
         }
@@ -40,7 +41,8 @@ export class Winners {
         }
     }
 
-    private render(data: IWinner[]): void {
+    private render(): void {
+        console.log(this.data)
         const winnersPage = createElem({
             htmlTag: 'section',
             styles: ['winners'],
@@ -50,7 +52,7 @@ export class Winners {
             htmlTag: 'h1',
             styles: ['winners__title'],
             parentNode: winnersPage,
-            innerText: `Winners (${data.length})`
+            innerText: `Winners (${this.data.length})`
         });
         createElem({
             htmlTag: 'h2',
@@ -61,7 +63,8 @@ export class Winners {
         const table = createElem({htmlTag: 'table', styles: ['win-table'], parentNode: winnersPage});
         this.createTableRow(table, 'Number', 'Car', 'Name', 'Wins', 'Best time (s)');
 
-        data.map((winner: IWinner, index: number) => {
+        this.data.map((winner: IWinner, index: number) => {
+
             let carName: string | undefined;
             let carColor: string | undefined;
 
@@ -88,4 +91,9 @@ export class Winners {
         createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: time});
     }
 
+    async addNewWin(id: string) {
+        const winnerData = await fetchWinner(Number(id));
+        addWinnerData(winnerData);
+        this.getData();
+    }
 }
