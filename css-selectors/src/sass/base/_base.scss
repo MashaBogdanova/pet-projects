@@ -1,0 +1,20 @@
+@import '../abstract/constants';
+
+html, * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.body {
+  font-family: Exo2, Lato, sans-serif;
+  font-weight: 400;
+  color: $color-dark-s;
+  background-color: $color-primary;
+}
+
+a {
+  color: $color-secondary;
+  text-decoration: none;
+  cursor: pointer;
+}

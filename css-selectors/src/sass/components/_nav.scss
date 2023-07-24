@@ -1,0 +1,70 @@
+@import '../abstract/mixins';
+
+.levels {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding-bottom: .6rem;
+
+  color: $color-light-s;
+  border-bottom: 1px solid $color-dark-s;
+  @include media-tablet {
+    font-size: .8em;
+  }
+
+  &__arrow {
+    font-size: 2rem;
+    color: $color-dark-s;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    @include media-tablet {
+      font-size: 1.8em;
+    }
+  }
+  &__check {
+    width: 30px;
+    height: 30px;
+
+    background-image: url('../assets/images/check.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    &_done {
+      background-image: url('../assets/images/check-done.svg');
+    }
+  }
+}
+
+.rules {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+
+  &__title {
+    color: $color-light-s;
+  }
+  &__subtitle {
+    font-weight: 100;
+  }
+  &__selector {
+    width: max-content;
+    padding: .3em;
+    font-size: 1.5em;
+    color: $color-light-s;
+    background-color: $color-primary;
+  }
+  &__text {
+    font-size: .9rem;
+  }
+  &__example-title {
+    margin-top: 1rem;
+    color: $color-light-s;
+  }
+  &__reset {
+    width: max-content;
+    color: $color-secondary;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+}

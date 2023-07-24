@@ -1,0 +1,5 @@
+{
+  "watch": ["css-selectors/src"],
+  "ext": "js,ts",
+  "exec": "ts-node ./css-selectors/src/index.ts"
+}
