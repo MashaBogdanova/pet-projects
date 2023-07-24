@@ -130,7 +130,7 @@ export class Garage {
             parentNode: paginationBtns,
             innerText: '>'
         });
-        this.onPageBtnPress(paginationBtns);
+        this.onPaginationBtnPress(paginationBtns);
     }
 
     private onCreateFormSubmit(carCreator: HTMLFormElement) {
@@ -147,7 +147,6 @@ export class Garage {
     private onRaceBtnPress(btn: HTMLElement) {
         btn.addEventListener('click', async (e) => {
             const raceResults: any = {};
-
             for (let car of this.carsData) {
                 const id: number = car.id;
                 const model: string = car.name;
@@ -157,10 +156,11 @@ export class Garage {
                     raceResults[id] = {time, model};
                 }
             }
-
             for (let car in raceResults) {
                 const carElem = document.getElementById(`${car}`);
-                carElem && Car.race(Number(car), carElem, raceResults[car].time);
+                if (carElem) {
+                    raceResults[car].status = Car.race(Number(car), carElem, raceResults[car].time);
+                }
             }
 
             this.getWinner(raceResults);
@@ -168,7 +168,7 @@ export class Garage {
     }
 
     private onResetBtnPress(btn: HTMLElement) {
-        btn.addEventListener('click',  (e) => {
+        btn.addEventListener('click', (e) => {
             for (let car of this.carsData) {
                 const carElem: HTMLElement | null = document.getElementById(`${car.id}`);
                 if (carElem) {
@@ -202,31 +202,35 @@ export class Garage {
         }
     }
 
-    private getWinner(raceResults: { [key: string]: any }) {
+    private async getWinner(raceResults: { [key: string]: any }) {
         let bestResult: number | undefined;
         let fastestCarId: string | undefined;
 
         for (let carId in raceResults) {
-            if (!bestResult || raceResults[carId].time < bestResult) {
+            const status = await raceResults[carId].status;
+            if (status !== carStatus.stopped
+                && (!bestResult || raceResults[carId].time < bestResult)) {
                 bestResult = Number(raceResults[carId].time);
                 fastestCarId = carId;
             }
         }
 
+
         if (bestResult && fastestCarId) {
+            console.log(raceResults[fastestCarId].model)
             this.showWinner(fastestCarId, bestResult, raceResults[fastestCarId].model);
             this.winners.addNewWin(fastestCarId);
         }
     }
 
     private showWinner(id: string, time: number, model: string): void {
-        const winnerElem = document.getElementById(`${id}`);
+        const winnerElem: HTMLElement | null = document.getElementById(`${id}`);
         winnerElem && winnerElem.addEventListener('transitionend', e => {
             alert(`${model} finished first (${time} s)!`);
         });
     }
 
-    private onPageBtnPress(paginationBtns: HTMLElement) {
+    private onPaginationBtnPress(paginationBtns: HTMLElement) {
         paginationBtns.addEventListener('click', (e) => {
             const pressedBtn = e.target as HTMLElement;
             const pressedBtnText = pressedBtn.innerText;

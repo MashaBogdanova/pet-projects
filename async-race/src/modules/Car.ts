@@ -17,11 +17,14 @@ export class Car {
     data: ICar;
     carElem: HTMLElement;
     carStatus: carStatus;
+    raceTime: number;
 
     constructor(data: ICar) {
         this.data = data;
         this.carElem = this.render(this.data);
         this.carStatus = carStatus.stopped;
+        this.raceTime = 0;
+        Car.getRaceTime(data.id);
     }
 
     render(data: ICar): HTMLElement {
@@ -135,9 +138,12 @@ export class Car {
                 setTimeout(() => {
                     carIcon.style.animationPlayState = 'paused';
                 }, stopTime);
+                return carStatus.stopped;
             }
         }
+        return carStatus.drive;
     }
+
     static async getRaceTime(id: number) {
         return await fetchCarEngine({id, status: carStatus.started});
     }
