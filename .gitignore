@@ -1,5 +1,4 @@
 .idea/
 async-race/node_modules/
-async-race/dist
 node_modules/
 coverage/
