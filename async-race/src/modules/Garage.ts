@@ -217,7 +217,7 @@ export class Garage {
 
         if (bestResult && fastestCarId) {
             this.showWinner(bestResult, raceResults[fastestCarId].model);
-            this.winners.addNewWin(fastestCarId);
+            this.winners.addNewWin(fastestCarId, bestResult);
         }
     }
 

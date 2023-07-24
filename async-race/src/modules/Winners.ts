@@ -3,6 +3,9 @@ import {fetchData} from "../api/fetchData";
 import {IWinner} from "../types/dataTypes";
 import {fetchWinner} from "../api/fetchWinner";
 import {addWinnerData} from "../api/addWinnerData";
+import {updateWinnerData} from "../api/updateWinner";
+
+const HTTP_NOT_FOUND = 404;
 
 export class Winners {
     data: any;
@@ -67,32 +70,50 @@ export class Winners {
             let carName: string | undefined;
             let carColor: string | undefined;
 
-            this.getAdditionalData(winner.id)
-                .then(data => {
-                    if (data) {
-                        carName = data.name;
-                        carColor = data.color;
-                    }
-                    // this.createTableRow(table, index.toString(), `${carColor}`, `${carName}`, winner.wins.toString(), winner.time.toString());
-                })
-                .catch(e => console.error(e));
+
+                this.getAdditionalData(winner.id)
+                    .then(data => {
+                        if (data) {
+                            carName = data.name;
+                            carColor = data.color;
+                        }
+                        this.createTableRow(table, index.toString(), `${carColor}`, `${carName}`, winner.wins.toString(), winner.time.toString());
+                    })
+                    .catch(e => console.error(e));
+
         });
 
         this.winnersElem = winnersPage;
     }
 
-    private createTableRow(table: HTMLElement, num: string, color: string, name: string, wins: string, time: string) {
-        // const row = createElem({htmlTag: 'tr', styles: ['win-table__row'], parentNode: table});
-        // createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: num});
-        // createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: color});
-        // createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: name});
-        // createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: wins});
-        // createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: time});
+    private createTableRow(parentNode: HTMLElement, winnerPosition: string, color: string, model: string, wins: string, time: string) {
+        const row = createElem({htmlTag: 'tr', styles: ['win-table__row'], parentNode});
+        createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: winnerPosition});
+        createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: color});
+        createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: model});
+        createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: wins});
+        createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: time});
     }
 
-    async addNewWin(id: string) {
-        // const winnerData = await fetchWinner(Number(id));
-        // addWinnerData(winnerData);
-        // this.getData();
+    async addNewWin(id: string, time: number) {
+        const response = await fetchWinner(Number(id));
+        if (!response) {
+            return;
+        }
+        if(response.status === HTTP_NOT_FOUND){
+            const params = {
+                id: Number(id),
+                wins: 1,
+                time
+            };
+            addWinnerData(params);
+        } else {
+            const winnerData = await response.json();
+            const params = {
+                wins: winnerData.wins + 1,
+                time
+            };
+            updateWinnerData(params, Number(id));
+        }
     }
 }
