@@ -91,8 +91,8 @@ export class Winners {
     }
 
     async addNewWin(id: string) {
-        const winnerData = await fetchWinner(Number(id));
-        addWinnerData(winnerData);
-        this.getData();
+        // const winnerData = await fetchWinner(Number(id));
+        // addWinnerData(winnerData);
+        // this.getData();
     }
 }

@@ -215,19 +215,14 @@ export class Garage {
             }
         }
 
-
         if (bestResult && fastestCarId) {
-            console.log(raceResults[fastestCarId].model)
-            this.showWinner(fastestCarId, bestResult, raceResults[fastestCarId].model);
+            this.showWinner(bestResult, raceResults[fastestCarId].model);
             this.winners.addNewWin(fastestCarId);
         }
     }
 
-    private showWinner(id: string, time: number, model: string): void {
-        const winnerElem: HTMLElement | null = document.getElementById(`${id}`);
-        winnerElem && winnerElem.addEventListener('transitionend', e => {
+    private showWinner(time: number, model: string): void {
             alert(`${model} finished first (${time} s)!`);
-        });
     }
 
     private onPaginationBtnPress(paginationBtns: HTMLElement) {
