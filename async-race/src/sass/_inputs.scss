@@ -1,0 +1,19 @@
+.input {
+  width: 15em;
+  height: 2.3em;
+  padding: 1em;
+
+  font-size: .9em;
+  color: $color-primary-dark;
+
+  background-color: $color-secondary-dark;
+  border: none;
+  border-radius: 5px;
+
+  &_color {
+    width: 2em;
+    height: 2em;
+    margin: 1em;
+    cursor: pointer;
+  }
+}
