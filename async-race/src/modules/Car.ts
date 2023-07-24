@@ -113,8 +113,13 @@ export class Car {
 
     private onMoveBtnPress(btn: HTMLElement, id: number, status: carStatus, carIcon: HTMLElement) {
         btn.addEventListener('click', async (e) => {
-            const time = await Car.getRaceTime(id, carStatus.started);
-            Car.race(id, carIcon, time);
+            if (status === carStatus.stopped) {
+                carIcon.removeAttribute('style');
+                carIcon.className = 'car__icon';
+            } else {
+                const time = await Car.getRaceTime(id);
+                time && Car.race(id, carIcon, time);
+            }
         });
     }
 
@@ -124,25 +129,16 @@ export class Car {
 
         const errorStatus = await fetchCarEngine({id, status: carStatus.drive});
         let stopTime: number;
-        if(time) {
-            stopTime = Math.ceil(Math.random() * (time /  2));
-
+        if (time) {
+            stopTime = Math.ceil(Math.random() * (time / 2));
             if (errorStatus === 0) {
                 setTimeout(() => {
                     carIcon.style.animationPlayState = 'paused';
                 }, stopTime);
             }
-
-            console.log(time, stopTime, errorStatus)
         }
-
-        // carIcon.removeAttribute('style');
-        // carIcon.style.transform = 'translateX(0vw)';
-        // carIcon.style.transition = `transform 0s linear`;
-        // carIcon.className = 'car__icon';
     }
-
-    static async getRaceTime(id: number, status: carStatus) {
+    static async getRaceTime(id: number) {
         return await fetchCarEngine({id, status: carStatus.started});
     }
 }

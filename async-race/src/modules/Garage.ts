@@ -82,19 +82,20 @@ export class Garage {
         });
         this.onRaceBtnPress(raceBtn);
         // Reset
-        createElem({
+        const resetBtn: HTMLElement = createElem({
             htmlTag: 'button',
             styles: ['button', 'button_primary'],
             parentNode: garageBtns,
             innerText: 'Reset'
         });
         // Generate cars
-        const generateBtn = createElem({
+        const generateBtn: HTMLElement = createElem({
             htmlTag: 'button',
             styles: ['button', 'button_primary'],
             parentNode: garageBtns,
             innerText: 'Generate'
         });
+        this.onResetBtnPress(resetBtn);
         this.onGenerateBtnPress(generateBtn);
     }
 
@@ -150,7 +151,7 @@ export class Garage {
             for (let car of this.carsData) {
                 const id: number = car.id;
                 const model: string = car.name;
-                const time: number | undefined = await Car.getRaceTime(id, carStatus.started);
+                const time: number | undefined = await Car.getRaceTime(id);
 
                 if (time) {
                     raceResults[id] = {time, model};
@@ -163,6 +164,18 @@ export class Garage {
             }
 
             this.getWinner(raceResults);
+        });
+    }
+
+    private onResetBtnPress(btn: HTMLElement) {
+        btn.addEventListener('click',  (e) => {
+            for (let car of this.carsData) {
+                const carElem: HTMLElement | null = document.getElementById(`${car.id}`);
+                if (carElem) {
+                    carElem.removeAttribute('style');
+                    carElem.className = 'car__icon';
+                }
+            }
         });
     }
 
