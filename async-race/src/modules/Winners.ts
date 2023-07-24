@@ -42,7 +42,6 @@ export class Winners {
     }
 
     private render(): void {
-        console.log(this.data)
         const winnersPage = createElem({
             htmlTag: 'section',
             styles: ['winners'],
@@ -74,7 +73,7 @@ export class Winners {
                         carName = data.name;
                         carColor = data.color;
                     }
-                    this.createTableRow(table, index.toString(), `${carColor}`, `${carName}`, winner.wins.toString(), winner.time.toString());
+                    // this.createTableRow(table, index.toString(), `${carColor}`, `${carName}`, winner.wins.toString(), winner.time.toString());
                 })
                 .catch(e => console.error(e));
         });
@@ -83,17 +82,17 @@ export class Winners {
     }
 
     private createTableRow(table: HTMLElement, num: string, color: string, name: string, wins: string, time: string) {
-        const row = createElem({htmlTag: 'tr', styles: ['win-table__row'], parentNode: table});
-        createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: num});
-        createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: color});
-        createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: name});
-        createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: wins});
-        createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: time});
+        // const row = createElem({htmlTag: 'tr', styles: ['win-table__row'], parentNode: table});
+        // createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: num});
+        // createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: color});
+        // createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: name});
+        // createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: wins});
+        // createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: time});
     }
 
     async addNewWin(id: string) {
-        const winnerData = await fetchWinner(Number(id));
-        addWinnerData(winnerData);
+        // const winnerData = await fetchWinner(Number(id));
+        // addWinnerData(winnerData);
         this.getData();
     }
 }

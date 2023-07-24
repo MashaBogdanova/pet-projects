@@ -4,7 +4,7 @@ import {removeCarData} from "../api/removeCarData";
 import {createCarForm} from "../utils/createCarForm";
 import {sendFormData} from "../utils/sendFormData";
 import {updateCar} from "../api/updateCar";
-import {toggleCarEngine} from "../api/toggleCarEngine";
+import {fetchCarEngine} from "../api/fetchCarEngine";
 import {carSVG} from "../assets/images/carSVG";
 
 export enum carStatus {
@@ -112,27 +112,37 @@ export class Car {
     }
 
     private onMoveBtnPress(btn: HTMLElement, id: number, status: carStatus, carIcon: HTMLElement) {
-        btn.addEventListener('click', (e) => {
-            Car.race(id, status, carIcon);
+        btn.addEventListener('click', async (e) => {
+            const time = await Car.getRaceTime(id, carStatus.started);
+            Car.race(id, carIcon, time);
         });
     }
-    static async race(id: number, status: carStatus, carIcon: HTMLElement) {
-        const time: number | undefined = await Car.getRaceTime(id, status);
-        if (time) {
-            carIcon.classList.add('car__icon_animated');
-            carIcon.style.transition = `transform ${time}s linear`;
-        } else {
-            carIcon.removeAttribute('style');
-            carIcon.style.transform = 'translateX(0vw)';
-            carIcon.style.transition = `transform 0s linear`;
-            carIcon.className = 'car__icon';
-            setTimeout(() => {
-                carIcon.removeAttribute('style');
-            }, 1)
+
+    static async race(id: number, carIcon: HTMLElement, time: number | undefined) {
+        carIcon.classList.add('car__icon_animated');
+        carIcon.setAttribute('style', `animation-duration: ${time}s`);
+
+        const errorStatus = await fetchCarEngine({id, status: carStatus.drive});
+        let stopTime: number;
+        if(time) {
+            stopTime = Math.ceil(Math.random() * (time /  2));
+
+            if (errorStatus === 0) {
+                setTimeout(() => {
+                    carIcon.style.animationPlayState = 'paused';
+                }, stopTime);
+            }
+
+            console.log(time, stopTime, errorStatus)
         }
-        return time;
+
+        // carIcon.removeAttribute('style');
+        // carIcon.style.transform = 'translateX(0vw)';
+        // carIcon.style.transition = `transform 0s linear`;
+        // carIcon.className = 'car__icon';
     }
-    static async getRaceTime (id: number, status: carStatus) {
-        return await toggleCarEngine({id, status});
+
+    static async getRaceTime(id: number, status: carStatus) {
+        return await fetchCarEngine({id, status: carStatus.started});
     }
 }

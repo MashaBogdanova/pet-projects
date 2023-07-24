@@ -159,7 +159,7 @@ export class Garage {
 
             for (let car in raceResults) {
                 const carElem = document.getElementById(`${car}`);
-                carElem && Car.race(Number(car), carStatus.started, carElem);
+                carElem && Car.race(Number(car), carElem, raceResults[car].time);
             }
 
             this.getWinner(raceResults);

@@ -3,7 +3,7 @@ interface IParam {
     status: 'started' | 'stopped' | 'drive'
 }
 
-export async function toggleCarEngine(params: IParam): Promise<number | undefined> {
+export async function fetchCarEngine(params: IParam): Promise<number | undefined> {
     if (Number.isInteger(params.id)) {
         const queryParams = new URLSearchParams({
             id: String(params.id),
@@ -19,11 +19,17 @@ export async function toggleCarEngine(params: IParam): Promise<number | undefine
                     'Content-Type': 'application/json'
                 }
             });
+
+            if (!response.ok && response.status === 500) {
+                return 0;
+            }
+
             const data = await response.json();
             const {velocity, distance} = data;
-            return velocity === 0 ? undefined : Math.round((distance / velocity) / 1000);
+            return Math.round((distance / velocity) / 1000);
+
         } catch (e) {
-            console.error(e);
+            console.log(e);
         }
     }
 }

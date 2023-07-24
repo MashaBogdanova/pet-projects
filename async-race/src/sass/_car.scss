@@ -4,26 +4,31 @@
   gap: 1em;
   padding: .3em;
   border-bottom: dashed 2px $color-secondary-light;
+
   &__info {
     display: flex;
     gap: .5em;
     align-items: center;
   }
+
   &__move {
     display: flex;
     justify-content: space-between;
     width: 90vw;
     padding: 0 1em;
   }
+
   &__move-wrapper {
     display: flex;
     align-items: center;
     gap: 1em;
   }
+
   &__model {
     font-size: 1.4em;
     cursor: pointer;
   }
+
   &__start-btn {
     width: 15px;
     height: 15px;
@@ -36,6 +41,7 @@
     background-position: center;
     cursor: pointer;
   }
+
   &__restart-btn {
     width: 15px;
     height: 15px;
@@ -48,17 +54,23 @@
     background-position: center;
     cursor: pointer;
   }
+
   &__icon {
     width: 30px;
     height: 30px;
+
     & svg {
       width: 30px;
       height: 30px;
     }
+
     &_animated {
-      transform: translateX(90vw);
+      animation-name: race;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
     }
   }
+
   &__flag {
     display: flex;
     justify-self: end;
@@ -77,4 +89,13 @@
 
 .hidden {
   display: none;
+}
+
+@keyframes race {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(75vw);
+  }
 }
