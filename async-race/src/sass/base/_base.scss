@@ -1,0 +1,16 @@
+html, * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 1em;
+  font-size: 12px;
+  background-color: $color-primary-extralight;
+  color: $color-secondary-light;
+}
+
+h1 {
+  color: $color-secondary;
+}
