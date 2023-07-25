@@ -1,0 +1,11 @@
+@import '../abstract/mixins';
+
+.main {
+  display: grid;
+  grid-template-rows: auto 2.2fr 5fr;
+  grid-area: main;
+  padding: 0 2em;
+  @include media-mobile {
+    padding: 0;
+  }
+}
