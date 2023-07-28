@@ -8,7 +8,7 @@ import { updateWinnerData } from '../api/updateWinner';
 const HTTP_NOT_FOUND = 404;
 
 export class Winners {
-    data: any;
+    data: IWinner[] | null;
     winnersElem: HTMLElement | null;
 
     constructor() {
@@ -54,7 +54,7 @@ export class Winners {
             htmlTag: 'h1',
             styles: ['winners__title'],
             parentNode: winnersPage,
-            innerText: `Winners (${this.data.length})`
+            innerText: `Winners (${this.data?.length})`
         });
         createElem({
             htmlTag: 'h2',
@@ -65,7 +65,7 @@ export class Winners {
         const table = createElem({ htmlTag: 'table', styles: ['win-table'], parentNode: winnersPage });
         this.createTableRow(table, 'Number', 'Car', 'Name', 'Wins', 'Best time (s)');
 
-        this.data.map((winner: IWinner, index: number) => {
+        this.data?.map((winner: IWinner, index: number) => {
 
             let carName: string | undefined;
             let carColor: string | undefined;

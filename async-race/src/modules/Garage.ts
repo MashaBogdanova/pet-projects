@@ -1,6 +1,6 @@
 import { createElem } from '../utils/createElem';
 import { fetchData } from '../api/fetchData';
-import { ICar } from '../types/dataTypes';
+import { ICar, IRaceResults } from '../types/dataTypes';
 import { Car, carStatus } from './Car';
 import { createCarForm } from '../utils/createCarForm';
 import { sendFormData } from '../utils/sendFormData';
@@ -10,10 +10,10 @@ import { Winners } from './Winners';
 const CARS_ON_PAGE = 7;
 
 export class Garage {
-    carsData: any;
+    carsData: ICar[] | null;
     totalCarsNumber: number;
     currentPage: number;
-    garageElem: null | HTMLElement;
+    garageElem: HTMLElement | null;
     winners: Winners;
 
     constructor() {
@@ -135,7 +135,7 @@ export class Garage {
     private onCreateFormSubmit(carCreator: HTMLFormElement) {
         carCreator.addEventListener('submit', async (e) => {
             const newCarData = await sendFormData(e, carCreator, addNewCar, '.garage__create .input');
-            this.carsData.push(newCarData);
+            this.carsData?.push(newCarData);
 
             const car = new Car(newCarData);
             const garageCars = document.querySelector('.garage__cars');
@@ -145,34 +145,37 @@ export class Garage {
 
     private onRaceBtnPress(btn: HTMLElement) {
         btn.addEventListener('click', async () => {
-            const raceResults: any = {};
-            for (const car of this.carsData) {
-                const id: number = car.id;
-                const model: string = car.name;
-                const time: number | undefined = await Car.getRaceTime(id);
+            if (this.carsData) {
+                const raceResults: IRaceResults = {};
+                for (const car of this.carsData) {
+                    const id: number = car.id;
+                    const model: string = car.name;
+                    const time: number | undefined = await Car.getRaceTime(id);
 
-                if (time) {
-                    raceResults[id] = { time, model };
+                    if (time) {
+                        raceResults[id] = { time, model };
+                    }
                 }
-            }
-            for (const car in raceResults) {
-                const carElem = document.getElementById(`${car}`);
-                if (carElem) {
-                    raceResults[car].status = Car.race(Number(car), carElem, raceResults[car].time);
+                for (const car in raceResults) {
+                    const carElem = document.getElementById(`${car}`);
+                    if (carElem) {
+                        raceResults[car].status = Car.race(Number(car), carElem, raceResults[car].time);
+                    }
                 }
+                this.getWinner(raceResults);
             }
-
-            this.getWinner(raceResults);
         });
     }
 
     private onResetBtnPress(btn: HTMLElement) {
         btn.addEventListener('click', () => {
-            for (const car of this.carsData) {
-                const carElem: HTMLElement | null = document.getElementById(`${car.id}`);
-                if (carElem) {
-                    carElem.removeAttribute('style');
-                    carElem.className = 'car__icon';
+            if (this.carsData) {
+                for (const car of this.carsData) {
+                    const carElem: HTMLElement | null = document.getElementById(`${car.id}`);
+                    if (carElem) {
+                        carElem.removeAttribute('style');
+                        carElem.className = 'car__icon';
+                    }
                 }
             }
         });
@@ -181,8 +184,8 @@ export class Garage {
     private onGenerateBtnPress(generateBtn: HTMLElement) {
         generateBtn.addEventListener('click', () => {
             this.generateRandomCars();
-            const garageTitle = document.querySelector('.garage__title');
-            if (garageTitle) {
+            const garageTitle: HTMLElement | null = document.querySelector('.garage__title');
+            if (garageTitle && this.carsData) {
                 garageTitle.innerHTML = `Garage ${this.carsData.length + 100}`;
             }
         });
@@ -197,11 +200,11 @@ export class Garage {
             const color = `#${((Math.random() * 0xfffff * 1000000).toString(16)).slice(0, 6)}`;
             const newCarData = await addNewCar({ name, color });
             new Car(newCarData);
-            this.carsData.push(newCarData);
+            this.carsData?.push(newCarData);
         }
     }
 
-    private async getWinner(raceResults: { [key: string]: any }) {
+    private async getWinner(raceResults: IRaceResults) {
         let bestResult: number | undefined;
         let fastestCarId: string | undefined;
 
