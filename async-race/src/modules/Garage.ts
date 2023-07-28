@@ -1,12 +1,11 @@
-import {createElem} from "../utils/createElem";
-import {fetchData} from "../api/fetchData";
-import {ICar} from "../types/dataTypes";
-import {Car, carStatus} from "./Car";
-import {createCarForm} from "../utils/createCarForm";
-import {sendFormData} from "../utils/sendFormData";
-import {addNewCar} from "../api/addNewCar";
-import {fetchWinner} from "../api/fetchWinner";
-import {Winners} from "./Winners";
+import { createElem } from '../utils/createElem';
+import { fetchData } from '../api/fetchData';
+import { ICar } from '../types/dataTypes';
+import { Car, carStatus } from './Car';
+import { createCarForm } from '../utils/createCarForm';
+import { sendFormData } from '../utils/sendFormData';
+import { addNewCar } from '../api/addNewCar';
+import { Winners } from './Winners';
 
 const CARS_ON_PAGE = 7;
 
@@ -48,7 +47,7 @@ export class Garage {
             parentClass: '.body'
         });
         this.renderCarCreator(garagePage);
-        this.renderGarageTitle(garagePage, data);
+        this.renderGarageTitle(garagePage);
         this.renderPagination(garagePage);
         this.renderGaragePage(garagePage, data);
     }
@@ -60,11 +59,11 @@ export class Garage {
             parentNode: garagePage,
             innerText: 'Create your own car'
         });
-        const carCreator = createCarForm({parent: garagePage, formAdditionalStyle: ['garage__create-form']});
+        const carCreator = createCarForm({ parent: garagePage, formAdditionalStyle: ['garage__create-form'] });
         this.onCreateFormSubmit(carCreator);
     }
 
-    private renderGarageTitle(garagePage: HTMLElement, data: ICar[]) {
+    private renderGarageTitle(garagePage: HTMLElement) {
         createElem({
             htmlTag: 'h1',
             styles: ['garage__title'],
@@ -72,7 +71,7 @@ export class Garage {
             innerText: `Garage (${this.totalCarsNumber})`
         });
 
-        const garageBtns: HTMLElement = createElem({htmlTag: 'div', styles: ['garage__btns'], parentNode: garagePage});
+        const garageBtns: HTMLElement = createElem({ htmlTag: 'div', styles: ['garage__btns'], parentNode: garagePage });
         // Race
         const raceBtn: HTMLElement = createElem({
             htmlTag: 'button',
@@ -100,7 +99,7 @@ export class Garage {
     }
 
     private renderGaragePage(garagePage: HTMLElement, data: ICar[]) {
-        const garageCars = createElem({htmlTag: 'div', styles: ['garage__cars'], parentNode: garagePage});
+        const garageCars = createElem({ htmlTag: 'div', styles: ['garage__cars'], parentNode: garagePage });
         data.map((carData: ICar) => {
             const car = new Car(carData);
             garageCars.append(car.carElem);
@@ -109,7 +108,7 @@ export class Garage {
     }
 
     private renderPagination(garagePage: HTMLElement) {
-        const pagination = createElem({htmlTag: 'div', styles: ['pagination'], parentNode: garagePage});
+        const pagination = createElem({ htmlTag: 'div', styles: ['pagination'], parentNode: garagePage });
         createElem({
             htmlTag: 'h2',
             styles: ['pagination__title'],
@@ -117,7 +116,7 @@ export class Garage {
             innerText: `Page #${this.currentPage}`
         });
 
-        const paginationBtns = createElem({htmlTag: 'div', styles: ['pagination__buttons'], parentNode: pagination});
+        const paginationBtns = createElem({ htmlTag: 'div', styles: ['pagination__buttons'], parentNode: pagination });
         createElem({
             htmlTag: 'button',
             styles: ['button', 'button_primary', 'button_circle'],
@@ -145,18 +144,18 @@ export class Garage {
     }
 
     private onRaceBtnPress(btn: HTMLElement) {
-        btn.addEventListener('click', async (e) => {
+        btn.addEventListener('click', async () => {
             const raceResults: any = {};
-            for (let car of this.carsData) {
+            for (const car of this.carsData) {
                 const id: number = car.id;
                 const model: string = car.name;
                 const time: number | undefined = await Car.getRaceTime(id);
 
                 if (time) {
-                    raceResults[id] = {time, model};
+                    raceResults[id] = { time, model };
                 }
             }
-            for (let car in raceResults) {
+            for (const car in raceResults) {
                 const carElem = document.getElementById(`${car}`);
                 if (carElem) {
                     raceResults[car].status = Car.race(Number(car), carElem, raceResults[car].time);
@@ -168,8 +167,8 @@ export class Garage {
     }
 
     private onResetBtnPress(btn: HTMLElement) {
-        btn.addEventListener('click', (e) => {
-            for (let car of this.carsData) {
+        btn.addEventListener('click', () => {
+            for (const car of this.carsData) {
                 const carElem: HTMLElement | null = document.getElementById(`${car.id}`);
                 if (carElem) {
                     carElem.removeAttribute('style');
@@ -191,12 +190,12 @@ export class Garage {
 
     private async generateRandomCars() {
         const firstModelPart = ['Ford', 'Ferrari', 'Mercedes', 'Tesla', 'Opel', 'Mustang', 'BMW', 'Mazda', 'Range Rover', 'KIA'];
-        const secondModelPart = ['Model A', 'Model Q', 'Model Z', 'Model S', 'Model V', 'Model S', 'Model W', 'Model R', 'Model P', "Model L"];
+        const secondModelPart = ['Model A', 'Model Q', 'Model Z', 'Model S', 'Model V', 'Model S', 'Model W', 'Model R', 'Model P', 'Model L'];
 
         for (let i = 0; i < 100; i += 1) {
             const name = `${firstModelPart[Math.floor(Math.random() * 10)]} ${secondModelPart[Math.floor(Math.random() * 10)]}`;
             const color = `#${((Math.random() * 0xfffff * 1000000).toString(16)).slice(0, 6)}`;
-            const newCarData = await addNewCar({name, color});
+            const newCarData = await addNewCar({ name, color });
             new Car(newCarData);
             this.carsData.push(newCarData);
         }
@@ -206,7 +205,7 @@ export class Garage {
         let bestResult: number | undefined;
         let fastestCarId: string | undefined;
 
-        for (let carId in raceResults) {
+        for (const carId in raceResults) {
             const status = await raceResults[carId].status;
             if (status !== carStatus.stopped
                 && (!bestResult || raceResults[carId].time < bestResult)) {

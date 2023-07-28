@@ -1,6 +1,6 @@
-import {createElem} from "../utils/createElem";
-import {Garage} from "./Garage";
-import {Winners} from "./Winners";
+import { createElem } from '../utils/createElem';
+import { Garage } from './Garage';
+import { Winners } from './Winners';
 
 export class Main {
     garagePage: Garage | null;
@@ -16,7 +16,7 @@ export class Main {
         const body: HTMLElement = document.getElementsByTagName('body')[0];
         body.classList.add('body');
 
-        const nav = createElem({htmlTag: 'nav', styles: ['nav'], parentNode: body});
+        const nav = createElem({ htmlTag: 'nav', styles: ['nav'], parentNode: body });
         const garageBtn: HTMLElement = createElem({
             htmlTag: 'button',
             styles: ['button', 'button_primary'],
@@ -37,13 +37,13 @@ export class Main {
     }
 
     private onGarageBtnPress(garageBtn: HTMLElement) {
-        garageBtn.addEventListener('click', e => {
+        garageBtn.addEventListener('click', () => {
             this.renderGaragePage();
         });
     }
 
     private onWinnersBtnPress(winnersBtn: HTMLElement) {
-        winnersBtn.addEventListener('click', e => {
+        winnersBtn.addEventListener('click', () => {
             this.renderWinnersPage();
         });
     }

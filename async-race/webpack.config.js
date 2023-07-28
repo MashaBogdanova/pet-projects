@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
     entry: './src/index.ts',
@@ -20,6 +21,10 @@ module.exports = {
             template: path.resolve(__dirname, './src', 'index.html'),
             filename: 'index.html',
         }),
+        new ESLintPlugin({
+            context: './src',
+            overrideConfigFile: './.eslintrc.json'
+        })
     ],
     mode: 'development',
     module: {

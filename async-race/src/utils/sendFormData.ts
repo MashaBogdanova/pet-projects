@@ -6,7 +6,7 @@ export async function sendFormData(e: Event, form: HTMLFormElement, apiCallback:
     let newCar;
 
     if (name.length !== 0 && color.length !== 0) {
-        newCar = await apiCallback({name: name, color: color, id: carId});
+        newCar = await apiCallback({ name: name, color: color, id: carId });
         const input: HTMLInputElement | null = document.querySelector(inputSelector);
         if (input) {
             input.value = '';

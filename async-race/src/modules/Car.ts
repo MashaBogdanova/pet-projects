@@ -1,11 +1,11 @@
-import {createElem} from "../utils/createElem";
-import {ICar} from "../types/dataTypes";
-import {removeCarData} from "../api/removeCarData";
-import {createCarForm} from "../utils/createCarForm";
-import {sendFormData} from "../utils/sendFormData";
-import {updateCar} from "../api/updateCar";
-import {fetchCarEngine} from "../api/fetchCarEngine";
-import {carSVG} from "../assets/images/carSVG";
+import { createElem } from '../utils/createElem';
+import { ICar } from '../types/dataTypes';
+import { removeCarData } from '../api/removeCarData';
+import { createCarForm } from '../utils/createCarForm';
+import { sendFormData } from '../utils/sendFormData';
+import { updateCar } from '../api/updateCar';
+import { fetchCarEngine } from '../api/fetchCarEngine';
+import { carSVG } from '../assets/images/carSVG';
 
 export enum carStatus {
     started = 'started',
@@ -35,8 +35,8 @@ export class Car {
         });
 
         // Car information
-        const carInfo = createElem({htmlTag: 'div', styles: ['car__info'], parentNode: car});
-        createElem({htmlTag: 'h3', styles: ['car__model'], parentNode: carInfo, innerText: `${data.name}`});
+        const carInfo = createElem({ htmlTag: 'div', styles: ['car__info'], parentNode: car });
+        createElem({ htmlTag: 'h3', styles: ['car__model'], parentNode: carInfo, innerText: `${data.name}` });
         const carEditor: HTMLFormElement = createCarForm({
             parent: carInfo,
             formAdditionalStyle: ['car__edit', 'hidden']
@@ -59,8 +59,8 @@ export class Car {
         this.onRemoveBtnPress(removeBtn);
 
         // Car move
-        const carMove = createElem({htmlTag: 'div', styles: ['car__move'], parentNode: car});
-        const carMoveWrapper = createElem({htmlTag: 'div', styles: ['car__move-wrapper'], parentNode: carMove});
+        const carMove = createElem({ htmlTag: 'div', styles: ['car__move'], parentNode: car });
+        const carMoveWrapper = createElem({ htmlTag: 'div', styles: ['car__move-wrapper'], parentNode: carMove });
 
         const startBtn = createElem({
             htmlTag: 'button',
@@ -85,7 +85,7 @@ export class Car {
             path.setAttribute('fill', `${data.color}`);
         }
 
-        createElem({htmlTag: 'div', styles: ['car__flag'], parentNode: carMove});
+        createElem({ htmlTag: 'div', styles: ['car__flag'], parentNode: carMove });
 
         this.onMoveBtnPress(startBtn, data.id, carStatus.started, carIcon);
         this.onMoveBtnPress(restartBtn, data.id, carStatus.stopped, carIcon);
@@ -94,7 +94,7 @@ export class Car {
     }
 
     private onEditBtnPress(carModel: HTMLElement, carEditor: HTMLFormElement): void {
-        carModel.addEventListener('click', e => {
+        carModel.addEventListener('click', () => {
             carModel.classList.add('hidden');
             carEditor.classList.remove('hidden');
         });
@@ -107,7 +107,7 @@ export class Car {
     }
 
     private onRemoveBtnPress(removeBtn: HTMLElement): void {
-        removeBtn.addEventListener('click', e => {
+        removeBtn.addEventListener('click', () => {
             removeCarData('garage', this.data.id);
             removeCarData('winners', this.data.id);
             this.carElem.remove();
@@ -115,7 +115,7 @@ export class Car {
     }
 
     private onMoveBtnPress(btn: HTMLElement, id: number, status: carStatus, carIcon: HTMLElement) {
-        btn.addEventListener('click', async (e) => {
+        btn.addEventListener('click', async () => {
             if (status === carStatus.stopped) {
                 carIcon.removeAttribute('style');
                 carIcon.className = 'car__icon';
@@ -130,7 +130,7 @@ export class Car {
         carIcon.classList.add('car__icon_animated');
         carIcon.setAttribute('style', `animation-duration: ${time}s`);
 
-        const errorStatus = await fetchCarEngine({id, status: carStatus.drive});
+        const errorStatus = await fetchCarEngine({ id, status: carStatus.drive });
         let stopTime: number;
         if (time) {
             stopTime = Math.ceil(Math.random() * (time / 2));
@@ -145,6 +145,6 @@ export class Car {
     }
 
     static async getRaceTime(id: number) {
-        return await fetchCarEngine({id, status: carStatus.started});
+        return await fetchCarEngine({ id, status: carStatus.started });
     }
 }

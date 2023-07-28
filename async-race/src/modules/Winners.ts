@@ -1,9 +1,9 @@
-import {createElem} from "../utils/createElem";
-import {fetchData} from "../api/fetchData";
-import {IWinner} from "../types/dataTypes";
-import {fetchWinner} from "../api/fetchWinner";
-import {addWinnerData} from "../api/addWinnerData";
-import {updateWinnerData} from "../api/updateWinner";
+import { createElem } from '../utils/createElem';
+import { fetchData } from '../api/fetchData';
+import { IWinner } from '../types/dataTypes';
+import { fetchWinner } from '../api/fetchWinner';
+import { addWinnerData } from '../api/addWinnerData';
+import { updateWinnerData } from '../api/updateWinner';
 
 const HTTP_NOT_FOUND = 404;
 
@@ -62,7 +62,7 @@ export class Winners {
             parentNode: winnersPage,
             innerText: `Page #${'1'}`
         });
-        const table = createElem({htmlTag: 'table', styles: ['win-table'], parentNode: winnersPage});
+        const table = createElem({ htmlTag: 'table', styles: ['win-table'], parentNode: winnersPage });
         this.createTableRow(table, 'Number', 'Car', 'Name', 'Wins', 'Best time (s)');
 
         this.data.map((winner: IWinner, index: number) => {
@@ -87,12 +87,12 @@ export class Winners {
     }
 
     private createTableRow(parentNode: HTMLElement, winnerPosition: string, color: string, model: string, wins: string, time: string) {
-        const row = createElem({htmlTag: 'tr', styles: ['win-table__row'], parentNode});
-        createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: winnerPosition});
-        createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: color});
-        createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: model});
-        createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: wins});
-        createElem({htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: time});
+        const row = createElem({ htmlTag: 'tr', styles: ['win-table__row'], parentNode });
+        createElem({ htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: winnerPosition });
+        createElem({ htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: color });
+        createElem({ htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: model });
+        createElem({ htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: wins });
+        createElem({ htmlTag: 'td', styles: ['win-table__cell'], parentNode: row, innerText: time });
     }
 
     async addNewWin(id: string, time: number) {

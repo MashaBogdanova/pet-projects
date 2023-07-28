@@ -4,7 +4,7 @@ interface IParam {
 }
 
 export async function addNewCar(params: IParam) {
-    const url: string = `http://127.0.0.1:3000/garage`;
+    const url: string = 'http://127.0.0.1:3000/garage';
     try {
         const response = await fetch(url, {
             method: 'POST',

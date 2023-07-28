@@ -25,7 +25,7 @@ export async function fetchCarEngine(params: IParam): Promise<number | undefined
             }
 
             const data = await response.json();
-            const {velocity, distance} = data;
+            const { velocity, distance } = data;
             return Math.round((distance / velocity) / 1000);
 
         } catch (e) {

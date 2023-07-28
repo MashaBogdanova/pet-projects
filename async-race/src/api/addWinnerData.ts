@@ -5,7 +5,7 @@ interface IParam {
 }
 
 export async function addWinnerData(params: IParam) {
-    const url: string = `http://127.0.0.1:3000/winners`;
+    const url: string = 'http://127.0.0.1:3000/winners';
     try {
         const response = await fetch(url, {
             method: 'POST',

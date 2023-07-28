@@ -1,4 +1,4 @@
-import {createElem} from "./createElem";
+import { createElem } from './createElem';
 
 interface IParams {
     parent: HTMLElement
