@@ -134,12 +134,13 @@ export class Garage {
 
     private onCreateFormSubmit(carCreator: HTMLFormElement) {
         carCreator.addEventListener('submit', async (e) => {
-            const newCarData = await sendFormData(e, carCreator, addNewCar, '.garage__create .input');
-            this.carsData?.push(newCarData);
-
-            const car = new Car(newCarData);
-            const garageCars = document.querySelector('.garage__cars');
-            garageCars && garageCars.append(car.carElem);
+            const newCarData: ICar | undefined = await sendFormData(e, carCreator, addNewCar, '.garage__create .input');
+            if(newCarData) {
+                this.carsData?.push(newCarData);
+                const car = new Car(newCarData);
+                const garageCars = document.querySelector('.garage__cars');
+                garageCars && garageCars.append(car.carElem);
+            }
         });
     }
 
@@ -198,9 +199,11 @@ export class Garage {
         for (let i = 0; i < 100; i += 1) {
             const name = `${firstModelPart[Math.floor(Math.random() * 10)]} ${secondModelPart[Math.floor(Math.random() * 10)]}`;
             const color = `#${((Math.random() * 0xfffff * 1000000).toString(16)).slice(0, 6)}`;
-            const newCarData = await addNewCar({ name, color });
-            new Car(newCarData);
-            this.carsData?.push(newCarData);
+            const newCarData: ICar | undefined = await addNewCar({ name, color });
+            if(newCarData) {
+                new Car(newCarData);
+                this.carsData?.push(newCarData);
+            }
         }
     }
 

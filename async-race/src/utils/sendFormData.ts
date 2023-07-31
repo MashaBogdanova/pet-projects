@@ -1,4 +1,17 @@
-export async function sendFormData(e: Event, form: HTMLFormElement, apiCallback: any, inputSelector: string, carId?: number) {
+import { ICar } from '../types/dataTypes';
+
+export interface ICallbackParams {
+    name: string
+    color: string
+    id?: number | undefined
+}
+
+export async function sendFormData(
+    e: Event,
+    form: HTMLFormElement,
+    apiCallback: (params: ICallbackParams) => Promise<ICar | undefined>,
+    inputSelector: string,
+    carId?: number) {
     e.preventDefault();
     const formData: FormData = new FormData(form);
     const name = formData.get('name') as string;

@@ -1,10 +1,7 @@
-interface IParam {
-    name: string,
-    color: string,
-    id: number
-}
+import { ICallbackParams } from '../utils/sendFormData';
+import { ICar } from '../types/dataTypes';
 
-export async function updateCar(params: IParam) {
+export async function updateCar(params: ICallbackParams): Promise<ICar | undefined> {
     if (Number.isInteger(params.id)) {
         const url: string = `http://127.0.0.1:3000/garage/${params.id}`;
         try {
